@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="rules" class="loginContainer" la>
-      <h3 class="loginTitle">智慧物业管理系统</h3>
+      <h3 class="loginTitle">Scaffold-智慧物业管理系统</h3>
       <el-form-item prop="username">
         <el-input type="text" prefix-icon="iconfont iconfont-user" v-model="loginForm.username"
                   placeholder="请输入用户名" auto-complete="false" clearable></el-input>
@@ -11,10 +11,12 @@
                   placeholder="请输入密码" auto-complete="false" clearable show-password></el-input>
       </el-form-item>
       <el-form-item prop="code">
-        <el-input style="width: 250px;margin-right: 5px;" prefix-icon="iconfont iconfont-code" type="text"
+        <el-input style="width: 63%" prefix-icon="iconfont iconfont-code" type="text"
                   v-model="loginForm.code"
                   placeholder="点击图片更换验证码" auto-complete="false"></el-input>
-        <img :src="captchaUrl" alt="">
+        <div class="loginCode">
+          <img :src="captchaUrl" @click="getCode" alt="点击更换验证码">
+        </div>
       </el-form-item>
       <el-checkbox v-model="loginForm.rememberMe" class="loginRemember">记住我</el-checkbox>
       <el-form-item>
@@ -24,10 +26,17 @@
         </el-button>
       </el-form-item>
     </el-form>
+    <div v-if="$store.state.global.showFooter" class="loginFooter">
+      <span v-html="$store.state.global.footerTxt"/>
+      <span> ⋅ </span>
+      <span v-text="$store.state.global.caseNumber"/>
+    </div>
   </div>
 </template>
 
 <script>
+import {getCodeImg} from "@/api/login";
+
 export default {
   name: "Login",
   data() {
@@ -48,7 +57,16 @@ export default {
       }
     }
   },
+  created() {
+    this.getCode()
+  },
   methods: {
+    getCode() {
+      getCodeImg().then(res => {
+        this.captchaUrl = res.data.code_src
+        this.loginForm.uuid = res.data.uuid
+      })
+    },
     submitLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
@@ -81,18 +99,18 @@ export default {
 .loginContainer {
   border-radius: 15px;
   background-clip: padding-box;
-  margin: 180px auto 180px 200px;
+  margin: 180px auto 180px 250px;
   width: 350px;
   padding: 15px 35px 15px 35px;
   background: #fff;
   border: 1px solid #eaeaea;
-  /*box-shadow: 0 0 25px rgba(202, 198, 198, 0.93);*/
+  box-shadow: 0 0 25px rgba(202, 198, 198, 0.7);
 }
 
 .loginTitle {
   margin: 0 auto 30px auto;
   text-align: center;
-  color: #707070;
+  color: black;
 }
 
 .loginRemember {
@@ -102,5 +120,30 @@ export default {
 
 .loginSubmit {
   width: 100%;
+}
+
+.loginCode {
+  width: 33%;
+  display: inline-block;
+  height: 38px;
+  float: right;
+}
+
+img {
+  cursor: pointer;
+  vertical-align: middle
+}
+
+.loginFooter {
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: Arial, serif;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 </style>
