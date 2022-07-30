@@ -1,0 +1,30 @@
+{
+  "id": "3557547",
+  "name": "Vue",
+  "font_family": "iconfont",
+  "css_prefix_text": "iconfont-",
+  "description": "用于智慧物业管理系统前端",
+  "glyphs": [
+    {
+      "icon_id": "553324",
+      "name": "验证 验证码",
+      "font_class": "code",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "9220214",
+      "name": "icon_密码",
+      "font_class": "password",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "9220270",
+      "name": "icon_用户",
+      "font_class": "user",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    }
+  ]
+}
