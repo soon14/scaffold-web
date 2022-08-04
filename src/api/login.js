@@ -1,5 +1,5 @@
 import {getRequest} from "@/utils/request";
 
 export function getCodeImg() {
-    return getRequest('/auth/verifyCode', null);
+    return getRequest('/a/auth/verifyCode', null);
 }

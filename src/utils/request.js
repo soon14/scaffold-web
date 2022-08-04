@@ -55,3 +55,12 @@ export const postRequest = (url, params) => {
         data: params
     })
 }
+
+//封装PUT请求
+export const PutRequest = (url, params) => {
+    return axios({
+        method: 'put',
+        url: `${base}${url}`,
+        data: params
+    })
+}

@@ -11,7 +11,7 @@
                   placeholder="请输入密码" auto-complete="false" clearable show-password></el-input>
       </el-form-item>
       <el-form-item prop="code">
-        <el-input style="width: 63%" prefix-icon="iconfont iconfont-code" type="text"
+        <el-input style="width: 58%" prefix-icon="iconfont iconfont-code" type="text"
                   v-model="loginForm.code"
                   placeholder="点击图片更换验证码" auto-complete="false"></el-input>
         <div class="loginCode">
@@ -20,7 +20,7 @@
       </el-form-item>
       <el-checkbox v-model="loginForm.rememberMe" class="loginRemember">记住我</el-checkbox>
       <el-form-item>
-        <el-button :loading="loading" type="primary" class="loginSubmit" round @click.native="submitLogin">
+        <el-button :loading="loading" type="primary" class="loginSubmit" round @click.native.prevent="submitLogin">
           <span v-if="!loading">登录</span>
           <span v-else>登录中...</span>
         </el-button>
@@ -123,9 +123,9 @@ export default {
 }
 
 .loginCode {
-  width: 33%;
+  width: 40%;
   display: inline-block;
-  height: 38px;
+  height: 41px;
   float: right;
 }
 

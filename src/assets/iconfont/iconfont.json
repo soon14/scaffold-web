@@ -1,10 +1,794 @@
 {
   "id": "3557547",
-  "name": "Vue",
+  "name": "Scaffold",
   "font_family": "iconfont",
   "css_prefix_text": "iconfont-",
   "description": "用于智慧物业管理系统前端",
   "glyphs": [
+    {
+      "icon_id": "4881659",
+      "name": "财务分析-01",
+      "font_class": "finance-analysis-2",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "7553631",
+      "name": "财务分析",
+      "font_class": "finance-analysis-1",
+      "unicode": "e6e0",
+      "unicode_decimal": 59104
+    },
+    {
+      "icon_id": "375485",
+      "name": "总览",
+      "font_class": "finance-overview-4",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "857496",
+      "name": "总览",
+      "font_class": "finance-overview-3",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "1234985",
+      "name": "shujuzonglan",
+      "font_class": "finance-overview-2",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "10465942",
+      "name": "总览",
+      "font_class": "finance-overview-1",
+      "unicode": "e7ba",
+      "unicode_decimal": 59322
+    },
+    {
+      "icon_id": "691951",
+      "name": "财务管理",
+      "font_class": "finance-4",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "999733",
+      "name": "财务管理",
+      "font_class": "finance-3",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "5880285",
+      "name": "财务",
+      "font_class": "finance-2",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    },
+    {
+      "icon_id": "7171128",
+      "name": "财务公开",
+      "font_class": "finance-1",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "667101",
+      "name": "缴费",
+      "font_class": "owner-pay-5",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "6568772",
+      "name": "物业缴费",
+      "font_class": "owner-pay-4",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "8453441",
+      "name": "缴费",
+      "font_class": "owner-pay-3",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "16102266",
+      "name": "会员缴费",
+      "font_class": "owner-pay-2",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "23474468",
+      "name": "生活缴费",
+      "font_class": "owner-pay-1",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "1117463",
+      "name": "裕农通-业主同名卡修改",
+      "font_class": "owner-info-2",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "14310219",
+      "name": "业主APP服务",
+      "font_class": "owner-info-1",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "308161",
+      "name": "业主",
+      "font_class": "owner-4",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "308163",
+      "name": "业主-面",
+      "font_class": "owner-3",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "1132487",
+      "name": "业主 开发商",
+      "font_class": "owner-2",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "9954464",
+      "name": "业主管理",
+      "font_class": "owner-1",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "1189",
+      "name": "自助推广",
+      "font_class": "xiaoqu-notice-5",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "577373",
+      "name": "通知-fill",
+      "font_class": "xiaoqu-notice-4",
+      "unicode": "e758",
+      "unicode_decimal": 59224
+    },
+    {
+      "icon_id": "577374",
+      "name": "通知",
+      "font_class": "xiaoqu-notice-3",
+      "unicode": "e759",
+      "unicode_decimal": 59225
+    },
+    {
+      "icon_id": "903820",
+      "name": "通知",
+      "font_class": "xiaoqu-notice-2",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "5767876",
+      "name": "消息通知",
+      "font_class": "xiaoqu-notice-1",
+      "unicode": "ec35",
+      "unicode_decimal": 60469
+    },
+    {
+      "icon_id": "630127",
+      "name": "意见反馈",
+      "font_class": "xiaoqu-feedback-4",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "1119361",
+      "name": "意见反馈(1)",
+      "font_class": "xiaoqu-feedback-3",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "5334215",
+      "name": "意见反馈",
+      "font_class": "xiaoqu-feedback-2",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "16399229",
+      "name": "意见反馈",
+      "font_class": "xiaoqu-feedback-1",
+      "unicode": "e864",
+      "unicode_decimal": 59492
+    },
+    {
+      "icon_id": "2727675",
+      "name": "电梯管理",
+      "font_class": "xiaoqu-elevator-2",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "8688317",
+      "name": "电梯管理",
+      "font_class": "xiaoqu-elevator-1",
+      "unicode": "e6e4",
+      "unicode_decimal": 59108
+    },
+    {
+      "icon_id": "9954427",
+      "name": "楼宇管理",
+      "font_class": "xiaoqu-building-3",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "9954473",
+      "name": "安防楼宇管理",
+      "font_class": "xiaoqu-building-2",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "22446760",
+      "name": "楼宇管理",
+      "font_class": "xiaoqu-building-1",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "6578082",
+      "name": "小区管理",
+      "font_class": "xiaoqu-3",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "20997772",
+      "name": "小区管理",
+      "font_class": "xiaoqu-2",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "23376822",
+      "name": "小区管理",
+      "font_class": "xiaoqu-1",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "283005",
+      "name": "停车场",
+      "font_class": "car-park-park-lot-3",
+      "unicode": "e6c4",
+      "unicode_decimal": 59076
+    },
+    {
+      "icon_id": "5453153",
+      "name": "停车场",
+      "font_class": "car-park-park-lot-2",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "10487474",
+      "name": "停车场",
+      "font_class": "car-park-park-lot-1",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "1079710",
+      "name": "停车位",
+      "font_class": "car-park-park-2",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "18211535",
+      "name": "停车位",
+      "font_class": "car-park-park-1",
+      "unicode": "e7c3",
+      "unicode_decimal": 59331
+    },
+    {
+      "icon_id": "2958940",
+      "name": "车辆管理",
+      "font_class": "car-park-owner-car-2",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "7119866",
+      "name": "人像车辆授权",
+      "font_class": "car-park-owner-car-1",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "782226",
+      "name": "停车场1",
+      "font_class": "car-park-2",
+      "unicode": "e6cb",
+      "unicode_decimal": 59083
+    },
+    {
+      "icon_id": "15351769",
+      "name": "停车场管理",
+      "font_class": "car-park-1",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "29422940",
+      "name": "疫情防控管理",
+      "font_class": "commons-epidemic-2",
+      "unicode": "e6df",
+      "unicode_decimal": 59103
+    },
+    {
+      "icon_id": "588767",
+      "name": "大厦小区地址",
+      "font_class": "commons-village-5",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "2086289",
+      "name": "小区",
+      "font_class": "commons-village-4",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "14310222",
+      "name": "小区管理",
+      "font_class": "commons-village-3",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "22611524",
+      "name": "小区",
+      "font_class": "commons-village-1",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "7171196",
+      "name": "公共服务平台",
+      "font_class": "commons-3",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "17426961",
+      "name": "公共管理",
+      "font_class": "commons-2",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "828810",
+      "name": "脚印 足迹 访客",
+      "font_class": "commons-visitor-4",
+      "unicode": "e87e",
+      "unicode_decimal": 59518
+    },
+    {
+      "icon_id": "8387662",
+      "name": "访客管理",
+      "font_class": "commons-visitor-3",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    },
+    {
+      "icon_id": "8688316",
+      "name": "门禁访客管理",
+      "font_class": "commons-visitor-2",
+      "unicode": "e6e5",
+      "unicode_decimal": 59109
+    },
+    {
+      "icon_id": "18853226",
+      "name": "访客管理",
+      "font_class": "commons-visitor-1",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "421097",
+      "name": "系统参数",
+      "font_class": "tools-settings-6",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "5651540",
+      "name": "系统参数",
+      "font_class": "tools-settings-5",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "14915070",
+      "name": "系统参数",
+      "font_class": "tools-settings-4",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "17426985",
+      "name": "系统参数配置",
+      "font_class": "tools-settings-3",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "27605029",
+      "name": "系统参数",
+      "font_class": "tools-settings-2",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "1723000",
+      "name": "菜单管理",
+      "font_class": "system-menu-4",
+      "unicode": "e7c0",
+      "unicode_decimal": 59328
+    },
+    {
+      "icon_id": "9113620",
+      "name": "gy菜单管理",
+      "font_class": "system-menu-3",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "20240556",
+      "name": "菜单管理",
+      "font_class": "system-menu-2",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "857684",
+      "name": "角色管理",
+      "font_class": "system-role-3",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "12771481",
+      "name": "用户管理",
+      "font_class": "system-user-6",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "15872041",
+      "name": "用户管理",
+      "font_class": "system-user-5",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "18309263",
+      "name": "用户管理01",
+      "font_class": "system-user-4",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "18309266",
+      "name": "用户管理",
+      "font_class": "system-user-3",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "26190490",
+      "name": "user-manager",
+      "font_class": "system-user-2",
+      "unicode": "e714",
+      "unicode_decimal": 59156
+    },
+    {
+      "icon_id": "5434089",
+      "name": "SQL监控",
+      "font_class": "monitor-sql-4",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "20853326",
+      "name": "SQL配置",
+      "font_class": "monitor-sql-3",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
+      "icon_id": "28782342",
+      "name": "SQL监控",
+      "font_class": "monitor-sql-2",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "763145",
+      "name": "操作日志",
+      "font_class": "monitor-play-log-3",
+      "unicode": "e724",
+      "unicode_decimal": 59172
+    },
+    {
+      "icon_id": "12594571",
+      "name": "操作日志",
+      "font_class": "monitor-play-log-2",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "18853229",
+      "name": "操作日志",
+      "font_class": "monitor-play-log-1",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "9454028",
+      "name": "系统工具",
+      "font_class": "tools-2",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "25187238",
+      "name": "系统工具",
+      "font_class": "tools-1",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "5114087",
+      "name": "系统监控",
+      "font_class": "monitor-4",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "9454030",
+      "name": "系统监控",
+      "font_class": "monitor-3",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "25187243",
+      "name": "系统监控",
+      "font_class": "monitor-2",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "566972",
+      "name": "系统管理",
+      "font_class": "system-6",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "8441586",
+      "name": "系统管理",
+      "font_class": "system-5",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "12694055",
+      "name": "系统管理",
+      "font_class": "system-4",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "17426982",
+      "name": "系统管理",
+      "font_class": "system-3",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "20240561",
+      "name": "系统管理",
+      "font_class": "system-2",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "1236890",
+      "name": "入库",
+      "font_class": "tools-warehousing-3",
+      "unicode": "e6d6",
+      "unicode_decimal": 59094
+    },
+    {
+      "icon_id": "7335441",
+      "name": "入库",
+      "font_class": "tools-warehousing-2",
+      "unicode": "eb1b",
+      "unicode_decimal": 60187
+    },
+    {
+      "icon_id": "576402",
+      "name": "在线用户",
+      "font_class": "monitor-online-4",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "12594591",
+      "name": "在线用户",
+      "font_class": "monitor-online-3",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "15463272",
+      "name": "在线用户",
+      "font_class": "monitor-online-2",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "20853374",
+      "name": "在线用户",
+      "font_class": "monitor-online-1",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "10793037",
+      "name": "swagger",
+      "font_class": "tools-swagger-4",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "15378856",
+      "name": "swagger",
+      "font_class": "tools-swagger-3",
+      "unicode": "ecd1",
+      "unicode_decimal": 60625
+    },
+    {
+      "icon_id": "22875549",
+      "name": "swagger",
+      "font_class": "tools-swagger-2",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "10017459",
+      "name": "停车缴费",
+      "font_class": "commons-temporary-park",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "742148",
+      "name": "停车场",
+      "font_class": "car-park-3",
+      "unicode": "e6de",
+      "unicode_decimal": 59102
+    },
+    {
+      "icon_id": "30955874",
+      "name": "治疗-01",
+      "font_class": "commons-epidemic-1",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "7171133",
+      "name": "仓储设施管理",
+      "font_class": "commons-village-2",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "4766856",
+      "name": "carry out",
+      "font_class": "commons-1",
+      "unicode": "e7d3",
+      "unicode_decimal": 59347
+    },
+    {
+      "icon_id": "4766438",
+      "name": "container",
+      "font_class": "system-menu-1",
+      "unicode": "e7b0",
+      "unicode_decimal": 59312
+    },
+    {
+      "icon_id": "6598321",
+      "name": "switch user",
+      "font_class": "system-role-1",
+      "unicode": "e8ea",
+      "unicode_decimal": 59626
+    },
+    {
+      "icon_id": "9229185",
+      "name": "Console-SQL",
+      "font_class": "monitor-sql-1",
+      "unicode": "e910",
+      "unicode_decimal": 59664
+    },
+    {
+      "icon_id": "7171144",
+      "name": "角色管理",
+      "font_class": "system-role-2",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "4765960",
+      "name": "Import",
+      "font_class": "tools-warehousing-1",
+      "unicode": "e791",
+      "unicode_decimal": 59281
+    },
+    {
+      "icon_id": "4766480",
+      "name": "file-text",
+      "font_class": "tools-swagger-1",
+      "unicode": "e7b9",
+      "unicode_decimal": 59321
+    },
+    {
+      "icon_id": "4766973",
+      "name": "wrench",
+      "font_class": "tools-settings",
+      "unicode": "e7e5",
+      "unicode_decimal": 59365
+    },
+    {
+      "icon_id": "4766298",
+      "name": "line chart",
+      "font_class": "monitor-1",
+      "unicode": "e7af",
+      "unicode_decimal": 59311
+    },
+    {
+      "icon_id": "4765891",
+      "name": "setting",
+      "font_class": "system-1",
+      "unicode": "e78e",
+      "unicode_decimal": 59278
+    },
+    {
+      "icon_id": "4766294",
+      "name": "team",
+      "font_class": "system-user-1",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
     {
       "icon_id": "553324",
       "name": "验证 验证码",

@@ -14,14 +14,14 @@ module.exports = {
                 target: process.env.VUE_APP_BASE_API,
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': 'api'
+                    '^/api': '/api'
                 }
             },
-            '/auth': {
+            '/a': {
                 target: process.env.VUE_APP_BASE_API,
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/auth': 'auth'
+                    '^/a': '/auth'
                 }
             }
         }
