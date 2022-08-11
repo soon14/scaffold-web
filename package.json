@@ -1,17 +1,24 @@
 {
   "name": "scaffold-web",
   "version": "0.1.0",
+  "description": "Scaffold - 智慧物业管理系统",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.9",
+    "fuse.js": "^3.4.4",
+    "js-cookie": "^3.0.1",
     "jsencrypt": "^3.2.1",
+    "nprogress": "^0.2.0",
+    "path": "^0.12.7",
+    "path-to-regexp": "^6.2.1",
     "vue": "^2.6.14",
+    "vue-highlightjs": "^1.3.3",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },

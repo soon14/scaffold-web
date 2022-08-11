@@ -11,7 +11,7 @@
                   placeholder="请输入密码" auto-complete="false" clearable show-password></el-input>
       </el-form-item>
       <el-form-item prop="code">
-        <el-input style="width: 58%" prefix-icon="iconfont iconfont-code" type="text"
+        <el-input style="width: 58%" prefix-icon="iconfont iconfont-verify-code" type="text"
                   v-model="loginForm.code"
                   placeholder="点击图片更换验证码" auto-complete="false"></el-input>
         <div class="loginCode">
@@ -36,12 +36,16 @@
 
 <script>
 import {getCodeImg} from "@/api/login";
+import Cookies from 'js-cookie';
+import {encrypt} from "@/utils/rsaEncrypt";
+import Global from '@/global'
 
 export default {
   name: "Login",
   data() {
     return {
       captchaUrl: '',
+      cookiePass: '',
       loginForm: {
         username: 'admin',
         password: 'admin',
@@ -50,6 +54,7 @@ export default {
         uuid: ''
       },
       loading: false,
+      redirect: undefined,
       rules: {
         username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
         password: [{required: true, message: '密码不能为空', trigger: 'blur'}],
@@ -59,18 +64,65 @@ export default {
   },
   created() {
     this.getCode()
+    this.getCookie()
   },
   methods: {
     getCode() {
       getCodeImg().then(res => {
-        this.captchaUrl = res.data.code_src
+        this.captchaUrl = res.data.code
         this.loginForm.uuid = res.data.uuid
       })
     },
+    getCookie() {
+      const username = Cookies.get('username')
+      let password = Cookies.get('password')
+      const rememberMe = Cookies.get('rememberMe')
+      //保存Cookies里面的加密后的密码
+      this.cookiePass = password === undefined ? '' : password
+      password = password === undefined ? this.loginForm.password : password
+      this.loginForm = {
+        username: username === undefined ? this.loginForm.username : username,
+        password: password,
+        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
+        code: ''
+      }
+    },
     submitLogin() {
       this.$refs.loginForm.validate((valid) => {
+        //构造登录信息体
+        const user = {
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          rememberMe: this.loginForm.rememberMe,
+          code: this.loginForm.code,
+          uuid: this.loginForm.uuid
+        }
+
+        // 如果密码没有加密,则加密
+        if (user.password !== this.cookiePass) {
+          user.password = encrypt(user.password)
+        }
+        //开始验证
         if (valid) {
-          alert("submit!!")
+          this.loading = true
+          //如果勾选了记住我,放入Cookies中
+          if (user.rememberMe) {
+            Cookies.set('username', user.username, {expires: Global.passCookieExpires})
+            Cookies.set('password', user.password, {expires: Global.passCookieExpires})
+            Cookies.set('rememberMe', user.rememberMe, {expires: Global.passCookieExpires})
+          } else {
+            Cookies.remove('username')
+            Cookies.remove('password')
+            Cookies.remove('rememberMe')
+          }
+          //  调用Vuex中的登录方法
+          this.$store.dispatch('Login', user).then(() => {
+            this.loading = false
+            this.$router.push({path: this.redirect || '/'})
+          }).catch(() => {
+            this.loading = false
+            this.getCode()
+          })
         } else {
           this.$message({
             showClose: true,

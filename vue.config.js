@@ -17,11 +17,11 @@ module.exports = {
                     '^/api': '/api'
                 }
             },
-            '/a': {
+            '/auth': {
                 target: process.env.VUE_APP_BASE_API,
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/a': '/auth'
+                    '^/auth': '/auth'
                 }
             }
         }

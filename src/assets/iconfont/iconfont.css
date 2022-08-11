@@ -1,8 +1,8 @@
 @font-face {
     font-family: "iconfont"; /* Project id 3557547 */
-    src: url('iconfont.woff2?t=1659517300358') format('woff2'),
-    url('iconfont.woff?t=1659517300358') format('woff'),
-    url('iconfont.ttf?t=1659517300358') format('truetype');
+    src: url('iconfont.woff2?t=1660192150930') format('woff2'),
+    url('iconfont.woff?t=1660192150930') format('woff'),
+    url('iconfont.ttf?t=1660192150930') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,46 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.iconfont-code:before {
+    content: "\e62e";
+}
+
+.iconfont-font-size:before {
+    content: "\e7f7";
+}
+
+.iconfont-github:before {
+    content: "\e885";
+}
+
+.iconfont-compress:before {
+    content: "\e914";
+}
+
+.iconfont-expend:before {
+    content: "\e915";
+}
+
+.iconfont-search:before {
+    content: "\e8ef";
+}
+
+.iconfont-gitee:before {
+    content: "\e686";
+}
+
+.iconfont-breadcrumb:before {
+    content: "\e7eb";
+}
+
+.iconfont-hamburger:before {
+    content: "\e7f3";
+}
+
+.iconfont-index:before {
+    content: "\e6ca";
 }
 
 .iconfont-finance-analysis-2:before {
@@ -461,7 +501,7 @@
     content: "\e7ae";
 }
 
-.iconfont-code:before {
+.iconfont-verify-code:before {
     content: "\e624";
 }
 

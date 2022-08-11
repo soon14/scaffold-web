@@ -6,6 +6,76 @@
   "description": "用于智慧物业管理系统前端",
   "glyphs": [
     {
+      "icon_id": "14765746",
+      "name": "code",
+      "font_class": "code",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "4767081",
+      "name": "font-size",
+      "font_class": "font-size",
+      "unicode": "e7f7",
+      "unicode_decimal": 59383
+    },
+    {
+      "icon_id": "4937000",
+      "name": "github-fill",
+      "font_class": "github",
+      "unicode": "e885",
+      "unicode_decimal": 59525
+    },
+    {
+      "icon_id": "9230691",
+      "name": "compress",
+      "font_class": "compress",
+      "unicode": "e914",
+      "unicode_decimal": 59668
+    },
+    {
+      "icon_id": "9230692",
+      "name": "expend",
+      "font_class": "expend",
+      "unicode": "e915",
+      "unicode_decimal": 59669
+    },
+    {
+      "icon_id": "6598347",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e8ef",
+      "unicode_decimal": 59631
+    },
+    {
+      "icon_id": "13743932",
+      "name": "gitee-fill-round",
+      "font_class": "gitee",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "4767011",
+      "name": "right",
+      "font_class": "breadcrumb",
+      "unicode": "e7eb",
+      "unicode_decimal": 59371
+    },
+    {
+      "icon_id": "4767050",
+      "name": "indent",
+      "font_class": "hamburger",
+      "unicode": "e7f3",
+      "unicode_decimal": 59379
+    },
+    {
+      "icon_id": "673798",
+      "name": "首页_fill",
+      "font_class": "index",
+      "unicode": "e6ca",
+      "unicode_decimal": 59082
+    },
+    {
       "icon_id": "4881659",
       "name": "财务分析-01",
       "font_class": "finance-analysis-2",
@@ -792,7 +862,7 @@
     {
       "icon_id": "553324",
       "name": "验证 验证码",
-      "font_class": "code",
+      "font_class": "verify-code",
       "unicode": "e624",
       "unicode_decimal": 58916
     },

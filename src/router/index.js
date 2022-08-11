@@ -1,19 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Login from '../views/Login'
+import router from './routers'
+import store from '@/store'
+import Global from '@/global'
+import NProgress from 'nprogress' //进度条
+import 'nprogress/nprogress.css' // 进度条CSS
+import {getToken} from '@/utils/auth' //从Cookie中获取Token
+import {buildMenus} from '@/api/system/menu'
 
-Vue.use(VueRouter)
-
-const routes = [
-    {
-        path: '/',
-        name: 'Login',
-        component: Login
-    }
-]
-
-const router = new VueRouter({
-    routes
-})
-
-export default router
