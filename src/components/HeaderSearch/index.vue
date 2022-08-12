@@ -1,16 +1,16 @@
 <template>
   <div :class="{'show':show}" class="header-search">
-    <i class="iconfont iconfont-search" @click.stop="click"/>
+    <i class="iconfont iconfont-search search" @click.stop="click"/>
     <el-select
-        ref="headerSearchSelect"
-        v-model="search"
-        :remote-method="querySearch"
-        filterable
-        default-first-option
-        remote
-        placeholder="查询"
-        class="header-search-select"
-        @change="change">
+      ref="headerSearchSelect"
+      v-model="search"
+      :remote-method="querySearch"
+      filterable
+      default-first-option
+      remote
+      placeholder="查询"
+      class="header-search-select"
+      @change="change">
       <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')"/>
     </el-select>
   </div>
@@ -160,7 +160,7 @@ export default {
     display: inline-block;
     vertical-align: middle;
 
-    /deep/ .el-input__inner {
+    :deep(.el-input__inner) {
       border-radius: 0;
       border: 0;
       padding-left: 0;
@@ -177,5 +177,11 @@ export default {
       margin-left: 10px;
     }
   }
+}
+</style>
+
+<style scoped>
+.search {
+  font-size: 20px;
 }
 </style>

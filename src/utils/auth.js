@@ -12,10 +12,8 @@ export function getToken() {
 export function setToken(token, rememberMe) {
     //用户如果选了记住我则保存Cookies，时间为1天
     if (rememberMe) {
-        return Cookies.set(TokenKey, token, {expires: Global.tokenCookieExpires})
-    } else {
-        return Cookies.set(TokenKey, token);
-    }
+      return Cookies.set(TokenKey, token, {expires: Global.tokenCookieExpires})
+    } else return Cookies.set(TokenKey, token);
 }
 
 //移除Token

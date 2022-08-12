@@ -8,12 +8,13 @@
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password" prefix-icon="iconfont iconfont-password" v-model="loginForm.password"
-                  placeholder="请输入密码" auto-complete="false" clearable show-password></el-input>
+                  placeholder="请输入密码" auto-complete="false" clearable show-password
+                  @keyup.enter.native="submitLogin"></el-input>
       </el-form-item>
       <el-form-item prop="code">
         <el-input style="width: 58%" prefix-icon="iconfont iconfont-verify-code" type="text"
                   v-model="loginForm.code"
-                  placeholder="点击图片更换验证码" auto-complete="false"></el-input>
+                  placeholder="点击图片更换验证码" auto-complete="false" @keyup.enter.native="submitLogin"></el-input>
         <div class="loginCode">
           <img :src="captchaUrl" @click="getCode" alt="点击更换验证码">
         </div>
@@ -47,8 +48,8 @@ export default {
       captchaUrl: '',
       cookiePass: '',
       loginForm: {
-        username: 'admin',
-        password: 'admin',
+        username: 'root',
+        password: 'root',
         rememberMe: false,
         code: '',
         uuid: ''
@@ -100,7 +101,8 @@ export default {
 
         // 如果密码没有加密,则加密
         if (user.password !== this.cookiePass) {
-          user.password = encrypt(user.password)
+          // user.password = encrypt(user.password)
+          user.password = user.password
         }
         //开始验证
         if (valid) {
@@ -116,7 +118,7 @@ export default {
             Cookies.remove('rememberMe')
           }
           //  调用Vuex中的登录方法
-          this.$store.dispatch('Login', user).then(() => {
+          this.$store.dispatch('user/Login', user).then(() => {
             this.loading = false
             this.$router.push({path: this.redirect || '/'})
           }).catch(() => {

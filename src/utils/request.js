@@ -76,8 +76,8 @@ service.interceptors.response.use(success => {
                     type: 'warning'
                 }
             ).then(() => {
-                store.dispatch('LogOut').then(() => {
-                    location.reload() // 为了重新实例化vue-router对象 避免bug
+                store.dispatch('user/LogOut').then(() => {
+                  location.reload() // 为了重新实例化vue-router对象 避免bug
                 })
             })
         }

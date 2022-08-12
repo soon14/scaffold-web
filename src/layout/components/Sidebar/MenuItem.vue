@@ -20,10 +20,10 @@ export default {
     // 组件体
     const nodes = []
     if (icon) {
-      nodes.push(<i class={icon}/>)
+      nodes.push(<i class={icon} style="font-size:20px;"/>)
     }
     if (title) {
-      nodes.push(<span slot="title">{{title}}</span>)
+      nodes.push(<span slot="title">{(title)}</span>)
     }
     return nodes
   }

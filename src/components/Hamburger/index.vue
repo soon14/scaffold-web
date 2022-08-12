@@ -1,6 +1,7 @@
 <template>
   <div style="padding: 0 15px;" @click="toggleClick">
-    <i class="iconfont iconfont-hamburger hamburger" :class="{'is-active':isActive}"/>
+    <i v-if="isActive" class="iconfont iconfont-hamburger-left hamburger"/>
+    <i v-else class="iconfont iconfont-hamburger-right hamburger"/>
   </div>
 </template>
 
@@ -24,13 +25,7 @@ export default {
 
 <style scoped>
 .hamburger {
-  display: inline-block;
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
-}
-
-.hamburger.is-active {
-  transform: rotate(180deg);
+  font-size: 25px;
 }
 </style>
+

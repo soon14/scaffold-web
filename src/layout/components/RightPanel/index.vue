@@ -27,17 +27,17 @@ export default {
   computed: {
     show: {
       get() {
-        return this.$store.state.settings.showSettings
+        return this.$store.state.global.showSettings
       },
       set(val) {
-        this.$store.dispatch('settings/changeSetting', {
+        this.$store.dispatch('global/changeSetting', {
           key: 'showSettings',
           value: val
         })
       }
     },
     theme() {
-      return this.$store.state.settings.theme
+      return this.$store.state.global.theme
     }
   },
   watch: {

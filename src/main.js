@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router from './router/routers'
 import store from './store'
 
 // element-ui
@@ -10,7 +10,7 @@ import Element from 'element-ui'
 import Cookies from 'js-cookie'
 
 // 全局CSS
-import './assets/style/index.scss'
+import './assets/styles/index.scss'
 
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -19,17 +19,21 @@ import './assets/iconfont/iconfont.css'
 
 // 代码高亮
 import VueHighlightJS from 'vue-highlightjs'
+import 'highlight.js/styles/atom-one-dark.css'
+
+import './router/index'
 
 Vue.use(VueHighlightJS)
+// 设置 element-ui 默认大小
 Vue.use(Element, {
-    size: Cookies.get('size') || 'small'  // 设置 element-ui 默认大小
+  size: Cookies.get('size') || 'default'
 })
 
 Vue.config.productionTip = false
 
 new Vue({
-    el: '#app',
-    router,
-    store,
-    render: h => h(App)
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
 })

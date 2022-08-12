@@ -12,6 +12,7 @@ const version = require('element-ui/package.json').version // 从 node_modules �
 const ORIGINAL_THEME = '#409EFF' // 默认颜色
 
 export default {
+  name: 'ThemePicker',
   data() {
     return {
       chalk: '', // content of theme-chalk css
@@ -20,7 +21,7 @@ export default {
   },
   computed: {
     defaultTheme() {
-      return this.$store.state.settings.theme
+      return this.$store.state.global.theme
     }
   },
   watch: {
@@ -65,15 +66,15 @@ export default {
         await this.getCSSString(url, 'chalk')
       }
 
-      const chalkHandler = getHandler('chalk', 'chalk-style')
+      const chalkHandler = getHandler('chalk', 'chalk-styles')
 
       chalkHandler()
 
-      const styles = [].slice.call(document.querySelectorAll('style'))
-          .filter(style => {
-            const text = style.innerText
-            return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
-          })
+      const styles = [].slice.call(document.querySelectorAll('styles'))
+        .filter(style => {
+          const text = style.innerText
+          return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
+        })
       styles.forEach(style => {
         const {innerText} = style
         if (typeof innerText !== 'string') return

@@ -6,6 +6,62 @@
   "description": "用于智慧物业管理系统前端",
   "glyphs": [
     {
+      "icon_id": "4767051",
+      "name": "outdent",
+      "font_class": "hamburger-left",
+      "unicode": "e7f4",
+      "unicode_decimal": 59380
+    },
+    {
+      "icon_id": "321992",
+      "name": "personal-center",
+      "font_class": "userInfo",
+      "unicode": "e70b",
+      "unicode_decimal": 59147
+    },
+    {
+      "icon_id": "1376055",
+      "name": "退出登录",
+      "font_class": "logout",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "8163052",
+      "name": "布局设置",
+      "font_class": "layout-setting",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "7749519",
+      "name": "16gl-D",
+      "font_class": "default",
+      "unicode": "eb85",
+      "unicode_decimal": 60293
+    },
+    {
+      "icon_id": "7749537",
+      "name": "16gl-N",
+      "font_class": "mini",
+      "unicode": "eb89",
+      "unicode_decimal": 60297
+    },
+    {
+      "icon_id": "7749540",
+      "name": "16gl-M",
+      "font_class": "medium",
+      "unicode": "eb8a",
+      "unicode_decimal": 60298
+    },
+    {
+      "icon_id": "7749555",
+      "name": "16gl-S",
+      "font_class": "small",
+      "unicode": "eb8b",
+      "unicode_decimal": 60299
+    },
+    {
       "icon_id": "14765746",
       "name": "code",
       "font_class": "code",
@@ -64,7 +120,7 @@
     {
       "icon_id": "4767050",
       "name": "indent",
-      "font_class": "hamburger",
+      "font_class": "hamburger-right",
       "unicode": "e7f3",
       "unicode_decimal": 59379
     },
