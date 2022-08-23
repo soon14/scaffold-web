@@ -1,30 +1,30 @@
 <template>
   <div class="drawer-container">
     <div>
-      <h3 class="drawer-title">系统布局设置</h3>
+      <h1 class="drawer-title">{{ $t('settings.systemLayoutSettings') }}</h1>
 
       <div class="drawer-item">
-        <span>主题颜色</span>
+        <span>{{ $t('settings.themeColor') }}</span>
         <theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange"/>
       </div>
 
       <div class="drawer-item">
-        <span>显示标签</span>
+        <span>{{ $t('settings.isShowLabels') }}</span>
         <el-switch v-model="tagsView" class="drawer-switch"/>
       </div>
 
       <div class="drawer-item">
-        <span>固定头部</span>
+        <span>{{ $t('settings.isFixedHead') }}</span>
         <el-switch v-model="fixedHeader" class="drawer-switch"/>
       </div>
 
       <div class="drawer-item">
-        <span>显示LOGO</span>
+        <span>{{ $t('settings.isShowLogo') }}</span>
         <el-switch v-model="sidebarLogo" class="drawer-switch"/>
       </div>
 
       <div class="drawer-item">
-        <span>只保持一个子菜单的展开</span>
+        <span>{{ $t('settings.isShowOnceMenu') }}</span>
         <el-switch v-model="uniqueOpened" class="drawer-switch"/>
       </div>
 
@@ -70,7 +70,7 @@ export default {
       },
       set(val) {
         this.$store.dispatch('global/changeSetting', {
-          kay: 'sidebarLogo',
+          key: 'sidebarLogo',
           value: val
         })
       }
@@ -108,7 +108,7 @@ export default {
   .drawer-title {
     margin-bottom: 12px;
     color: rgba(0, 0, 0, .85);
-    font-size: 14px;
+    font-size: 20px;
     line-height: 22px;
   }
 

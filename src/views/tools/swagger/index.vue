@@ -1,13 +1,18 @@
 <template>
-  <div>后台接口文档</div>
+  <el-frame :src="swaggerApi"/>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import ElFrame from '@/components/Iframe'
+
 export default {
-  name: "Swagger"
+  name: "Swagger",
+  components: {ElFrame},
+  computed: {
+    ...mapGetters([
+      'swaggerApi'
+    ])
+  }
 }
 </script>
-
-<style scoped>
-
-</style>

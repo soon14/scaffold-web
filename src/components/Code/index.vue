@@ -17,10 +17,26 @@ export default {
   data() {
     return {
       codeOptions: [
-        {title: '前端源码', url: 'https://gitee.com/lai-weihao/scaffold-web', icon: 'iconfont iconfont-gitee'},
-        {title: '后端源码', url: 'https://gitee.com/lai-weihao/Scaffold', icon: 'iconfont iconfont-gitee'},
-        {title: '前端源码', url: 'https://github.com/Weihoooooooo/scaffold-web', icon: 'iconfont iconfont-github'},
-        {title: '后端源码', url: 'https://github.com/Weihoooooooo/Scaffold', icon: 'iconfont iconfont-github'}
+        {
+          title: this.$i18n.t('code.frontCode'),
+          url: 'https://github.com/Weihoooooooo/scaffold-web',
+          icon: 'iconfont iconfont-github code-address'
+        },
+        {
+          title: this.$i18n.t('code.backCode'),
+          url: 'https://github.com/Weihoooooooo/Scaffold',
+          icon: 'iconfont iconfont-github code-address'
+        },
+        {
+          title: this.$i18n.t('code.frontCode'),
+          url: 'https://gitee.com/lai-weihao/scaffold-web',
+          icon: 'iconfont iconfont-gitee code-address'
+        },
+        {
+          title: this.$i18n.t('code.backCode'),
+          url: 'https://gitee.com/lai-weihao/Scaffold',
+          icon: 'iconfont iconfont-gitee code-address'
+        }
       ]
     }
   },

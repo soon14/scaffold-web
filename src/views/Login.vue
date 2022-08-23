@@ -1,32 +1,43 @@
 <template>
   <div class="login">
-    <el-form ref="loginForm" :model="loginForm" :rules="rules" class="loginContainer" la>
-      <h3 class="loginTitle">Scaffold-智慧物业管理系统</h3>
-      <el-form-item prop="username">
-        <el-input type="text" prefix-icon="iconfont iconfont-user" v-model="loginForm.username"
-                  placeholder="请输入用户名" auto-complete="false" clearable></el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input type="password" prefix-icon="iconfont iconfont-password" v-model="loginForm.password"
-                  placeholder="请输入密码" auto-complete="false" clearable show-password
-                  @keyup.enter.native="submitLogin"></el-input>
-      </el-form-item>
-      <el-form-item prop="code">
-        <el-input style="width: 58%" prefix-icon="iconfont iconfont-verify-code" type="text"
-                  v-model="loginForm.code"
-                  placeholder="点击图片更换验证码" auto-complete="false" @keyup.enter.native="submitLogin"></el-input>
-        <div class="loginCode">
-          <img :src="captchaUrl" @click="getCode" alt="点击更换验证码">
-        </div>
-      </el-form-item>
-      <el-checkbox v-model="loginForm.rememberMe" class="loginRemember">记住我</el-checkbox>
-      <el-form-item>
-        <el-button :loading="loading" type="primary" class="loginSubmit" round @click.native.prevent="submitLogin">
-          <span v-if="!loading">登录</span>
-          <span v-else>登录中...</span>
-        </el-button>
-      </el-form-item>
-    </el-form>
+    <h1 class="login_title">{{ $t('login.title') }}</h1>
+    <div id="lottie_box" class="animation"></div>
+    <div class="loginContainer">
+      <el-form ref="loginForm" :model="loginForm" :rules="rules">
+        <h3 class="loginFormItemTitle">{{ $t('login.welcome') }}</h3>
+        <el-form-item prop="username">
+          <el-input type="text" prefix-icon="iconfont iconfont-user" v-model="loginForm.username"
+                    :placeholder="$t('login.placeholderUsername')" auto-complete="false" clearable></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input type="password" prefix-icon="iconfont iconfont-password" v-model="loginForm.password"
+                    :placeholder="$t('login.placeholderPassword')" auto-complete="false" clearable show-password
+                    @keyup.enter.native="submitLogin"></el-input>
+        </el-form-item>
+        <el-form-item prop="code" class="loginFormItemCode">
+          <el-input style="width: 58%;" prefix-icon="iconfont iconfont-verify-code" type="text"
+                    v-model="loginForm.code"
+                    :placeholder="$t('login.placeholderCode')" auto-complete="false"
+                    @keyup.enter.native="submitLogin"></el-input>
+          <div class="loginCode">
+            <img :src="captchaUrl" @click="getCode" alt=""/>
+          </div>
+        </el-form-item>
+        <el-form-item class="loginFormItemRemember">
+          <el-checkbox v-model="loginForm.rememberMe">{{ $t('login.rememberMe') }}</el-checkbox>
+          <el-tooltip :content="String($t('navbar.i18nSelect'))" effect="light" placement="right"
+                      transition="el-zoom-in-top">
+            <i18n-select style="float: right"/>
+          </el-tooltip>
+        </el-form-item>
+        <el-form-item>
+          <el-button :loading="loading" type="primary" class="loginSubmit" round @click.native.prevent="submitLogin">
+            <span v-if="!loading">{{ $t('login.loginButton') }}</span>
+            <span v-else>{{ $t('login.loginLoading') }}</span>
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
     <div v-if="$store.state.global.showFooter" class="loginFooter">
       <span v-html="$store.state.global.footerTxt"/>
       <span> ⋅ </span>
@@ -40,16 +51,18 @@ import {getCodeImg} from "@/api/login";
 import Cookies from 'js-cookie';
 import {encrypt} from "@/utils/rsaEncrypt";
 import Global from '@/global'
+import I18nSelect from "@/components/I18nSelect";
 
 export default {
   name: "Login",
+  components: {I18nSelect},
   data() {
     return {
       captchaUrl: '',
       cookiePass: '',
       loginForm: {
-        username: 'root',
-        password: 'root',
+        username: '',
+        password: '',
         rememberMe: false,
         code: '',
         uuid: ''
@@ -57,15 +70,26 @@ export default {
       loading: false,
       redirect: undefined,
       rules: {
-        username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
-        password: [{required: true, message: '密码不能为空', trigger: 'blur'}],
-        code: [{required: true, message: '验证码不能为空', trigger: 'change'}]
+        username: [{required: true, message: this.$i18n.t('login.rules.usernameMessage'), trigger: 'blur'}],
+        password: [{required: true, message: this.$i18n.t('login.rules.passwordMessage'), trigger: 'blur'}],
+        code: [{required: true, message: this.$i18n.t('login.rules.codeMessage'), trigger: 'change'}]
       }
     }
   },
   created() {
     this.getCode()
     this.getCookie()
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$lottie.loadAnimation({
+        container: document.getElementById(`lottie_box`),// Lottie的DOM元素
+        renderer: "svg",// 渲染出来是什么格式
+        loop: true, // 循环播放
+        autoplay: true, // 自动播放
+        animationData: require('@/assets/lottie/login.json') // Lottie的json资源
+      })
+    })
   },
   methods: {
     getCode() {
@@ -98,11 +122,9 @@ export default {
           code: this.loginForm.code,
           uuid: this.loginForm.uuid
         }
-
         // 如果密码没有加密,则加密
         if (user.password !== this.cookiePass) {
-          // user.password = encrypt(user.password)
-          user.password = user.password
+          user.password = encrypt(user.password)
         }
         //开始验证
         if (valid) {
@@ -128,7 +150,7 @@ export default {
         } else {
           this.$message({
             showClose: true,
-            message: "输入的信息有误！",
+            message: String(this.$i18n.t('login.errorMessage')),
             type: 'error'
           });
           return false;
@@ -139,7 +161,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .login {
   display: flex;
   justify-content: center;
@@ -147,57 +169,128 @@ export default {
   height: 100vh;
   width: 100vw;
   background-image: url("../assets/images/bg.jpg");
+  background-attachment: fixed;
   background-size: cover;
+
+  .login_title {
+    position: absolute;
+    margin: 10px auto 650px;
+    animation-name: title;
+    animation-duration: 2s;
+    height: 40px;
+    width: auto;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+  }
+
+  .animation {
+    position: absolute;
+    margin: 200px 700px 180px 110px;
+    width: 500px;
+    float: left;
+    animation-name: lottie;
+    animation-duration: 1.8s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .loginContainer {
+    position: absolute;
+    border-radius: 15px;
+    background-clip: content-box;
+    margin: 200px 0 180px 650px;
+    width: 350px;
+    padding: 15px 35px 5px 35px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 25px rgba(202, 198, 198, 0.7);
+    animation-name: loginContainer;
+    animation-duration: 0.9s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    white-space: nowrap;
+
+    .loginFormItemTitle {
+      margin: 0 auto 30px auto;
+      text-align: center;
+      color: black;
+    }
+
+    .loginFormItemCode {
+      margin-bottom: 5px;
+    }
+
+    .loginCode {
+      width: 40%;
+      display: inline-block;
+      height: 41px;
+      float: right;
+
+      img {
+        cursor: pointer;
+        vertical-align: middle
+      }
+    }
+
+    .loginFormItemRemember {
+      text-align: left;
+      margin-bottom: 5px;
+    }
+
+    .loginSubmit {
+      width: 100%;
+    }
+  }
+
+  .loginFooter {
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-family: Arial, serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    animation-delay: 1s;
+  }
 }
 
-.loginContainer {
-  border-radius: 15px;
-  background-clip: padding-box;
-  margin: 180px auto 180px 250px;
-  width: 350px;
-  padding: 15px 35px 15px 35px;
-  background: #fff;
-  border: 1px solid #eaeaea;
-  box-shadow: 0 0 25px rgba(202, 198, 198, 0.7);
+@keyframes lottie {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.loginTitle {
-  margin: 0 auto 30px auto;
-  text-align: center;
-  color: black;
+@keyframes loginContainer {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.loginRemember {
-  text-align: left;
-  margin: 0 0 15px 0;
-}
+@keyframes title {
+  0% {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
 
-.loginSubmit {
-  width: 100%;
-}
-
-.loginCode {
-  width: 40%;
-  display: inline-block;
-  height: 41px;
-  float: right;
-}
-
-img {
-  cursor: pointer;
-  vertical-align: middle
-}
-
-.loginFooter {
-  height: 40px;
-  line-height: 40px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-family: Arial, serif;
-  font-size: 12px;
-  letter-spacing: 1px;
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 </style>
+
+

@@ -8,7 +8,7 @@
       filterable
       default-first-option
       remote
-      placeholder="查询"
+      :placeholder="String($t('headerSearch'))"
       class="header-search-select"
       @change="change">
       <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')"/>

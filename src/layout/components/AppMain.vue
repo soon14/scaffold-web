@@ -36,6 +36,22 @@ export default {
   overflow: hidden;
 }
 
+#el-main-footer {
+  background: none repeat scroll 0 0 white;
+  border-top: 1px solid #e7eaec;
+  overflow: hidden;
+  padding: 10px 6px 0 6px;
+  height: 25px;
+  font-size: 0.7rem !important;
+  color: #7a8b9a;
+  letter-spacing: 0.8px;
+  font-family: Arial, sans-serif !important;
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  width: 100%;
+}
+
 .fixed-header + .app-main {
   padding-top: 50px;
 }

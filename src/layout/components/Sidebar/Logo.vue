@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      title: 'Scaffold - 管理系统',
+      title: this.$i18n.t('logo.title'),
       logo: Logo
     }
   }

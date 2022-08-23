@@ -1,6 +1,6 @@
 import router from './routers'
 import store from '@/store'
-import Global from '@/global' // 全局设置
+import i18n from '@/i18n'
 import NProgress from 'nprogress' //进度条
 import 'nprogress/nprogress.css' // 进度条CSS
 import {getToken} from '@/utils/auth' //从Cookie中获取Token
@@ -9,13 +9,15 @@ import {filterAsyncRouter} from '@/store/modules/permission'// 菜单列表预�
 
 NProgress.configure({showSpinner: false}) //NProgress 配置
 
-const whiteList = ['/login'] // 没有重定向白名单
+const whiteList = ['/login', '/401'] // 没有重定向白名单
 
 // 路由导航守卫
 router.beforeEach((to, from, next) => {
   // 标签页
   if (to.meta.title) {
-    document.title = to.meta.title + ' - ' + Global.title
+    document.title = to.meta.title + ' - ' + String(i18n.t('global.title'))
+  } else {
+    document.title = String(i18n.t('global.title'))
   }
   // 进度条初始状态
   NProgress.start()
@@ -33,9 +35,9 @@ router.beforeEach((to, from, next) => {
           //动态路由,拉取菜单
           loadMenus(next, to)
         }).catch((err) => {
-          console.log(err)
           store.dispatch('user/LogOut').then(() => {
-            location.reload() // 为了重新实例化vue-router对象 避免bug
+            // window.location.reload() // 为了重新实例化vue-router对象 避免bug
+            // router.push({path: '/401'})
           })
         })
       } else if (store.getters.loadMenus) { // 登录时未拉取 菜单，在此处拉取

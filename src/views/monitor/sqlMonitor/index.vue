@@ -1,13 +1,18 @@
 <template>
-  <div>SQL监控</div>
+  <el-frame :src="sqlMonitorApi"/>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import ElFrame from '@/components/Iframe'
+
 export default {
-  name: "SqlMonitor"
+  name: "SqlMonitor",
+  components: {ElFrame},
+  computed: {
+    ...mapGetters([
+      'sqlMonitorApi'
+    ])
+  }
 }
 </script>
-
-<style scoped>
-
-</style>

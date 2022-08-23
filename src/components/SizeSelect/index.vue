@@ -18,10 +18,26 @@ export default {
   data() {
     return {
       sizeOptions: [
-        {label: 'Default', value: 'default', icon: 'iconfont iconfont-default'},
-        {label: 'Medium', value: 'medium', icon: 'iconfont iconfont-medium'},
-        {label: 'Small', value: 'small', icon: 'iconfont iconfont-small'},
-        {label: 'Mini', value: 'mini', icon: 'iconfont iconfont-mini'}
+        {
+          label: 'Default',
+          value: 'default',
+          icon: 'iconfont iconfont-default'
+        },
+        {
+          label: 'Medium',
+          value: 'medium',
+          icon: 'iconfont iconfont-medium'
+        },
+        {
+          label: 'Small',
+          value: 'small',
+          icon: 'iconfont iconfont-small'
+        },
+        {
+          label: 'Mini',
+          value: 'mini',
+          icon: 'iconfont iconfont-mini'
+        }
       ]
     }
   },

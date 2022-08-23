@@ -1,6 +1,6 @@
 'use strict'
 const path = require('path')
-const Global = require('./src/global')
+const Global = require('./src/global.js')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -17,7 +17,7 @@ module.exports = {
   productionSourceMap: false,// 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   devServer: {
     port: port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       errors: true
@@ -37,15 +37,6 @@ module.exports = {
           '^/auth': '/auth'
         }
       }
-      // ,
-      // '/websocket': {
-      //   target: process.env.VUE_APP_WS_API,
-      //   ws: true,
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/websocket': '/websocket'
-      //   }
-      // }
     }
   },
   configureWebpack: {

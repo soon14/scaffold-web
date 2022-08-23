@@ -2,25 +2,27 @@
   <div id="tags-view-container" class="tags-view-container">
     <scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link
-          v-for="tag in visitedViews"
-          ref="tag"
-          :key="tag.path"
-          :class="isActive(tag)?'active':''"
-          :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-          tag="span"
-          class="tags-view-item"
-          @click.middle.native="closeSelectedTag(tag)"
-          @contextmenu.prevent.native="openMenu(tag,$event)"
+        v-for="tag in visitedViews"
+        ref="tag"
+        :key="tag.path"
+        :class="isActive(tag)?'active':''"
+        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
+        tag="span"
+        class="tags-view-item"
+        @click.middle.native="closeSelectedTag(tag)"
+        @contextmenu.prevent.native="openMenu(tag,$event)"
       >
         {{ tag.title }}
         <span v-if="!tag.meta.affix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li v-if="!(selectedTag.meta&&selectedTag.meta.affix)" @click="closeSelectedTag(selectedTag)">关闭</li>
-      <li @click="closeOthersTags">关闭其他</li>
-      <li @click="closeAllTags(selectedTag)">关闭全部</li>
+      <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
+      <li v-if="!(selectedTag.meta && selectedTag.meta.affix)" @click="closeSelectedTag(selectedTag)">
+        {{ $t('tagsView.close') }}
+      </li>
+      <li @click="closeOthersTags">{{ $t('tagsView.closeOther') }}</li>
+      <li @click="closeAllTags(selectedTag)">{{ $t('tagsView.closeAll') }}</li>
     </ul>
   </div>
 </template>
@@ -103,7 +105,13 @@ export default {
     addTags() {
       const {name} = this.$route
       if (name) {
-        this.$store.dispatch('tagsView/addView', this.$route)
+        if (name !== 'SystemState' && name !== 'RealTimeLog') {
+          this.$store.dispatch('tagsView/addView', this.$route)
+        }
+        // 防止两个WebSocket实例冲突,销毁Vue组件,只添加VisitedView，不进行keep-alive缓存
+        if (name === 'SystemState' || name === 'RealTimeLog') {
+          this.$store.dispatch('tagsView/addVisitedView', this.$route)
+        }
       }
       return false
     },

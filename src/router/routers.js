@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../layout/index'
+import i18n from '../i18n/index'
 
 Vue.use(Router)
 
@@ -9,7 +10,7 @@ export const constantRouterMap = [
   {
     path: '/login',
     meta: {
-      title: '登录',
+      title: String(i18n.t('global.login')),
       noCache: true
     },
     component: (resolve) => require(['@/views/Login'], resolve),
@@ -18,6 +19,11 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: (resolve) => require(['@/views/features/404'], resolve),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: (resolve) => require(['@/views/features/401'], resolve),
     hidden: true
   },
   {
@@ -41,7 +47,7 @@ export const constantRouterMap = [
         component: (resolve) => require(['@/views/Home'], resolve),
         name: 'Dashboard',
         meta: {
-          title: '首页',
+          title: String(i18n.t('dashboard.title')),
           icon: 'iconfont iconfont-index',
           affix: true,
           noCache: true

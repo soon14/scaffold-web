@@ -12,15 +12,23 @@
         <!-- 查找框 -->
         <header-search id="header-search" class="right-menu-item"/>
         <!-- 源码地址 -->
-        <el-tooltip content="源码地址" effect="light" placement="bottom" transition="el-zoom-in-top">
+        <el-tooltip :content="String($t('navbar.codeAddress'))" effect="light" placement="bottom"
+                    transition="el-zoom-in-top">
           <code-address class="right-menu-item hover-effect"/>
         </el-tooltip>
         <!-- 全屏缩放 -->
-        <el-tooltip content="全屏缩放" effect="light" placement="bottom" transition="el-zoom-in-top">
+        <el-tooltip :content="String($t('navbar.screenFull'))" effect="light" placement="bottom"
+                    transition="el-zoom-in-top">
           <screen-full id="screenFull" class="right-menu-item hover-effect"/>
         </el-tooltip>
+        <!-- 多语言切换 -->
+        <el-tooltip :content="String($t('navbar.i18nSelect'))" effect="light" placement="bottom"
+                    transition="el-zoom-in-top">
+          <i18n-select id="i18n-select" class="right-menu-item hover-effect"/>
+        </el-tooltip>
         <!-- 布局设置 -->
-        <el-tooltip content="布局设置" effect="light" placement="bottom" transition="el-zoom-in-top">
+        <el-tooltip :content="String($t('navbar.sizeSelect'))" effect="light" placement="bottom"
+                    transition="el-zoom-in-top">
           <size-select id="size-select" class="right-menu-item hover-effect"/>
         </el-tooltip>
       </template>
@@ -34,17 +42,17 @@
         <el-dropdown-menu slot="dropdown">
         <span style="display: block;" @click="show = true">
           <el-dropdown-item icon="iconfont iconfont-layout-setting">
-            系统布局设置
+            {{ $t('navbar.systemLayoutSettings') }}
           </el-dropdown-item>
         </span>
           <router-link to="/">
             <el-dropdown-item icon="iconfont iconfont-userInfo">
-              个人中心
+              {{ $t('navbar.personalCenter') }}
             </el-dropdown-item>
           </router-link>
           <span style="display: block;" @click="open">
           <el-dropdown-item divided icon="iconfont iconfont-logout">
-            退出登录
+            {{ $t('navbar.logout') }}
           </el-dropdown-item>
         </span>
         </el-dropdown-menu>
@@ -61,6 +69,7 @@ import ScreenFull from '@/components/ScreenFull'
 import SizeSelect from '@/components/SizeSelect'
 import HeaderSearch from '@/components/HeaderSearch'
 import CodeAddress from '@/components/Code'
+import I18nSelect from "@/components/I18nSelect";
 import Avatar from '@/assets/images/avatar.png'
 
 export default {
@@ -71,7 +80,8 @@ export default {
     ScreenFull,
     SizeSelect,
     HeaderSearch,
-    CodeAddress
+    CodeAddress,
+    I18nSelect
   },
   data() {
     return {
@@ -83,8 +93,7 @@ export default {
     ...mapGetters([
       'sidebar',
       'device',
-      'user',
-      'baseApi'
+      'user'
     ]),
     show: {
       get() {
@@ -103,9 +112,9 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     open() {
-      this.$confirm('确定注销并退出系统吗？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm(String(this.$i18n.t('logout.message')), String(this.$i18n.t('logout.title')), {
+        confirmButtonText: String(this.$i18n.t('ok')),
+        cancelButtonText: String(this.$i18n.t('cancel')),
         type: 'warning'
       }).then(() => {
         this.logout()

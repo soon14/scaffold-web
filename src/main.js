@@ -21,7 +21,14 @@ import './assets/iconfont/iconfont.css'
 import VueHighlightJS from 'vue-highlightjs'
 import 'highlight.js/styles/atom-one-dark.css'
 
+// Lottie支持
+import lottie from 'lottie-web'
+
+// 动态路由表
 import './router/index'
+
+// 国际化
+import i18n from './i18n'
 
 Vue.use(VueHighlightJS)
 // 设置 element-ui 默认大小
@@ -29,11 +36,15 @@ Vue.use(Element, {
   size: Cookies.get('size') || 'default'
 })
 
+// 将Lottie挂载到Vue上
+Vue.prototype.$lottie = lottie
+
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })

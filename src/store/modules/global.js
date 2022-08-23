@@ -1,7 +1,8 @@
 import globalSettings from '@/global';
 import variables from '@/assets/styles/element-variables.scss'
+import i18n from '@/i18n'
 
-const {showFooter, footerTxt, caseNumber, tagsView, fixedHeader, sidebarLogo, uniqueOpened} = globalSettings
+const {showFooter, footerTxt, tagsView, fixedHeader, sidebarLogo, uniqueOpened} = globalSettings
 
 const state = {
   //主题
@@ -13,7 +14,7 @@ const state = {
   //底部文字，支持html语法
   footerTxt: footerTxt,
   //备案号
-  caseNumber: caseNumber,
+  caseNumber: String(i18n.t('global.caseNumber')),
   //是否显示 tagsView
   tagsView: tagsView,
   //是否固定头部

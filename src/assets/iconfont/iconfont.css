@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3557547 */
-  src: url('iconfont.woff2?t=1660295507379') format('woff2'),
-  url('iconfont.woff?t=1660295507379') format('woff'),
-  url('iconfont.ttf?t=1660295507379') format('truetype');
+  src: url('iconfont.woff2?t=1661083598697') format('woff2'),
+  url('iconfont.woff?t=1661083598697') format('woff'),
+  url('iconfont.ttf?t=1661083598697') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,38 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.iconfont-monitor-real-time-log:before {
+  content: "\e6a4";
+}
+
+.iconfont-monitor-system-3:before {
+  content: "\e65f";
+}
+
+.iconfont-monitor-system-2:before {
+  content: "\e61c";
+}
+
+.iconfont-monitor-system-1:before {
+  content: "\e6c1";
+}
+
+.iconfont-i18n-en_US:before {
+  content: "\e6d9";
+}
+
+.iconfont-i18n-zh_CN:before {
+  content: "\e6d7";
+}
+
+.iconfont-i18n-zh_HK-zh_TW:before {
+  content: "\e6d8";
+}
+
+.iconfont-i18n:before {
+  content: "\e669";
 }
 
 .iconfont-hamburger-left:before {
