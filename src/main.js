@@ -30,7 +30,11 @@ import './router/index'
 // 国际化
 import i18n from './i18n'
 
+// JSON格式化显示
+import JsonViewer from 'vue-json-viewer'
+
 Vue.use(VueHighlightJS)
+Vue.use(JsonViewer)
 // 设置 element-ui 默认大小
 Vue.use(Element, {
   size: Cookies.get('size') || 'default'

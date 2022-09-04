@@ -1,7 +1,7 @@
 <template>
   <div class="lottie-http404-container">
     <div class="lottie-http404">
-      <div id="lottie_box" class="animation"></div>
+      <div id="lottie_box" class="animation"/>
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
         <div class="bullshit__headline">{{ message }}</div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "Page404",
+  name: 'Page404',
   computed: {
     message() {
       return '网管说这个页面找不到......'
@@ -24,11 +24,11 @@ export default {
     this.$nextTick(() => {
       this.$lottie.loadAnimation({
         container: document.getElementById(`lottie_box`), // Lottie的DOM元素
-        renderer: "svg", //
+        renderer: 'svg', //
         loop: true,
         autoplay: true,
         animationData: require('@/assets/lottie/404.json')
-      });
+      })
     })
   }
 }

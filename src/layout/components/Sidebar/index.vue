@@ -12,7 +12,8 @@
         :unique-opened="$store.state.global.uniqueOpened"
         :active-text-colol="variables.menuActiveText"
         :collapse-transition="false"
-        mode="vertical">
+        mode="vertical"
+      >
         <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path"/>
       </el-menu>
     </el-scrollbar>

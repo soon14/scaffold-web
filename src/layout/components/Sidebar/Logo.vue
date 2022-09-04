@@ -4,12 +4,12 @@
     <transition name="sidebarLogoFade">
       <!-- 菜单栏关闭状态 -->
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" alt="首页"/>
+        <img v-if="logo" :src="logo" class="sidebar-logo" alt="首页">
         <h1 v-else class="sidebar-title">{{ title }}</h1>
       </router-link>
       <!-- 菜单栏开启状态 -->
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" alt="首页"/>
+        <img v-if="logo" :src="logo" class="sidebar-logo" alt="首页">
         <h1 class="sidebar-title">{{ title }}</h1>
       </router-link>
     </transition>
@@ -20,9 +20,9 @@
 import Logo from '@/assets/images/logo.png'
 
 export default {
-  name: "Logo",
+  name: 'Logo',
   props: {
-    //设置属性,菜单是否关闭
+    // 设置属性,菜单是否关闭
     collapse: {
       type: Boolean,
       required: true

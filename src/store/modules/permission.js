@@ -19,7 +19,6 @@ const actions = {
   }
 }
 
-
 // 遍历后台传来的路由字符串，转换为组件对象
 export const filterAsyncRouter = (routers) => {
   return routers.filter(router => {

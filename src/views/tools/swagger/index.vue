@@ -7,7 +7,7 @@ import {mapGetters} from 'vuex'
 import ElFrame from '@/components/Iframe'
 
 export default {
-  name: "Swagger",
+  name: 'Swagger',
   components: {ElFrame},
   computed: {
     ...mapGetters([

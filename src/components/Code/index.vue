@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Code",
+  name: 'Code',
   data() {
     return {
       codeOptions: [

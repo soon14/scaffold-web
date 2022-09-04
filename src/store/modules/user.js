@@ -1,5 +1,5 @@
-import {getToken, removeToken, setToken} from "@/utils/auth";
-import {getUserInfo, login, logout} from "@/api/login";
+import {getToken, removeToken, setToken} from '@/utils/auth'
+import {getUserInfo, login, logout} from '@/api/login'
 
 const state = {
   token: getToken(),
@@ -25,25 +25,25 @@ const mutations = {
 }
 
 const actions = {
-  //登录
+  // 登录
   Login({commit}, userLoginInfo) {
     const rememberMe = userLoginInfo.rememberMe
     return new Promise((resolve, reject) => {
       login(userLoginInfo.username, userLoginInfo.password, userLoginInfo.code, userLoginInfo.uuid).then(res => {
         setToken(res.data.token, rememberMe)
         commit('SET_TOKEN', res.data.token)
-        //存用户信息
+        // 存用户信息
         setUserInfo(res.data.userInfo, commit)
-        //拉取菜单
+        // 拉取菜单
         commit('SET_LOAD_MENUS', true)
         resolve()
       }).catch(error => {
         reject(error)
-      });
+      })
     })
   },
 
-  //获取用户信息
+  // 获取用户信息
   GetInfo({commit}) {
     return new Promise((resolve, reject) => {
       getUserInfo().then(res => {
@@ -85,7 +85,7 @@ export const logOut = (commit) => {
 
 // 设置Vuex的用户信息
 export const setUserInfo = (res, commit) => {
-  //如果没有任何权限，则赋予一个最低权限，避免请求死循环
+  // 如果没有任何权限，则赋予一个最低权限，避免请求死循环
   if (res.roles.length === 0) {
     commit('SET_ROLES', ['defender'])
   } else {

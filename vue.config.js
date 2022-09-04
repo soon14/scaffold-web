@@ -12,9 +12,9 @@ const port = 9999 // 端口号
 module.exports = {
   publicPath: '/', // 部署应用包时的基本 URL
   outputDir: 'dist', // 执行build时生成的生产环境构建文件的目录
-  assetsDir: 'static',// 放置生成的静态资源
-  lintOnSave: false,// 是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码。这个值会在 @vue/cli-plugin-eslint 被安装之后生效
-  productionSourceMap: false,// 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
+  assetsDir: 'static', // 放置生成的静态资源
+  lintOnSave: false, // 是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码。这个值会在 @vue/cli-plugin-eslint 被安装之后生效
+  productionSourceMap: false, // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   devServer: {
     port: port,
     open: false,
@@ -45,7 +45,7 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src'),
+        '@': resolve('src')
       }
     }
   },

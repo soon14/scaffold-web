@@ -1,5 +1,5 @@
 const state = {
-  loggingAutoBottom: false,
+  loggingAutoBottom: false
 }
 
 const mutations = {

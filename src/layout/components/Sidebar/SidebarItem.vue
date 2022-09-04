@@ -12,8 +12,14 @@
       <template slot="title">
         <menu-item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title"/>
       </template>
-      <sidebar-item v-for="(child,index) in item.children" :key="index" :is-nest="true" :item="child"
-                    :base-path="resolvePath(child.path)" class="nest-menu"/>
+      <sidebar-item
+        v-for="(child,index) in item.children"
+        :key="index"
+        :is-nest="true"
+        :item="child"
+        :base-path="resolvePath(child.path)"
+        class="nest-menu"
+      />
     </el-submenu>
   </div>
 </template>
@@ -26,7 +32,7 @@ import path from 'path'
 import {isExternal} from '@/utils/validate'
 
 export default {
-  name: "SidebarItem",
+  name: 'SidebarItem',
   components: {MenuItem, AppLink},
   mixins: [FixiOSBug],
   props: {
@@ -54,7 +60,7 @@ export default {
     hasOneShowingChild(children = [], parent) {
       const showingChildren = children.filter(item => {
         if (item.hidden) {
-          return false;
+          return false
         } else {
           // 临时设置（如果只有一个显示的孩子将使用）
           this.onlyOneChild = item

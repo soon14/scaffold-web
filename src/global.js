@@ -2,7 +2,7 @@ module.exports = {
   /**
    * @description 网站标题
    */
-  title: "Scaffold - 管理系统",
+  title: 'Scaffold - 管理系统',
   /**
    * 是否显示设置的底部信息
    */
@@ -46,5 +46,5 @@ module.exports = {
   /**
    * @description 是否只保持一个子菜单的展开
    */
-  uniqueOpened: true,
+  uniqueOpened: true
 }

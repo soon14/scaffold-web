@@ -1,8 +1,12 @@
 <template>
   <div class="navbar">
     <!-- 顶部缩放菜单栏按钮 -->
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container"
-               @toggleClick="toggleSideBar"/>
+    <hamburger
+      id="hamburger-container"
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
     <!-- 面包屑 -->
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container"/>
 
@@ -12,23 +16,39 @@
         <!-- 查找框 -->
         <header-search id="header-search" class="right-menu-item"/>
         <!-- 源码地址 -->
-        <el-tooltip :content="String($t('navbar.codeAddress'))" effect="light" placement="bottom"
-                    transition="el-zoom-in-top">
+        <el-tooltip
+          :content="String($t('navbar.codeAddress'))"
+          effect="light"
+          placement="bottom"
+          transition="el-zoom-in-top"
+        >
           <code-address class="right-menu-item hover-effect"/>
         </el-tooltip>
         <!-- 全屏缩放 -->
-        <el-tooltip :content="String($t('navbar.screenFull'))" effect="light" placement="bottom"
-                    transition="el-zoom-in-top">
+        <el-tooltip
+          :content="String($t('navbar.screenFull'))"
+          effect="light"
+          placement="bottom"
+          transition="el-zoom-in-top"
+        >
           <screen-full id="screenFull" class="right-menu-item hover-effect"/>
         </el-tooltip>
         <!-- 多语言切换 -->
-        <el-tooltip :content="String($t('navbar.i18nSelect'))" effect="light" placement="bottom"
-                    transition="el-zoom-in-top">
+        <el-tooltip
+          :content="String($t('navbar.i18nSelect'))"
+          effect="light"
+          placement="bottom"
+          transition="el-zoom-in-top"
+        >
           <i18n-select id="i18n-select" class="right-menu-item hover-effect"/>
         </el-tooltip>
         <!-- 布局设置 -->
-        <el-tooltip :content="String($t('navbar.sizeSelect'))" effect="light" placement="bottom"
-                    transition="el-zoom-in-top">
+        <el-tooltip
+          :content="String($t('navbar.sizeSelect'))"
+          effect="light"
+          placement="bottom"
+          transition="el-zoom-in-top"
+        >
           <size-select id="size-select" class="right-menu-item hover-effect"/>
         </el-tooltip>
       </template>
@@ -36,25 +56,25 @@
       <!-- 头像 -->
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" :src="user.avatar.path ? user.avatar.path : Avatar"/>
+          <el-avatar shape="square" style="margin-bottom: 15px" :src="user.avatar.path ? user.avatar.path : Avatar"/>
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
-        <span style="display: block;" @click="show = true">
-          <el-dropdown-item icon="iconfont iconfont-layout-setting">
-            {{ $t('navbar.systemLayoutSettings') }}
-          </el-dropdown-item>
-        </span>
+          <span style="display: block;" @click="show = true">
+            <el-dropdown-item icon="iconfont iconfont-layout-setting">
+              {{ $t('navbar.systemLayoutSettings') }}
+            </el-dropdown-item>
+          </span>
           <router-link to="/">
             <el-dropdown-item icon="iconfont iconfont-userInfo">
               {{ $t('navbar.personalCenter') }}
             </el-dropdown-item>
           </router-link>
           <span style="display: block;" @click="open">
-          <el-dropdown-item divided icon="iconfont iconfont-logout">
-            {{ $t('navbar.logout') }}
-          </el-dropdown-item>
-        </span>
+            <el-dropdown-item divided icon="iconfont iconfont-logout">
+              {{ $t('navbar.logout') }}
+            </el-dropdown-item>
+          </span>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -69,7 +89,7 @@ import ScreenFull from '@/components/ScreenFull'
 import SizeSelect from '@/components/SizeSelect'
 import HeaderSearch from '@/components/HeaderSearch'
 import CodeAddress from '@/components/Code'
-import I18nSelect from "@/components/I18nSelect";
+import I18nSelect from '@/components/I18nSelect'
 import Avatar from '@/assets/images/avatar.png'
 
 export default {
@@ -112,7 +132,7 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     open() {
-      this.$confirm(String(this.$i18n.t('logout.message')), String(this.$i18n.t('logout.title')), {
+      this.$confirm(String(this.$i18n.t('logout.message')), String(this.$i18n.t('confirmTips')), {
         confirmButtonText: String(this.$i18n.t('ok')),
         cancelButtonText: String(this.$i18n.t('cancel')),
         type: 'warning'

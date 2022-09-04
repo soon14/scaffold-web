@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Iframe",
+  name: 'Iframe',
   props: {
     src: {
       type: String,

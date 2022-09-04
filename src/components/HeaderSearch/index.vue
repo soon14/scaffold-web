@@ -10,7 +10,8 @@
       remote
       :placeholder="String($t('headerSearch'))"
       class="header-search-select"
-      @change="change">
+      @change="change"
+    >
       <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')"/>
     </el-select>
   </div>
@@ -160,7 +161,7 @@ export default {
     display: inline-block;
     vertical-align: middle;
 
-    :deep(.el-input__inner) {
+    ::v-deep .el-input__inner {
       border-radius: 0;
       border: 0;
       padding-left: 0;

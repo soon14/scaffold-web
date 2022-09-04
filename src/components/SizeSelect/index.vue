@@ -4,8 +4,14 @@
       <i class="iconfont iconfont-font-size size-select"/>
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item v-for="item in sizeOptions" :key="item.value" :disabled="size === item.value" :icon="item.icon"
-                        :command="item.value" style="font-size: 15px">
+      <el-dropdown-item
+        v-for="item in sizeOptions"
+        :key="item.value"
+        :disabled="size === item.value"
+        :icon="item.icon"
+        :command="item.value"
+        style="font-size: 15px"
+      >
         {{ item.label }}
       </el-dropdown-item>
     </el-dropdown-menu>
@@ -14,7 +20,7 @@
 
 <script>
 export default {
-  name: "SizeSelect",
+  name: 'SizeSelect',
   data() {
     return {
       sizeOptions: [
@@ -48,8 +54,8 @@ export default {
   },
   methods: {
     handleSetSize(size) {
-      this.$ELEMENT.size = size;//设置element-ui的尺寸
-      this.$store.dispatch('app/setSize', size)//修改Vuex中的状态
+      this.$ELEMENT.size = size// 设置element-ui的尺寸
+      this.$store.dispatch('app/setSize', size)// 修改Vuex中的状态
       this.refreshView()
       this.$message({
         message: '布局设置成功',

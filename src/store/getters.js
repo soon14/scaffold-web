@@ -1,4 +1,6 @@
 const getters = {
+  // 系统表头信息
+  tableHeader: state => state.tableHeader,
   // 用户信息
   user: state => state.user.user,
   // 用户的权限列表
@@ -28,7 +30,9 @@ const getters = {
   // 后端根据用户权限返回的菜单路由表
   addRouters: state => state.permission.addRouters,
   // 实时日志是否开启自动滚动
-  loggingAutoBottom: state => state.realTimeLog.loggingAutoBottom
+  loggingAutoBottom: state => state.realTimeLog.loggingAutoBottom,
+  // 系统主题
+  theme: state => state.global.theme
 }
 
 export default getters

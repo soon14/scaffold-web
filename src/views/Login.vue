@@ -1,32 +1,54 @@
 <template>
   <div class="login">
     <h1 class="login_title">{{ $t('login.title') }}</h1>
-    <div id="lottie_box" class="animation"></div>
+    <div id="lottie_box" class="animation"/>
     <div class="loginContainer">
       <el-form ref="loginForm" :model="loginForm" :rules="rules">
         <h3 class="loginFormItemTitle">{{ $t('login.welcome') }}</h3>
         <el-form-item prop="username">
-          <el-input type="text" prefix-icon="iconfont iconfont-user" v-model="loginForm.username"
-                    :placeholder="$t('login.placeholderUsername')" auto-complete="false" clearable></el-input>
+          <el-input
+            v-model="loginForm.username"
+            type="text"
+            prefix-icon="iconfont iconfont-user"
+            :placeholder="$t('login.placeholderUsername')"
+            auto-complete="false"
+            clearable
+          />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input type="password" prefix-icon="iconfont iconfont-password" v-model="loginForm.password"
-                    :placeholder="$t('login.placeholderPassword')" auto-complete="false" clearable show-password
-                    @keyup.enter.native="submitLogin"></el-input>
+          <el-input
+            v-model="loginForm.password"
+            type="password"
+            prefix-icon="iconfont iconfont-password"
+            :placeholder="$t('login.placeholderPassword')"
+            auto-complete="false"
+            clearable
+            show-password
+            @keyup.enter.native="submitLogin"
+          />
         </el-form-item>
         <el-form-item prop="code" class="loginFormItemCode">
-          <el-input style="width: 58%;" prefix-icon="iconfont iconfont-verify-code" type="text"
-                    v-model="loginForm.code"
-                    :placeholder="$t('login.placeholderCode')" auto-complete="false"
-                    @keyup.enter.native="submitLogin"></el-input>
+          <el-input
+            v-model="loginForm.code"
+            style="width: 58%;"
+            prefix-icon="iconfont iconfont-verify-code"
+            type="text"
+            :placeholder="$t('login.placeholderCode')"
+            auto-complete="false"
+            @keyup.enter.native="submitLogin"
+          />
           <div class="loginCode">
-            <img :src="captchaUrl" @click="getCode" alt=""/>
+            <img :src="captchaUrl" alt="" @click="getCode">
           </div>
         </el-form-item>
         <el-form-item class="loginFormItemRemember">
           <el-checkbox v-model="loginForm.rememberMe">{{ $t('login.rememberMe') }}</el-checkbox>
-          <el-tooltip :content="String($t('navbar.i18nSelect'))" effect="light" placement="right"
-                      transition="el-zoom-in-top">
+          <el-tooltip
+            :content="String($t('navbar.i18nSelect'))"
+            effect="light"
+            placement="right"
+            transition="el-zoom-in-top"
+          >
             <i18n-select style="float: right"/>
           </el-tooltip>
         </el-form-item>
@@ -47,14 +69,14 @@
 </template>
 
 <script>
-import {getCodeImg} from "@/api/login";
-import Cookies from 'js-cookie';
-import {encrypt} from "@/utils/rsaEncrypt";
+import {getCodeImg} from '@/api/login'
+import Cookies from 'js-cookie'
+import {encrypt} from '@/utils/rsaEncrypt'
 import Global from '@/global'
-import I18nSelect from "@/components/I18nSelect";
+import I18nSelect from '@/components/I18nSelect'
 
 export default {
-  name: "Login",
+  name: 'Login',
   components: {I18nSelect},
   data() {
     return {
@@ -83,8 +105,8 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$lottie.loadAnimation({
-        container: document.getElementById(`lottie_box`),// Lottie的DOM元素
-        renderer: "svg",// 渲染出来是什么格式
+        container: document.getElementById(`lottie_box`), // Lottie的DOM元素
+        renderer: 'svg', // 渲染出来是什么格式
         loop: true, // 循环播放
         autoplay: true, // 自动播放
         animationData: require('@/assets/lottie/login.json') // Lottie的json资源
@@ -102,7 +124,7 @@ export default {
       const username = Cookies.get('username')
       let password = Cookies.get('password')
       const rememberMe = Cookies.get('rememberMe')
-      //保存Cookies里面的加密后的密码
+      // 保存Cookies里面的加密后的密码
       this.cookiePass = password === undefined ? '' : password
       password = password === undefined ? this.loginForm.password : password
       this.loginForm = {
@@ -114,7 +136,7 @@ export default {
     },
     submitLogin() {
       this.$refs.loginForm.validate((valid) => {
-        //构造登录信息体
+        // 构造登录信息体
         const user = {
           username: this.loginForm.username,
           password: this.loginForm.password,
@@ -126,10 +148,10 @@ export default {
         if (user.password !== this.cookiePass) {
           user.password = encrypt(user.password)
         }
-        //开始验证
+        // 开始验证
         if (valid) {
           this.loading = true
-          //如果勾选了记住我,放入Cookies中
+          // 如果勾选了记住我,放入Cookies中
           if (user.rememberMe) {
             Cookies.set('username', user.username, {expires: Global.passCookieExpires})
             Cookies.set('password', user.password, {expires: Global.passCookieExpires})
@@ -152,8 +174,8 @@ export default {
             showClose: true,
             message: String(this.$i18n.t('login.errorMessage')),
             type: 'error'
-          });
-          return false;
+          })
+          return false
         }
       })
     }
@@ -244,6 +266,7 @@ export default {
 
   .loginFooter {
     height: 40px;
+    font-weight: bold;
     line-height: 40px;
     position: fixed;
     bottom: 0;
@@ -292,5 +315,4 @@ export default {
   }
 }
 </style>
-
 

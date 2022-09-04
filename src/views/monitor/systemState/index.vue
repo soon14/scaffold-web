@@ -1,6 +1,6 @@
 <template>
   <div class="state-container">
-    <el-row :gutter="30" class="panel-group" v-loading="loading">
+    <el-row v-loading="loading" :gutter="20" class="panel-group">
       <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
         <el-card shadow="always" class="card-panel">
           <div slot="header" class="card-panel-header">
@@ -29,7 +29,7 @@
               <template slot="label">
                 <span class="card-panel-black">{{ $t('systemMonitor.systemInfo.timeNow') }}</span>
               </template>
-              <b>{{ systemParams.timeNow }}</b>
+              <b>{{ timeNow }}</b>
             </el-descriptions-item>
           </el-descriptions>
           <el-skeleton animated :rows="3" style="margin-top: 10px;"/>
@@ -52,10 +52,13 @@
                 <span class="card-panel-black">{{ $t('systemMonitor.cpu.cpuUseRate') }}</span>
               </template>
               <div style="text-align: center;line-height: normal;overflow-inline: hidden">
-                <el-progress type="dashboard" :stroke-width="10"
-                             :percentage="Number(systemParams.cpuUseRate) >= 100 ? 100 : Number(systemParams.cpuUseRate)"
-                             v-if="!isNaN(Number(systemParams.cpuUseRate))"
-                             :color="colors"/>
+                <el-progress
+                  v-if="!isNaN(Number(systemParams.cpuUseRate))"
+                  type="dashboard"
+                  :stroke-width="10"
+                  :percentage="Number(systemParams.cpuUseRate) >= 100 ? 100 : Number(systemParams.cpuUseRate)"
+                  :color="colors"
+                />
               </div>
             </el-descriptions-item>
           </el-descriptions>
@@ -84,9 +87,13 @@
                 <span class="card-panel-black">{{ $t('systemMonitor.ram.ramUsedRate') }}</span>
               </template>
               <div style="text-align: center;line-height: normal">
-                <el-progress type="dashboard" :stroke-width="10"
-                             :percentage="getRate(systemParams.ramUsed,systemParams.ramTotal)"
-                             v-if="!isNaN(getRate(systemParams.ramUsed,systemParams.ramTotal))" :color="colors"/>
+                <el-progress
+                  v-if="!isNaN(getRate(systemParams.ramUsed,systemParams.ramTotal))"
+                  type="dashboard"
+                  :stroke-width="10"
+                  :percentage="getRate(systemParams.ramUsed,systemParams.ramTotal)"
+                  :color="colors"
+                />
               </div>
             </el-descriptions-item>
           </el-descriptions>
@@ -115,9 +122,13 @@
                 <span class="card-panel-black">{{ $t('systemMonitor.disk.diskUsedRate') }}</span>
               </template>
               <div style="text-align: center;line-height: normal">
-                <el-progress type="circle" :stroke-width="15"
-                             :percentage="getRate(systemParams.diskUsed,systemParams.diskTotal)"
-                             v-if="!isNaN(getRate(systemParams.diskUsed,systemParams.diskTotal))" :color="colors"/>
+                <el-progress
+                  v-if="!isNaN(getRate(systemParams.diskUsed,systemParams.diskTotal))"
+                  type="circle"
+                  :stroke-width="15"
+                  :percentage="getRate(systemParams.diskUsed,systemParams.diskTotal)"
+                  :color="colors"
+                />
               </div>
             </el-descriptions-item>
           </el-descriptions>
@@ -128,9 +139,14 @@
           <div slot="header" class="card-panel-header">
             <span><b>{{ $t('systemMonitor.jvm.heapTitle') }}</b></span>
           </div>
-          <el-progress :percentage="getRate(systemParams.jvmHeapUsed,systemParams.jvmHeapMax)"
-                       v-if="!isNaN(getRate(systemParams.jvmHeapUsed,systemParams.jvmHeapMax))"
-                       :stroke-width="20" :text-inside="true" type="line" :color="colors"/>
+          <el-progress
+            v-if="!isNaN(getRate(systemParams.jvmHeapUsed,systemParams.jvmHeapMax))"
+            :percentage="getRate(systemParams.jvmHeapUsed,systemParams.jvmHeapMax)"
+            :stroke-width="20"
+            :text-inside="true"
+            type="line"
+            :color="colors"
+          />
           <el-descriptions border :column="1" style="margin-top: 20px">
             <el-descriptions-item>
               <template slot="label">
@@ -199,33 +215,35 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-import {closeWebSocket, createWebSocket} from "@/utils/socket";
+import {mapGetters} from 'vuex'
+import dayjs from 'dayjs'
+import {closeWebSocket, createWebSocket} from '@/utils/socket'
 
 export default {
-  name: "SystemState",
+  name: 'SystemState',
   data() {
     return {
       loading: true,
+      timeNow: '',
+      timer: '',
       systemParams: {
-        os: "", // 操作系统
-        jvmJavaVersion: "",// Java版本
-        runTime: "",// 程序启动时间
-        timeNow: "",// 系统当前时间
-        cpuInfo: "",//CPU信息
-        cpuUseRate: "",//CPU使用率
-        ramTotal: "",//内存总量(G)
-        ramUsed: "",//已用内存(G)
-        diskTotal: "",//磁盘总量(G)
-        diskUsed: "",//已用磁盘(G)
-        jvmHeapInit: "",//JVM堆初始大小(M)
-        jvmHeapMax: "",//JVM堆最大可用空间(M)
-        jvmHeapUsed: "",//JVM堆已经使用内存(M)
-        jvmHeapCommitted: "",//JVM堆已经申请的内存(M)
-        jvmNonHeapInit: "",//JVM非堆内存初始大小(M)
-        jvmNonHeapMax: "",//JVM非堆最大可用空间(M)
-        jvmNonHeapUsed: "",//JVM非堆已使用空间(M)
-        jvmNonHeapCommitted: ""//JVM非堆已申请空间(M)
+        os: '', // 操作系统
+        jvmJavaVersion: '', // Java版本
+        runTime: '', // 程序启动时间
+        cpuInfo: '', // CPU信息
+        cpuUseRate: '', // CPU使用率
+        ramTotal: '', // 内存总量(G)
+        ramUsed: '', // 已用内存(G)
+        diskTotal: '', // 磁盘总量(G)
+        diskUsed: '', // 已用磁盘(G)
+        jvmHeapInit: '', // JVM堆初始大小(M)
+        jvmHeapMax: '', // JVM堆最大可用空间(M)
+        jvmHeapUsed: '', // JVM堆已经使用内存(M)
+        jvmHeapCommitted: '', // JVM堆已经申请的内存(M)
+        jvmNonHeapInit: '', // JVM非堆内存初始大小(M)
+        jvmNonHeapMax: '', // JVM非堆最大可用空间(M)
+        jvmNonHeapUsed: '', // JVM非堆已使用空间(M)
+        jvmNonHeapCommitted: ''// JVM非堆已申请空间(M)
       },
       colors: [
         {color: '#f56c6c', percentage: 100},
@@ -234,18 +252,30 @@ export default {
       ]
     }
   },
-  mounted() {
-    if (this.flag) {
-      createWebSocket(`/websocket/monitor`, this.callback)
-    }
-  },
   computed: {
     ...mapGetters([
-      "roles"
+      'roles'
     ]),
     flag() {
       return this.roles.includes('SystemState:read')
     }
+  },
+  mounted() {
+    if (this.flag) {
+      createWebSocket(`/websocket/monitor`, this.callback)
+    }
+    this.timer = setInterval(() => {
+      this.timeNow = dayjs().format('YYYY-MM-DD HH:mm:ss')
+    }, 1000)
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
+  },
+  destroyed() {
+    // 一定要销毁WebSocket实例，否则会造成冲突，引发两个使用了WebSocket的页面数据展示异常
+    closeWebSocket()
   },
   methods: {
     // WebSocket回调
@@ -259,15 +289,11 @@ export default {
       let result = (used / total) * 100
       result = result.toFixed(2)
       if (Number(result) >= 100) {
-        return 100;
+        return 100
       } else {
         return Number(result)
       }
     }
-  },
-  destroyed() {
-    // 一定要销毁WebSocket实例，否则会造成冲突，引发两个使用了WebSocket的页面数据展示异常
-    closeWebSocket()
   }
 }
 </script>

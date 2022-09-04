@@ -7,7 +7,7 @@ import {mapGetters} from 'vuex'
 import ElFrame from '@/components/Iframe'
 
 export default {
-  name: "SqlMonitor",
+  name: 'SqlMonitor',
   components: {ElFrame},
   computed: {
     ...mapGetters([

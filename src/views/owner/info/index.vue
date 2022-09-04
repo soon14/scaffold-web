@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "OwnerInfo"
+  name: 'OwnerInfo'
 }
 </script>
 

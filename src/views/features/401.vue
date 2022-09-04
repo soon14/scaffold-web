@@ -1,7 +1,7 @@
 <template>
   <div class="lottie-http401-container">
     <div class="lottie-http401">
-      <div id="lottie_box" class="animation"></div>
+      <div id="lottie_box" class="animation"/>
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
         <div class="bullshit__headline">{{ message }}</div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "Page401",
+  name: 'Page401',
   computed: {
     message() {
       return '你没有权限去该页面'
@@ -23,8 +23,8 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$lottie.loadAnimation({
-        container: document.getElementById(`lottie_box`),// Lottie的DOM元素
-        renderer: "svg",// 渲染出来是什么格式
+        container: document.getElementById(`lottie_box`), // Lottie的DOM元素
+        renderer: 'svg', // 渲染出来是什么格式
         loop: true, // 循环播放
         autoplay: true, // 自动播放
         animationData: require('@/assets/lottie/401.json') // Lottie的json资源

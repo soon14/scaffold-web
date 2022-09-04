@@ -1,17 +1,17 @@
 import axios from 'axios'
-import {Notification, MessageBox} from 'element-ui';
-import Global from "@/global";
-import {getToken} from "@/utils/auth";
-import store from "@/store";
-import i18n from "@/i18n";
+import {Notification, MessageBox} from 'element-ui'
+import Global from '@/global'
+import {getToken} from '@/utils/auth'
+import store from '@/store'
+import i18n from '@/i18n'
 
-//创建axios实例
+// 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: Global.timeout
-});
+})
 
-//请求拦截器
+// 请求拦截器
 service.interceptors.request.use(config => {
   if (getToken()) {
     // 让每个请求携带自定义token 请根据实际情况自行修改
@@ -24,13 +24,13 @@ service.interceptors.request.use(config => {
   console.log(error)
   Promise.reject(error).then(() => {
   })
-});
+})
 
-//响应拦截器
+// 响应拦截器
 service.interceptors.response.use(success => {
-  //正常响应
+  // 正常响应
   if (success.status && success.status === 200) {
-    //业务逻辑错误
+    // 业务逻辑错误
     if (success.data.code === 1403 || success.data.code === 1400 || success.data.code === 1500 ||
       success.data.code === 1406 || success.data.code === 1502) {
       Notification.error({
@@ -39,9 +39,9 @@ service.interceptors.response.use(success => {
         duration: 3000,
         showClose: true
       })
-      return Promise.reject('error');
+      return Promise.reject('error')
     } else {
-      return success.data;
+      return success.data
     }
   } else {
     Notification.error({
@@ -50,10 +50,10 @@ service.interceptors.response.use(success => {
       duration: 3000,
       showClose: true
     })
-    return Promise.reject('error');
+    return Promise.reject('error')
   }
 }, error => {
-  let code = 0;
+  let code = 0
   try {
     code = error.response.data.status
   } catch (e) {
@@ -91,7 +91,7 @@ service.interceptors.response.use(success => {
     })
   }
   return Promise.reject(error)
-});
+})
 
 export default service
 

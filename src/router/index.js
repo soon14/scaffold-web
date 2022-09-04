@@ -1,13 +1,13 @@
 import router from './routers'
 import store from '@/store'
 import i18n from '@/i18n'
-import NProgress from 'nprogress' //进度条
+import NProgress from 'nprogress' // 进度条
 import 'nprogress/nprogress.css' // 进度条CSS
-import {getToken} from '@/utils/auth' //从Cookie中获取Token
+import {getToken} from '@/utils/auth' // 从Cookie中获取Token
 import {buildMenus} from '@/api/system/menu'// 后端获取菜单信息Api
 import {filterAsyncRouter} from '@/store/modules/permission'// 菜单列表预处理
 
-NProgress.configure({showSpinner: false}) //NProgress 配置
+NProgress.configure({showSpinner: false}) // NProgress 配置
 
 const whiteList = ['/login', '/401'] // 没有重定向白名单
 
@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
       // 判断当前用户是否已拉取完user_info信息
       if (store.getters.roles.length === 0) {
         store.dispatch('user/GetInfo').then(res => { // 拉取用户信息
-          //动态路由,拉取菜单
+          // 动态路由,拉取菜单
           loadMenus(next, to)
         }).catch((err) => {
           store.dispatch('user/LogOut').then(() => {

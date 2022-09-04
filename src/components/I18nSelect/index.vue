@@ -4,8 +4,13 @@
       <i class="iconfont iconfont-i18n i18n-select"/>
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item v-for="item in i18nOptions" :key="item.value" :icon="item.icon" :disabled="lang === item.value"
-                        :command="item.value">
+      <el-dropdown-item
+        v-for="item in i18nOptions"
+        :key="item.value"
+        :icon="item.icon"
+        :disabled="lang === item.value"
+        :command="item.value"
+      >
         {{ item.title }}
       </el-dropdown-item>
     </el-dropdown-menu>
@@ -14,7 +19,7 @@
 
 <script>
 export default {
-  name: "I18nSelect",
+  name: 'I18nSelect',
   data() {
     return {
       i18nOptions: [
@@ -41,15 +46,15 @@ export default {
       ]
     }
   },
+  computed: {
+    lang() {
+      return localStorage.getItem('lang')
+    }
+  },
   methods: {
     handleChangeLanguage(lang) {
       localStorage.setItem('lang', lang)
       window.location.reload()
-    }
-  },
-  computed: {
-    lang() {
-      return localStorage.getItem('lang')
     }
   }
 }

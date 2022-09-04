@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "AppMain",
+  name: 'AppMain',
   computed: {
     cachedViews() {
       return this.$store.state.tagsView.cachedViews
@@ -43,6 +43,7 @@ export default {
   padding: 10px 6px 0 6px;
   height: 25px;
   font-size: 0.7rem !important;
+  font-weight: bold;
   color: #7a8b9a;
   letter-spacing: 0.8px;
   font-family: Arial, sans-serif !important;

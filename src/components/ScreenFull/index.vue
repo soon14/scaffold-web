@@ -1,7 +1,10 @@
 <template>
   <div>
-    <i :class="isFullscreen ? 'iconfont iconfont-compress' : 'iconfont iconfont-expend'" @click="click"
-       class="screen-full"/>
+    <i
+      :class="isFullscreen ? 'iconfont iconfont-compress' : 'iconfont iconfont-expend'"
+      class="screen-full"
+      @click="click"
+    />
   </div>
 </template>
 
