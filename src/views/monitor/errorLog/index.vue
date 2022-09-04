@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom :bottom="90" :right="30"/>
+    <back-top-and-bottom :bottom="90" :right="30" />
     <div class="head-container">
-      <search-date-picker-operation/>
+      <search-date-picker-operation />
       <button-operation>
         <el-button
           slot="left"
@@ -31,7 +31,7 @@
               <el-form-item v-for="item in tableHeader.errorLogs.expand" :key="item" :label="item.label">
                 <span v-if="item.prop === 'requestParams' || item.prop === 'responseResult'">
                   <span v-if="props.row[item.prop] !== '{}' && props.row[item.prop] !== null">
-                    <scaffold-json :json-data="props.row[item.prop]" boxed sort show-array-index expanded/>
+                    <scaffold-json :json-data="props.row[item.prop]" boxed sort show-array-index expanded />
                   </span>
                   <span v-else style="color: red;">无</span>
                 </span>
@@ -86,10 +86,10 @@
         <div style="padding:15px 20px;">异常详情</div>
       </div>
       <pre v-highlightjs="errorLogs" class="pre-class">
-        <code class="java code-class"/>
+        <code class="java code-class" />
       </pre>
     </el-dialog>
-    <pagination-operation/>
+    <pagination-operation />
   </div>
 </template>
 
@@ -104,7 +104,7 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import {delAllErrorLogs, getErrorDetails} from '@/api/system/logs'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
-const defaultCrud = CRUD({title: '错误日志', url: '/api/errorLogs'})
+const defaultCrud = CRUD({ title: '错误日志', url: '/api/errorLogs' })
 export default {
   name: 'ErrorLog',
   components: {

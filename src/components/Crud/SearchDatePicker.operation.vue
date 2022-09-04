@@ -22,7 +22,7 @@
       align="left"
       style="width: 300px"
     />
-    <search-reset-operation :crud="crud"/>
+    <search-reset-operation :crud="crud" />
   </div>
 </template>
 
@@ -32,7 +32,7 @@ import {header} from '@/utils/crud'
 
 export default {
   name: 'SearchDatePickerOperation',
-  components: {searchResetOperation},
+  components: { searchResetOperation },
   mixins: [header()]
 }
 </script>

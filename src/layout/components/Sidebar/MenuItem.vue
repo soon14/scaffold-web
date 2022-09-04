@@ -16,7 +16,7 @@ export default {
   },
   render(createElement, context) {
     // 获取参数
-    const {icon, title} = context.props
+    const { icon, title } = context.props
     // 组件体
     const nodes = []
     if (icon) {

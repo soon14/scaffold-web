@@ -1,5 +1,5 @@
 <template>
-  <el-frame :src="sqlMonitorApi"/>
+  <el-frame :src="sqlMonitorApi" />
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import ElFrame from '@/components/Iframe'
 
 export default {
   name: 'SqlMonitor',
-  components: {ElFrame},
+  components: { ElFrame },
   computed: {
     ...mapGetters([
       'sqlMonitorApi'

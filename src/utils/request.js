@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {Notification, MessageBox} from 'element-ui'
+import {MessageBox, Notification} from 'element-ui'
 import Global from '@/global'
 import {getToken} from '@/utils/auth'
 import store from '@/store'

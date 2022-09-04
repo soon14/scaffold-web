@@ -1,5 +1,5 @@
-import {initData, download} from '@/api/data'
-import {parseTime, downloadFile} from '@/utils'
+import {download, initData} from '@/api/data'
+import {downloadFile} from '@/utils'
 import i18n from '@/i18n'
 import Vue from 'vue'
 

@@ -43,19 +43,19 @@ const mutations = {
 
 const actions = {
   // 切换菜单栏状态
-  toggleSideBar({commit}) {
+  toggleSideBar({ commit }) {
     commit('TOGGLE_SIDEBAR')
   },
   // 关闭菜单栏
-  closeSideBar({commit}, {withoutAnimation}) {
+  closeSideBar({ commit }, { withoutAnimation }) {
     commit('CLOSE_SIDEBAR', withoutAnimation)
   },
   // 切换设备(移动端)
-  toggleDevice({commit}, device) {
+  toggleDevice({ commit }, device) {
     commit('TOGGLE_DEVICE', device)
   },
   // 设置设备的大小
-  setSize({commit}, size) {
+  setSize({ commit }, size) {
     commit('SET_SIZE', size)
   }
 }

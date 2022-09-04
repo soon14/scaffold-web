@@ -7,10 +7,10 @@
             <span class="log-card-header-title"><b>{{ $t('realTimeLog.title') }}</b></span>
             <span class="log-card-header-tips">{{ $t('realTimeLog.tips') }}</span>
           </div>
-          <div id="loggingText" ref="loggingText" contenteditable="false" v-html="logging"/>
+          <div id="loggingText" ref="loggingText" contenteditable="false" v-html="logging" />
           <div id="loggingDo">
             <el-button type="danger" round size="small" @click="clearText">{{ $t('realTimeLog.closeText') }}</el-button>
-            <el-divider direction="vertical"/>
+            <el-divider direction="vertical" />
             <el-button type="primary" round size="small" @click="scrollBottom">
               {{ $t('realTimeLog.scrollBottom') }}
             </el-button>

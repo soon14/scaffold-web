@@ -24,7 +24,7 @@ import i18n from '@/i18n'
 
 export default {
   name: 'ScaffoldJson',
-  components: {jsonViewer},
+  components: { jsonViewer },
   props: {
     // 要显示的json对象(不能是json字符串)
     jsonData: {

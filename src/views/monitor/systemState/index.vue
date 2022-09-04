@@ -32,7 +32,7 @@
               <b>{{ timeNow }}</b>
             </el-descriptions-item>
           </el-descriptions>
-          <el-skeleton animated :rows="3" style="margin-top: 10px;"/>
+          <el-skeleton animated :rows="3" style="margin-top: 10px;" />
         </el-card>
       </el-col>
       <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
@@ -207,7 +207,7 @@
               {{ systemParams.jvmNonHeapUsed }} (M)
             </el-descriptions-item>
           </el-descriptions>
-          <el-skeleton animated style="margin-top: 10px;"/>
+          <el-skeleton animated style="margin-top: 10px;" />
         </el-card>
       </el-col>
     </el-row>
@@ -246,9 +246,9 @@ export default {
         jvmNonHeapCommitted: ''// JVM非堆已申请空间(M)
       },
       colors: [
-        {color: '#f56c6c', percentage: 100},
-        {color: '#e6a23c', percentage: 65},
-        {color: '#5cb87a', percentage: 35}
+        { color: '#f56c6c', percentage: 100 },
+        { color: '#e6a23c', percentage: 65 },
+        { color: '#5cb87a', percentage: 35 }
       ]
     }
   },

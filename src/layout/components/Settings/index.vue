@@ -5,27 +5,27 @@
 
       <div class="drawer-item">
         <span>{{ $t('settings.themeColor') }}</span>
-        <theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange"/>
+        <theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange" />
       </div>
 
       <div class="drawer-item">
         <span>{{ $t('settings.isShowLabels') }}</span>
-        <el-switch v-model="tagsView" class="drawer-switch"/>
+        <el-switch v-model="tagsView" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
         <span>{{ $t('settings.isFixedHead') }}</span>
-        <el-switch v-model="fixedHeader" class="drawer-switch"/>
+        <el-switch v-model="fixedHeader" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
         <span>{{ $t('settings.isShowLogo') }}</span>
-        <el-switch v-model="sidebarLogo" class="drawer-switch"/>
+        <el-switch v-model="sidebarLogo" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
         <span>{{ $t('settings.isShowOnceMenu') }}</span>
-        <el-switch v-model="uniqueOpened" class="drawer-switch"/>
+        <el-switch v-model="uniqueOpened" class="drawer-switch" />
       </div>
 
     </div>
@@ -37,7 +37,7 @@ import ThemePicker from '@/components/ThemePicker'
 
 export default {
   name: 'Settings',
-  components: {ThemePicker},
+  components: { ThemePicker },
   data() {
     return {}
   },

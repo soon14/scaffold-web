@@ -10,10 +10,10 @@ const mutations = {
 }
 
 const actions = {
-  OpenAutoBottom({commit}) {
+  OpenAutoBottom({ commit }) {
     commit('SET_LOG_AUTO_BOTTOM', true)
   },
-  CloseAutoBottom({commit}) {
+  CloseAutoBottom({ commit }) {
     commit('SET_LOG_AUTO_BOTTOM', false)
   }
 }

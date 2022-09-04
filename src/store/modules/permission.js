@@ -14,7 +14,7 @@ const mutations = {
 }
 
 const actions = {
-  GenerateRoutes({commit}, asyncRouter) {
+  GenerateRoutes({ commit }, asyncRouter) {
     commit('SET_ROUTERS', asyncRouter)
   }
 }

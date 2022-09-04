@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" @command="handleSetSize">
     <div>
-      <i class="iconfont iconfont-font-size size-select"/>
+      <i class="iconfont iconfont-font-size size-select" />
     </div>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item
@@ -66,7 +66,7 @@ export default {
       // 为了使缓存的页面重新渲染
       this.$store.dispatch('tagsView/delAllCachedViews', this.$route)
 
-      const {fullPath} = this.$route
+      const { fullPath } = this.$route
 
       this.$nextTick(() => {
         this.$router.replace({

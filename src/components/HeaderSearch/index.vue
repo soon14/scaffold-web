@@ -1,6 +1,6 @@
 <template>
   <div :class="{'show':show}" class="header-search">
-    <i class="iconfont iconfont-search search" @click.stop="click"/>
+    <i class="iconfont iconfont-search search" @click.stop="click" />
     <el-select
       ref="headerSearchSelect"
       v-model="search"
@@ -12,7 +12,7 @@
       class="header-search-select"
       @change="change"
     >
-      <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')"/>
+      <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')" />
     </el-select>
   </div>
 </template>

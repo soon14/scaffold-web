@@ -89,4 +89,4 @@ function webSocketOpen() {
   console.log('WebSocket连接打开')
 }
 
-export {createWebSocket, sendSock, closeWebSocket}
+export { createWebSocket, sendSock, closeWebSocket }

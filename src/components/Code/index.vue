@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" @command="handleOpenUrl">
     <div>
-      <i class="iconfont iconfont-code code-address"/>
+      <i class="iconfont iconfont-code code-address" />
     </div>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item v-for="item in codeOptions" :key="item.url" :icon="item.icon" :command="item.url">

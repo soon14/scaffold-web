@@ -5,7 +5,7 @@
     class="scroll-container"
     @wheel.native.prevent="handleScroll"
   >
-    <slot/>
+    <slot />
   </el-scrollbar>
 </template>
 

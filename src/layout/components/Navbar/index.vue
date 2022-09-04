@@ -8,13 +8,13 @@
       @toggleClick="toggleSideBar"
     />
     <!-- 面包屑 -->
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container"/>
+    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
     <!-- 工具栏 -->
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <!-- 查找框 -->
-        <header-search id="header-search" class="right-menu-item"/>
+        <header-search id="header-search" class="right-menu-item" />
         <!-- 源码地址 -->
         <el-tooltip
           :content="String($t('navbar.codeAddress'))"
@@ -22,7 +22,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <code-address class="right-menu-item hover-effect"/>
+          <code-address class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 全屏缩放 -->
         <el-tooltip
@@ -31,7 +31,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <screen-full id="screenFull" class="right-menu-item hover-effect"/>
+          <screen-full id="screenFull" class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 多语言切换 -->
         <el-tooltip
@@ -40,7 +40,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <i18n-select id="i18n-select" class="right-menu-item hover-effect"/>
+          <i18n-select id="i18n-select" class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 布局设置 -->
         <el-tooltip
@@ -49,15 +49,15 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <size-select id="size-select" class="right-menu-item hover-effect"/>
+          <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
       </template>
 
       <!-- 头像 -->
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" style="margin-bottom: 15px" :src="user.avatar.path ? user.avatar.path : Avatar"/>
-          <i class="el-icon-caret-bottom"/>
+          <el-avatar shape="square" style="margin-bottom: 15px" :src="user.avatar.path ? user.avatar.path : Avatar" />
+          <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
           <span style="display: block;" @click="show = true">

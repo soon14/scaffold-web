@@ -80,28 +80,28 @@ module.exports = {
             .end()
           config
             .optimization.splitChunks({
-            chunks: 'all',
-            cacheGroups: {
-              libs: {
-                name: 'chunk-libs',
-                test: /[\\/]node_modules[\\/]/,
-                priority: 10,
-                chunks: 'initial' // 只打包最初依赖的第三方
-              },
-              elementUI: {
-                name: 'chunk-elementUI', // 将 elementUI 拆分为单个包
-                priority: 20, // 权重需要大于 libs 和 app 否则会被打包到 libs 或 app 中
-                test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // 为了适应cnpm
-              },
-              commons: {
-                name: 'chunk-commons',
-                test: resolve('src/components'), // 可以自定义您的规则
-                minChunks: 3, //  最小公用数
-                priority: 5,
-                reuseExistingChunk: true
+              chunks: 'all',
+              cacheGroups: {
+                libs: {
+                  name: 'chunk-libs',
+                  test: /[\\/]node_modules[\\/]/,
+                  priority: 10,
+                  chunks: 'initial' // 只打包最初依赖的第三方
+                },
+                elementUI: {
+                  name: 'chunk-elementUI', // 将 elementUI 拆分为单个包
+                  priority: 20, // 权重需要大于 libs 和 app 否则会被打包到 libs 或 app 中
+                  test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // 为了适应cnpm
+                },
+                commons: {
+                  name: 'chunk-commons',
+                  test: resolve('src/components'), // 可以自定义您的规则
+                  minChunks: 3, //  最小公用数
+                  priority: 5,
+                  reuseExistingChunk: true
+                }
               }
-            }
-          })
+            })
           config.optimization.runtimeChunk('single')
         }
       )

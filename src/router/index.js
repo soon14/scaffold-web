@@ -4,10 +4,10 @@ import i18n from '@/i18n'
 import NProgress from 'nprogress' // 进度条
 import 'nprogress/nprogress.css' // 进度条CSS
 import {getToken} from '@/utils/auth' // 从Cookie中获取Token
-import {buildMenus} from '@/api/system/menu'// 后端获取菜单信息Api
-import {filterAsyncRouter} from '@/store/modules/permission'// 菜单列表预处理
+import {buildMenus} from '@/api/system/menu' // 后端获取菜单信息Api
+import {filterAsyncRouter} from '@/store/modules/permission' // 菜单列表预处理
 
-NProgress.configure({showSpinner: false}) // NProgress 配置
+NProgress.configure({ showSpinner: false }) // NProgress 配置
 
 const whiteList = ['/login', '/401'] // 没有重定向白名单
 
@@ -26,7 +26,7 @@ router.beforeEach((to, from, next) => {
     // 已登录且要跳转的页面是登录页
     if (to.path === '/login') {
       // 重定向到首页
-      next({path: '/'})
+      next({ path: '/' })
       NProgress.done()
     } else {
       // 判断当前用户是否已拉取完user_info信息
@@ -64,11 +64,11 @@ router.beforeEach((to, from, next) => {
 export const loadMenus = (next, to) => {
   buildMenus().then(res => {
     const asyncRouter = filterAsyncRouter(res.data)// 注意将data传入
-    asyncRouter.push({path: '*', redirect: '/404', hidden: true})
+    asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
     // 存储路由(Vuex)
     store.dispatch('permission/GenerateRoutes', asyncRouter).then(() => {
       router.addRoutes(asyncRouter)// 动态添加可访问的路由表
-      next({...to, replace: true})// 跳转
+      next({ ...to, replace: true })// 跳转
     })
   })
 }

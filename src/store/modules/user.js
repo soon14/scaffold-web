@@ -26,7 +26,7 @@ const mutations = {
 
 const actions = {
   // 登录
-  Login({commit}, userLoginInfo) {
+  Login({ commit }, userLoginInfo) {
     const rememberMe = userLoginInfo.rememberMe
     return new Promise((resolve, reject) => {
       login(userLoginInfo.username, userLoginInfo.password, userLoginInfo.code, userLoginInfo.uuid).then(res => {
@@ -44,7 +44,7 @@ const actions = {
   },
 
   // 获取用户信息
-  GetInfo({commit}) {
+  GetInfo({ commit }) {
     return new Promise((resolve, reject) => {
       getUserInfo().then(res => {
         setUserInfo(res.data, commit)
@@ -56,7 +56,7 @@ const actions = {
   },
 
   // 注销
-  LogOut({commit}) {
+  LogOut({ commit }) {
     return new Promise((resolve, reject) => {
       logout().then(res => {
         logOut(commit)
@@ -69,7 +69,7 @@ const actions = {
   },
 
   // 修改拉取菜单状态
-  UpdateLoadMenus({commit}) {
+  UpdateLoadMenus({ commit }) {
     return new Promise((resolve, reject) => {
       commit('SET_LOAD_MENUS', false)
     })

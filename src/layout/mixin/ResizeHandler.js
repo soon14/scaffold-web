@@ -1,13 +1,13 @@
 import store from '@/store'
 
-const {body} = document
+const { body } = document
 const WIDTH = 992 // 参考 Bootstrap 的响应式设计
 
 export default {
   watch: {
     $route(route) {
       if (this.device === 'mobile' && this.sidebar.opened) {
-        store.dispatch('app/closeSideBar', {withoutAnimation: false})
+        store.dispatch('app/closeSideBar', { withoutAnimation: false })
       }
     }
   },
@@ -22,7 +22,7 @@ export default {
     if (isMobile) {
       store.dispatch('app/toggleDevice', 'mobile').then(r => {
       })
-      store.dispatch('app/closeSideBar', {withoutAnimation: true}).then(r => {
+      store.dispatch('app/closeSideBar', { withoutAnimation: true }).then(r => {
       })
     }
   },
@@ -40,7 +40,7 @@ export default {
         })
 
         if (isMobile) {
-          store.dispatch('app/closeSideBar', {withoutAnimation: true}).then(r => {
+          store.dispatch('app/closeSideBar', { withoutAnimation: true }).then(r => {
           })
         }
       }

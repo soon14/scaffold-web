@@ -3,14 +3,14 @@
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <menu-item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title"/>
+          <menu-item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </app-link>
     </template>
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <menu-item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title"/>
+        <menu-item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
       <sidebar-item
         v-for="(child,index) in item.children"
@@ -33,7 +33,7 @@ import {isExternal} from '@/utils/validate'
 
 export default {
   name: 'SidebarItem',
-  components: {MenuItem, AppLink},
+  components: { MenuItem, AppLink },
   mixins: [FixiOSBug],
   props: {
     // 传入的菜单体
@@ -75,7 +75,7 @@ export default {
 
       // 如果没有要显示的子路由器，则显示父级
       if (showingChildren.length === 0) {
-        this.onlyOneChild = {...parent, path: '', noShowingChildren: true}
+        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
       }
 

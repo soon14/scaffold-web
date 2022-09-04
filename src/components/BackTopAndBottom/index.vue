@@ -11,7 +11,7 @@
         @click.stop="handleTopClick"
       >
         <slot name="top">
-          <el-icon name="caret-top"/>
+          <el-icon name="caret-top" />
         </slot>
       </div>
     </transition>
@@ -26,7 +26,7 @@
         @click.stop="handleBottomClick"
       >
         <slot name="bottom">
-          <el-icon name="caret-bottom"/>
+          <el-icon name="caret-bottom" />
         </slot>
       </div>
     </transition>

@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom :bottom="90" :right="30"/>
+    <back-top-and-bottom :bottom="90" :right="30" />
     <div class="head-container">
-      <search-date-picker-operation/>
+      <search-date-picker-operation />
       <button-operation>
         <el-button
           slot="left"
@@ -90,7 +90,7 @@
         </template>
       </template>
     </scaffold-table>
-    <pagination-operation/>
+    <pagination-operation />
   </div>
 </template>
 
@@ -106,7 +106,7 @@ import ScaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({title: '操作日志', url: '/api/logs'})
+const defaultCrud = CRUD({ title: '操作日志', url: '/api/logs' })
 export default {
   name: 'PlayLog',
   computed: {

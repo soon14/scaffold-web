@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h1 class="login_title">{{ $t('login.title') }}</h1>
-    <div id="lottie_box" class="animation"/>
+    <div id="lottie_box" class="animation" />
     <div class="loginContainer">
       <el-form ref="loginForm" :model="loginForm" :rules="rules">
         <h3 class="loginFormItemTitle">{{ $t('login.welcome') }}</h3>
@@ -49,7 +49,7 @@
             placement="right"
             transition="el-zoom-in-top"
           >
-            <i18n-select style="float: right"/>
+            <i18n-select style="float: right" />
           </el-tooltip>
         </el-form-item>
         <el-form-item>
@@ -61,9 +61,9 @@
       </el-form>
     </div>
     <div v-if="$store.state.global.showFooter" class="loginFooter">
-      <span v-html="$store.state.global.footerTxt"/>
+      <span v-html="$store.state.global.footerTxt" />
       <span> ⋅ </span>
-      <span v-text="$store.state.global.caseNumber"/>
+      <span v-text="$store.state.global.caseNumber" />
     </div>
   </div>
 </template>
@@ -77,7 +77,7 @@ import I18nSelect from '@/components/I18nSelect'
 
 export default {
   name: 'Login',
-  components: {I18nSelect},
+  components: { I18nSelect },
   data() {
     return {
       captchaUrl: '',
@@ -92,9 +92,9 @@ export default {
       loading: false,
       redirect: undefined,
       rules: {
-        username: [{required: true, message: this.$i18n.t('login.rules.usernameMessage'), trigger: 'blur'}],
-        password: [{required: true, message: this.$i18n.t('login.rules.passwordMessage'), trigger: 'blur'}],
-        code: [{required: true, message: this.$i18n.t('login.rules.codeMessage'), trigger: 'change'}]
+        username: [{ required: true, message: this.$i18n.t('login.rules.usernameMessage'), trigger: 'blur' }],
+        password: [{ required: true, message: this.$i18n.t('login.rules.passwordMessage'), trigger: 'blur' }],
+        code: [{ required: true, message: this.$i18n.t('login.rules.codeMessage'), trigger: 'change' }]
       }
     }
   },
@@ -153,9 +153,9 @@ export default {
           this.loading = true
           // 如果勾选了记住我,放入Cookies中
           if (user.rememberMe) {
-            Cookies.set('username', user.username, {expires: Global.passCookieExpires})
-            Cookies.set('password', user.password, {expires: Global.passCookieExpires})
-            Cookies.set('rememberMe', user.rememberMe, {expires: Global.passCookieExpires})
+            Cookies.set('username', user.username, { expires: Global.passCookieExpires })
+            Cookies.set('password', user.password, { expires: Global.passCookieExpires })
+            Cookies.set('rememberMe', user.rememberMe, { expires: Global.passCookieExpires })
           } else {
             Cookies.remove('username')
             Cookies.remove('password')
@@ -164,7 +164,7 @@ export default {
           //  调用Vuex中的登录方法
           this.$store.dispatch('user/Login', user).then(() => {
             this.loading = false
-            this.$router.push({path: this.redirect || '/'})
+            this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
             this.loading = false
             this.getCode()

@@ -1,7 +1,7 @@
 <template>
   <div class="lottie-http401-container">
     <div class="lottie-http401">
-      <div id="lottie_box" class="animation"/>
+      <div id="lottie_box" class="animation" />
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
         <div class="bullshit__headline">{{ message }}</div>

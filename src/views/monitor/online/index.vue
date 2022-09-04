@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom :bottom="90" :right="30"/>
+    <back-top-and-bottom :bottom="90" :right="30" />
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <el-input
@@ -12,7 +12,7 @@
           class="filter-item"
           @keyup.enter.native="crud.toQuery"
         />
-        <search-reset-operation :crud="crud"/>
+        <search-reset-operation :crud="crud" />
       </div>
       <button-operation>
         <el-button
@@ -38,7 +38,7 @@
       :default-sort="{prop:'loginTime',order:'descending'}"
     >
       <template slot="tableColumns">
-        <el-table-column type="selection" width="55"/>
+        <el-table-column type="selection" width="55" />
         <template v-for="item in tableHeader.online">
           <el-table-column
             v-if="columns.visible(item.prop)"
@@ -91,7 +91,7 @@
         </el-table-column>
       </template>
     </scaffold-table>
-    <pagination-operation/>
+    <pagination-operation />
   </div>
 </template>
 
@@ -107,7 +107,7 @@ import {del} from '@/api/system/online'
 import i18n from '@/i18n'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({title: String(i18n.t('onlinePage.title')), url: '/api/online'})
+const defaultCrud = CRUD({ title: String(i18n.t('onlinePage.title')), url: '/api/online' })
 export default {
   name: 'Online',
   components: {

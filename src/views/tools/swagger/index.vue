@@ -1,5 +1,5 @@
 <template>
-  <el-frame :src="swaggerApi"/>
+  <el-frame :src="swaggerApi" />
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import ElFrame from '@/components/Iframe'
 
 export default {
   name: 'Swagger',
-  components: {ElFrame},
+  components: { ElFrame },
   computed: {
     ...mapGetters([
       'swaggerApi'

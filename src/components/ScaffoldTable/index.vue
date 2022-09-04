@@ -11,7 +11,7 @@
     :header-cell-style="{color:'#333333',fontWeight:'bold'}"
     @selection-change="crud.selectionChangeHandler"
   >
-    <slot name="tableColumns"/>
+    <slot name="tableColumns" />
   </el-table>
 </template>
 

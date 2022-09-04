@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" @command="handleChangeLanguage">
     <div>
-      <i class="iconfont iconfont-i18n i18n-select"/>
+      <i class="iconfont iconfont-i18n i18n-select" />
     </div>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item

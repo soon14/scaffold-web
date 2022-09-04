@@ -1,20 +1,20 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>
+    <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <!-- 菜单栏 -->
-    <sidebar class="sidebar-container"/>
+    <sidebar class="sidebar-container" />
     <div :class="{hasTagsView : needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <!-- 顶部栏 -->
-        <navbar/>
+        <navbar />
         <!-- 标签栏 -->
-        <tags-view v-if="needTagsView"/>
+        <tags-view v-if="needTagsView" />
       </div>
       <!-- 主要页面 -->
-      <app-main/>
+      <app-main />
       <!-- 系统布局设置 -->
       <right-panel v-if="showSettings">
-        <settings/>
+        <settings />
       </right-panel>
     </div>
   </div>

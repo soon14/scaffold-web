@@ -2,7 +2,7 @@ import globalSettings from '@/global'
 import variables from '@/assets/styles/element-variables.scss'
 import i18n from '@/i18n'
 
-const {showFooter, footerTxt, tagsView, fixedHeader, sidebarLogo, uniqueOpened} = globalSettings
+const { showFooter, footerTxt, tagsView, fixedHeader, sidebarLogo, uniqueOpened } = globalSettings
 
 const state = {
   // 主题
@@ -26,7 +26,7 @@ const state = {
 }
 
 const mutations = {
-  CHANGE_SETTING: (state, {key, value}) => {
+  CHANGE_SETTING: (state, { key, value }) => {
     if (state.hasOwnProperty(key)) {
       state[key] = value
     }
@@ -34,7 +34,7 @@ const mutations = {
 }
 
 const actions = {
-  changeSetting({commit}, data) {
+  changeSetting({ commit }, data) {
     commit('CHANGE_SETTING', data)
   }
 }

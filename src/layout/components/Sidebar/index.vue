@@ -1,7 +1,7 @@
 <template>
   <div :class="{'has-logo':showLogo}">
     <!-- Logo -->
-    <logo v-if="showLogo" :collapse="isCollapse"/>
+    <logo v-if="showLogo" :collapse="isCollapse" />
     <!-- 菜单 -->
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -14,7 +14,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path"/>
+        <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -28,7 +28,7 @@ import variables from '@/assets/styles/variables.scss'
 
 export default {
   name: 'Sidebar',
-  components: {SidebarItem, Logo},
+  components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -36,7 +36,7 @@ export default {
     ]),
     activeMenu() {
       const route = this.$route
-      const {meta, path} = route
+      const { meta, path } = route
       // 如果设置路径，侧边栏将突出显示您设置的路径
       if (meta.activeMenu) {
         return meta.activeMenu

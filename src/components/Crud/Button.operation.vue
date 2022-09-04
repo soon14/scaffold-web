@@ -2,7 +2,7 @@
   <div class="crud-opts">
     <span class="crud-opts-left">
       <!-- 左侧插槽 -->
-      <slot name="left"/>
+      <slot name="left" />
       <el-button
         v-if="crud.optShow.add"
         v-permission="permission.add"
@@ -57,14 +57,14 @@
         {{ $t('crud.buttonOperation.download') }}
       </el-button>
       <!-- 右侧插槽 -->
-      <slot name="right"/>
+      <slot name="right" />
     </span>
     <el-button-group class="crud-opts-right">
-      <el-button size="mini" type="primary" icon="el-icon-search" @click="toggleSearch"/>
-      <el-button size="mini" icon="el-icon-refresh" @click="crud.refresh()"/>
+      <el-button size="mini" type="primary" icon="el-icon-search" @click="toggleSearch" />
+      <el-button size="mini" icon="el-icon-refresh" @click="crud.refresh()" />
       <el-popover placement="bottom-end" width="150" trigger="click">
         <el-button slot="reference" size="mini" icon="el-icon-s-grid">
-          <i class="fa fa-caret-down" aria-hidden="true"/>
+          <i class="fa fa-caret-down" aria-hidden="true" />
         </el-button>
         <el-checkbox
           v-model="allColumnsSelected"
