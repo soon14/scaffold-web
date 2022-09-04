@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
-import {closeWebSocket, createWebSocket} from '@/utils/socket'
+import { mapGetters } from 'vuex'
+import { closeWebSocket, createWebSocket } from '@/utils/socket'
 
 export default {
   name: 'RealTimeLog',

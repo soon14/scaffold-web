@@ -1,7 +1,7 @@
 import axios from 'axios'
-import {MessageBox, Notification} from 'element-ui'
+import { MessageBox, Notification } from 'element-ui'
 import Global from '@/global'
-import {getToken} from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 import store from '@/store'
 import i18n from '@/i18n'
 

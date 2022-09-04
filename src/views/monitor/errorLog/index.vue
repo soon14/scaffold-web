@@ -94,14 +94,14 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldJson from '@/components/ScaffoldJson'
 import backTopAndBottom from '@/components/BackTopAndBottom'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import CRUD, {presenter} from '@/utils/crud'
+import CRUD, { presenter } from '@/utils/crud'
 import buttonOperation from '@/components/Crud/Button.operation'
-import {delAllErrorLogs, getErrorDetails} from '@/api/system/logs'
+import { delAllErrorLogs, getErrorDetails } from '@/api/system/logs'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
 const defaultCrud = CRUD({ title: '错误日志', url: '/api/errorLogs' })

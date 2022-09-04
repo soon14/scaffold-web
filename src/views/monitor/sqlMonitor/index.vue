@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import ElFrame from '@/components/Iframe'
 
 export default {

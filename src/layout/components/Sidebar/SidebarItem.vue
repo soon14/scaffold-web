@@ -29,7 +29,7 @@ import MenuItem from './MenuItem'
 import AppLink from './AppLink'
 import FixiOSBug from './FixiOSBug'
 import path from 'path'
-import {isExternal} from '@/utils/validate'
+import { isExternal } from '@/utils/validate'
 
 export default {
   name: 'SidebarItem',

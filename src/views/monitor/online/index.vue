@@ -96,14 +96,14 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import backTopAndBottom from '@/components/BackTopAndBottom'
 import searchResetOperation from '@/components/Crud/SearchReset.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
-import CRUD, {crud, header, presenter} from '@/utils/crud'
-import {del} from '@/api/system/online'
+import CRUD, { crud, header, presenter } from '@/utils/crud'
+import { del } from '@/api/system/online'
 import i18n from '@/i18n'
 
 // crud交由presenter持有

@@ -69,9 +69,9 @@
 </template>
 
 <script>
-import {getCodeImg} from '@/api/login'
+import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
-import {encrypt} from '@/utils/rsaEncrypt'
+import { encrypt } from '@/utils/rsaEncrypt'
 import Global from '@/global'
 import I18nSelect from '@/components/I18nSelect'
 

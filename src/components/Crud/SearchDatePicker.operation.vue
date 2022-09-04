@@ -28,7 +28,7 @@
 
 <script>
 import searchResetOperation from '@/components/Crud/SearchReset.operation'
-import {header} from '@/utils/crud'
+import { header } from '@/utils/crud'
 
 export default {
   name: 'SearchDatePickerOperation',

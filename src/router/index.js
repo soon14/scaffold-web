@@ -3,9 +3,9 @@ import store from '@/store'
 import i18n from '@/i18n'
 import NProgress from 'nprogress' // 进度条
 import 'nprogress/nprogress.css' // 进度条CSS
-import {getToken} from '@/utils/auth' // 从Cookie中获取Token
-import {buildMenus} from '@/api/system/menu' // 后端获取菜单信息Api
-import {filterAsyncRouter} from '@/store/modules/permission' // 菜单列表预处理
+import { getToken } from '@/utils/auth' // 从Cookie中获取Token
+import { buildMenus } from '@/api/system/menu' // 后端获取菜单信息Api
+import { filterAsyncRouter } from '@/store/modules/permission' // 菜单列表预处理
 
 NProgress.configure({ showSpinner: false }) // NProgress 配置
 

@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import CRUD, {crud} from '@/utils/crud'
+import CRUD, { crud } from '@/utils/crud'
 
 export default {
   name: 'ButtonOperation',

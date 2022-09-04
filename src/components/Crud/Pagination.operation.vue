@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {pagination} from '@/utils/crud'
+import { pagination } from '@/utils/crud'
 
 export default {
   name: 'PaginationOperation',

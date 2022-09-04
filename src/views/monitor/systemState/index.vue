@@ -215,9 +215,9 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import dayjs from 'dayjs'
-import {closeWebSocket, createWebSocket} from '@/utils/socket'
+import { closeWebSocket, createWebSocket } from '@/utils/socket'
 
 export default {
   name: 'SystemState',
