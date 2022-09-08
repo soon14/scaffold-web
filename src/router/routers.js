@@ -54,6 +54,22 @@ export const constantRouterMap = [
         }
       }
     ]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'center',
+        component: (resolve) => require(['@/views/userCenter'], resolve),
+        name: String(i18n.t('center.title')),
+        meta: {
+          title: String(i18n.t('center.title'))
+        }
+      }
+    ]
   }
 ]
 

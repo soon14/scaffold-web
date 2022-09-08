@@ -33,6 +33,9 @@ import i18n from './i18n'
 // JSON格式化显示
 import JsonViewer from 'vue-json-viewer'
 
+// axios
+import axios from 'axios'
+
 Vue.use(VueHighlightJS)
 Vue.use(JsonViewer)
 // 设置 element-ui 默认大小
@@ -42,6 +45,8 @@ Vue.use(Element, {
 
 // 将Lottie挂载到Vue上
 Vue.prototype.$lottie = lottie
+// 挂载axios
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 

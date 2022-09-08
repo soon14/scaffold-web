@@ -148,7 +148,7 @@ function CRUD(options) {
       return new Promise((resolve, reject) => {
         crud.loading = true
         // 请求数据
-        initData(crud.url + '/list', crud.getQueryParams()).then(data => {
+        initData(crud.url, crud.getQueryParams()).then(data => {
           crud.page.total = data.data.totalElements
           crud.data = data.data.content
           crud.resetDataStatus()

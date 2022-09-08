@@ -33,7 +33,7 @@
                   <span v-if="props.row[item.prop] !== '{}' && props.row[item.prop] !== null">
                     <scaffold-json :json-data="props.row[item.prop]" boxed sort show-array-index expanded />
                   </span>
-                  <span v-else style="color: red;">无</span>
+                  <span v-else style="color: red;">{{ $t('errorLogsPage.none') }}</span>
                 </span>
                 <span v-else-if="item.prop === 'status'">
                   <span
@@ -68,9 +68,11 @@
             </template>
           </el-table-column>
         </template>
-        <el-table-column label="异常详情" width="100" fixed="right">
+        <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">
           <template slot-scope="scope">
-            <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">查看异常</el-button>
+            <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">
+              {{ $t('errorLogsPage.lookInfo') }}
+            </el-button>
           </template>
         </el-table-column>
       </template>
@@ -83,7 +85,7 @@
       width="85%"
     >
       <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
-        <div style="padding:15px 20px;">异常详情</div>
+        <div style="padding:15px 20px;">{{ $t('errorLogsPage.exceptionInfo') }}</div>
       </div>
       <pre v-highlightjs="errorLogs" class="pre-class">
         <code class="java code-class" />
@@ -95,6 +97,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import i18n from '@/i18n'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldJson from '@/components/ScaffoldJson'
 import backTopAndBottom from '@/components/BackTopAndBottom'
@@ -104,7 +107,7 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import { delAllErrorLogs, getErrorDetails } from '@/api/system/logs'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
-const defaultCrud = CRUD({ title: '错误日志', url: '/api/errorLogs' })
+const defaultCrud = CRUD({ title: String(i18n.t('errorLogsPage.title')), url: '/errorLogs' })
 export default {
   name: 'ErrorLog',
   components: {
@@ -212,7 +215,8 @@ export default {
   margin-top: 0;
   font-size: 15px;
   line-height: 25px;
-  font-family: Consolas, Menlo, Courier, monospace;
+  font-family: Consolas,serif;
+  margin-left: 10px;
 }
 
 .pre-class {

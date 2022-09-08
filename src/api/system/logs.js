@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 获取错误日志详细
 export function getErrorDetails(id) {
   return request({
-    url: '/api/errorLogs/' + id,
+    url: '/errorLogs/' + id,
     method: 'get'
   })
 }
@@ -11,7 +11,7 @@ export function getErrorDetails(id) {
 // 删除所有的操作日志
 export function delAllLogs() {
   return request({
-    url: '/api/logs/delete',
+    url: '/logs',
     method: 'delete'
   })
 }
@@ -19,7 +19,7 @@ export function delAllLogs() {
 // 删除所有的错误日志
 export function delAllErrorLogs() {
   return request({
-    url: '/api/errorLogs/delete',
+    url: '/errorLogs',
     method: 'delete'
   })
 }

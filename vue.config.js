@@ -23,18 +23,18 @@ module.exports = {
       errors: true
     },
     proxy: { // 通过设置代理处理跨域
-      '/api': {
-        target: process.env.VUE_APP_BASE_API,
+      [process.env.VUE_APP_BASE_API]: {
+        target: 'http://192.168.137.23:8888/api/v1',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          ['^' + process.env.VUE_APP_BASE_API]: ''
         }
       },
-      '/auth': {
-        target: process.env.VUE_APP_BASE_API,
+      [process.env.VUE_APP_TOOL_API]: {
+        target: 'http://192.168.137.23:8888',
         changeOrigin: true,
         pathRewrite: {
-          '^/auth': '/auth'
+          ['^' + process.env.VUE_APP_TOOL_API]: ''
         }
       }
     }

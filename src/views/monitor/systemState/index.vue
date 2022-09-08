@@ -17,7 +17,7 @@
               <template slot="label">
                 <span class="card-panel-black">{{ $t('systemMonitor.systemInfo.jdk') }}</span>
               </template>
-              <el-tag effect="plain">{{ systemParams.jvmJavaVersion }}</el-tag>
+              <el-tag effect="plain" size="small">{{ systemParams.jvmJavaVersion }}</el-tag>
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
@@ -192,7 +192,7 @@
                 <span class="card-panel-black">{{ $t('systemMonitor.jvm.heapMax') }}</span>
               </template>
               <span v-if="systemParams.jvmNonHeapMax !== '-.00'"><b>{{ systemParams.jvmNonHeapMax }}</b> (M)</span>
-              <span v-else><el-tag type="danger" effect="plain">{{ $t('systemMonitor.jvm.noInfo') }}</el-tag></span>
+              <span v-else><el-tag type="danger" effect="plain" size="small">{{ $t('systemMonitor.jvm.noInfo') }}</el-tag></span>
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
@@ -262,7 +262,7 @@ export default {
   },
   mounted() {
     if (this.flag) {
-      createWebSocket(`/websocket/monitor`, this.callback)
+      createWebSocket(`/monitor`, this.callback)
     }
     this.timer = setInterval(() => {
       this.timeNow = dayjs().format('YYYY-MM-DD HH:mm:ss')

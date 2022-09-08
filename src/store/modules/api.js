@@ -1,10 +1,15 @@
-const baseUrl = process.env.VUE_APP_BASE_API
+const baseUrl = process.env.VUE_APP_TOOL_API
+const apiBaseUrl = process.env.VUE_APP_BASE_API
 const api = {
   state: {
     // 基础路径
     baseApi: baseUrl,
+    // Druid SQL监控
     sqlMonitorApi: baseUrl + '/druid',
-    swaggerApi: baseUrl + '/doc.html'
+    // Swagger接口文档
+    swaggerApi: baseUrl + '/doc.html',
+    // 修改头像API
+    updateAvatarApi: apiBaseUrl + '/user/avatar'
   }
 }
 

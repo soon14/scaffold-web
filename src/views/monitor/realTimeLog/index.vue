@@ -65,7 +65,7 @@ export default {
   },
   mounted() {
     if (this.flag) {
-      createWebSocket(`/websocket/logging`, this.callback)
+      createWebSocket(`/logging`, this.callback)
     }
   },
   destroyed() {

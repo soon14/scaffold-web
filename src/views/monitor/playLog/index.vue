@@ -39,7 +39,7 @@
                       expanded
                     />
                   </span>
-                  <span v-else style="color: red">无</span>
+                  <span v-else style="color: red">{{ $t('playLogsPage.none') }}</span>
                 </span>
                 <span v-else-if="item.prop === 'status'">
                   <span
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import i18n from '@/i18n'
 import backTopAndBottom from '@/components/BackTopAndBottom'
 import scaffoldJson from '@/components/ScaffoldJson'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
@@ -106,15 +107,9 @@ import ScaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({ title: '操作日志', url: '/api/logs' })
+const defaultCrud = CRUD({ title: String(i18n.t('playLogsPage.title')), url: '/logs' })
 export default {
   name: 'PlayLog',
-  computed: {
-    ...mapGetters([
-      'tableHeader'
-    ])
-  },
-  mixins: [presenter(defaultCrud)],
   components: {
     paginationOperation,
     ScaffoldTable,
@@ -122,6 +117,12 @@ export default {
     buttonOperation,
     scaffoldJson,
     backTopAndBottom
+  },
+  mixins: [presenter(defaultCrud)],
+  computed: {
+    ...mapGetters([
+      'tableHeader'
+    ])
   },
   created() {
     this.crud.optShow = {

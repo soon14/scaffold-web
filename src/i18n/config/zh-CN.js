@@ -25,6 +25,9 @@ export default {
   dashboard: {
     title: '首页'
   },
+  center: {
+    title: '个人中心'
+  },
   logo: {
     title: 'Scaffold - 管理系统'
   },
@@ -133,6 +136,11 @@ export default {
     searchResetOperation: {
       search: '搜索',
       reset: '重置'
+    },
+    searchDatePickerOperation: {
+      placeholder: '请输入你要搜索的内容',
+      startTime: '开始日期',
+      endTime: '结束日期'
     }
   },
   onlinePage: {
@@ -146,6 +154,8 @@ export default {
     title2: '个用户吗?'
   },
   playLogsPage: {
+    title: '操作日志',
+    none: '无',
     delTitle: '确认清空所有操作日志吗?',
     empty: '清空'
   },
@@ -156,6 +166,46 @@ export default {
       browser: '浏览器',
       address: '登录地点',
       loginTime: '登录时间'
+    },
+    playLogs: {
+      logs: {
+        username: '用户名',
+        requestIp: 'IP',
+        address: 'IP来源',
+        title: '操作',
+        browser: '浏览器',
+        businessType: '业务类型',
+        time: '操作耗时',
+        createTime: '操作时间'
+      },
+      expand: {
+        requestMethod: '请求类型',
+        requestUrl: '请求URL',
+        status: '操作状态',
+        method: '请求方法',
+        requestParams: '请求参数',
+        responseResult: '响应结果'
+      }
+    },
+    errorLogs: {
+      logs: {
+        username: '用户名',
+        requestIp: 'IP',
+        address: 'IP来源',
+        title: '操作',
+        logType: '日志等级',
+        browser: '浏览器',
+        businessType: '业务类型',
+        createTime: '操作时间'
+      },
+      expand: {
+        requestMethod: '请求类型',
+        requestUrl: '请求URL',
+        status: '操作状态',
+        method: '请求方法',
+        requestParams: '请求参数',
+        responseResult: '响应结果'
+      }
     }
   },
   scaffoldJsonViewer: {
@@ -163,6 +213,10 @@ export default {
     copiedText: '已复制'
   },
   errorLogsPage: {
+    title: '错误日志',
+    none: '无',
+    exceptionInfo: '异常详情',
+    lookInfo: '查看异常',
     delTitle: '确认清空所有操作日志吗?',
     empty: '清空'
   },

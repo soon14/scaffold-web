@@ -34,6 +34,7 @@ router.beforeEach((to, from, next) => {
         store.dispatch('user/GetInfo').then(res => { // 拉取用户信息
           // 动态路由,拉取菜单
           loadMenus(next, to)
+          // eslint-disable-next-line handle-callback-err
         }).catch((err) => {
           store.dispatch('user/LogOut').then(() => {
             // window.location.reload() // 为了重新实例化vue-router对象 避免bug

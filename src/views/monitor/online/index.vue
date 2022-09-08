@@ -107,7 +107,7 @@ import { del } from '@/api/system/online'
 import i18n from '@/i18n'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({ title: String(i18n.t('onlinePage.title')), url: '/api/online' })
+const defaultCrud = CRUD({ title: String(i18n.t('onlinePage.title')), url: '/online' })
 export default {
   name: 'Online',
   components: {

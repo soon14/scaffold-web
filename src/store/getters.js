@@ -32,7 +32,11 @@ const getters = {
   // 实时日志是否开启自动滚动
   loggingAutoBottom: state => state.realTimeLog.loggingAutoBottom,
   // 系统主题
-  theme: state => state.global.theme
+  theme: state => state.global.theme,
+  // 修改头像API
+  updateAvatarApi: state => state.api.updateAvatarApi,
+  // 用户修改邮箱的select下拉框
+  options: state => state.userUpdate.options
 }
 
 export default getters

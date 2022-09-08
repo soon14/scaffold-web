@@ -65,7 +65,7 @@
               {{ $t('navbar.systemLayoutSettings') }}
             </el-dropdown-item>
           </span>
-          <router-link to="/">
+          <router-link to="/user/center">
             <el-dropdown-item icon="iconfont iconfont-userInfo">
               {{ $t('navbar.personalCenter') }}
             </el-dropdown-item>

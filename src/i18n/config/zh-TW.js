@@ -25,6 +25,9 @@ export default {
   dashboard: {
     title: '首頁'
   },
+  center: {
+    title: '個人中心'
+  },
   logo: {
     title: 'Scaffold - 管理系統'
   },
@@ -133,6 +136,11 @@ export default {
     searchResetOperation: {
       search: '蒐索',
       reset: '重置'
+    },
+    searchDatePickerOperation: {
+      placeholder: '請輸入你要搜索的內容',
+      startTime: '開始日期',
+      endTime: '結束日期'
     }
   },
   onlinePage: {
@@ -146,6 +154,8 @@ export default {
     title2: '個用戶嗎?'
   },
   playLogsPage: {
+    title: '操作日誌',
+    none: '無',
     delTitle: '確認清空所有操作日誌嗎?',
     empty: '清空'
   },
@@ -156,6 +166,46 @@ export default {
       browser: '瀏覽器',
       address: '登入地點',
       loginTime: '登入時間'
+    },
+    playLogs: {
+      logs: {
+        username: '用戶名',
+        requestIp: 'IP',
+        address: 'IP來源',
+        title: '操作',
+        browser: '瀏覽器',
+        businessType: '業務類型',
+        time: '操作耗時',
+        createTime: '操作時間'
+      },
+      expand: {
+        requestMethod: '請求類型',
+        requestUrl: '請求URL',
+        status: '操作狀態',
+        method: '請求方法',
+        requestParams: '請求參數',
+        responseResult: '響應結果'
+      }
+    },
+    errorLogs: {
+      logs: {
+        username: '用戶名',
+        requestIp: 'IP',
+        address: 'IP來源',
+        title: '操作',
+        logType: '日誌等級',
+        browser: '瀏覽器',
+        businessType: '業務類型',
+        createTime: '操作時間'
+      },
+      expand: {
+        requestMethod: '請求類型',
+        requestUrl: '請求URL',
+        status: '操作狀態',
+        method: '請求方法',
+        requestParams: '請求參數',
+        responseResult: '響應結果'
+      }
     }
   },
   scaffoldJsonViewer: {
@@ -163,6 +213,10 @@ export default {
     copiedText: '已復制'
   },
   errorLogsPage: {
+    title: '錯誤日誌',
+    none: '無',
+    exceptionInfo: '異常詳情',
+    lookInfo: '查看異常',
     delTitle: '確認清空所有操作日誌嗎?',
     empty: '清空'
   },

@@ -4,7 +4,7 @@
       v-model="query.blurry"
       clearable
       size="small"
-      placeholder="请输入你要搜索的内容"
+      :placeholder="$t('crud.searchDatePickerOperation.placeholder')"
       style="width: 200px"
       class="filter-item"
       @keyup.enter.native="crud.toQuery"
@@ -17,8 +17,8 @@
       size="small"
       class="date-item"
       value-format="yyyy-MM-dd HH:mm:ss"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期"
+      :start-placeholder="String($t('crud.searchDatePickerOperation.startTime'))"
+      :end-placeholder="String($t('crud.searchDatePickerOperation.endTime'))"
       align="left"
       style="width: 300px"
     />

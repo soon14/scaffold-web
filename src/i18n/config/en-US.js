@@ -25,6 +25,9 @@ export default {
   dashboard: {
     title: 'Home'
   },
+  center: {
+    title: 'Personal Center'
+  },
   logo: {
     title: 'Scaffold - Management'
   },
@@ -133,6 +136,11 @@ export default {
     searchResetOperation: {
       search: 'Search',
       reset: 'Reset'
+    },
+    searchDatePickerOperation: {
+      placeholder: 'Please enter to search',
+      startTime: 'Start Time',
+      endTime: 'End Time'
     }
   },
   onlinePage: {
@@ -146,6 +154,8 @@ export default {
     title2: 'users?'
   },
   playLogsPage: {
+    title: 'Operation Log',
+    none: 'None',
     delTitle: 'Are you sure to clear all operation logs?',
     empty: 'Empty'
   },
@@ -156,6 +166,46 @@ export default {
       browser: 'Browser',
       address: 'Login Address',
       loginTime: 'Login Time'
+    },
+    playLogs: {
+      logs: {
+        username: 'Username',
+        requestIp: 'IP',
+        address: 'IP Source',
+        title: 'Operate',
+        browser: 'Browser',
+        businessType: 'Business Type',
+        time: 'Time',
+        createTime: 'Operation Time'
+      },
+      expand: {
+        requestMethod: 'Request Type',
+        requestUrl: 'Request URL',
+        status: 'Operating State',
+        method: 'Request Method',
+        requestParams: 'Request Params',
+        responseResult: 'Response Result'
+      }
+    },
+    errorLogs: {
+      logs: {
+        username: 'Username',
+        requestIp: 'IP',
+        address: 'IP Source',
+        title: 'Operate',
+        logType: 'Log Level',
+        browser: 'Browser',
+        businessType: 'Business Type',
+        createTime: 'Operation Time'
+      },
+      expand: {
+        requestMethod: 'Request Type',
+        requestUrl: 'Request URL',
+        status: 'Operating State',
+        method: 'Request Method',
+        requestParams: 'Request Params',
+        responseResult: 'Response Result'
+      }
     }
   },
   scaffoldJsonViewer: {
@@ -163,6 +213,10 @@ export default {
     copiedText: 'copied'
   },
   errorLogsPage: {
+    title: 'Error Log',
+    none: 'None',
+    exceptionInfo: 'Exception Info',
+    lookInfo: 'Exception',
     delTitle: 'Are you sure to clear all error logs?',
     empty: 'Empty'
   },

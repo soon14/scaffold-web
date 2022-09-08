@@ -17,7 +17,7 @@ export function login(username, password, code, uuid) {
 // 登录后获取当前登录用户的用户信息
 export function getUserInfo() {
   return request({
-    url: '/api/user/info',
+    url: '/user/info',
     method: 'get'
   })
 }
@@ -33,7 +33,7 @@ export function getCodeImg() {
 // 注销登录
 export function logout() {
   return request({
-    url: '/api/out/logout',
+    url: '/logout',
     method: 'delete'
   })
 }
