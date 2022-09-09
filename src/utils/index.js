@@ -406,3 +406,8 @@ export function downloadFile(obj, name, suffix) {
   link.click()
   document.body.removeChild(link)
 }
+
+export function verifyPassword(newPassword) {
+  const reg = new RegExp('^[a-zA-Z]\\w{5,17}$')
+  return reg.test(newPassword)
+}

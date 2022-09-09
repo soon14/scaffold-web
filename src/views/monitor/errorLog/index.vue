@@ -81,6 +81,7 @@
       class="my-dialog"
       :visible.sync="dialog"
       append-to-body
+      center
       top="70px"
       width="85%"
     >

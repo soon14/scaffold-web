@@ -12,25 +12,54 @@
       @close="cancel"
     >
       <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
-        <div style="padding:15px 20px;">{{ title }}</div>
+        <div class="my-title">{{ title }}</div>
       </div>
-      <el-form ref="form" :model="form" :rules="rules" size="medium" label-width="120px" style="margin-top: 30px">
+      <el-form
+        ref="form"
+        :model="form"
+        :rules="rules"
+        inline
+        size="medium"
+        label-width="120px"
+        class="my-form"
+      >
         <el-form-item label="新邮箱" prop="newEmail">
-          <el-input v-model="form.newEmail" clearable style="width: 200px" />
-          <el-select ref="emailSuffix" v-model="value" clearable placeholder="请选择后缀" style="width: 140px;margin-left: 0">
+          <el-input v-model="form.newEmail" placeholder="请输入邮箱前缀" clearable style="width: 200px" />
+        </el-form-item>
+        <el-form-item prop="value">
+          <el-select
+            ref="emailSuffix"
+            v-model="value"
+            clearable
+            placeholder="请选择后缀"
+            class="my-select"
+          >
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        <el-form-item>
-          <el-button :loading="codeLoading" style="width: 345px" :disabled="isDisabled || form.newEmail.length === 0" round type="primary" size="small" @click="sendCode">
-            {{ buttonName }}
-          </el-button>
-        </el-form-item>
+        <el-button
+          :loading="codeLoading"
+          class="my-button"
+          :disabled="isDisabled || form.newEmail.length === 0"
+          round
+          type="primary"
+          size="small"
+          @click="sendCode"
+        >
+          {{ buttonName }}
+        </el-button>
         <el-form-item label="验证码" prop="code">
-          <el-input v-model="form.code" clearable style="width: 345px" />
+          <el-input v-model="form.code" placeholder="请输入验证码" clearable class="my-input" />
         </el-form-item>
         <el-form-item label="当前密码" prop="password">
-          <el-input v-model="form.password" type="password" show-password clearable style="width: 345px" />
+          <el-input
+            v-model="form.password"
+            placeholder="请输入密码"
+            type="password"
+            show-password
+            clearable
+            class="my-input"
+          />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -83,10 +112,13 @@ export default {
           { required: true, message: '当前密码不能为空', trigger: 'blur' }
         ],
         newEmail: [
-          { required: true, message: '当前选项不能为空', trigger: 'blur' }
+          { required: true, message: '邮箱前缀不能为空', trigger: 'blur' }
         ],
         code: [
           { required: true, message: '验证码不能为空', trigger: 'blur' }
+        ],
+        value: [
+          { required: true, message: '请选择邮箱后缀', trigger: 'blur' }
         ]
       }
     }
@@ -237,6 +269,30 @@ export default {
       transition-duration: 0.3s;
       transition-timing-function: ease;
       transition-delay: 0s;
+    }
+  }
+}
+
+.my-dialog{
+  .my-title{
+    padding:15px 20px;
+  }
+
+  .my-form{
+    margin-top: 30px;
+
+    .my-select{
+      width: 140px;
+    }
+
+    .my-button{
+      width: 345px;
+      margin-bottom: 20px;
+      margin-left: 120px;
+    }
+
+    .my-input{
+      width: 345px;
     }
   }
 }

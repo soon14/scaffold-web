@@ -43,11 +43,11 @@
               </li>
               <li>
                 <i class="iconfont iconfont-center-last-pass-change" /> 上一次修改密码
-                <div class="user-right">{{ user.lastPassResetTime }}</div>
+                <div class="user-right">{{ user.lastPassResetTime === null ? '暂无' : user.lastPassResetTime }}</div>
               </li>
               <li>
                 <i class="iconfont iconfont-center-last-avatar-change" /> 上一次修改修改头像
-                <div class="user-right">{{ user.avatar.updateTime }}</div>
+                <div class="user-right">{{ user.avatar.updateTime === null ? '暂无' : user.avatar.updateTime }}</div>
               </li>
               <li>
                 <i class="iconfont iconfont-center-createTime" /> 注册时间
@@ -56,7 +56,7 @@
               <li>
                 <i class="iconfont iconfont-center-security" /> 安全设置
                 <div class="user-right">
-                  <el-link><i class="el-icon-edit" />&nbsp;修改密码</el-link>
+                  <el-link @click="$refs.pass.dialog = true"><i class="el-icon-edit" />&nbsp;修改密码</el-link>
                   <el-divider direction="vertical" />
                   <el-link @click="toShowUpdateEmail"><i class="el-icon-edit-outline" />&nbsp;修改邮箱</el-link>
                 </div>
@@ -67,6 +67,7 @@
       </el-col>
     </el-row>
     <update-email ref="email" :email="user.email" />
+    <update-pass ref="pass" />
   </div>
 </template>
 
@@ -76,10 +77,12 @@ import Avatar from '@/assets/images/avatar.png'
 import { getToken } from '@/utils/auth'
 import store from '@/store'
 import updateEmail from '@/views/userCenter/update/updateEmail'
+import updatePass from '@/views/userCenter/update/updatePass'
 
 export default {
   name: 'Center',
   components: {
+    updatePass,
     updateEmail
   },
   data() {

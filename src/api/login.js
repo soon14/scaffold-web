@@ -14,14 +14,6 @@ export function login(username, password, code, uuid) {
   })
 }
 
-// 登录后获取当前登录用户的用户信息
-export function getUserInfo() {
-  return request({
-    url: '/user/info',
-    method: 'get'
-  })
-}
-
 // 获取验证码
 export function getCodeImg() {
   return request({
