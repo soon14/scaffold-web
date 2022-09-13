@@ -40,6 +40,7 @@ export default {
       default: true
     },
     // 表格渲染时候默认的排序规则
+    // eslint-disable-next-line vue/require-default-prop
     defaultSort: {
       type: Object,
       required: false

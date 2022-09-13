@@ -1,0 +1,89 @@
+<template>
+  <el-dialog
+    class="my-dialog"
+    :visible.sync="dialog"
+    append-to-body
+    center
+    top="70px"
+    width="85%"
+  >
+    <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
+      <div style="padding:15px 20px;">{{ $t('errorLogsPage.exceptionInfo') }}</div>
+    </div>
+    <pre v-highlightjs="errorLogs" class="pre-class">
+        <code class="java code-class" />
+      </pre>
+  </el-dialog>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'ExceptionInfo',
+  props: {
+    errorLogs: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      dialog: false
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'theme'
+    ])
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.my-dialog ::v-deep {
+  .el-dialog__header {
+    padding: 0;
+  }
+
+  .el-dialog__headerbtn {
+    top: 5px;
+    right: 5px;
+    padding-top: 10px;
+  }
+
+  .el-dialog__headerbtn .el-dialog__close {
+    color: #fff;
+    height: 30px;
+    width: 35px;
+  }
+
+  .el-dialog__headerbtn .el-dialog__close:hover {
+    color: gray;
+  }
+
+  .el-dialog__body {
+    height: 70vh;
+    padding: 0;
+    background-color: #282c34;
+    overflow: overlay;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(144, 147, 153, 0.54);
+      cursor: pointer;
+      border-radius: 8px;
+      position: relative;
+      transition: background-color .3s;
+      transition-property: background-color;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+      transition-delay: 0s;
+    }
+  }
+}
+</style>

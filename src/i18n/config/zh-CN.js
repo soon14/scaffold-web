@@ -206,6 +206,23 @@ export default {
         requestParams: '请求参数',
         responseResult: '响应结果'
       }
+    },
+    center: {
+      playLogs: {
+        title: '操作',
+        requestIp: 'IP',
+        browser: '浏览器',
+        address: 'IP所在地',
+        time: '耗时',
+        createTime: '操作时间'
+      },
+      errorLogs: {
+        title: '操作',
+        requestIp: 'IP',
+        browser: '浏览器',
+        address: 'IP所在地',
+        createTime: '操作时间'
+      }
     }
   },
   scaffoldJsonViewer: {
@@ -218,7 +235,72 @@ export default {
     exceptionInfo: '异常详情',
     lookInfo: '查看异常',
     delTitle: '确认清空所有操作日志吗?',
-    empty: '清空'
+    empty: '清空',
+    noUser: '未知用户'
+  },
+  userCenter: {
+    leftCard: {
+      title: '个人信息',
+      avatarAlt: '点击更换头像',
+      loginName: '登录账号',
+      sex: '性别',
+      phone: '手机号码',
+      email: '邮箱',
+      lastChangePass: '上一次修改密码',
+      lastChangeAvatar: '上一次修改头像',
+      resTime: '注册时间',
+      securitySetting: '安全设置',
+      changePass: '修改密码',
+      changeEmail: '修改邮箱',
+      no: '暂无'
+    },
+    rightCard: {
+      playLogs: '操作日志',
+      errorLogs: '异常日志'
+    },
+    avatar: {
+      changeSuccess: '头像修改成功！',
+      changeFail: '头像上传失败！',
+      typeTip: '上传的头像只能是 JPG 或者 PNG格式！',
+      sizeTip: '上传的头像图片大小不能超过50MB！'
+    },
+    update: {
+      pass: {
+        oldPass: '旧密码',
+        newPass: '新密码',
+        confirmPass: '确认密码',
+        reset: '重置',
+        confirmTip: '两次输入的密码不一致',
+        inputPassAgain: '请再次输入密码',
+        newPassNotNull: '新密码不能为空',
+        tips: '必须以字母开头，长度在6~18之间，只能包含字母、数字和下划线',
+        changePass: '修改密码',
+        inputOldPass: '请输入旧密码',
+        toLogin: '密码修改成功,请重新登录'
+      },
+      email: {
+        newEmail: '新邮箱',
+        prefix: '请输入邮箱前缀',
+        suffix: '请选择后缀',
+        code: '验证码',
+        codeTip: '请输入验证码',
+        password: '当前密码',
+        passwordTip: '请输入密码',
+        changeEmail: '修改邮箱',
+        getCode: '获取验证码',
+        passRule: '当前密码不能为空',
+        prefixRule: '邮箱前缀不能为空',
+        codeRule: '验证码不能为空',
+        suffixRule: '请选择邮箱后缀',
+        codeSending: '验证码发送中',
+        codeSendSuccess: '发送成功，验证码有效期5分钟',
+        codeBtnTip1: '秒后重新发送',
+        codeBtnTip2: '重新发送',
+        emailIsNull: '邮箱为空',
+        emailError1: '邮箱不能为原邮箱',
+        emailError2: '邮箱格式错误'
+      }
+    }
   },
   ...zhCNLocale
 }

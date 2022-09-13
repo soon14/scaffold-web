@@ -23,7 +23,7 @@
         label-width="120px"
         class="my-form"
       >
-        <el-form-item label="旧密码" prop="oldPassword">
+        <el-form-item :label="String($t('userCenter.update.pass.oldPass'))" prop="oldPassword">
           <el-input
             v-model="form.oldPassword"
             type="password"
@@ -33,7 +33,7 @@
             class="my-input"
           />
         </el-form-item>
-        <el-form-item label="新密码" prop="newPassword">
+        <el-form-item :label="String($t('userCenter.update.pass.newPass'))" prop="newPassword">
           <el-input
             v-model="form.newPassword"
             type="password"
@@ -43,7 +43,7 @@
             class="my-input"
           />
         </el-form-item>
-        <el-form-item label="确认密码" prop="confirmPass">
+        <el-form-item :label="String($t('userCenter.update.pass.confirmPass'))" prop="confirmPass">
           <el-input
             v-model="form.confirmPass"
             type="password"
@@ -55,15 +55,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button size="small" round @click="cancel">取消</el-button>
-        <el-button size="small" round @click="reset">重置</el-button>
+        <el-button size="small" round @click="cancel">{{ $t('cancel') }}</el-button>
+        <el-button size="small" round @click="reset">{{ $t('userCenter.update.pass.reset') }}</el-button>
         <el-button
           :loading="loading"
           type="primary"
           round
           size="small"
           @click="doSubmit"
-        >确认</el-button>
+        >{{ $t('ok') }}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -74,6 +74,7 @@ import store from '@/store'
 import { mapGetters } from 'vuex'
 import { verifyPassword } from '@/utils'
 import { updatePassword } from '@/api/system/user'
+import i18n from '@/i18n'
 
 export default {
   name: 'UpdatePass',
@@ -81,22 +82,22 @@ export default {
     const confirmPass = (rule, value, callback) => {
       if (value) {
         if (this.form.newPassword !== value) {
-          callback(new Error('两次输入的密码不一致'))
+          callback(new Error(String(i18n.t('userCenter.update.pass.confirmTip'))))
         } else {
           callback()
         }
       } else {
-        callback(new Error('请再次输入密码'))
+        callback(new Error(String(i18n.t('userCenter.update.pass.inputPassAgain'))))
       }
     }
     const newPassword = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('新密码不能为空'))
+        return callback(new Error(String(i18n.t('userCenter.update.pass.newPassNotNull'))))
       }
       if (verifyPassword(value)) {
         return callback()
       } else {
-        return callback('必须以字母开头，长度在6~18之间，只能包含字母、数字和下划线')
+        return callback(String(i18n.t('userCenter.update.pass.tips')))
       }
     }
     return {
@@ -107,10 +108,10 @@ export default {
         newPassword: '',
         confirmPass: ''
       },
-      title: '修改密码',
+      title: String(i18n.t('userCenter.update.pass.changePass')),
       rules: {
         oldPassword: [
-          { required: true, message: '请输入旧密码', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userCenter.update.pass.inputOldPass')), trigger: 'blur' }
         ],
         newPassword: [
           { required: true, validator: newPassword, trigger: 'blur' }
@@ -154,7 +155,7 @@ export default {
             this.resetForm()
             this.$message.success({
               showClose: true,
-              message: '密码修改成功,请重新登录'
+              message: String(i18n.t('userCenter.update.pass.toLogin'))
             })
             setTimeout(() => {
               store.dispatch('user/LogOut').then(() => {

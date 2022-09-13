@@ -1,6 +1,6 @@
 <template>
   <json-viewer
-    style="width: 98%;background-color: rgba(240,242,245,0.89)"
+    style="width: 98%;background-color: rgba(240,242,245,0.89);border-radius: 15px"
     :value="isJson(jsonData) ? jsonData : JSON.parse(jsonData)"
     :expand-depth="expandDepth"
     :copyable="copyable"
@@ -9,6 +9,7 @@
     :expanded="expanded"
     :show-array-index="showArrayIndex"
     :show-double-quotes="showDoubleQuotes"
+    :preview-mode="previewMode"
     @copied="showCopied"
   >
     <template slot="copy" slot-scope="scope">
@@ -72,6 +73,12 @@ export default {
       type: Number,
       required: false,
       default: 2
+    },
+    // 不可折叠模式
+    previewMode: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   methods: {

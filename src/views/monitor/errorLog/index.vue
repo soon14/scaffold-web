@@ -64,6 +64,12 @@
               <span v-if="item.prop === 'logType'" :class="{'logType_error':(scope.row[item.prop] === 'ERROR')}">
                 {{ scope.row[item.prop] }}
               </span>
+              <span v-else-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">
+                {{ scope.row[item.prop] }}
+              </span>
+              <span v-else-if="scope.row[item.prop] === '' || scope.row[item.prop] === null" style="color: red;font-weight: bold">
+                {{ $t('errorLogsPage.noUser') }}
+              </span>
               <span v-else>{{ scope.row[item.prop] }}</span>
             </template>
           </el-table-column>
@@ -77,21 +83,7 @@
         </el-table-column>
       </template>
     </scaffold-table>
-    <el-dialog
-      class="my-dialog"
-      :visible.sync="dialog"
-      append-to-body
-      center
-      top="70px"
-      width="85%"
-    >
-      <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
-        <div style="padding:15px 20px;">{{ $t('errorLogsPage.exceptionInfo') }}</div>
-      </div>
-      <pre v-highlightjs="errorLogs" class="pre-class">
-        <code class="java code-class" />
-      </pre>
-    </el-dialog>
+    <exception-info ref="exception" :error-logs="errorLogs" />
     <pagination-operation />
   </div>
 </template>
@@ -105,6 +97,7 @@ import backTopAndBottom from '@/components/BackTopAndBottom'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import buttonOperation from '@/components/Crud/Button.operation'
+import exceptionInfo from '@/components/ExceptionInfo'
 import { delAllErrorLogs, getErrorDetails } from '@/api/system/logs'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
@@ -117,12 +110,12 @@ export default {
     buttonOperation,
     backTopAndBottom,
     scaffoldTable,
-    scaffoldJson
+    scaffoldJson,
+    exceptionInfo
   },
   mixins: [presenter(defaultCrud)],
   data() {
     return {
-      dialog: false,
       errorLogs: ''
     }
   },
@@ -147,7 +140,7 @@ export default {
   },
   methods: {
     getExceptionInfo(id) {
-      this.dialog = true
+      this.$refs.exception.dialog = true
       getErrorDetails(id).then(res => {
         this.errorLogs = res.data.exception
       })
@@ -224,53 +217,5 @@ export default {
   padding: 0;
   margin-top: 0;
   background-color: #282c34;
-}
-</style>
-
-<style lang="scss" scoped>
-.my-dialog ::v-deep {
-  .el-dialog__header {
-    padding: 0;
-  }
-
-  .el-dialog__headerbtn {
-    top: 5px;
-    right: 5px;
-    padding-top: 10px;
-  }
-
-  .el-dialog__headerbtn .el-dialog__close {
-    color: #fff;
-    height: 30px;
-    width: 35px;
-  }
-
-  .el-dialog__headerbtn .el-dialog__close:hover {
-    color: gray;
-  }
-
-  .el-dialog__body {
-    height: 70vh;
-    padding: 0;
-    background-color: #282c34;
-    overflow: overlay;
-
-    &::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(144, 147, 153, 0.54);
-      cursor: pointer;
-      border-radius: 8px;
-      position: relative;
-      transition: background-color .3s;
-      transition-property: background-color;
-      transition-duration: 0.3s;
-      transition-timing-function: ease;
-      transition-delay: 0s;
-    }
-  }
 }
 </style>

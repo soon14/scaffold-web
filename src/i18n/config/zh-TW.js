@@ -206,6 +206,23 @@ export default {
         requestParams: '請求參數',
         responseResult: '響應結果'
       }
+    },
+    center: {
+      playLogs: {
+        title: '操作',
+        requestIp: 'IP',
+        browser: '瀏覽器',
+        address: 'IP來源',
+        time: '耗時',
+        createTime: '操作時間'
+      },
+      errorLogs: {
+        title: '操作',
+        requestIp: 'IP',
+        browser: '瀏覽器',
+        address: 'IP來源',
+        createTime: '操作時間'
+      }
     }
   },
   scaffoldJsonViewer: {
@@ -218,7 +235,72 @@ export default {
     exceptionInfo: '異常詳情',
     lookInfo: '查看異常',
     delTitle: '確認清空所有操作日誌嗎?',
-    empty: '清空'
+    empty: '清空',
+    noUser: '未知用戶'
+  },
+  userCenter: {
+    leftCard: {
+      title: '個人信息',
+      avatarAlt: '點擊更換頭像',
+      loginName: '登入帳號',
+      sex: '性別',
+      phone: '手機號碼',
+      email: '郵箱',
+      lastChangePass: '上一次修改密碼',
+      lastChangeAvatar: '上一次修改頭像',
+      resTime: '註冊時間',
+      securitySetting: '安全設置',
+      changePass: '修改密碼',
+      changeEmail: '修改郵箱',
+      no: '暫無'
+    },
+    rightCard: {
+      playLogs: '操作日誌',
+      errorLogs: '异常日誌'
+    },
+    avatar: {
+      changeSuccess: '頭像修改成功！',
+      changeFail: '頭像上傳失敗！',
+      typeTip: '上傳的頭像只能是 JPG 或者 PNG格式！',
+      sizeTip: '上傳的頭像圖片大小不能超過50MB！'
+    },
+    update: {
+      pass: {
+        oldPass: '舊密碼',
+        newPass: '新密碼',
+        confirmPass: '確認密碼',
+        reset: '重置',
+        confirmTip: '兩次輸入的密碼不一致',
+        inputPassAgain: '請再次輸入密碼',
+        newPassNotNull: '新密碼不能為空',
+        tips: '必須以字母開頭，長度在6~18之間，只能包含字母、數位和底線',
+        changePass: '修改密碼',
+        inputOldPass: '請輸入舊密碼',
+        toLogin: '密碼修改成功，請重新登入'
+      },
+      email: {
+        newEmail: '新郵箱',
+        prefix: '請輸入郵箱首碼',
+        suffix: '請選擇尾碼',
+        code: '驗證碼',
+        codeTip: '請輸入驗證碼',
+        password: '當前密碼',
+        passwordTip: '請輸入密碼',
+        changeEmail: '修改郵箱',
+        getCode: '獲取驗證碼',
+        passRule: '當前密碼不能為空',
+        prefixRule: '郵箱首碼不能為空',
+        codeRule: '驗證碼不能為空',
+        suffixRule: '請選擇郵箱尾碼',
+        codeSending: '驗證碼發送中',
+        codeSendSuccess: '發送成功，驗證碼有效期5分鐘',
+        codeBtnTip1: '秒後重新發送',
+        codeBtnTip2: '重新發送',
+        emailIsNull: '郵箱為空',
+        emailError1: '郵箱不能為原郵箱',
+        emailError2: '郵箱格式錯誤'
+      }
+    }
   },
   ...zhTWLocale
 }

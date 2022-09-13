@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :md="8" :lg="6" :xl="5" style="margin-bottom: 10px">
+    <el-row :gutter="15">
+      <el-col :xs="24" :sm="24" :md="8" :lg="7" :xl="7" style="margin-bottom: 10px">
         <el-card class="box-card">
           <div slot="header" class="clearfix card-header">
-            <span>个人信息</span>
+            <span>{{ $t('userCenter.leftCard.title') }}</span>
           </div>
           <div>
             <div class="card-avatar-div">
@@ -20,54 +20,130 @@
                 <el-avatar
                   :src="user.avatar.path ? user.avatar.path : Avatar"
                   class="card-avatar"
-                  alt="点击更换头像"
+                  :alt="String($t('userCenter.leftCard.avatarAlt'))"
                 />
               </el-upload>
             </div>
-            <ul class="user-info">
-              <li>
-                <i class="iconfont iconfont-center-username" /> 登录账号
-                <div class="user-right">{{ user.username }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-sex" /> 性别
-                <div class="user-right">{{ user.sex }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-phone" /> 手机号码
-                <div class="user-right">{{ user.phone }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-email" /> 邮箱
-                <div class="user-right">{{ user.email }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-last-pass-change" /> 上一次修改密码
-                <div class="user-right">{{ user.lastPassResetTime === null ? '暂无' : user.lastPassResetTime }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-last-avatar-change" /> 上一次修改修改头像
-                <div class="user-right">{{ user.avatar.updateTime === null ? '暂无' : user.avatar.updateTime }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-createTime" /> 注册时间
-                <div class="user-right">{{ user.createTime }}</div>
-              </li>
-              <li>
-                <i class="iconfont iconfont-center-security" /> 安全设置
-                <div class="user-right">
-                  <el-link @click="$refs.pass.dialog = true"><i class="el-icon-edit" />&nbsp;修改密码</el-link>
-                  <el-divider direction="vertical" />
-                  <el-link @click="toShowUpdateEmail"><i class="el-icon-edit-outline" />&nbsp;修改邮箱</el-link>
-                </div>
-              </li>
-            </ul>
+            <div class="ul-div">
+              <ul class="user-info">
+                <li>
+                  <i class="iconfont iconfont-center-username" /> {{ $t('userCenter.leftCard.loginName') }}
+                  <div class="user-right">{{ user.username }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-sex" /> {{ $t('userCenter.leftCard.sex') }}
+                  <div class="user-right">{{ user.sex }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-phone" /> {{ $t('userCenter.leftCard.phone') }}
+                  <div class="user-right">{{ user.phone }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-email" /> {{ $t('userCenter.leftCard.email') }}
+                  <div class="user-right">{{ user.email }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-last-pass-change" /> {{ $t('userCenter.leftCard.lastChangePass') }}
+                  <div class="user-right">{{ user.lastPassResetTime === null ? $t('userCenter.leftCard.no') : user.lastPassResetTime }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-last-avatar-change" /> {{ $t('userCenter.leftCard.lastChangeAvatar') }}
+                  <div class="user-right">{{ user.avatar.updateTime === null ? $t('userCenter.leftCard.no') : user.avatar.updateTime }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-createTime" /> {{ $t('userCenter.leftCard.resTime') }}
+                  <div class="user-right">{{ user.createTime }}</div>
+                </li>
+                <li>
+                  <i class="iconfont iconfont-center-security" /> {{ $t('userCenter.leftCard.securitySetting') }}
+                  <div class="user-right">
+                    <el-link style="font-size: 12px" @click="$refs.pass.dialog = true"><i class="el-icon-edit" />&nbsp;{{ $t('userCenter.leftCard.changePass') }}</el-link>
+                    <el-divider direction="vertical" />
+                    <el-link style="font-size: 12px" @click="toShowUpdateEmail"><i class="el-icon-edit-outline" />&nbsp;{{ $t('userCenter.leftCard.changeEmail') }}</el-link>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </el-card>
       </el-col>
+      <el-col :xs="24" :sm="24" :md="16" :lg="17" :xl="17">
+        <el-card class="box-card">
+          <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
+              <scaffold-table
+                :table-data="crud.data"
+                :crud="crud"
+                :default-sort="{prop:'createTime',order:'descending'}"
+              >
+                <template slot="tableColumns">
+                  <template v-for="item in tableHeader.center.playLogs">
+                    <el-table-column
+                      v-if="columns.visible(item.prop)"
+                      :key="item"
+                      :prop="item.prop"
+                      :label="item.label"
+                      :sortable="item.sortable"
+                      :width="item.width"
+                      :show-overflow-tooltip="item.showOverflowTooltip"
+                    >
+                      <template v-slot="scope">
+                        <span v-if="item.prop === 'time'">
+                          <el-tag v-if="scope.row[item.prop] <= 300" size="mini" type="success">
+                            {{ scope.row[item.prop] }}ms
+                          </el-tag>
+                          <el-tag v-else-if="scope.row[item.prop] <= 1000" size="mini" type="warning">
+                            {{ scope.row[item.prop] }}ms
+                          </el-tag>
+                          <el-tag v-else size="mini" type="danger">
+                            {{ scope.row[item.prop] }}ms
+                          </el-tag>
+                        </span>
+                        <span v-else>{{ scope.row[item.prop] }}</span>
+                      </template>
+                    </el-table-column>
+                  </template>
+                </template>
+              </scaffold-table>
+              <pagination-operation />
+            </el-tab-pane>
+            <el-tab-pane :label="String($t('userCenter.rightCard.errorLogs'))" name="errorLogs">
+              <scaffold-table
+                :table-data="crud.data"
+                :crud="crud"
+                :default-sort="{prop:'createTime',order:'descending'}"
+              >
+                <template slot="tableColumns">
+                  <template v-for="item in tableHeader.center.errorLogs">
+                    <el-table-column
+                      v-if="columns.visible(item.prop)"
+                      :key="item"
+                      :prop="item.prop"
+                      :label="item.label"
+                      :sortable="item.sortable"
+                      :width="item.width"
+                      :show-overflow-tooltip="item.showOverflowTooltip"
+                    />
+                  </template>
+                  <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">
+                    <template slot-scope="scope">
+                      <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">
+                        {{ $t('errorLogsPage.lookInfo') }}
+                      </el-button>
+                    </template>
+                  </el-table-column>
+                </template>
+              </scaffold-table>
+              <pagination-operation />
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </el-col>
     </el-row>
+    <back-top-and-bottom :bottom="90" :right="30" />
     <update-email ref="email" :email="user.email" />
     <update-pass ref="pass" />
+    <exception-info ref="exception" :error-logs="errorLogs" />
   </div>
 </template>
 
@@ -78,39 +154,71 @@ import { getToken } from '@/utils/auth'
 import store from '@/store'
 import updateEmail from '@/views/userCenter/update/updateEmail'
 import updatePass from '@/views/userCenter/update/updatePass'
+import exceptionInfo from '@/components/ExceptionInfo'
+import scaffoldTable from '@/components/ScaffoldTable'
+import paginationOperation from '@/components/Crud/Pagination.operation'
+import backTopAndBottom from '@/components/BackTopAndBottom'
+import CRUD, { presenter } from '@/utils/crud'
+import { getErrorDetails } from '@/api/system/logs'
+import i18n from '@/i18n'
 
+const defaultCrud = CRUD({ url: '/center/logs' })
 export default {
   name: 'Center',
   components: {
     updatePass,
-    updateEmail
+    updateEmail,
+    scaffoldTable,
+    paginationOperation,
+    exceptionInfo,
+    backTopAndBottom
   },
+  mixins: [presenter(defaultCrud)],
   data() {
     return {
       Avatar: Avatar,
       headers: {
         'Authorization': getToken()
-      }
+      },
+      activeName: 'playLogs',
+      errorLogs: ''
     }
   },
   computed: {
     ...mapGetters([
       'user',
       'updateAvatarApi',
-      'options'
+      'options',
+      'tableHeader',
+      'theme'
     ])
   },
   methods: {
+    getExceptionInfo(id) {
+      this.$refs.exception.dialog = true
+      getErrorDetails(id).then(res => {
+        this.errorLogs = res.data.exception
+      })
+    },
+    handleClick(tab, event) {
+      if (tab.name === 'errorLogs') {
+        this.crud.url = '/center/errorLogs'
+        this.crud.refresh()
+      } else {
+        this.crud.url = '/center/logs'
+        this.crud.refresh()
+      }
+    },
     handleSuccess(response, file, fileList) {
       this.$message({
-        message: '头像修改成功',
+        message: String(i18n.t('userCenter.avatar.changeSuccess')),
         type: 'success'
       })
       store.dispatch('user/GetInfo').then(() => {})
     },
     handleError(err, file, fileList) {
       this.$notify({
-        title: '文件上传失败',
+        title: String(i18n.t('userCenter.avatar.changeFail')),
         message: err,
         type: 'error'
       })
@@ -120,10 +228,10 @@ export default {
       const isLt50M = file.size / 1024 / 1024 <= 50
       console.log(isOK)
       if (!isOK) {
-        this.$message.error('上传的头像只能是 JPG 或者 PNG格式！')
+        this.$message.error(String(i18n.t('userCenter.avatar.typeTip')))
       }
       if (!isLt50M) {
-        this.$message.error('上传的头像图片大小不能超过50MB！')
+        this.$message.error(String(i18n.t('userCenter.avatar.sizeTip')))
       }
       return isOK && isLt50M
     },
@@ -142,7 +250,6 @@ export default {
 
 <style lang="scss" scoped>
 .box-card{
-  width: 400px;
   border-radius: 10px;
 
   .card-header{
@@ -160,21 +267,27 @@ export default {
     }
   }
 
-  .user-info {
-    padding-left: 0;
-    list-style: none;
-    li{
-      border-bottom: 1px solid #F0F3F4;
-      padding: 11px 0;
-      font-size: 13px;
-    }
-    .user-right {
-      float: right;
-      font-size: 14px;
+  .ul-div{
 
-      a{
-        color: #317EF3;
+    .user-info {
+      padding-left: 0;
+      list-style: none;
+
+      li{
+        border-bottom: 1px solid #F0F3F4;
+        padding: 11px 0;
+        font-size: 13px;
       }
+
+      .user-right {
+        float: right;
+        font-size: 14px;
+
+        a{
+          color: #317EF3;
+        }
+      }
+
     }
   }
 }

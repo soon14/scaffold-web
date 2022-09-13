@@ -33,10 +33,11 @@
                   <span v-if="props.row[item.prop] !== '{}' && props.row[item.prop] !== null">
                     <scaffold-json
                       :json-data="props.row[item.prop]"
-                      boxed
                       sort
+                      boxed
                       show-array-index
                       expanded
+                      preview-mode
                     />
                   </span>
                   <span v-else style="color: red">{{ $t('playLogsPage.none') }}</span>

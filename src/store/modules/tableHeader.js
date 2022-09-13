@@ -16,7 +16,7 @@ const state = {
       { prop: 'title', label: String(i18n.t('tableHeader.playLogs.logs.title')), sortable: false, width: '200', showOverflowTooltip: false },
       { prop: 'browser', label: String(i18n.t('tableHeader.playLogs.logs.browser')), sortable: false, width: '', showOverflowTooltip: false },
       { prop: 'businessType', label: String(i18n.t('tableHeader.playLogs.logs.businessType')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'time', label: String(i18n.t('tableHeader.playLogs.logs.time')), sortable: true, width: '', showOverflowTooltip: false },
+      { prop: 'time', label: String(i18n.t('tableHeader.playLogs.logs.time')), sortable: true, width: '150', showOverflowTooltip: false },
       { prop: 'createTime', label: String(i18n.t('tableHeader.playLogs.logs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
     ],
     expand: [
@@ -46,6 +46,23 @@ const state = {
       { prop: 'method', label: String(i18n.t('tableHeader.errorLogs.expand.method')) },
       { prop: 'requestParams', label: String(i18n.t('tableHeader.errorLogs.expand.requestParams')) },
       { prop: 'responseResult', label: String(i18n.t('tableHeader.errorLogs.expand.responseResult')) }
+    ]
+  },
+  center: {
+    playLogs: [
+      { prop: 'title', label: String(i18n.t('tableHeader.center.playLogs.title')), sortable: false, width: '200', showOverflowTooltip: false },
+      { prop: 'requestIp', label: String(i18n.t('tableHeader.center.playLogs.requestIp')), sortable: false, width: '150', showOverflowTooltip: false },
+      { prop: 'browser', label: String(i18n.t('tableHeader.center.playLogs.browser')), sortable: false, width: '', showOverflowTooltip: false },
+      { prop: 'address', label: String(i18n.t('tableHeader.center.playLogs.address')), sortable: false, width: '', showOverflowTooltip: true },
+      { prop: 'time', label: String(i18n.t('tableHeader.center.playLogs.time')), sortable: true, width: '100', showOverflowTooltip: false },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.center.playLogs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
+    ],
+    errorLogs: [
+      { prop: 'title', label: String(i18n.t('tableHeader.center.errorLogs.title')), sortable: false, width: '200', showOverflowTooltip: false },
+      { prop: 'requestIp', label: String(i18n.t('tableHeader.center.errorLogs.requestIp')), sortable: false, width: '150', showOverflowTooltip: false },
+      { prop: 'browser', label: String(i18n.t('tableHeader.center.errorLogs.browser')), sortable: false, width: '', showOverflowTooltip: false },
+      { prop: 'address', label: String(i18n.t('tableHeader.center.errorLogs.address')), sortable: false, width: '', showOverflowTooltip: true },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.center.errorLogs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
     ]
   }
 }

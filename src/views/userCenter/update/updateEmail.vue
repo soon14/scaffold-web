@@ -23,15 +23,15 @@
         label-width="120px"
         class="my-form"
       >
-        <el-form-item label="新邮箱" prop="newEmail">
-          <el-input v-model="form.newEmail" placeholder="请输入邮箱前缀" clearable style="width: 200px" />
+        <el-form-item :label="String($t('userCenter.update.email.newEmail'))" prop="newEmail">
+          <el-input v-model="form.newEmail" :placeholder="String($t('userCenter.update.email.prefix'))" clearable style="width: 200px" />
         </el-form-item>
         <el-form-item prop="value">
           <el-select
             ref="emailSuffix"
             v-model="value"
             clearable
-            placeholder="请选择后缀"
+            :placeholder="String($t('userCenter.update.email.suffix'))"
             class="my-select"
           >
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
@@ -48,13 +48,13 @@
         >
           {{ buttonName }}
         </el-button>
-        <el-form-item label="验证码" prop="code">
-          <el-input v-model="form.code" placeholder="请输入验证码" clearable class="my-input" />
+        <el-form-item :label="String($t('userCenter.update.email.code'))" prop="code">
+          <el-input v-model="form.code" :placeholder="String($t('userCenter.update.email.codeTip'))" clearable class="my-input" />
         </el-form-item>
-        <el-form-item label="当前密码" prop="password">
+        <el-form-item :label="String($t('userCenter.update.email.password'))" prop="password">
           <el-input
             v-model="form.password"
-            placeholder="请输入密码"
+            :placeholder="String($t('userCenter.update.email.passwordTip'))"
             type="password"
             show-password
             clearable
@@ -63,8 +63,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button size="small" round @click="cancel">取消</el-button>
-        <el-button :loading="loading" type="primary" round size="small" @click="doSubmit">确认</el-button>
+        <el-button size="small" round @click="cancel">{{ $t('cancel') }}</el-button>
+        <el-button :loading="loading" type="primary" round size="small" @click="doSubmit">{{ $t('ok') }}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -76,6 +76,7 @@ import store from '@/store'
 import { validEmail } from '@/utils/validate'
 import { sendCodeToEmail, updateEmail } from '@/api/system/email'
 import { encrypt } from '@/utils/rsaEncrypt'
+import i18n from '@/i18n'
 
 export default {
   name: 'UpdateEmail',
@@ -92,7 +93,7 @@ export default {
       loading: false,
       // 是否显示dialog
       dialog: false,
-      title: '修改邮箱',
+      title: String(i18n.t('userCenter.update.email.changeEmail')),
       form: {
         newEmail: '',
         uuid: '',
@@ -102,23 +103,23 @@ export default {
       // 发送邮件的按钮是否loading
       codeLoading: false,
       // 按钮的TXT
-      buttonName: '获取验证码',
+      buttonName: String(i18n.t('userCenter.update.email.getCode')),
       // 是否不可用
       isDisabled: false,
       time: 60,
       value: '',
       rules: {
         password: [
-          { required: true, message: '当前密码不能为空', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userCenter.update.email.passRule')), trigger: 'blur' }
         ],
         newEmail: [
-          { required: true, message: '邮箱前缀不能为空', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userCenter.update.email.prefixRule')), trigger: 'blur' }
         ],
         code: [
-          { required: true, message: '验证码不能为空', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userCenter.update.email.codeRule')), trigger: 'blur' }
         ],
         value: [
-          { required: true, message: '请选择邮箱后缀', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userCenter.update.email.suffixRule')), trigger: 'blur' }
         ]
       }
     }
@@ -138,7 +139,7 @@ export default {
       this.$refs['form'].resetFields()
       window.clearInterval(this.timer)
       this.time = 60
-      this.buttonName = '获取验证码'
+      this.buttonName = String(i18n.t('userCenter.update.email.getCode'))
       this.isDisabled = false
       this.value = ''
       this.form = {
@@ -151,22 +152,22 @@ export default {
     sendCode() {
       if (this.form.newEmail && this.form.newEmail + this.$refs.emailSuffix.selectedLabel !== this.email && validEmail(this.form.newEmail + this.$refs.emailSuffix.selectedLabel)) {
         this.codeLoading = true
-        this.buttonName = '验证码发送中'
+        this.buttonName = String(i18n.t('userCenter.update.email.codeSending'))
         const _this = this
         sendCodeToEmail({ account: this.form.newEmail, suffix: this.value }).then(res => {
           this.$message.success({
             showClose: true,
-            message: '发送成功，验证码有效期5分钟'
+            message: String(i18n.t('userCenter.update.email.codeSendSuccess'))
           })
           this.form.uuid = res.data
           this.codeLoading = false
           this.isDisabled = true
-          this.buttonName = this.time-- + '秒后重新发送'
+          this.buttonName = this.time-- + String(i18n.t('userCenter.update.email.codeBtnTip1'))
           this.timer = window.setInterval(function() {
-            _this.buttonName = _this.time + '秒后重新发送'
+            _this.buttonName = _this.time + String(i18n.t('userCenter.update.email.codeBtnTip1'))
             --_this.time
             if (_this.time < 0) {
-              _this.buttonName = '重新发送'
+              _this.buttonName = String(i18n.t('userCenter.update.email.codeBtnTip2'))
               _this.time = 60
               _this.isDisabled = false
               window.clearInterval(_this.timer)
@@ -181,19 +182,19 @@ export default {
       if (!this.form.newEmail) {
         this.$message.error({
           showClose: true,
-          message: '邮箱为空'
+          message: String(i18n.t('userCenter.update.email.emailIsNull'))
         })
       }
       if (this.form.newEmail + this.$refs.emailSuffix.selectedLabel === this.email) {
         this.$message.error({
           showClose: true,
-          message: '邮箱不能为原邮箱'
+          message: String(i18n.t('userCenter.update.email.emailError1'))
         })
       }
       if (!validEmail(this.form.newEmail + this.$refs.emailSuffix.selectedLabel) && this.form.newEmail) {
         this.$message.error({
           showClose: true,
-          message: '邮箱格式错误'
+          message: String(i18n.t('userCenter.update.email.emailError2'))
         })
       }
     },
