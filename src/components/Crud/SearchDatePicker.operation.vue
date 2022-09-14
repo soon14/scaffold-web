@@ -1,10 +1,11 @@
 <template>
   <div v-if="crud.props.searchToggle">
+    <slot name="left" />
     <el-input
       v-model="query.blurry"
       clearable
       size="small"
-      :placeholder="$t('crud.searchDatePickerOperation.placeholder')"
+      :placeholder="inputPlaceholder === null ? $t('crud.searchDatePickerOperation.placeholder') : inputPlaceholder"
       style="width: 200px"
       class="filter-item"
       @keyup.enter.native="crud.toQuery"
@@ -22,6 +23,7 @@
       align="left"
       style="width: 300px"
     />
+    <slot name="right" />
     <search-reset-operation :crud="crud" />
   </div>
 </template>
@@ -33,6 +35,13 @@ import { header } from '@/utils/crud'
 export default {
   name: 'SearchDatePickerOperation',
   components: { searchResetOperation },
-  mixins: [header()]
+  mixins: [header()],
+  props: {
+    inputPlaceholder: {
+      type: String,
+      required: false,
+      default: null
+    }
+  }
 }
 </script>

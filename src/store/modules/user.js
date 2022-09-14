@@ -7,7 +7,8 @@ const state = {
   user: {},
   roles: [],
   // 第一次加载菜单时用到
-  loadMenus: false
+  loadMenus: false,
+  level: 0
 }
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
   },
   SET_LOAD_MENUS: (state, loadMenus) => {
     state.loadMenus = loadMenus
+  },
+  SET_LEVEL: (state, level) => {
+    state.level = level
   }
 }
 
@@ -35,6 +39,8 @@ const actions = {
         commit('SET_TOKEN', res.data.token)
         // 存用户信息
         setUserInfo(res.data.userInfo, commit)
+        // 获取用户角色等级
+        commit('SET_LEVEL', res.data.maxLevel)
         // 拉取菜单
         commit('SET_LOAD_MENUS', true)
         resolve()
@@ -47,8 +53,11 @@ const actions = {
   // 获取用户信息
   GetInfo({ commit }) {
     return new Promise((resolve, reject) => {
+      // 获取用户信息
       getUserInfo().then(res => {
-        setUserInfo(res.data, commit)
+        setUserInfo(res.data.userInfo, commit)
+        // 获取用户角色等级
+        commit('SET_LEVEL', res.data.maxLevel)
         resolve(res.data)
       }).catch(error => {
         reject(error)

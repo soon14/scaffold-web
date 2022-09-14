@@ -9,7 +9,7 @@ const api = {
     // Swagger接口文档
     swaggerApi: baseUrl + '/doc.html',
     // 修改头像API
-    updateAvatarApi: apiBaseUrl + '/user/avatar'
+    updateAvatarApi: apiBaseUrl + '/users/avatar'
   }
 }
 

@@ -17,7 +17,7 @@ export function getSelectList() {
 
 export function updateEmail(data) {
   return request({
-    url: '/user/email',
+    url: '/users/email',
     method: 'post',
     data
   })

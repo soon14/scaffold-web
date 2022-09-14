@@ -4,7 +4,7 @@ import { encrypt } from '@/utils/rsaEncrypt'
 // 登录后获取当前登录用户的用户信息
 export function getUserInfo() {
   return request({
-    url: '/user/info',
+    url: '/users/info',
     method: 'get'
   })
 }
@@ -15,7 +15,7 @@ export function updatePassword(params) {
     newPassword: encrypt(params.newPassword)
   }
   return request({
-    url: '/user/pass',
+    url: '/users/pass',
     method: 'post',
     data
   })

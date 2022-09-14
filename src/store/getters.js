@@ -7,6 +7,8 @@ const getters = {
   roles: state => state.user.roles,
   // 用户的Token
   token: state => state.user.token,
+  // 用户的最大角色等级
+  level: state => state.user.level,
   // 登录后是否已拉取菜单
   loadMenus: state => state.user.loadMenus,
   // 页面是移动端还是桌面端
