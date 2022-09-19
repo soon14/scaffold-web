@@ -37,7 +37,7 @@
       is-border
       :default-sort="{prop:'loginTime',order:'descending'}"
     >
-      <template slot="tableColumns">
+      <template #tableColumns>
         <el-table-column type="selection" width="55" />
         <template v-for="item in tableHeader.online">
           <el-table-column

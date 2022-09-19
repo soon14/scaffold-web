@@ -28,9 +28,6 @@ export default {
   center: {
     title: 'Personal Center'
   },
-  logo: {
-    title: 'Scaffold - Management'
-  },
   navbar: {
     codeAddress: 'Code Address',
     screenFull: 'Full Screen',

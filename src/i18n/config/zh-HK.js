@@ -28,9 +28,6 @@ export default {
   center: {
     title: '個人中心'
   },
-  logo: {
-    title: 'Scaffold - 管理系統'
-  },
   navbar: {
     codeAddress: '源碼地址',
     screenFull: '全屏縮放',

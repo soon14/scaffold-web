@@ -24,7 +24,7 @@
       :crud="crud"
       :default-sort="{prop:'createTime',order:'descending'}"
     >
-      <template slot="tableColumns">
+      <template #tableColumns>
         <el-table-column type="expand">
           <template v-slot="props">
             <el-form label-position="left" inline class="demo-table-expand" label-suffix=":">

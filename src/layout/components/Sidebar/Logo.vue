@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Logo from '@/assets/images/logo.png'
+import { getLogoAndTitle } from '@/api/system/logo'
 
 export default {
   name: 'Logo',
@@ -30,9 +30,15 @@ export default {
   },
   data() {
     return {
-      title: this.$i18n.t('logo.title'),
-      logo: Logo
+      title: '',
+      logo: ''
     }
+  },
+  mounted() {
+    getLogoAndTitle().then(res => {
+      this.logo = res.data.logo
+      this.title = res.data.title
+    })
   }
 }
 </script>

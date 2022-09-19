@@ -76,7 +76,7 @@
                 :crud="crud"
                 :default-sort="{prop:'createTime',order:'descending'}"
               >
-                <template slot="tableColumns">
+                <template #tableColumns>
                   <template v-for="item in tableHeader.center.playLogs">
                     <el-table-column
                       v-if="columns.visible(item.prop)"
@@ -113,7 +113,7 @@
                 :crud="crud"
                 :default-sort="{prop:'createTime',order:'descending'}"
               >
-                <template slot="tableColumns">
+                <template #tableColumns>
                   <template v-for="item in tableHeader.center.errorLogs">
                     <el-table-column
                       v-if="columns.visible(item.prop)"

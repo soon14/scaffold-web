@@ -64,7 +64,16 @@ const state = {
       { prop: 'address', label: String(i18n.t('tableHeader.center.errorLogs.address')), sortable: false, width: '', showOverflowTooltip: true },
       { prop: 'createTime', label: String(i18n.t('tableHeader.center.errorLogs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
     ]
-  }
+  },
+  users: [
+    { prop: 'username', label: '用户名', sortable: false, width: '' },
+    { prop: 'avatar.path', label: '头像', sortable: false, width: '' },
+    { prop: 'sex', label: '性别', sortable: false, width: '' },
+    { prop: 'email', label: '邮箱', sortable: false, width: '200' },
+    { prop: 'phone', label: '电话', sortable: false, width: '' },
+    { prop: 'enabled', label: '状态', sortable: false, width: '' },
+    { prop: 'createTime', label: '注册时间', sortable: true, width: '200' }
+  ]
 }
 
 export default { state }
