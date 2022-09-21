@@ -5,7 +5,7 @@
     append-to-body
     center
     top="70px"
-    width="85%"
+    width="75%"
   >
     <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
       <div style="padding:15px 20px;">{{ $t('errorLogsPage.exceptionInfo') }}</div>
@@ -42,6 +42,12 @@ export default {
 
 <style lang="scss" scoped>
 .my-dialog ::v-deep {
+  overflow: overlay;
+
+  // 滚动条适配火狐浏览器
+  scrollbar-width: none;
+  scrollbar-color: #dddee0 transparent;
+
   .el-dialog__header {
     padding: 0;
   }
@@ -85,5 +91,38 @@ export default {
       transition-delay: 0s;
     }
   }
+}
+
+.code-class {
+  padding: 0 0 10px;
+  margin-top: 0;
+  font-size: 15px;
+  line-height: 25px;
+  font-family: Consolas,serif;
+  margin-left: 10px;
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(144, 147, 153, 0.54);
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    transition: background-color .3s;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+  }
+}
+
+.pre-class {
+  padding: 0;
+  margin-top: 0;
+  background-color: #282c34;
 }
 </style>

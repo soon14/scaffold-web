@@ -6,6 +6,13 @@
   "description": "用于智慧物业管理系统前端",
   "glyphs": [
     {
+      "icon_id": "13892280",
+      "name": "头像管理",
+      "font_class": "system-avatar",
+      "unicode": "e69b",
+      "unicode_decimal": 59035
+    },
+    {
       "icon_id": "9220213",
       "name": "icon_列表",
       "font_class": "tools-icon",

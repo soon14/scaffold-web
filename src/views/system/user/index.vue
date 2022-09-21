@@ -23,60 +23,69 @@
       </search-date-picker-operation>
       <button-operation :permission="permission" />
     </div>
-    <!--    <el-dialog-->
-    <!--      append-to-body-->
-    <!--      :close-on-click-modal="false"-->
-    <!--      :before-close="crud.cancelCU"-->
-    <!--      :visible.sync="crud.status.cu > 0"-->
-    <!--      :title="crud.status.title"-->
-    <!--      width="570px"-->
-    <!--    >-->
-    <!--      <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="66px">-->
-    <!--        <el-form-item label="用户名" prop="username">-->
-    <!--          <el-input v-model="form.username" />-->
-    <!--        </el-form-item>-->
-    <!--        <el-form-item label="电话" prop="phone">-->
-    <!--          <el-input v-model.number="form.phone" />-->
-    <!--        </el-form-item>-->
-    <!--        <el-form-item label="邮箱" prop="email">-->
-    <!--          <el-input v-model="form.email" />-->
-    <!--        </el-form-item>-->
-    <!--        <el-form-item label="性别">-->
-    <!--          <el-radio-group v-model="form.sex" style="width: 178px">-->
-    <!--            <el-radio label="男">男</el-radio>-->
-    <!--            <el-radio label="女">女</el-radio>-->
-    <!--          </el-radio-group>-->
-    <!--        </el-form-item>-->
-    <!--        <el-form-item label="状态">-->
-    <!--          <el-radio-group v-model="form.enabled" :disabled="form.id === user.id">-->
-    <!--            <el-radio :label="true">启用</el-radio>-->
-    <!--            <el-radio :label="false">禁用</el-radio>-->
-    <!--          </el-radio-group>-->
-    <!--        </el-form-item>-->
-    <!--        <el-form-item style="margin-bottom: 0" label="角色" prop="roles">-->
-    <!--          <el-select-->
-    <!--            v-model="form.roles"-->
-    <!--            style="width:437px"-->
-    <!--            multiple-->
-    <!--            placeholder="请选择"-->
-    <!--            @remove-tag="deleteTag"-->
-    <!--            @change="changeRole"-->
-    <!--          >-->
-    <!--            <el-option-->
-    <!--              v-for="item in roles"-->
-    <!--              :key="item.name"-->
-    <!--              :disabled="level !== 1 && item.level <= level"-->
-    <!--              :label="item.name"-->
-    <!--              :value="item.id"-->
-    <!--            />-->
-    <!--          </el-select>-->
-    <!--        </el-form-item>-->
-    <!--      </el-form>-->
-    <!--      <div slot="footer" class="dialog-footer">-->
-    <!--        <el-button type="text" @click="crud.cancelCU">取消</el-button>-->
-    <!--        <el-button :loading="crud.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>-->
-    <!--      </div>-->
-    <!--    </el-dialog>-->
+    <el-dialog
+      append-to-body
+      :close-on-click-modal="false"
+      :before-close="crud.cancelCU"
+      :visible.sync="crud.status.cu > 0"
+      :title="crud.status.title"
+      width="570px"
+    >
+      <el-form
+        ref="form"
+        inline
+        :model="form"
+        :rules="rules"
+        size="medium"
+        label-width="66px"
+        label-position="right"
+      >
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="form.username" clearable />
+        </el-form-item>
+        <el-form-item label="电话" prop="phone">
+          <el-input v-model.number="form.phone" clearable />
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="form.email" clearable />
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-radio-group v-model="form.sex" style="width: 178px">
+            <el-radio label="男">男</el-radio>
+            <el-radio label="女">女</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="状态">
+          <el-radio-group v-model="form.enabled" :disabled="form.id === user.id">
+            <el-radio :label="true">启用</el-radio>
+            <el-radio :label="false">禁用</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item style="margin-bottom: 0" label="角色" prop="roles">
+          <el-select
+            v-model="form.roles"
+            style="width:437px"
+            multiple
+            placeholder="请选择"
+            clearable
+            @remove-tag="deleteTag"
+            @change="changeRole"
+          >
+            <el-option
+              v-for="item in roles"
+              :key="item.name"
+              :disabled="level !== 1 && item.level <= level"
+              :label="item.name"
+              :value="item.id"
+            />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="text" @click="crud.cancelCU">取消</el-button>
+        <el-button :loading="crud.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
+      </div>
+    </el-dialog>
     <scaffold-table
       ref="scaffoldTable"
       :crud="crud"
@@ -106,8 +115,8 @@
                 <span v-else>{{ scope.row[item.prop] }}</span>
               </span>
               <span v-else-if="item.prop === 'phone' || item.prop === 'email'">
-                <el-popover trigger="click" placement="top">
-                  <span style="text-align: center">{{ scope.row[item.prop] }}</span>
+                <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
+                  <div style="text-align: center;padding: 0">{{ scope.row[item.prop] }}</div>
                   <template v-if="item.prop === 'phone'" #reference>
                     <span>{{ scope.row[item.prop] | phone }}</span>
                   </template>
@@ -157,11 +166,14 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
-import CRUD, { crud, header, presenter } from '@/utils/crud'
+import CRUD, { crud, form, header, presenter } from '@/utils/crud'
+import { getRoles } from '@/api/system/roles'
+import { isvalidPhone } from '@/utils/validate'
 
 let userRoles = []
 
 const defaultCrud = CRUD({ title: '用户', url: '/users' })
+const defaultForm = { username: null, sex: '男', email: null, phone: null, enabled: 'false', roles: [] }
 export default {
   name: 'User',
   components: {
@@ -174,10 +186,20 @@ export default {
   mixins: [
     presenter(defaultCrud),
     header(),
-    // form(defaultForm),
+    form(defaultForm),
     crud()
   ],
   data() {
+    // 自定义验证
+    const validPhone = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('请输入电话号码'))
+      } else if (!isvalidPhone(value)) {
+        callback(new Error('请输入正确的11位手机号码'))
+      } else {
+        callback()
+      }
+    }
     return {
       roles: [],
       enabledTypeOptions: [
@@ -188,6 +210,22 @@ export default {
         add: ['User:add', 'root'],
         edit: ['User:update', 'root'],
         del: ['User:delete', 'root']
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+        ],
+        phone: [
+          { required: true, trigger: 'blur', validator: validPhone }
+        ],
+        email: [
+          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+        ],
+        roles: [
+          { required: true, message: '请选择角色', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -198,6 +236,20 @@ export default {
     ])
   },
   methods: {
+    [CRUD.HOOK.afterToCU](crud, form) {
+      this.getRoles()
+    },
+    [CRUD.HOOK.beforeToEdit](crud, form) {
+      userRoles = []
+      const roles = []
+      form.roles.forEach(function(role, index) {
+        roles.push(role.id)
+        // 初始化编辑时候的角色
+        const rol = { id: role.id }
+        userRoles.push(rol)
+      })
+      form.roles = roles
+    },
     changeRole(value) {
       userRoles = []
       value.forEach(function (data, index) {
@@ -211,6 +263,11 @@ export default {
           userRoles.splice(index, value)
         }
       })
+    },
+    getRoles() {
+      getRoles().then(res => {
+        this.roles = res.data
+      }).catch(() => {})
     }
   }
 }

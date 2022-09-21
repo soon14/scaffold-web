@@ -203,19 +203,4 @@ export default {
   color: red;
   font-weight: bold;
 }
-
-.code-class {
-  padding: 0;
-  margin-top: 0;
-  font-size: 15px;
-  line-height: 25px;
-  font-family: Consolas,serif;
-  margin-left: 10px;
-}
-
-.pre-class {
-  padding: 0;
-  margin-top: 0;
-  background-color: #282c34;
-}
 </style>
