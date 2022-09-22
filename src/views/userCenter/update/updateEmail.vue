@@ -1,78 +1,80 @@
 <template>
   <div style="display: inline-block">
-    <el-dialog
-      :visible.sync="dialog"
+    <scaffold-dialog
+      :visible="dialog"
       :close-on-click-modal="false"
       :before-close="cancel"
       append-to-body
       width="600px"
-      center
-      class="my-dialog"
       top="20vh"
+      class="my-dialog"
       @close="cancel"
     >
-      <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
+      <template #title>
         <div class="my-title">{{ title }}</div>
-      </div>
-      <el-form
-        ref="form"
-        :model="form"
-        :rules="rules"
-        inline
-        size="medium"
-        label-width="120px"
-        class="my-form"
-      >
-        <el-form-item :label="String($t('userCenter.update.email.newEmail'))" prop="newEmail">
-          <el-input v-model="form.newEmail" :placeholder="String($t('userCenter.update.email.prefix'))" clearable style="width: 200px" />
-        </el-form-item>
-        <el-form-item prop="value">
-          <el-select
-            ref="emailSuffix"
-            v-model="value"
-            clearable
-            :placeholder="String($t('userCenter.update.email.suffix'))"
-            class="my-select"
-          >
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
-          </el-select>
-        </el-form-item>
-        <el-button
-          :loading="codeLoading"
-          class="my-button"
-          :disabled="isDisabled || form.newEmail.length === 0"
-          round
-          type="primary"
-          size="small"
-          @click="sendCode"
+      </template>
+      <template #content>
+        <el-form
+          ref="form"
+          :model="form"
+          :rules="rules"
+          inline
+          size="medium"
+          label-width="120px"
+          class="my-form"
         >
-          {{ buttonName }}
-        </el-button>
-        <el-form-item :label="String($t('userCenter.update.email.code'))" prop="code">
-          <el-input v-model="form.code" :placeholder="String($t('userCenter.update.email.codeTip'))" clearable class="my-input" />
-        </el-form-item>
-        <el-form-item :label="String($t('userCenter.update.email.password'))" prop="password">
-          <el-input
-            v-model="form.password"
-            :placeholder="String($t('userCenter.update.email.passwordTip'))"
-            type="password"
-            show-password
-            clearable
-            class="my-input"
-          />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
+          <el-form-item :label="String($t('userCenter.update.email.newEmail'))" prop="newEmail">
+            <el-input v-model="form.newEmail" :placeholder="String($t('userCenter.update.email.prefix'))" clearable style="width: 200px" />
+          </el-form-item>
+          <el-form-item prop="value">
+            <el-select
+              ref="emailSuffix"
+              v-model="value"
+              clearable
+              :placeholder="String($t('userCenter.update.email.suffix'))"
+              class="my-select"
+            >
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+            </el-select>
+          </el-form-item>
+          <el-button
+            :loading="codeLoading"
+            class="my-button"
+            :disabled="isDisabled || form.newEmail.length === 0"
+            round
+            type="primary"
+            size="small"
+            @click="sendCode"
+          >
+            {{ buttonName }}
+          </el-button>
+          <el-form-item :label="String($t('userCenter.update.email.code'))" prop="code">
+            <el-input v-model="form.code" :placeholder="String($t('userCenter.update.email.codeTip'))" clearable class="my-input" />
+          </el-form-item>
+          <el-form-item :label="String($t('userCenter.update.email.password'))" prop="password">
+            <el-input
+              v-model="form.password"
+              :placeholder="String($t('userCenter.update.email.passwordTip'))"
+              type="password"
+              show-password
+              clearable
+              class="my-input"
+            />
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #footer>
         <el-button size="small" round @click="cancel">{{ $t('cancel') }}</el-button>
         <el-button :loading="loading" type="primary" round size="small" @click="doSubmit">{{ $t('ok') }}</el-button>
-      </div>
-    </el-dialog>
+      </template>
+    </scaffold-dialog>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import store from '@/store'
+import scaffoldDialog from '@/components/ScaffoldDialog'
 import { validEmail } from '@/utils/validate'
 import { sendCodeToEmail, updateEmail } from '@/api/system/email'
 import { encrypt } from '@/utils/rsaEncrypt'
@@ -80,6 +82,9 @@ import i18n from '@/i18n'
 
 export default {
   name: 'UpdateEmail',
+  components: {
+    scaffoldDialog
+  },
   props: {
     // 当前绑定邮箱
     email: {
@@ -126,7 +131,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'theme',
       'options'
     ])
   },
@@ -230,50 +234,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-dialog ::v-deep {
-  .el-dialog__header {
-    padding: 0;
-  }
-
-  .el-dialog__headerbtn {
-    top: 5px;
-    right: 5px;
-    padding-top: 10px;
-  }
-
-  .el-dialog__headerbtn .el-dialog__close {
-    color: #fff;
-    height: 30px;
-    width: 35px;
-  }
-
-  .el-dialog__headerbtn .el-dialog__close:hover {
-    color: gray;
-  }
-
-  .el-dialog__body {
-    padding: 0;
-    overflow: overlay;
-
-    &::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(144, 147, 153, 0.54);
-      cursor: pointer;
-      border-radius: 8px;
-      position: relative;
-      transition: background-color .3s;
-      transition-property: background-color;
-      transition-duration: 0.3s;
-      transition-timing-function: ease;
-      transition-delay: 0s;
-    }
-  }
-}
-
 .my-dialog{
   .my-title{
     padding:15px 20px;

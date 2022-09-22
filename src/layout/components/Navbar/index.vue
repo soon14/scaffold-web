@@ -56,7 +56,7 @@
       <!-- 头像 -->
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" style="margin-bottom: 15px" :src="user.avatar.path ? user.avatar.path : Avatar" />
+          <el-avatar shape="square" style="margin-bottom: 15px" :src="user.avatar.path && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">

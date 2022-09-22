@@ -23,69 +23,90 @@
       </search-date-picker-operation>
       <button-operation :permission="permission" />
     </div>
-    <el-dialog
-      append-to-body
-      :close-on-click-modal="false"
+    <scaffold-dialog
+      :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
-      :visible.sync="crud.status.cu > 0"
-      :title="crud.status.title"
+      :close-on-click-modal="false"
+      append-to-body
       width="570px"
+      top="60px"
     >
-      <el-form
-        ref="form"
-        inline
-        :model="form"
-        :rules="rules"
-        size="medium"
-        label-width="66px"
-        label-position="right"
-      >
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="form.username" clearable />
-        </el-form-item>
-        <el-form-item label="电话" prop="phone">
-          <el-input v-model.number="form.phone" clearable />
-        </el-form-item>
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="form.email" clearable />
-        </el-form-item>
-        <el-form-item label="性别">
-          <el-radio-group v-model="form.sex" style="width: 178px">
-            <el-radio label="男">男</el-radio>
-            <el-radio label="女">女</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="状态">
-          <el-radio-group v-model="form.enabled" :disabled="form.id === user.id">
-            <el-radio :label="true">启用</el-radio>
-            <el-radio :label="false">禁用</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item style="margin-bottom: 0" label="角色" prop="roles">
-          <el-select
-            v-model="form.roles"
-            style="width:437px"
-            multiple
-            placeholder="请选择"
-            clearable
-            @remove-tag="deleteTag"
-            @change="changeRole"
+      <template #title>
+        <div style="padding:15px 20px;">{{ crud.status.title }}</div>
+      </template>
+      <template #content>
+        <el-form
+          ref="form"
+          inline
+          :model="form"
+          :rules="rules"
+          size="medium"
+          label-width="66px"
+          label-position="right"
+        >
+          <el-upload
+            :show-file-list="false"
+            :on-success="handleSuccess"
+            :on-error="handleError"
+            :before-upload="beforeAvatarUpload"
+            :headers="headers"
+            :action="updateAvatarApi"
+            style="margin-left: 100px;margin-bottom: 40px"
           >
-            <el-option
-              v-for="item in roles"
-              :key="item.name"
-              :disabled="level !== 1 && item.level <= level"
-              :label="item.name"
-              :value="item.id"
+            <el-avatar
+              :src="user.avatar.path && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar"
+              style="width: 100px;height: 100px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)"
+              :alt="String($t('userCenter.leftCard.avatarAlt'))"
             />
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="text" @click="crud.cancelCU">取消</el-button>
-        <el-button :loading="crud.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
-      </div>
-    </el-dialog>
+          </el-upload>
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="form.username" clearable />
+          </el-form-item>
+          <el-form-item label="电话" prop="phone">
+            <el-input v-model.number="form.phone" clearable />
+          </el-form-item>
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="form.email" clearable />
+          </el-form-item>
+          <el-form-item label="性别">
+            <el-radio-group v-model="form.sex" style="width: 178px">
+              <el-radio label="男">男</el-radio>
+              <el-radio label="女">女</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="状态">
+            <el-radio-group v-model="form.enabled" :disabled="form.id === user.id">
+              <el-radio :label="true">启用</el-radio>
+              <el-radio :label="false">禁用</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item style="margin-bottom: 0" label="角色" prop="roles">
+            <el-select
+              ref="roleSelect"
+              v-model="form.roles"
+              style="width:437px"
+              multiple
+              placeholder="请选择"
+              clearable
+              @remove-tag="deleteTag"
+              @change="changeRole"
+            >
+              <el-option
+                v-for="item in roles"
+                :key="item.name"
+                :disabled="level !== 1 && item.level <= level"
+                :label="item.name"
+                :value="item.id"
+              />
+            </el-select>
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #footer>
+        <el-button size="small" round @click="crud.cancelCU">取消</el-button>
+        <el-button :loading="crud.cu === 2" size="small" type="primary" round @click="crud.submitCU">确认</el-button>
+      </template>
+    </scaffold-dialog>
     <scaffold-table
       ref="scaffoldTable"
       :crud="crud"
@@ -106,11 +127,12 @@
           >
             <template v-slot="scope">
               <span v-if="item.prop === 'avatar.path'">
-                <a :href="scope.row.avatar.path" target="_blank">
-                  <el-avatar :src="scope.row.avatar.path" size="80" />
+                <a v-if="scope.row.avatar !== null" :href="scope.row.avatar.path" target="_blank">
+                  <el-avatar :src="scope.row.avatar.path ? scope.row.avatar.path : Avatar" size="80" />
                 </a>
+                <el-avatar v-else :src="Avatar" size="80" />
               </span>
-              <span v-else-if="item.prop === 'username'">
+              <span v-if="item.prop === 'username'">
                 <span v-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">{{ scope.row[item.prop] }}</span>
                 <span v-else>{{ scope.row[item.prop] }}</span>
               </span>
@@ -161,9 +183,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { add, edit, del } from '@/api/system/user'
+import Avatar from '@/assets/images/avatar.png'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
+import scaffoldDialog from '@/components/ScaffoldDialog'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
@@ -172,7 +197,7 @@ import { isvalidPhone } from '@/utils/validate'
 
 let userRoles = []
 
-const defaultCrud = CRUD({ title: '用户', url: '/users' })
+const defaultCrud = CRUD({ title: '用户', url: '/users', crudMethod: { add, edit, del }})
 const defaultForm = { username: null, sex: '男', email: null, phone: null, enabled: 'false', roles: [] }
 export default {
   name: 'User',
@@ -181,7 +206,8 @@ export default {
     searchDatePickerOperation,
     buttonOperation,
     paginationOperation,
-    updateDeleteOperation
+    updateDeleteOperation,
+    scaffoldDialog
   },
   mixins: [
     presenter(defaultCrud),
@@ -201,6 +227,7 @@ export default {
       }
     }
     return {
+      Avatar: Avatar,
       roles: [],
       enabledTypeOptions: [
         { key: 'true', displayName: '启用' },
@@ -235,10 +262,18 @@ export default {
       'user'
     ])
   },
+  created() {
+    this.$nextTick(() => {
+      this.crud.toQuery()
+      this.crud.msg.add = '新增成功，默认密码：123456'
+    })
+  },
   methods: {
+    // 新增与编辑前做的操作
     [CRUD.HOOK.afterToCU](crud, form) {
       this.getRoles()
     },
+    // 打开编辑弹窗前做的操作
     [CRUD.HOOK.beforeToEdit](crud, form) {
       userRoles = []
       const roles = []
@@ -249,6 +284,34 @@ export default {
         userRoles.push(rol)
       })
       form.roles = roles
+    },
+    // 提交前做的操作
+    [CRUD.HOOK.afterValidateCU](crud) {
+      if (this.roles.length === 0) {
+        this.$message({
+          message: '角色不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      crud.form.roles = userRoles
+      return true
+    },
+    changeEnabled(data, val) {
+      const operate = val === true ? '启用' : '禁用'
+      this.$confirm('此操作将' + operate + ' [' + data.username + '] ' + ', 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        edit(data).then(res => {
+          this.crud.notify(operate + '成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+        }).catch(() => {
+          data.enabled = !data.enabled
+        })
+      }).catch(() => {
+        data.enabled = !data.enabled
+      })
     },
     changeRole(value) {
       userRoles = []

@@ -12,7 +12,7 @@
     </div>
     <pre v-highlightjs="errorLogs" class="pre-class">
         <code class="java code-class" />
-      </pre>
+    </pre>
   </el-dialog>
 </template>
 
@@ -20,7 +20,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'ExceptionInfo',
+  name: 'ScaffoldExceptionInfo',
   props: {
     errorLogs: {
       type: String,
@@ -41,7 +41,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .el-dialog{
+  border-radius: 10px;
+}
+
 .my-dialog ::v-deep {
+  .header-title{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
   overflow: overlay;
 
   // 滚动条适配火狐浏览器
@@ -72,6 +81,8 @@ export default {
     height: 70vh;
     padding: 0;
     background-color: #282c34;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     overflow: overlay;
 
     &::-webkit-scrollbar {

@@ -1,60 +1,61 @@
 <template>
   <div style="display: inline-block">
-    <el-dialog
-      :visible.sync="dialog"
+    <scaffold-dialog
+      :visible="dialog"
       :close-on-click-modal="false"
       :before-close="cancel"
       append-to-body
       width="600px"
-      center
-      class="my-dialog"
       top="20vh"
+      class="my-dialog"
       @close="cancel"
     >
-      <div slot="title" class="header-title" :style="{'background' : theme,'color' : 'white'}">
+      <template #title>
         <div class="my-title">{{ title }}</div>
-      </div>
-      <el-form
-        ref="form"
-        :model="form"
-        :rules="rules"
-        inline
-        size="medium"
-        label-width="120px"
-        class="my-form"
-      >
-        <el-form-item :label="String($t('userCenter.update.pass.oldPass'))" prop="oldPassword">
-          <el-input
-            v-model="form.oldPassword"
-            type="password"
-            auto-complete="on"
-            clearable
-            show-password
-            class="my-input"
-          />
-        </el-form-item>
-        <el-form-item :label="String($t('userCenter.update.pass.newPass'))" prop="newPassword">
-          <el-input
-            v-model="form.newPassword"
-            type="password"
-            auto-complete="on"
-            clearable
-            show-password
-            class="my-input"
-          />
-        </el-form-item>
-        <el-form-item :label="String($t('userCenter.update.pass.confirmPass'))" prop="confirmPass">
-          <el-input
-            v-model="form.confirmPass"
-            type="password"
-            auto-complete="on"
-            clearable
-            show-password
-            class="my-input"
-          />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
+      </template>
+      <template #content>
+        <el-form
+          ref="form"
+          :model="form"
+          :rules="rules"
+          inline
+          size="medium"
+          label-width="120px"
+          class="my-form"
+        >
+          <el-form-item :label="String($t('userCenter.update.pass.oldPass'))" prop="oldPassword">
+            <el-input
+              v-model="form.oldPassword"
+              type="password"
+              auto-complete="on"
+              clearable
+              show-password
+              class="my-input"
+            />
+          </el-form-item>
+          <el-form-item :label="String($t('userCenter.update.pass.newPass'))" prop="newPassword">
+            <el-input
+              v-model="form.newPassword"
+              type="password"
+              auto-complete="on"
+              clearable
+              show-password
+              class="my-input"
+            />
+          </el-form-item>
+          <el-form-item :label="String($t('userCenter.update.pass.confirmPass'))" prop="confirmPass">
+            <el-input
+              v-model="form.confirmPass"
+              type="password"
+              auto-complete="on"
+              clearable
+              show-password
+              class="my-input"
+            />
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #footer>
         <el-button size="small" round @click="cancel">{{ $t('cancel') }}</el-button>
         <el-button size="small" round @click="reset">{{ $t('userCenter.update.pass.reset') }}</el-button>
         <el-button
@@ -64,20 +65,23 @@
           size="small"
           @click="doSubmit"
         >{{ $t('ok') }}</el-button>
-      </div>
-    </el-dialog>
+      </template>
+    </scaffold-dialog>
   </div>
 </template>
 
 <script>
 import store from '@/store'
-import { mapGetters } from 'vuex'
+import scaffoldDialog from '@/components/ScaffoldDialog'
 import { verifyPassword } from '@/utils'
 import { updatePassword } from '@/api/system/user'
 import i18n from '@/i18n'
 
 export default {
   name: 'UpdatePass',
+  components: {
+    scaffoldDialog
+  },
   data() {
     const confirmPass = (rule, value, callback) => {
       if (value) {
@@ -121,11 +125,6 @@ export default {
         ]
       }
     }
-  },
-  computed: {
-    ...mapGetters([
-      'theme'
-    ])
   },
   methods: {
     cancel() {
@@ -176,50 +175,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-dialog ::v-deep {
-  .el-dialog__header {
-    padding: 0;
-  }
-
-  .el-dialog__headerbtn {
-    top: 5px;
-    right: 5px;
-    padding-top: 10px;
-  }
-
-  .el-dialog__headerbtn .el-dialog__close {
-    color: #fff;
-    height: 30px;
-    width: 35px;
-  }
-
-  .el-dialog__headerbtn .el-dialog__close:hover {
-    color: gray;
-  }
-
-  .el-dialog__body {
-    padding: 0;
-    overflow: overlay;
-
-    &::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(144, 147, 153, 0.54);
-      cursor: pointer;
-      border-radius: 8px;
-      position: relative;
-      transition: background-color .3s;
-      transition-property: background-color;
-      transition-duration: 0.3s;
-      transition-timing-function: ease;
-      transition-delay: 0s;
-    }
-  }
-}
-
 .my-dialog{
   .my-title{
     padding: 15px 20px;

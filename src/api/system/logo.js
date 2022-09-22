@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getLogoAndTitle() {
   return request({
-    url: '/settings',
+    url: '/settings/logo',
     method: 'get'
   })
 }

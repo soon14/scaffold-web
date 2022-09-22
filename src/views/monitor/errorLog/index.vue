@@ -83,7 +83,7 @@
         </el-table-column>
       </template>
     </scaffold-table>
-    <exception-info ref="exception" :error-logs="errorLogs" />
+    <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
     <pagination-operation />
   </div>
 </template>
@@ -97,7 +97,7 @@ import backTopAndBottom from '@/components/BackTopAndBottom'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import buttonOperation from '@/components/Crud/Button.operation'
-import exceptionInfo from '@/components/ExceptionInfo'
+import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
 import { delAllErrorLogs, getErrorDetails } from '@/api/system/logs'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 
@@ -111,7 +111,7 @@ export default {
     backTopAndBottom,
     scaffoldTable,
     scaffoldJson,
-    exceptionInfo
+    scaffoldExceptionInfo
   },
   mixins: [presenter(defaultCrud)],
   data() {
@@ -168,7 +168,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .demo-table-expand {
   font-size: 0;
   margin-left: 25px;

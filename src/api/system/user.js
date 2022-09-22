@@ -20,3 +20,30 @@ export function updatePassword(params) {
     data
   })
 }
+
+// 添加用户
+export function add(data) {
+  return request({
+    url: '/users',
+    method: 'post',
+    data
+  })
+}
+
+// 修改用户
+export function edit(data) {
+  return request({
+    url: '/users',
+    method: 'put',
+    data
+  })
+}
+
+// 删除用户
+export function del(ids) {
+  return request({
+    url: '/users',
+    method: 'delete',
+    data: ids
+  })
+}

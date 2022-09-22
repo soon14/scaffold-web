@@ -18,7 +18,7 @@
                 class="avatar-uploader"
               >
                 <el-avatar
-                  :src="user.avatar.path ? user.avatar.path : Avatar"
+                  :src="user.avatar.path && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar"
                   class="card-avatar"
                   :alt="String($t('userCenter.leftCard.avatarAlt'))"
                 />
@@ -143,7 +143,7 @@
     <back-top-and-bottom :bottom="90" :right="30" />
     <update-email ref="email" :email="user.email" />
     <update-pass ref="pass" />
-    <exception-info ref="exception" :error-logs="errorLogs" />
+    <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
   </div>
 </template>
 
@@ -154,7 +154,7 @@ import { getToken } from '@/utils/auth'
 import store from '@/store'
 import updateEmail from '@/views/userCenter/update/updateEmail'
 import updatePass from '@/views/userCenter/update/updatePass'
-import exceptionInfo from '@/components/ExceptionInfo'
+import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
 import scaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import backTopAndBottom from '@/components/BackTopAndBottom'
@@ -170,7 +170,7 @@ export default {
     updateEmail,
     scaffoldTable,
     paginationOperation,
-    exceptionInfo,
+    scaffoldExceptionInfo,
     backTopAndBottom
   },
   mixins: [presenter(defaultCrud)],
