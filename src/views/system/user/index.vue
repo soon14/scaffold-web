@@ -29,7 +29,7 @@
       :close-on-click-modal="false"
       append-to-body
       width="570px"
-      top="60px"
+      top="100px"
     >
       <template #title>
         <div style="padding:15px 20px;">{{ crud.status.title }}</div>
@@ -44,21 +44,6 @@
           label-width="66px"
           label-position="right"
         >
-          <el-upload
-            :show-file-list="false"
-            :on-success="handleSuccess"
-            :on-error="handleError"
-            :before-upload="beforeAvatarUpload"
-            :headers="headers"
-            :action="updateAvatarApi"
-            style="margin-left: 100px;margin-bottom: 40px"
-          >
-            <el-avatar
-              :src="user.avatar.path && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar"
-              style="width: 100px;height: 100px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)"
-              :alt="String($t('userCenter.leftCard.avatarAlt'))"
-            />
-          </el-upload>
           <el-form-item label="用户名" prop="username">
             <el-input v-model="form.username" clearable />
           </el-form-item>
@@ -128,7 +113,7 @@
             <template v-slot="scope">
               <span v-if="item.prop === 'avatar.path'">
                 <a v-if="scope.row.avatar !== null" :href="scope.row.avatar.path" target="_blank">
-                  <el-avatar :src="scope.row.avatar.path ? scope.row.avatar.path : Avatar" size="80" />
+                  <el-avatar :src="scope.row.avatar.path && scope.row.avatar.enabled === '审核通过' ? scope.row.avatar.path : Avatar" size="80" />
                 </a>
                 <el-avatar v-else :src="Avatar" size="80" />
               </span>
@@ -155,6 +140,10 @@
                   inactive-color="#F56C6C"
                   @change="changeEnabled(scope.row, scope.row.enabled)"
                 />
+              </span>
+              <span v-else-if="item.prop === 'updateTime'">
+                <span v-if="scope.row[item.prop] === null" style="font-weight: bold;font-size: 13px">暂无</span>
+                <span v-else>{{ scope.row[item.prop] }}</span>
               </span>
               <span v-else>{{ scope.row[item.prop] }}</span>
             </template>
@@ -285,6 +274,15 @@ export default {
       })
       form.roles = roles
     },
+    [CRUD.HOOK.afterAddError](crud) {
+      this.afterErrorMethod(crud)
+    },
+    [CRUD.HOOK.afterEditError](crud) {
+      this.afterErrorMethod(crud)
+    },
+    [CRUD.HOOK.afterSubmit](crud) {
+      this.afterErrorMethod(crud)
+    },
     // 提交前做的操作
     [CRUD.HOOK.afterValidateCU](crud) {
       if (this.roles.length === 0) {
@@ -331,6 +329,14 @@ export default {
       getRoles().then(res => {
         this.roles = res.data
       }).catch(() => {})
+    },
+    afterErrorMethod(crud) {
+      // 恢复select
+      const initRoles = []
+      userRoles.forEach(function(role, index) {
+        initRoles.push(role.id)
+      })
+      crud.form.roles = initRoles
     }
   }
 }

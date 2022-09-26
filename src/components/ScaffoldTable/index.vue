@@ -8,6 +8,7 @@
     :border="isBorder"
     :stripe="isStripe"
     :default-sort="defaultSort"
+    :tooltip-effect="tooltipEffect"
     :header-cell-style="{color:'#333333',fontWeight:'bold'}"
     @selection-change="crud.selectionChangeHandler"
   >
@@ -50,6 +51,12 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    // tooltip effect 属性
+    tooltipEffect: {
+      type: String,
+      required: false,
+      default: 'light'
     }
   }
 }

@@ -18,7 +18,7 @@
                 class="avatar-uploader"
               >
                 <el-avatar
-                  :src="user.avatar.path && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar"
+                  :src="user.avatar && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar"
                   class="card-avatar"
                   :alt="String($t('userCenter.leftCard.avatarAlt'))"
                 />
@@ -46,7 +46,7 @@
                   <i class="iconfont iconfont-center-last-pass-change" /> {{ $t('userCenter.leftCard.lastChangePass') }}
                   <div class="user-right">{{ user.lastPassResetTime === null ? $t('userCenter.leftCard.no') : user.lastPassResetTime }}</div>
                 </li>
-                <li>
+                <li v-if="user.avatar !== null">
                   <i class="iconfont iconfont-center-last-avatar-change" /> {{ $t('userCenter.leftCard.lastChangeAvatar') }}
                   <div class="user-right">{{ user.avatar.updateTime === null ? $t('userCenter.leftCard.no') : user.avatar.updateTime }}</div>
                 </li>
@@ -189,8 +189,7 @@ export default {
       'user',
       'updateAvatarApi',
       'options',
-      'tableHeader',
-      'theme'
+      'tableHeader'
     ])
   },
   methods: {
