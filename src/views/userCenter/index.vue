@@ -18,7 +18,7 @@
                 class="avatar-uploader"
               >
                 <el-avatar
-                  :src="user.avatar && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar"
+                  :src="avatarShow"
                   class="card-avatar"
                   :alt="String($t('userCenter.leftCard.avatarAlt'))"
                 />
@@ -150,6 +150,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Avatar from '@/assets/images/avatar.png'
+import AvatarNoEnabled from '@/assets/images/avatarNoEnabled.png'
 import { getToken } from '@/utils/auth'
 import store from '@/store'
 import updateEmail from '@/views/userCenter/update/updateEmail'
@@ -177,6 +178,7 @@ export default {
   data() {
     return {
       Avatar: Avatar,
+      AvatarNoEnabled: AvatarNoEnabled,
       headers: {
         'Authorization': getToken()
       },
@@ -190,7 +192,18 @@ export default {
       'updateAvatarApi',
       'options',
       'tableHeader'
-    ])
+    ]),
+    avatarShow() {
+      if (this.user.avatar !== null) {
+        if (this.user.avatar.enabled === '已审核') {
+          return this.user.avatar.path
+        } else {
+          return this.AvatarNoEnabled
+        }
+      } else {
+        return this.Avatar
+      }
+    }
   },
   methods: {
     getExceptionInfo(id) {

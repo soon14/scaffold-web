@@ -56,7 +56,7 @@
       <!-- 头像 -->
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" style="margin-bottom: 15px" :src="user.avatar && user.avatar.enabled === '审核通过' ? user.avatar.path : Avatar" />
+          <el-avatar shape="square" style="margin-bottom: 15px" :src="avatarShow" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -91,6 +91,7 @@ import HeaderSearch from '@/components/HeaderSearch'
 import CodeAddress from '@/components/Code'
 import I18nSelect from '@/components/I18nSelect'
 import Avatar from '@/assets/images/avatar.png'
+import AvatarNoEnabled from '@/assets/images/avatarNoEnabled.png'
 
 export default {
   name: 'Navbar',
@@ -106,6 +107,7 @@ export default {
   data() {
     return {
       Avatar: Avatar,
+      AvatarNoEnabled: AvatarNoEnabled,
       dialogVisible: false
     }
   },
@@ -124,6 +126,17 @@ export default {
           key: 'showSettings',
           value: val
         })
+      }
+    },
+    avatarShow() {
+      if (this.user.avatar !== null) {
+        if (this.user.avatar.enabled === '已审核') {
+          return this.user.avatar.path
+        } else {
+          return this.AvatarNoEnabled
+        }
+      } else {
+        return this.Avatar
       }
     }
   },

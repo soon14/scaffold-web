@@ -59,6 +59,7 @@ export default {
     closeAll: 'Close All'
   },
   headerSearch: 'Search',
+  no: 'No',
   error: 'error',
   serverException: 'Server Exception',
   networkTimeOut: 'Network Request Timeout',
@@ -138,6 +139,9 @@ export default {
       placeholder: 'Please enter to search',
       startTime: 'Start Time',
       endTime: 'End Time'
+    },
+    updateDeleteOperation: {
+      msg: 'Are you sure you want to delete this data?'
     }
   },
   onlinePage: {
@@ -220,6 +224,16 @@ export default {
         address: 'IP Location',
         createTime: 'Operate Time'
       }
+    },
+    user: {
+      username: 'Username',
+      avatarPath: 'Avatar',
+      sex: 'Sex',
+      email: 'Email',
+      phone: 'Phone',
+      enabled: 'State',
+      updateTime: 'Update Time',
+      createTime: 'Create Time'
     }
   },
   scaffoldJsonViewer: {
@@ -237,7 +251,7 @@ export default {
   },
   userCenter: {
     leftCard: {
-      title: 'User Info',
+      title: 'User Info(Avatars need to be reviewed and approved before they can be displayed)',
       avatarAlt: 'Click Change Avatar',
       loginName: 'Login Account',
       sex: 'Sex',
@@ -297,6 +311,49 @@ export default {
         emailError1: 'Email cannot be the original email',
         emailError2: 'Email format error'
       }
+    }
+  },
+  userPage: {
+    placeholderInput: 'Please enter the email or user name to query',
+    placeholderSelect: 'State',
+    form: {
+      username: 'Username',
+      phone: 'Phone',
+      email: 'Email',
+      sex: 'Sex',
+      man: 'Male',
+      woman: 'Female',
+      status: 'State',
+      statusOk: 'Enable',
+      statusNo: 'Disable',
+      role: 'Roles',
+      rolePlaceholder: 'Please select'
+    },
+    column: {
+      operate: 'Operate'
+    },
+    title: 'User',
+    validPhone: {
+      error1: 'Please enter a phone number',
+      error2: 'Please enter the correct 11 digit mobile phone number'
+    },
+    validUsername: {
+      error1: 'Enter one user name',
+      error2: '2 to 10 characters in length'
+    },
+    validEmail: {
+      error1: 'Please enter the email address',
+      error2: 'Please enter the correct email address'
+    },
+    validRoles: {
+      error: 'Please select a role'
+    },
+    createdTip: 'Successfully added. Default password: 123456',
+    rolesIsNull: 'Role cannot be empty',
+    enabledTips: {
+      tip1: 'This action will ',
+      tip2: ', Do you want to continue?',
+      tip3: 'Success'
     }
   },
   ...enLocale

@@ -8,3 +8,14 @@ export function del(ids) {
     data: ids
   })
 }
+
+export function editEnabled(id, enabled) {
+  return request({
+    url: '/avatars',
+    method: 'put',
+    data: {
+      id: id,
+      enabled: enabled
+    }
+  })
+}

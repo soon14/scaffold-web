@@ -59,6 +59,7 @@ export default {
     closeAll: '关闭全部'
   },
   headerSearch: '查询',
+  no: '暂无',
   error: '错误',
   serverException: '服务器异常',
   networkTimeOut: '网络请求超时',
@@ -138,6 +139,9 @@ export default {
       placeholder: '请输入你要搜索的内容',
       startTime: '开始日期',
       endTime: '结束日期'
+    },
+    updateDeleteOperation: {
+      msg: '确定删除本条数据吗?'
     }
   },
   onlinePage: {
@@ -220,6 +224,16 @@ export default {
         address: 'IP所在地',
         createTime: '操作时间'
       }
+    },
+    user: {
+      username: '用户名',
+      avatarPath: '头像',
+      sex: '性别',
+      email: '邮箱',
+      phone: '电话',
+      enabled: '状态',
+      updateTime: '修改时间',
+      createTime: '注册时间'
     }
   },
   scaffoldJsonViewer: {
@@ -237,7 +251,7 @@ export default {
   },
   userCenter: {
     leftCard: {
-      title: '个人信息',
+      title: '个人信息(头像需要审核通过后才能显示)',
       avatarAlt: '点击更换头像',
       loginName: '登录账号',
       sex: '性别',
@@ -297,6 +311,49 @@ export default {
         emailError1: '邮箱不能为原邮箱',
         emailError2: '邮箱格式错误'
       }
+    }
+  },
+  userPage: {
+    placeholderInput: '请输入邮箱或用户名查询',
+    placeholderSelect: '状态',
+    form: {
+      username: '用户名',
+      phone: '电话',
+      email: '邮箱',
+      sex: '性别',
+      man: '男',
+      woman: '女',
+      status: '状态',
+      statusOk: '启用',
+      statusNo: '禁用',
+      role: '角色',
+      rolePlaceholder: '请选择'
+    },
+    column: {
+      operate: '操作'
+    },
+    title: '用户',
+    validPhone: {
+      error1: '请输入电话号码',
+      error2: '请输入正确的11位手机号码'
+    },
+    validUsername: {
+      error1: '请输入用户名',
+      error2: '长度在 2 到 10 个字符'
+    },
+    validEmail: {
+      error1: '请输入邮箱地址',
+      error2: '请输入正确的邮箱地址'
+    },
+    validRoles: {
+      error: '请选择角色'
+    },
+    createdTip: '新增成功，默认密码：123456',
+    rolesIsNull: '角色不能为空',
+    enabledTips: {
+      tip1: '此操作将',
+      tip2: ', 是否继续?',
+      tip3: '成功'
     }
   },
   ...zhCNLocale

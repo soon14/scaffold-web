@@ -1,6 +1,8 @@
 <template>
   <div>
+    <slot name="left" />
     <el-button
+      v-if="showEdit"
       v-permission="permission.edit"
       :disabled="disabledEdit"
       size="mini"
@@ -9,6 +11,7 @@
       @click="crud.toEdit(data)"
     />
     <el-popover
+      v-if="showDel"
       v-model="pop"
       v-permission="permission.del"
       placement="top"
@@ -20,7 +23,7 @@
       <p>{{ msg }}</p>
       <div style="text-align: right;margin: 0">
         <el-button size="mini" round @click="doCancel">
-          {{ $t('ok') }}
+          {{ $t('cancel') }}
         </el-button>
         <el-button
           size="mini"
@@ -29,7 +32,7 @@
           :loading="crud.dataStatus[data.id].delete === 2"
           @click="crud.doDelete(data)"
         >
-          {{ $t('cancel') }}
+          {{ $t('ok') }}
         </el-button>
       </div>
       <el-button
@@ -41,11 +44,13 @@
         @click="toDelete"
       />
     </el-popover>
+    <slot name="right" />
   </div>
 </template>
 
 <script>
 import CRUD, { crud } from '@/utils/crud'
+import i18n from '@/i18n'
 
 export default {
   name: 'UpdateDeleteOperation',
@@ -77,7 +82,19 @@ export default {
     msg: {
       type: String,
       required: false,
-      default: '确定删除本条数据吗?'
+      default: String(i18n.t('crud.updateDeleteOperation.msg'))
+    },
+    // 是否显示编辑按钮
+    showEdit: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    // 是否显示删除按钮
+    showDel: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data() {

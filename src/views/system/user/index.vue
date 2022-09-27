@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
     <div class="head-container">
-      <search-date-picker-operation input-placeholder="请输入邮箱或用户名查询">
+      <search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
         <template #right>
           <el-select
             v-model="query.enabled"
             clearable
             size="small"
-            placeholder="状态"
+            :placeholder="String($t('userPage.placeholderSelect'))"
             class="filter-item"
             style="width: 90px"
             @change="crud.toQuery"
@@ -44,34 +44,34 @@
           label-width="66px"
           label-position="right"
         >
-          <el-form-item label="用户名" prop="username">
+          <el-form-item :label="String($t('userPage.form.username'))" prop="username">
             <el-input v-model="form.username" clearable />
           </el-form-item>
-          <el-form-item label="电话" prop="phone">
+          <el-form-item :label="String($t('userPage.form.phone'))" prop="phone">
             <el-input v-model.number="form.phone" clearable />
           </el-form-item>
-          <el-form-item label="邮箱" prop="email">
+          <el-form-item :label="String($t('userPage.form.email'))" prop="email">
             <el-input v-model="form.email" clearable />
           </el-form-item>
-          <el-form-item label="性别">
+          <el-form-item :label="String($t('userPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
-              <el-radio label="男">男</el-radio>
-              <el-radio label="女">女</el-radio>
+              <el-radio :label="String($t('userPage.form.man'))">{{ $t('userPage.form.man') }}</el-radio>
+              <el-radio :label="String($t('userPage.form.woman'))">{{ $t('userPage.form.woman') }}</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="状态">
+          <el-form-item :label="String($t('userPage.form.status'))">
             <el-radio-group v-model="form.enabled" :disabled="form.id === user.id">
-              <el-radio :label="true">启用</el-radio>
-              <el-radio :label="false">禁用</el-radio>
+              <el-radio :label="true">{{ $t('userPage.form.statusOk') }}</el-radio>
+              <el-radio :label="false">{{ $t('userPage.form.statusNo') }}</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item style="margin-bottom: 0" label="角色" prop="roles">
+          <el-form-item style="margin-bottom: 0" :label="String($t('userPage.form.role'))" prop="roles">
             <el-select
               ref="roleSelect"
               v-model="form.roles"
               style="width:437px"
               multiple
-              placeholder="请选择"
+              :placeholder="String($t('userPage.form.rolePlaceholder'))"
               clearable
               @remove-tag="deleteTag"
               @change="changeRole"
@@ -88,8 +88,8 @@
         </el-form>
       </template>
       <template #footer>
-        <el-button size="small" round @click="crud.cancelCU">取消</el-button>
-        <el-button :loading="crud.cu === 2" size="small" type="primary" round @click="crud.submitCU">确认</el-button>
+        <el-button size="small" round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
+        <el-button :loading="crud.cu === 2" size="small" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
     </scaffold-dialog>
     <scaffold-table
@@ -113,7 +113,7 @@
             <template v-slot="scope">
               <span v-if="item.prop === 'avatar.path'">
                 <a v-if="scope.row.avatar !== null" :href="scope.row.avatar.path" target="_blank">
-                  <el-avatar :src="scope.row.avatar.path && scope.row.avatar.enabled === '审核通过' ? scope.row.avatar.path : Avatar" size="80" />
+                  <el-avatar :src="scope.row.avatar.path ? scope.row.avatar.path : Avatar" size="80" />
                 </a>
                 <el-avatar v-else :src="Avatar" size="80" />
               </span>
@@ -142,7 +142,7 @@
                 />
               </span>
               <span v-else-if="item.prop === 'updateTime'">
-                <span v-if="scope.row[item.prop] === null" style="font-weight: bold;font-size: 13px">暂无</span>
+                <span v-if="scope.row[item.prop] === null" style="font-weight: bold;font-size: 13px">{{ $t('no') }}</span>
                 <span v-else>{{ scope.row[item.prop] }}</span>
               </span>
               <span v-else>{{ scope.row[item.prop] }}</span>
@@ -151,7 +151,7 @@
         </template>
         <el-table-column
           v-permission="['root','User:delete','User:edit']"
-          label="操作"
+          :label="String($t('userPage.column.operate'))"
           width="125"
           align="center"
           fixed="right"
@@ -172,6 +172,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import i18n from '@/i18n'
 import { add, edit, del } from '@/api/system/user'
 import Avatar from '@/assets/images/avatar.png'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
@@ -186,8 +187,8 @@ import { isvalidPhone } from '@/utils/validate'
 
 let userRoles = []
 
-const defaultCrud = CRUD({ title: '用户', url: '/users', crudMethod: { add, edit, del }})
-const defaultForm = { username: null, sex: '男', email: null, phone: null, enabled: 'false', roles: [] }
+const defaultCrud = CRUD({ title: String(i18n.t('userPage.title')), url: '/users', crudMethod: { add, edit, del }})
+const defaultForm = { username: null, sex: String(i18n.t('userPage.form.man')), email: null, phone: null, enabled: 'false', roles: [] }
 export default {
   name: 'User',
   components: {
@@ -208,9 +209,9 @@ export default {
     // 自定义验证
     const validPhone = (rule, value, callback) => {
       if (!value) {
-        callback(new Error('请输入电话号码'))
+        callback(new Error(String(i18n.t('userPage.validPhone.error1'))))
       } else if (!isvalidPhone(value)) {
-        callback(new Error('请输入正确的11位手机号码'))
+        callback(new Error(String(i18n.t('userPage.validPhone.error2'))))
       } else {
         callback()
       }
@@ -219,8 +220,8 @@ export default {
       Avatar: Avatar,
       roles: [],
       enabledTypeOptions: [
-        { key: 'true', displayName: '启用' },
-        { key: 'false', displayName: '禁用' }
+        { key: 'true', displayName: String(i18n.t('userPage.form.statusOk')) },
+        { key: 'false', displayName: String(i18n.t('userPage.form.statusNo')) }
       ],
       permission: {
         add: ['User:add', 'root'],
@@ -229,18 +230,18 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userPage.validUsername.error1')), trigger: 'blur' },
+          { min: 2, max: 10, message: String(i18n.t('userPage.validUsername.error2')), trigger: 'blur' }
         ],
         phone: [
           { required: true, trigger: 'blur', validator: validPhone }
         ],
         email: [
-          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-          { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userPage.validEmail.error1')), trigger: 'blur' },
+          { type: 'email', message: String(i18n.t('userPage.validEmail.error2')), trigger: 'blur' }
         ],
         roles: [
-          { required: true, message: '请选择角色', trigger: 'blur' }
+          { required: true, message: String(i18n.t('userPage.validRoles.error')), trigger: 'blur' }
         ]
       }
     }
@@ -254,7 +255,7 @@ export default {
   created() {
     this.$nextTick(() => {
       this.crud.toQuery()
-      this.crud.msg.add = '新增成功，默认密码：123456'
+      this.crud.msg.add = String(i18n.t('userPage.createdTip'))
     })
   },
   methods: {
@@ -287,7 +288,7 @@ export default {
     [CRUD.HOOK.afterValidateCU](crud) {
       if (this.roles.length === 0) {
         this.$message({
-          message: '角色不能为空',
+          message: String(i18n.t('userPage.rolesIsNull')),
           type: 'warning'
         })
         return false
@@ -296,14 +297,14 @@ export default {
       return true
     },
     changeEnabled(data, val) {
-      const operate = val === true ? '启用' : '禁用'
-      this.$confirm('此操作将' + operate + ' [' + data.username + '] ' + ', 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      const operate = val === true ? String(i18n.t('userPage.form.statusOk')) : String(i18n.t('userPage.form.statusNo'))
+      this.$confirm(String(i18n.t('userPage.enabledTips.tip1')) + operate + ' [' + data.username + '] ' + String(i18n.t('userPage.enabledTips.tip2')), String(i18n.t('confirmTips')), {
+        confirmButtonText: String(i18n.t('ok')),
+        cancelButtonText: String(i18n.t('cancel')),
         type: 'warning'
       }).then(() => {
         edit(data).then(res => {
-          this.crud.notify(operate + '成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+          this.crud.notify(operate + String(i18n.t('userPage.enabledTips.tip3')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         }).catch(() => {
           data.enabled = !data.enabled
         })

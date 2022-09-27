@@ -66,16 +66,17 @@ const state = {
     ]
   },
   users: [
-    { prop: 'username', label: '用户名', sortable: false, width: '100' },
-    { prop: 'avatar.path', label: '头像', sortable: false, width: '' },
-    { prop: 'sex', label: '性别', sortable: false, width: '' },
-    { prop: 'email', label: '邮箱', sortable: false, width: '200' },
-    { prop: 'phone', label: '电话', sortable: false, width: '150' },
-    { prop: 'enabled', label: '状态', sortable: false, width: '' },
-    { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' },
-    { prop: 'createTime', label: '注册时间', sortable: true, width: '200' }
+    { prop: 'username', label: String(i18n.t('tableHeader.user.username')), sortable: false, width: '100' },
+    { prop: 'avatar.path', label: String(i18n.t('tableHeader.user.avatarPath')), sortable: false, width: '' },
+    { prop: 'sex', label: String(i18n.t('tableHeader.user.sex')), sortable: false, width: '' },
+    { prop: 'email', label: String(i18n.t('tableHeader.user.email')), sortable: false, width: '200' },
+    { prop: 'phone', label: String(i18n.t('tableHeader.user.phone')), sortable: false, width: '150' },
+    { prop: 'enabled', label: String(i18n.t('tableHeader.user.enabled')), sortable: false, width: '' },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.user.updateTime')), sortable: true, width: '200' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.user.createTime')), sortable: true, width: '200' }
   ],
   avatars: [
+    // TODO 明天完成头像列表国际化
     { prop: 'username', label: '用户名', showOverflowTooltip: false, sortable: false, width: '150' },
     { prop: 'path', label: '头像', showOverflowTooltip: false, sortable: false, width: '150' },
     { prop: 'realName', label: '文件名', showOverflowTooltip: true, sortable: false, width: '' },

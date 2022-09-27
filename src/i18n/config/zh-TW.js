@@ -59,6 +59,7 @@ export default {
     closeAll: '關閉全部'
   },
   headerSearch: '査詢',
+  no: '暫無',
   error: '錯誤',
   serverException: '服務器异常',
   networkTimeOut: '網絡請求超時',
@@ -138,6 +139,9 @@ export default {
       placeholder: '請輸入你要搜索的內容',
       startTime: '開始日期',
       endTime: '結束日期'
+    },
+    updateDeleteOperation: {
+      msg: '確定刪除本條數據嗎?'
     }
   },
   onlinePage: {
@@ -220,6 +224,16 @@ export default {
         address: 'IP來源',
         createTime: '操作時間'
       }
+    },
+    user: {
+      username: '用戶名',
+      avatarPath: '頭像',
+      sex: '性別',
+      email: '郵箱',
+      phone: '電話',
+      enabled: '狀態',
+      updateTime: '修改時間',
+      createTime: '註冊時間'
     }
   },
   scaffoldJsonViewer: {
@@ -237,7 +251,7 @@ export default {
   },
   userCenter: {
     leftCard: {
-      title: '個人信息',
+      title: '個人信息(頭像需要審核通過後才能顯示)',
       avatarAlt: '點擊更換頭像',
       loginName: '登入帳號',
       sex: '性別',
@@ -297,6 +311,49 @@ export default {
         emailError1: '郵箱不能為原郵箱',
         emailError2: '郵箱格式錯誤'
       }
+    }
+  },
+  userPage: {
+    placeholderInput: '請輸入郵箱或用戶名査詢',
+    placeholderSelect: '狀態',
+    form: {
+      username: '用戶名',
+      phone: '電話',
+      email: '郵箱',
+      sex: '性別',
+      man: '男',
+      woman: '女',
+      status: '狀態',
+      statusOk: '啟用',
+      statusNo: '禁用',
+      role: '角色',
+      rolePlaceholder: '請選擇'
+    },
+    column: {
+      operate: '操作'
+    },
+    title: '用戶',
+    validPhone: {
+      error1: '請輸入電話號碼',
+      error2: '請輸入正確的11比特手機號碼'
+    },
+    validUsername: {
+      error1: '請輸入用戶名',
+      error2: '長度在 2 到 10 個字元'
+    },
+    validEmail: {
+      error1: '請輸入郵箱地址',
+      error2: '請輸入正確的郵箱地址'
+    },
+    validRoles: {
+      error: '請選擇角色'
+    },
+    createdTip: '新增成功，默認密碼：123456',
+    rolesIsNull: '角色不能為空',
+    enabledTips: {
+      tip1: '此操作將',
+      tip2: '，是否繼續？',
+      tip3: '成功'
     }
   },
   ...zhTWLocale
