@@ -66,7 +66,7 @@ const state = {
     ]
   },
   users: [
-    { prop: 'username', label: String(i18n.t('tableHeader.user.username')), sortable: false, width: '100' },
+    { prop: 'username', label: String(i18n.t('tableHeader.user.username')), sortable: false, width: '100', fixed: 'left' },
     { prop: 'avatar.path', label: String(i18n.t('tableHeader.user.avatarPath')), sortable: false, width: '' },
     { prop: 'sex', label: String(i18n.t('tableHeader.user.sex')), sortable: false, width: '' },
     { prop: 'email', label: String(i18n.t('tableHeader.user.email')), sortable: false, width: '200' },
@@ -76,14 +76,24 @@ const state = {
     { prop: 'createTime', label: String(i18n.t('tableHeader.user.createTime')), sortable: true, width: '200' }
   ],
   avatars: [
-    // TODO 明天完成头像列表国际化
-    { prop: 'username', label: '用户名', showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'path', label: '头像', showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'realName', label: '文件名', showOverflowTooltip: true, sortable: false, width: '' },
-    { prop: 'size', label: '文件大小', showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'enabled', label: '是否已审核', showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'updateTime', label: '修改时间', showOverflowTooltip: false, sortable: true, width: '200' },
-    { prop: 'createTime', label: '创建时间', showOverflowTooltip: false, sortable: true, width: '200' }
+    { prop: 'username', label: String(i18n.t('tableHeader.avatar.username')), showOverflowTooltip: false, sortable: false, width: '150', fixed: 'left' },
+    { prop: 'path', label: String(i18n.t('tableHeader.avatar.path')), showOverflowTooltip: false, sortable: false, width: '150' },
+    { prop: 'realName', label: String(i18n.t('tableHeader.avatar.realName')), showOverflowTooltip: true, sortable: false, width: '' },
+    { prop: 'size', label: String(i18n.t('tableHeader.avatar.size')), showOverflowTooltip: false, sortable: false, width: '150' },
+    { prop: 'enabled', label: String(i18n.t('tableHeader.avatar.enabled')), showOverflowTooltip: false, sortable: false, width: '150' },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.avatar.updateTime')), showOverflowTooltip: false, sortable: true, width: '200' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.avatar.createTime')), showOverflowTooltip: false, sortable: true, width: '200' }
+  ],
+  roles: [
+    { prop: 'name', label: String(i18n.t('tableHeader.role.name')), sortable: false, width: '100', fixed: 'left' },
+    { prop: 'nameZhCn', label: 'zh-CN', sortable: false, width: '100' },
+    { prop: 'nameZhHk', label: 'zh-HK', sortable: false, width: '100' },
+    { prop: 'nameZhTw', label: 'zh-TW', sortable: false, width: '100' },
+    { prop: 'nameEnUs', label: 'en-US', sortable: false, width: '100' },
+    { prop: 'permission', label: String(i18n.t('tableHeader.role.permission')), sortable: false, width: '100' },
+    { prop: 'level', label: String(i18n.t('tableHeader.role.level')), sortable: true, width: '100' },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.role.updateTime')), sortable: true, width: '200' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.role.createTime')), sortable: true, width: '200' }
   ]
 }
 

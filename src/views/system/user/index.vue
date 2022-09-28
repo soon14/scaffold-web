@@ -1,12 +1,12 @@
 <template>
   <div class="app-container">
+    <back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
         <template #right>
           <el-select
             v-model="query.enabled"
             clearable
-            size="small"
             :placeholder="String($t('userPage.placeholderSelect'))"
             class="filter-item"
             style="width: 90px"
@@ -40,8 +40,7 @@
           inline
           :model="form"
           :rules="rules"
-          size="medium"
-          label-width="66px"
+          label-width="90px"
           label-position="right"
         >
           <el-form-item :label="String($t('userPage.form.username'))" prop="username">
@@ -55,8 +54,8 @@
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
-              <el-radio :label="String($t('userPage.form.man'))">{{ $t('userPage.form.man') }}</el-radio>
-              <el-radio :label="String($t('userPage.form.woman'))">{{ $t('userPage.form.woman') }}</el-radio>
+              <el-radio label="男">{{ $t('userPage.form.man') }}</el-radio>
+              <el-radio label="女">{{ $t('userPage.form.woman') }}</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.status'))">
@@ -69,7 +68,7 @@
             <el-select
               ref="roleSelect"
               v-model="form.roles"
-              style="width:437px"
+              style="width:400px"
               multiple
               :placeholder="String($t('userPage.form.rolePlaceholder'))"
               clearable
@@ -88,19 +87,18 @@
         </el-form>
       </template>
       <template #footer>
-        <el-button size="small" round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
-        <el-button :loading="crud.cu === 2" size="small" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
+        <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
+        <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
     </scaffold-dialog>
     <scaffold-table
       ref="scaffoldTable"
       :crud="crud"
       :table-data="crud.data"
-      :is-border="false"
       :default-sort="{prop:'createTime',order:'descending'}"
     >
       <template #tableColumns>
-        <el-table-column type="selection" width="55" />
+        <el-table-column type="selection" width="55" fixed="left" />
         <template v-for="item in tableHeader.users">
           <el-table-column
             v-if="columns.visible(item.prop)"
@@ -109,6 +107,7 @@
             :label="item.label"
             :sortable="item.sortable"
             :width="item.width"
+            :fixed="item.fixed"
           >
             <template v-slot="scope">
               <span v-if="item.prop === 'avatar.path'">
@@ -150,7 +149,7 @@
           </el-table-column>
         </template>
         <el-table-column
-          v-permission="['root','User:delete','User:edit']"
+          v-permission="['root','User:delete','User:update']"
           :label="String($t('userPage.column.operate'))"
           width="125"
           align="center"
@@ -173,6 +172,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
+import backTopAndBottom from '@/components/BackTopAndBottom'
 import { add, edit, del } from '@/api/system/user'
 import Avatar from '@/assets/images/avatar.png'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
@@ -197,7 +197,8 @@ export default {
     buttonOperation,
     paginationOperation,
     updateDeleteOperation,
-    scaffoldDialog
+    scaffoldDialog,
+    backTopAndBottom
   },
   mixins: [
     presenter(defaultCrud),
@@ -328,7 +329,7 @@ export default {
     },
     getRoles() {
       getRoles().then(res => {
-        this.roles = res.data
+        this.roles = res.data.content
       }).catch(() => {})
     },
     afterErrorMethod(crud) {

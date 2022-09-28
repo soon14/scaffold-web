@@ -60,6 +60,7 @@ export default {
   },
   headerSearch: '査詢',
   no: '暫無',
+  nodata: '暫無數據',
   error: '錯誤',
   serverException: '服務器异常',
   networkTimeOut: '網絡請求超時',
@@ -234,6 +235,22 @@ export default {
       enabled: '狀態',
       updateTime: '修改時間',
       createTime: '註冊時間'
+    },
+    avatar: {
+      username: '用戶名',
+      path: '頭像',
+      realName: '檔名',
+      size: '文件大小',
+      enabled: '是否已稽核',
+      updateTime: '修改時間',
+      createTime: '創建時間'
+    },
+    role: {
+      name: '角色',
+      permission: '角色許可權',
+      level: '角色等級',
+      updateTime: '修改時間',
+      createTime: '創建時間'
     }
   },
   scaffoldJsonViewer: {
@@ -354,6 +371,22 @@ export default {
       tip1: '此操作將',
       tip2: '，是否繼續？',
       tip3: '成功'
+    }
+  },
+  avatarPage: {
+    placeholderInput: '請輸入用戶名査詢',
+    placeholderState: '稽核狀態',
+    operate: '操作',
+    title: '頭像',
+    enabledOK: '已稽核',
+    enabledNo: '未稽核',
+    enable: '啟用',
+    disable: '禁用',
+    enabledTips: {
+      tip1: '此操作將',
+      tip2: '用戶 [',
+      tip3: '] 的頭像，是否繼續？',
+      tip4: '成功'
     }
   },
   ...zhTWLocale

@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
+    <back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation input-placeholder="请输入用户名查询">
+      <search-date-picker-operation :input-placeholder="String($t('avatarPage.placeholderInput'))">
         <template #right>
           <el-select
             v-model="query.enabled"
             clearable
-            size="small"
-            placeholder="审核状态"
+            :placeholder="String($t('avatarPage.placeholderState'))"
             class="filter-item"
             style="width: 120px"
             @change="crud.toQuery"
@@ -27,11 +27,10 @@
       ref="scaffoldTable"
       :table-data="crud.data"
       :crud="crud"
-      :is-border="false"
       :default-sort="{prop:'createTime',order:'descending'}"
     >
       <template #tableColumns>
-        <el-table-column type="selection" width="55" />
+        <el-table-column type="selection" width="55" fixed="left" />
         <template v-for="item in tableHeader.avatars">
           <el-table-column
             v-if="columns.visible(item.prop)"
@@ -41,6 +40,7 @@
             :show-overflow-tooltip="item.showOverflowTooltip"
             :sortable="item.sortable"
             :width="item.width"
+            :fixed="item.fixed"
           >
             <template slot-scope="scope">
               <span v-if="scope.row[item.prop] === null">
@@ -48,9 +48,9 @@
                   <el-avatar :src="Avatar" size="80" />
                 </span>
                 <span v-else-if="item.prop === 'enabled'">
-                  <el-tag type="warning" size="small">暂无数据</el-tag>
+                  <el-tag type="warning">{{ $t('nodata') }}</el-tag>
                 </span>
-                <span v-else>暂无数据</span>
+                <span v-else>{{ $t('nodata') }}</span>
               </span>
               <span v-else>
                 <span v-if="item.prop === 'path'">
@@ -63,8 +63,8 @@
                   <span v-else>{{ scope.row[item.prop] }}</span>
                 </span>
                 <span v-else-if="item.prop === 'enabled'">
-                  <el-tag v-if="scope.row[item.prop] === '已审核'" type="success" size="small">{{ scope.row[item.prop] }}</el-tag>
-                  <el-tag v-else type="danger" size="small">{{ scope.row[item.prop] }}</el-tag>
+                  <el-tag v-if="scope.row[item.prop] === '已审核'" type="success">{{ scope.row[item.prop] }}</el-tag>
+                  <el-tag v-else type="danger">{{ scope.row[item.prop] }}</el-tag>
                 </span>
                 <span v-else-if="item.prop === 'updateTime'">
                   {{ scope.row[item.prop] }}
@@ -76,7 +76,7 @@
         </template>
         <el-table-column
           v-permission="['root','Avatar:delete','Avatar:edit']"
-          label="操作"
+          :label="String($t('avatarPage.operate'))"
           width="125"
           align="center"
           fixed="right"
@@ -110,6 +110,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import backTopAndBottom from '@/components/BackTopAndBottom'
 import { del, editEnabled } from '@/api/system/avatar'
 import Avatar from '@/assets/images/avatar.png'
 import scaffoldTable from '@/components/ScaffoldTable'
@@ -118,8 +119,9 @@ import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import CRUD, { header, presenter } from '@/utils/crud'
+import i18n from '@/i18n'
 
-const defaultCrud = CRUD({ url: '/avatars', title: '头像', crudMethod: { del }})
+const defaultCrud = CRUD({ url: '/avatars', title: String(i18n.t('avatarPage.title')), crudMethod: { del }})
 export default {
   name: 'Avatar',
   components: {
@@ -127,7 +129,8 @@ export default {
     buttonOperation,
     searchDatePickerOperation,
     paginationOperation,
-    updateDeleteOperation
+    updateDeleteOperation,
+    backTopAndBottom
   },
   mixins: [
     presenter(defaultCrud),
@@ -142,8 +145,8 @@ export default {
         del: ['Avatar:del', 'root']
       },
       enabledTypeOptions: [
-        { key: 'AUDIT_NO', displayName: '未审核' },
-        { key: 'AUDIT_OK', displayName: '已审核' }
+        { key: 'AUDIT_NO', displayName: String(i18n.t('avatarPage.enabledNo')) },
+        { key: 'AUDIT_OK', displayName: String(i18n.t('avatarPage.enabledOK')) }
       ]
     }
   },
@@ -163,14 +166,14 @@ export default {
   },
   methods: {
     changeEnabled(data, val) {
-      const operate = val === '已审核' ? '启用' : '禁用'
-      this.$confirm('此操作将' + operate + '用户 [' + data.username + '] 的头像' + ', 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      const operate = val === '已审核' ? String(i18n.t('avatarPage.enable')) : String(i18n.t('avatarPage.disable'))
+      this.$confirm(String(i18n.t('avatarPage.enabledTips.tip1')) + operate + String(i18n.t('avatarPage.enabledTips.tip2')) + data.username + String(i18n.t('avatarPage.enabledTips.tip3')), String(i18n.t('confirmTips')), {
+        confirmButtonText: String(i18n.t('ok')),
+        cancelButtonText: String(i18n.t('cancel')),
         type: 'warning'
       }).then(() => {
         editEnabled(data.id, data.enabled).then(() => {
-          this.crud.notify(operate + '成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+          this.crud.notify(operate + String(i18n.t('avatarPage.enabledTips.tip4')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         }).catch(() => {
           if (data.enabled === '已审核') {
             data.enabled = '未审核'

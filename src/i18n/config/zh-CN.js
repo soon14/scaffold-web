@@ -60,6 +60,7 @@ export default {
   },
   headerSearch: '查询',
   no: '暂无',
+  nodata: '暂无数据',
   error: '错误',
   serverException: '服务器异常',
   networkTimeOut: '网络请求超时',
@@ -234,6 +235,22 @@ export default {
       enabled: '状态',
       updateTime: '修改时间',
       createTime: '注册时间'
+    },
+    avatar: {
+      username: '用户名',
+      path: '头像',
+      realName: '文件名',
+      size: '文件大小',
+      enabled: '是否已审核',
+      updateTime: '修改时间',
+      createTime: '创建时间'
+    },
+    role: {
+      name: '角色',
+      permission: '角色权限',
+      level: '角色等级',
+      updateTime: '修改时间',
+      createTime: '创建时间'
     }
   },
   scaffoldJsonViewer: {
@@ -354,6 +371,22 @@ export default {
       tip1: '此操作将',
       tip2: ', 是否继续?',
       tip3: '成功'
+    }
+  },
+  avatarPage: {
+    placeholderInput: '请输入用户名查询',
+    placeholderState: '审核状态',
+    operate: '操作',
+    title: '头像',
+    enabledOK: '已审核',
+    enabledNo: '未审核',
+    enable: '启用',
+    disable: '禁用',
+    enabledTips: {
+      tip1: '此操作将',
+      tip2: '用户 [',
+      tip3: '] 的头像, 是否继续?',
+      tip4: '成功'
     }
   },
   ...zhCNLocale

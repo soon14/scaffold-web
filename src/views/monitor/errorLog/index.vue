@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom :bottom="90" :right="30" />
+    <back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation />
       <button-operation>

@@ -10,7 +10,10 @@
     :default-sort="defaultSort"
     :tooltip-effect="tooltipEffect"
     :header-cell-style="{color:'#333333',fontWeight:'bold'}"
+    :size="size"
+    :highlight-current-row="highlightCurrentRow"
     @selection-change="crud.selectionChangeHandler"
+    @current-change="currentChange"
   >
     <slot name="tableColumns" />
   </el-table>
@@ -38,7 +41,7 @@ export default {
     isBorder: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     // 表格渲染时候默认的排序规则
     // eslint-disable-next-line vue/require-default-prop
@@ -57,6 +60,22 @@ export default {
       type: String,
       required: false,
       default: 'light'
+    },
+    // eslint-disable-next-line vue/require-default-prop
+    size: {
+      type: String,
+      required: false
+    },
+    // 是否要高亮当前行
+    highlightCurrentRow: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  methods: {
+    currentChange(val) {
+      this.$emit('current-change', val)
     }
   }
 }
@@ -65,35 +84,29 @@ export default {
 <style lang="scss" scoped>
 .my-table {
   ::v-deep .el-table__body-wrapper {
-    // 适配火狐浏览器
-    scrollbar-width: none;
-    scrollbar-color: #dddee0 transparent;
-
-    // 隐藏滚动条
+    // 滚动条整体部分
     &::-webkit-scrollbar {
-      width: 0;
-      display: none;
+      width: 17px;
+      height: 17px;
       background-color: #dddee0;
     }
 
-    &::-webkit-scrollbar-track {
-      display: none;
+    // 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
+    &::-webkit-scrollbar-thumb {
+      background: rgba(144, 147, 153, 0.54);
+      cursor: pointer;
+      border-radius: 10px;
+      position: relative;
+      transition: background-color .3s;
+      transition-property: background-color;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+      transition-delay: 0s;
     }
-  }
 
-  // 隐藏空白部分
-  ::v-deep th.gutter {
-    display: none;
-    width: 0;
-  }
-
-  ::v-deep colgroup col[name='gutter'] {
-    display: none;
-    width: 0;
-  }
-
-  ::v-deep .el-table__body {
-    width: 100% !important;
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
   }
 }
 </style>

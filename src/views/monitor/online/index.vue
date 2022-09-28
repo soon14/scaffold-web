@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom :bottom="90" :right="30" />
+    <back-top-and-bottom />
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <el-input
@@ -34,7 +34,6 @@
       ref="scaffoldTable"
       :table-data="tableData"
       :crud="crud"
-      is-border
       :default-sort="{prop:'loginTime',order:'descending'}"
     >
       <template #tableColumns>

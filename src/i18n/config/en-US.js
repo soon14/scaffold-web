@@ -60,6 +60,7 @@ export default {
   },
   headerSearch: 'Search',
   no: 'No',
+  nodata: 'No Data',
   error: 'error',
   serverException: 'Server Exception',
   networkTimeOut: 'Network Request Timeout',
@@ -234,6 +235,22 @@ export default {
       enabled: 'State',
       updateTime: 'Update Time',
       createTime: 'Create Time'
+    },
+    avatar: {
+      username: 'Username',
+      path: 'Avatar',
+      realName: 'RealName',
+      size: 'Size',
+      enabled: 'Enabled',
+      updateTime: 'UpdateTime',
+      createTime: 'CreateTime'
+    },
+    role: {
+      name: 'Roles',
+      permission: 'Permission',
+      level: 'Level',
+      updateTime: 'UpdateTime',
+      createTime: 'CreateTime'
     }
   },
   scaffoldJsonViewer: {
@@ -354,6 +371,22 @@ export default {
       tip1: 'This action will ',
       tip2: ', Do you want to continue?',
       tip3: 'Success'
+    }
+  },
+  avatarPage: {
+    placeholderInput: 'Please enter the user name to query',
+    placeholderState: 'Audit status',
+    operate: 'Operate',
+    title: 'Avatar',
+    enabledOK: 'Reviewed',
+    enabledNo: 'Unapproved',
+    enable: 'Enable',
+    disable: 'Disable',
+    enabledTips: {
+      tip1: 'This action will ',
+      tip2: ' User [',
+      tip3: '] \'s avatar, Do you want to continue?',
+      tip4: 'Success'
     }
   },
   ...enLocale

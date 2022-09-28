@@ -55,7 +55,7 @@ function initWebSocket(url, callback) {
     webSocketOpen()
   }
   webSocket.onerror = function () {
-    console.log('WebSocket连接发生错误!')
+    // console.log('WebSocket连接发生错误!')
   }
 }
 
@@ -82,11 +82,11 @@ function webSocketOnMessage(msg) {
 
 // 关闭
 function webSocketClose(e) {
-  console.log('WebSocket连接关闭(' + e.code + ')')
+  // console.log('WebSocket连接关闭(' + e.code + ')')
 }
 
 function webSocketOpen() {
-  console.log('WebSocket连接打开')
+  // console.log('WebSocket连接打开')
 }
 
 export { createWebSocket, sendSock, closeWebSocket }

@@ -58,11 +58,11 @@ export default {
     },
     right: {
       type: Number,
-      default: 40
+      default: 30
     },
     bottom: {
       type: Number,
-      default: 40
+      default: 90
     }
   },
   data() {
@@ -127,7 +127,6 @@ export default {
         const progress = (Date.now() - beginTime) / 500
         if (progress < 1) {
           el.scrollTop = beginValue * (1 - easeInOutCubic(progress))
-          console.log(beginValue)
           rAF(frameFunc)
         } else {
           el.scrollTop = 0
