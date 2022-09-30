@@ -44,9 +44,17 @@
           </el-form-item>
           <el-form-item label="角色级别" prop="level">
             <el-input-number
+              v-if="crud.status.edit === 1"
               v-model.number="form.level"
               :min="Number(levelMin)"
               :max="Number(levelMax)"
+              controls-position="right"
+              style="width: 145px;"
+            />
+            <el-input-number
+              v-if="crud.status.add === 1"
+              v-model.number="form.level"
+              :min="1"
               controls-position="right"
               style="width: 145px;"
             />
@@ -62,7 +70,7 @@
       <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="17" style="margin-bottom: 10px">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span class="role-span">角色列表</span>
+            <span class="role-span">角色列表 (修改菜单后该角色需要注销重新登录)</span>
           </div>
           <scaffold-table
             ref="scaffoldTable"
@@ -108,8 +116,10 @@
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="7">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <el-tooltip class="item" effect="dark" content="选择指定角色分配菜单" placeholder="top">
-              <span class="role-span">菜单分配</span>
+            <el-tooltip class="item" effect="light" content="选择指定角色分配菜单" placeholder="top">
+              <span class="role-span">
+                菜单分配
+              </span>
             </el-tooltip>
             <el-button
               v-permission="['root','Role:update']"
@@ -118,6 +128,7 @@
               icon="el-icon-check"
               style="float: right; padding: 6px 9px"
               type="primary"
+              @click="saveMenus"
             >保存</el-button>
           </div>
           <el-tree
@@ -145,10 +156,10 @@ import scaffoldDialog from '@/components/ScaffoldDialog'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { getLevelScope, edit, del } from '@/api/system/roles'
+import { getLevelScope, edit, del, editMenu, getRoleById, add } from '@/api/system/roles'
 import { getMenusTree } from '@/api/system/menu'
 
-const defaultCrud = CRUD({ url: '/roles', title: '角色', crudMethod: { edit, del }})
+const defaultCrud = CRUD({ url: '/roles', title: '角色', crudMethod: { edit, del, add }})
 const defaultForm = { id: null, name: null, permission: null, level: 4, nameZhCn: null, nameZhHk: null, nameZhTw: null, nameEnUs: null }
 export default {
   name: 'Role',
@@ -243,8 +254,44 @@ export default {
           _this.menuIds.push(data.id)
         })
       }
+    },
+    saveMenus() {
+      this.menuLoading = true
+      const role = {
+        id: this.currentId,
+        menus: []
+      }
+      // 得到半选的父节点数据,保存起来
+      this.$refs.menu.getHalfCheckedNodes().forEach(function (data, index) {
+        const menu = { id: data.id }
+        role.menus.push(menu)
+      })
+      // 得到已选中的Key值
+      this.$refs.menu.getCheckedKeys().forEach(function (data, index) {
+        const menu = { id: data }
+        role.menus.push(menu)
+      })
+      // 调用方法
+      editMenu(role).then(res => {
+        this.crud.notify('保存成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+        this.menuLoading = false
+        this.update()
+      }).catch(err => {
+        this.menuLoading = false
+        console.log(err.response.data.message)
+      })
+    },
+    update() {
+      // 无刷新更新 表格数据
+      getRoleById(this.currentId).then(res => {
+        for (let i = 0; i < this.crud.data.length; i++) {
+          if (res.data.id === this.crud.data[i].id) {
+            this.crud.data[i] = res.data
+            break
+          }
+        }
+      })
     }
-    // TODO 明天完成菜单修改
   }
 }
 </script>

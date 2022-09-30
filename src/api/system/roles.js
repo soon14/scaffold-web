@@ -14,6 +14,13 @@ export function getLevelScope() {
   })
 }
 
+export function getRoleById(id) {
+  return request({
+    url: '/roles/' + id,
+    method: 'get'
+  })
+}
+
 export function edit(data) {
   return request({
     url: '/roles',
@@ -27,5 +34,21 @@ export function del(ids) {
     url: '/roles',
     method: 'delete',
     data: ids
+  })
+}
+
+export function editMenu(data) {
+  return request({
+    url: '/roles/menus',
+    method: 'put',
+    data
+  })
+}
+
+export function add(data) {
+  return request({
+    url: '/roles',
+    method: 'post',
+    data
   })
 }

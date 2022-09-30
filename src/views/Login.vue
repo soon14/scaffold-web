@@ -36,6 +36,7 @@
             :placeholder="$t('login.placeholderCode')"
             auto-complete="false"
             @keyup.enter.native="submitLogin"
+            clearable
           />
           <div class="loginCode">
             <img :src="captchaUrl" alt="" @click="getCode">

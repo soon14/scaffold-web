@@ -11,8 +11,10 @@ import Cookies from 'js-cookie'
 
 // 全局CSS
 import './assets/styles/index.scss'
-
 import 'element-ui/lib/theme-chalk/index.css'
+
+// 权限
+import Permission from './components/Permission'
 
 // 阿里巴巴icon库
 import './assets/iconfont/iconfont.css'
@@ -41,6 +43,7 @@ import './utils/desensitize'
 
 Vue.use(VueHighlightJS)
 Vue.use(JsonViewer)
+Vue.use(Permission)
 // 设置 element-ui 默认大小
 Vue.use(Element, {
   size: Cookies.get('size') || 'default'
