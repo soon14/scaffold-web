@@ -1,19 +1,28 @@
 <template>
   <el-dropdown trigger="click" @command="handleSetSize">
     <div>
-      <i class="iconfont iconfont-font-size size-select" />
+      <scaffold-svg
+        icon-class="font-size"
+        class-name="size-select"
+      />
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item
-        v-for="item in sizeOptions"
-        :key="item.value"
-        :disabled="size === item.value"
-        :icon="item.icon"
-        :command="item.value"
-        style="font-size: 15px"
-      >
-        {{ item.label }}
-      </el-dropdown-item>
+      <template v-for="item in sizeOptions">
+        <el-dropdown-item
+          :key="item.value"
+          :disabled="size === item.value"
+          :command="item.value"
+          style="font-size: 15px"
+        >
+          <template #default>
+            <scaffold-svg
+              :icon-class="item.icon"
+              class-name="size-select-item"
+            />
+            {{ item.label }}
+          </template>
+        </el-dropdown-item>
+      </template>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
@@ -27,22 +36,22 @@ export default {
         {
           label: 'Default',
           value: 'default',
-          icon: 'iconfont iconfont-default'
+          icon: 'default'
         },
         {
           label: 'Medium',
           value: 'medium',
-          icon: 'iconfont iconfont-medium'
+          icon: 'medium'
         },
         {
           label: 'Small',
           value: 'small',
-          icon: 'iconfont iconfont-small'
+          icon: 'small'
         },
         {
           label: 'Mini',
           value: 'mini',
-          icon: 'iconfont iconfont-mini'
+          icon: 'mini'
         }
       ]
     }
@@ -81,5 +90,9 @@ export default {
 <style scoped>
 .size-select {
   font-size: 20px;
+}
+
+.size-select-item {
+  font-size: 16px;
 }
 </style>

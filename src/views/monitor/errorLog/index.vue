@@ -18,6 +18,7 @@
         </el-button>
       </button-operation>
     </div>
+    <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
     <scaffold-table
       ref="scaffoldTable"
       :table-data="crud.data"
@@ -74,16 +75,15 @@
             </template>
           </el-table-column>
         </template>
-        <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">
+        <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" align="center" fixed="right">
           <template slot-scope="scope">
-            <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">
+            <el-button type="text" @click="getExceptionInfo(scope.row.id)">
               {{ $t('errorLogsPage.lookInfo') }}
             </el-button>
           </template>
         </el-table-column>
       </template>
     </scaffold-table>
-    <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
     <pagination-operation />
   </div>
 </template>

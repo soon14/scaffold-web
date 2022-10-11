@@ -12,8 +12,12 @@
     :header-cell-style="{color:'#333333',fontWeight:'bold'}"
     :size="size"
     :highlight-current-row="highlightCurrentRow"
-    @selection-change="crud.selectionChangeHandler"
+    :tree-props="treeProps"
+    :row-key="rowKey"
     @current-change="currentChange"
+    @select="select"
+    @select-all="selectAll"
+    @selection-change="crud.selectionChangeHandler"
   >
     <slot name="tableColumns" />
   </el-table>
@@ -71,11 +75,32 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    // 渲染嵌套数据的配置选项
+    treeProps: {
+      type: Object,
+      default() {
+        return {
+          hasChildren: 'hasChildren',
+          children: 'children'
+        }
+      }
+    },
+    // eslint-disable-next-line vue/require-default-prop
+    rowKey: {
+      type: [String, Function],
+      required: false
     }
   },
   methods: {
     currentChange(val) {
       this.$emit('current-change', val)
+    },
+    select(selection, row) {
+      this.$emit('select', selection, row)
+    },
+    selectAll(selection) {
+      this.$emit('select-all', selection)
     }
   }
 }

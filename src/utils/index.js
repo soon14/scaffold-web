@@ -381,7 +381,7 @@ export function regEmail(email) {
         _s += '*'
       }
     }
-    var new_email = str[0].substr(0, 3) + _s + '@' + str[1]
+    var new_email = str[0].substring(0, 3) + _s + '@' + str[1]
   }
   return new_email
 }
@@ -389,7 +389,7 @@ export function regEmail(email) {
 // 替换手机字符
 export function regMobile(mobile) {
   if (mobile.length > 7) {
-    var new_mobile = mobile.substr(0, 3) + '****' + mobile.substr(7)
+    var new_mobile = mobile.substring(0, 3) + '****' + mobile.substring(7)
   }
   return new_mobile
 }
@@ -410,4 +410,19 @@ export function downloadFile(obj, name, suffix) {
 export function verifyPassword(newPassword) {
   const reg = new RegExp('^[a-zA-Z]\\w{5,17}$')
   return reg.test(newPassword)
+}
+
+// 根据上级菜单ID在菜单树里寻找label
+export function getMenuName(array, pid) {
+  for (const item of array) {
+    if (item.id === pid) {
+      return item.label
+    }
+    if (item.children && item.children.length > 0) {
+      const _item = getMenuName(item.children, pid)
+      if (_item) {
+        return _item
+      }
+    }
+  }
 }

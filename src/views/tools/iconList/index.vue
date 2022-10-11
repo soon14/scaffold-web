@@ -1,12 +1,18 @@
 <template>
-  <el-frame src="/static/demo_index.html" />
+  <scaffold-frame :src="iconListApi" />
 </template>
 
 <script>
-import ElFrame from '@/components/Iframe'
+import { mapGetters } from 'vuex'
+import scaffoldFrame from '@/components/ScaffoldFrame'
 
 export default {
   name: 'IconList',
-  components: { ElFrame }
+  components: { scaffoldFrame },
+  computed: {
+    ...mapGetters([
+      'iconListApi'
+    ])
+  }
 }
 </script>

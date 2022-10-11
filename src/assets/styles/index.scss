@@ -1,5 +1,4 @@
 @import "element-ui";
-@import "iconfont";
 @import "mixin";
 @import "sidebar";
 @import "transition";
@@ -213,5 +212,9 @@ aside {
 
 .multiselect--active {
   z-index: 1000 !important;
+}
+
+.el-popup-parent--hidden {
+  padding-right: 0 !important;
 }
 

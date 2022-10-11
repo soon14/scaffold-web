@@ -9,35 +9,50 @@
           <el-input
             v-model="loginForm.username"
             type="text"
-            prefix-icon="iconfont iconfont-user"
             :placeholder="$t('login.placeholderUsername')"
             auto-complete="false"
             clearable
-          />
+          >
+            <scaffold-svg
+              slot="prefix"
+              icon-class="user"
+              class="el-input__icon input-icon"
+            />
+          </el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
             v-model="loginForm.password"
             type="password"
-            prefix-icon="iconfont iconfont-password"
             :placeholder="$t('login.placeholderPassword')"
             auto-complete="false"
             clearable
             show-password
             @keyup.enter.native="submitLogin"
-          />
+          >
+            <scaffold-svg
+              slot="prefix"
+              icon-class="password"
+              class="el-input__icon input-icon"
+            />
+          </el-input>
         </el-form-item>
         <el-form-item prop="code" class="loginFormItemCode">
           <el-input
             v-model="loginForm.code"
             style="width: 58%;"
-            prefix-icon="iconfont iconfont-verify-code"
             type="text"
             :placeholder="$t('login.placeholderCode')"
             auto-complete="false"
-            @keyup.enter.native="submitLogin"
             clearable
-          />
+            @keyup.enter.native="submitLogin"
+          >
+            <scaffold-svg
+              slot="prefix"
+              icon-class="verify-code"
+              class="el-input__icon input-icon"
+            />
+          </el-input>
           <div class="loginCode">
             <img :src="captchaUrl" alt="" @click="getCode">
           </div>
@@ -232,6 +247,12 @@ export default {
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     white-space: nowrap;
+
+    .input-icon {
+      height: 39px;
+      width: 14px;
+      margin-left: 2px;
+    }
 
     .loginFormItemTitle {
       margin: 0 auto 30px auto;

@@ -38,7 +38,9 @@ const getters = {
   // 修改头像API
   updateAvatarApi: state => state.api.updateAvatarApi,
   // 用户修改邮箱的select下拉框
-  options: state => state.userUpdate.options
+  options: state => state.userUpdate.options,
+  // ICON列表API
+  iconListApi: state => state.api.iconListApi
 }
 
 export default getters

@@ -27,35 +27,35 @@
             <div class="ul-div">
               <ul class="user-info">
                 <li>
-                  <i class="iconfont iconfont-center-username" /> {{ $t('userCenter.leftCard.loginName') }}
+                  <scaffold-svg icon-class="center-username" /> {{ $t('userCenter.leftCard.loginName') }}
                   <div class="user-right">{{ user.username }}</div>
                 </li>
                 <li>
-                  <i class="iconfont iconfont-center-sex" /> {{ $t('userCenter.leftCard.sex') }}
+                  <scaffold-svg icon-class="center-sex" /> {{ $t('userCenter.leftCard.sex') }}
                   <div class="user-right">{{ user.sex }}</div>
                 </li>
                 <li>
-                  <i class="iconfont iconfont-center-phone" /> {{ $t('userCenter.leftCard.phone') }}
+                  <scaffold-svg icon-class="center-phone" /> {{ $t('userCenter.leftCard.phone') }}
                   <div class="user-right">{{ user.phone }}</div>
                 </li>
                 <li>
-                  <i class="iconfont iconfont-center-email" /> {{ $t('userCenter.leftCard.email') }}
+                  <scaffold-svg icon-class="center-email" /> {{ $t('userCenter.leftCard.email') }}
                   <div class="user-right">{{ user.email }}</div>
                 </li>
                 <li>
-                  <i class="iconfont iconfont-center-last-pass-change" /> {{ $t('userCenter.leftCard.lastChangePass') }}
+                  <scaffold-svg icon-class="center-last-pass-change" /> {{ $t('userCenter.leftCard.lastChangePass') }}
                   <div class="user-right">{{ user.lastPassResetTime === null ? $t('userCenter.leftCard.no') : user.lastPassResetTime }}</div>
                 </li>
                 <li v-if="user.avatar !== null">
-                  <i class="iconfont iconfont-center-last-avatar-change" /> {{ $t('userCenter.leftCard.lastChangeAvatar') }}
+                  <scaffold-svg icon-class="center-last-avatar-change" /> {{ $t('userCenter.leftCard.lastChangeAvatar') }}
                   <div class="user-right">{{ user.avatar.updateTime === null ? $t('userCenter.leftCard.no') : user.avatar.updateTime }}</div>
                 </li>
                 <li>
-                  <i class="iconfont iconfont-center-createTime" /> {{ $t('userCenter.leftCard.resTime') }}
+                  <scaffold-svg icon-class="center-createTime" /> {{ $t('userCenter.leftCard.resTime') }}
                   <div class="user-right">{{ user.createTime }}</div>
                 </li>
                 <li>
-                  <i class="iconfont iconfont-center-security" /> {{ $t('userCenter.leftCard.securitySetting') }}
+                  <scaffold-svg icon-class="center-security" /> {{ $t('userCenter.leftCard.securitySetting') }}
                   <div class="user-right">
                     <el-link style="font-size: 12px" @click="$refs.pass.dialog = true"><i class="el-icon-edit" />&nbsp;{{ $t('userCenter.leftCard.changePass') }}</el-link>
                     <el-divider direction="vertical" />

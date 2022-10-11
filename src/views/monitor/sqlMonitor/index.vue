@@ -1,14 +1,14 @@
 <template>
-  <el-frame :src="sqlMonitorApi" />
+  <scaffold-frame :src="sqlMonitorApi" />
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import ElFrame from '@/components/Iframe'
+import ScaffoldFrame from '@/components/ScaffoldFrame'
 
 export default {
   name: 'SqlMonitor',
-  components: { ElFrame },
+  components: { ScaffoldFrame },
   computed: {
     ...mapGetters([
       'sqlMonitorApi'

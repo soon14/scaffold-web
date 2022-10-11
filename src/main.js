@@ -17,7 +17,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Permission from './components/Permission'
 
 // 阿里巴巴icon库
-import './assets/iconfont/iconfont.css'
+import './assets/icons/index'
 
 // 代码高亮
 import VueHighlightJS from 'vue-highlightjs'

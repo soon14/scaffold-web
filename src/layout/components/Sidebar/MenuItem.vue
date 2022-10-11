@@ -20,7 +20,7 @@ export default {
     // 组件体
     const nodes = []
     if (icon) {
-      nodes.push(<i class={icon} style='font-size:20px;'/>)
+      nodes.push(<scaffold-svg icon-class={icon} class-name='svg-icon'/>)
     }
     if (title) {
       nodes.push(<span slot='title'>{(title)}</span>)
@@ -29,3 +29,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.svg-icon{
+  font-size: 18px;
+}
+</style>

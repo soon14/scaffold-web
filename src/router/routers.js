@@ -48,7 +48,7 @@ export const constantRouterMap = [
         name: 'Dashboard',
         meta: {
           title: String(i18n.t('dashboard.title')),
-          icon: 'iconfont iconfont-index',
+          icon: 'index',
           affix: true,
           noCache: true
         }

@@ -94,6 +94,18 @@ const state = {
     { prop: 'level', label: String(i18n.t('tableHeader.role.level')), sortable: true, width: '100' },
     { prop: 'updateTime', label: String(i18n.t('tableHeader.role.updateTime')), sortable: true, width: '200' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.role.createTime')), sortable: true, width: '200' }
+  ],
+  menus: [
+    { prop: 'name', label: '菜单名称', sortable: false, width: '200', showOverflowTooltip: true, fixed: 'left' },
+    { prop: 'iconCls', label: '图标', sortable: false, width: '100', showOverflowTooltip: false, align: 'center' },
+    { prop: 'sort', label: '排序', sortable: true, width: '100', showOverflowTooltip: false },
+    { prop: 'componentName', label: '组件名', sortable: false, width: '150', showOverflowTooltip: true },
+    { prop: 'url', label: '路径', sortable: false, width: '', showOverflowTooltip: true },
+    { prop: 'permission', label: '权限', sortable: false, width: '200', showOverflowTooltip: false, align: 'center' },
+    { prop: 'hidden', label: '可见', sortable: false, width: '', showOverflowTooltip: false },
+    { prop: 'enabled', label: '状态', sortable: false, width: '', showOverflowTooltip: false },
+    { prop: 'type', label: '菜单类型', sortable: false, width: '100', showOverflowTooltip: false },
+    { prop: 'createTime', label: '创建时间', sortable: true, width: '200', showOverflowTooltip: false }
   ]
 }
 

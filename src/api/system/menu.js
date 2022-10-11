@@ -13,3 +13,11 @@ export function getMenusTree() {
     method: 'get'
   })
 }
+
+export function add(data) {
+  return request({
+    url: '/menus',
+    method: 'post',
+    data
+  })
+}

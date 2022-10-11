@@ -464,7 +464,7 @@ function CRUD(options) {
           crud.selectChange(selection, val)
         })
       } else {
-        crud.findVM('presenter').$refs['table'].clearSelection()
+        crud.findVM('presenter').$refs.scaffoldTable.$refs.table.clearSelection()
       }
     },
 
@@ -480,7 +480,7 @@ function CRUD(options) {
       })) {
         if (row.children) {
           row.children.forEach(val => {
-            crud.findVM('presenter').$refs['table'].toggleRowSelection(val, true)
+            crud.findVM('presenter').$refs.scaffoldTable.$refs.table.toggleRowSelection(val, true)
             selection.push(val)
             if (val.children) {
               crud.selectChange(selection, val)
@@ -500,7 +500,7 @@ function CRUD(options) {
     toggleRowSelection(selection, data) {
       if (data.children) {
         data.children.forEach(val => {
-          crud.findVM('presenter').$refs['table'].toggleRowSelection(val, false)
+          crud.findVM('presenter').$refs.scaffoldTable.$refs.table.toggleRowSelection(val, false)
           if (val.children) {
             crud.toggleRowSelection(selection, val)
           }

@@ -116,7 +116,7 @@
                 </a>
                 <el-avatar v-else :src="Avatar" size="80" />
               </span>
-              <span v-if="item.prop === 'username'">
+              <span v-else-if="item.prop === 'username'">
                 <span v-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">{{ scope.row[item.prop] }}</span>
                 <span v-else>{{ scope.row[item.prop] }}</span>
               </span>

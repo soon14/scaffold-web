@@ -1,6 +1,10 @@
 <template>
   <div :class="{'show':show}" class="header-search">
-    <i class="iconfont iconfont-search search" @click.stop="click" />
+    <scaffold-svg
+      icon-class="search"
+      class-name="search-icon"
+      @click.stop="click"
+    />
     <el-select
       ref="headerSearchSelect"
       v-model="search"
@@ -147,7 +151,7 @@ export default {
 
   .search-icon {
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     vertical-align: middle;
   }
 
@@ -178,11 +182,5 @@ export default {
       margin-left: 10px;
     }
   }
-}
-</style>
-
-<style scoped>
-.search {
-  font-size: 20px;
 }
 </style>

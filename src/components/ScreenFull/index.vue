@@ -1,8 +1,8 @@
 <template>
   <div>
-    <i
-      :class="isFullscreen ? 'iconfont iconfont-compress' : 'iconfont iconfont-expend'"
-      class="screen-full"
+    <scaffold-svg
+      :icon-class="isFullscreen ? 'compress' : 'expend'"
+      class-name="screen-full"
       @click="click"
     />
   </div>

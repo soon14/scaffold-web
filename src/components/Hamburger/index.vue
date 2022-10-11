@@ -1,7 +1,15 @@
 <template>
   <div style="padding: 0 15px;" @click="toggleClick">
-    <i v-if="isActive" class="iconfont iconfont-hamburger-left hamburger" />
-    <i v-else class="iconfont iconfont-hamburger-right hamburger" />
+    <scaffold-svg
+      v-if="isActive"
+      icon-class="hamburger-left"
+      class-name="hamburger"
+    />
+    <scaffold-svg
+      v-else
+      icon-class="hamburger-right"
+      class-name="hamburger"
+    />
   </div>
 </template>
 
