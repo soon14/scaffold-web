@@ -13,7 +13,7 @@
 const tagAndTagSpacing = 4 // tagAndTagSpacing
 
 export default {
-  name: 'ScrollPane',
+  name: 'ScaffoldScrollPane',
   data() {
     return {
       left: 0

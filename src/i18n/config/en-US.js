@@ -14,7 +14,7 @@ export default {
     placeholderCode: 'Click to replace the code',
     rememberMe: 'Remember me',
     loginButton: 'Login',
-    loginLoading: 'Logging...',
+    loginLoading: 'Logging in...',
     rules: {
       usernameMessage: 'Username cannot be empty',
       passwordMessage: 'Password cannot be empty',

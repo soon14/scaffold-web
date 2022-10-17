@@ -6,10 +6,8 @@
       <button-operation>
         <el-button
           slot="left"
-          class="filter-item"
           type="danger"
           icon="el-icon-delete"
-          size="mini"
           :loading="crud.delAllLoading"
           round
           @click="confirmDelAll"
@@ -32,7 +30,7 @@
               <el-form-item v-for="item in tableHeader.errorLogs.expand" :key="item" :label="item.label">
                 <span v-if="item.prop === 'requestParams' || item.prop === 'responseResult'">
                   <span v-if="props.row[item.prop] !== '{}' && props.row[item.prop] !== null">
-                    <scaffold-json :json-data="props.row[item.prop]" boxed sort show-array-index expanded />
+                    <scaffold-json :json-data="props.row[item.prop]" sort show-array-index expanded />
                   </span>
                   <span v-else style="color: red;">{{ $t('errorLogsPage.none') }}</span>
                 </span>
@@ -132,11 +130,6 @@ export default {
       del: false,
       download: true
     }
-  },
-  beforeUpdate() {
-    this.$nextTick(() => {
-      this.$refs.scaffoldTable.$refs.table.doLayout()
-    })
   },
   methods: {
     getExceptionInfo(id) {

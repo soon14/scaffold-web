@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'MenuItem',
+  name: 'ScaffoldMenuItem',
   functional: true,
   props: {
     //  菜单的icon图标

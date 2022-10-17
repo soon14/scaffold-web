@@ -21,3 +21,19 @@ export function add(data) {
     data
   })
 }
+
+export function edit(data) {
+  return request({
+    url: '/menus',
+    method: 'put',
+    data
+  })
+}
+
+export function del(ids) {
+  return request({
+    url: '/menus',
+    method: 'delete',
+    data: ids
+  })
+}

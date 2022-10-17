@@ -2,39 +2,48 @@
   <div :class="classObj" class="app-wrapper">
     <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <!-- 菜单栏 -->
-    <sidebar class="sidebar-container" />
+    <scaffold-sidebar class="sidebar-container" />
     <div :class="{hasTagsView : needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <!-- 顶部栏 -->
-        <navbar />
+        <scaffold-navbar />
         <!-- 标签栏 -->
-        <tags-view v-if="needTagsView" />
+        <scaffold-tags-view v-if="needTagsView" />
       </div>
       <!-- 主要页面 -->
-      <app-main />
+      <scaffold-app-main />
       <!-- 系统布局设置 -->
-      <right-panel v-if="showSettings">
-        <settings />
-      </right-panel>
+      <scaffold-drawer
+        :visible="showSettings"
+        :before-close="beforeCloseDrawer"
+        size="20%"
+      >
+        <template #title>
+          <h1 class="drawer-title">{{ $t('settings.systemLayoutSettings') }}</h1>
+        </template>
+        <template #body>
+          <scaffold-settings />
+        </template>
+      </scaffold-drawer>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
+import { scaffoldAppMain, scaffoldNavbar, scaffoldSettings, scaffoldSidebar, scaffoldTagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-import RightPanel from '@/layout/components/RightPanel'
+import scaffoldDrawer from '@/components/ScaffoldDrawer'
 
 export default {
   name: 'Layout',
   components: {
-    AppMain,
-    Navbar,
-    RightPanel,
-    Settings,
-    Sidebar,
-    TagsView
+    scaffoldAppMain,
+    scaffoldNavbar,
+    scaffoldSettings,
+    scaffoldSidebar,
+    scaffoldTagsView,
+    scaffoldDrawer
   },
   mixins: [ResizeMixin],
   computed: {
@@ -58,6 +67,12 @@ export default {
     handleClickOutside() {
       this.$store.dispatch('app/closeSideBar', {
         withoutAnimation: false
+      })
+    },
+    beforeCloseDrawer() {
+      this.$store.dispatch('global/changeSetting', {
+        key: 'showSettings',
+        value: false
       })
     }
   }
@@ -106,5 +121,12 @@ export default {
 
 .mobile .fixed-header {
   width: 100%;
+}
+
+.drawer-title {
+  margin-bottom: 12px;
+  color: rgba(0, 0, 0, .85);
+  font-size: 20px;
+  line-height: 22px;
 }
 </style>

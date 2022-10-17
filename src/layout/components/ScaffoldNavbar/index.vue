@@ -94,7 +94,7 @@ import Avatar from '@/assets/images/avatar.png'
 import AvatarNoEnabled from '@/assets/images/avatarNoEnabled.png'
 
 export default {
-  name: 'Navbar',
+  name: 'ScaffoldNavbar',
   components: {
     Breadcrumb,
     Hamburger,

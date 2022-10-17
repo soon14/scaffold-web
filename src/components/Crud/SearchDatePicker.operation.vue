@@ -4,10 +4,8 @@
     <el-input
       v-model="query.blurry"
       clearable
-      size="small"
       :placeholder="inputPlaceholder === null ? $t('crud.searchDatePickerOperation.placeholder') : inputPlaceholder"
       style="width: 200px"
-      class="filter-item"
       @keyup.enter.native="crud.toQuery"
     />
     <el-date-picker
@@ -15,8 +13,6 @@
       :default-time="['00:00:00','23:59:59']"
       type="daterange"
       range-separator="-"
-      size="small"
-      class="date-item"
       value-format="yyyy-MM-dd HH:mm:ss"
       :start-placeholder="String($t('crud.searchDatePickerOperation.startTime'))"
       :end-placeholder="String($t('crud.searchDatePickerOperation.endTime'))"

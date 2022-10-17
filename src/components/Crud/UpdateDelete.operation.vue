@@ -7,6 +7,7 @@
       :disabled="disabledEdit"
       size="mini"
       type="primary"
+      round
       icon="el-icon-edit"
       @click="crud.toEdit(data)"
     />
@@ -39,6 +40,7 @@
         slot="reference"
         :disabled="disabledDel"
         type="danger"
+        round
         icon="el-icon-delete"
         size="mini"
         @click="toDelete"

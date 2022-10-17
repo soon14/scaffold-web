@@ -1,7 +1,7 @@
 <template>
   <div :class="{'has-logo':showLogo}">
     <!-- Logo -->
-    <logo v-if="showLogo" :collapse="isCollapse" />
+    <scaffold-logo v-if="showLogo" :collapse="isCollapse" />
     <!-- 菜单 -->
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -22,13 +22,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Logo from './Logo'
+import scaffoldLogo from './ScaffoldLogo'
 import SidebarItem from './SidebarItem'
 import variables from '@/assets/styles/variables.scss'
 
 export default {
-  name: 'Sidebar',
-  components: { SidebarItem, Logo },
+  name: 'ScaffoldSidebar',
+  components: {
+    SidebarItem,
+    scaffoldLogo
+  },
   computed: {
     ...mapGetters([
       'sidebar',

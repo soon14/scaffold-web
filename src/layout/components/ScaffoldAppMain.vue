@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'AppMain',
+  name: 'ScaffoldAppMain',
   computed: {
     cachedViews() {
       return this.$store.state.tagsView.cachedViews

@@ -8,7 +8,6 @@
             v-model="query.enabled"
             clearable
             placeholder="状态"
-            class="filter-item"
             style="width: 90px"
             @change="crud.toQuery"
           >
@@ -228,9 +227,10 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { getMenusTree, add } from '@/api/system/menu'
+import { getMenusTree, add, edit, del } from '@/api/system/menu'
+import i18n from '@/i18n'
 
-const defaultCrud = CRUD({ title: '菜单', url: '/menus', crudMethod: { add }})
+const defaultCrud = CRUD({ title: '菜单', url: '/menus', crudMethod: { add, edit, del }})
 const defaultForm = {
   id: null,
   component: null,
@@ -356,6 +356,22 @@ export default {
     },
     typeChange(label) {
       this.$refs.form.clearValidate()
+    },
+    changeEnabled(data, enabled) {
+      const operate = enabled === true ? '启用' : '禁用'
+      this.$confirm('此操作将' + operate + ' 菜单 [' + data.name + '] ' + ', 是否继续?', String(i18n.t('confirmTips')), {
+        confirmButtonText: String(i18n.t('ok')),
+        cancelButtonText: String(i18n.t('cancel')),
+        type: 'warning'
+      }).then(() => {
+        edit(data).then(() => {
+          this.crud.notify(operate + '成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+        }).catch(() => {
+          data.enabled = !data.enabled
+        })
+      }).catch(() => {
+        data.enabled = !data.enabled
+      })
     }
   }
 }

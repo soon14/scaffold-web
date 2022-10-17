@@ -1,43 +1,36 @@
 <template>
   <div class="drawer-container">
     <div>
-      <h1 class="drawer-title">{{ $t('settings.systemLayoutSettings') }}</h1>
-
       <div class="drawer-item">
         <span>{{ $t('settings.themeColor') }}</span>
-        <theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange" />
+        <scaffold-theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange" />
       </div>
-
       <div class="drawer-item">
         <span>{{ $t('settings.isShowLabels') }}</span>
         <el-switch v-model="tagsView" class="drawer-switch" />
       </div>
-
       <div class="drawer-item">
         <span>{{ $t('settings.isFixedHead') }}</span>
         <el-switch v-model="fixedHeader" class="drawer-switch" />
       </div>
-
       <div class="drawer-item">
         <span>{{ $t('settings.isShowLogo') }}</span>
         <el-switch v-model="sidebarLogo" class="drawer-switch" />
       </div>
-
       <div class="drawer-item">
         <span>{{ $t('settings.isShowOnceMenu') }}</span>
         <el-switch v-model="uniqueOpened" class="drawer-switch" />
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
-import ThemePicker from '@/components/ThemePicker'
+import scaffoldThemePicker from '@/components/ScaffoldThemePicker'
 
 export default {
-  name: 'Settings',
-  components: { ThemePicker },
+  name: 'ScaffoldSettings',
+  components: { scaffoldThemePicker },
   data() {
     return {}
   },
@@ -105,16 +98,9 @@ export default {
   line-height: 1.5;
   word-wrap: break-word;
 
-  .drawer-title {
-    margin-bottom: 12px;
-    color: rgba(0, 0, 0, .85);
-    font-size: 20px;
-    line-height: 22px;
-  }
-
   .drawer-item {
     color: rgba(0, 0, 0, .65);
-    font-size: 14px;
+    font-size: 15px;
     padding: 12px 0;
   }
 

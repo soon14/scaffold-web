@@ -92,6 +92,12 @@ export default {
       required: false
     }
   },
+  beforeUpdate() {
+    this.updateLayout()
+  },
+  updated() {
+    this.updateLayout()
+  },
   methods: {
     currentChange(val) {
       this.$emit('current-change', val)
@@ -101,6 +107,11 @@ export default {
     },
     selectAll(selection) {
       this.$emit('select-all', selection)
+    },
+    updateLayout() {
+      this.$nextTick(() => {
+        this.$refs.table.doLayout()
+      })
     }
   }
 }

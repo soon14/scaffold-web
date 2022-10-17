@@ -6,8 +6,6 @@
       <el-button
         v-if="crud.optShow.add"
         v-permission="permission.add"
-        class="filter-item"
-        size="mini"
         type="primary"
         icon="el-icon-plus"
         round
@@ -18,8 +16,6 @@
       <el-button
         v-if="crud.optShow.edit"
         v-permission="permission.edit"
-        class="filter-item"
-        size="mini"
         type="success"
         icon="el-icon-edit"
         round
@@ -32,10 +28,8 @@
         v-if="crud.optShow.del"
         slot="reference"
         v-permission="permission.del"
-        class="filter-item"
         type="danger"
         icon="el-icon-delete"
-        size="mini"
         round
         :loading="crud.delAllLoading"
         :disabled="crud.selections.length === 0"
@@ -47,8 +41,6 @@
         v-if="crud.optShow.download"
         :loading="crud.downloadLoading"
         :disabled="!crud.data.length"
-        class="filter-item"
-        size="mini"
         type="warning"
         icon="el-icon-download"
         round
@@ -60,12 +52,10 @@
       <slot name="right" />
     </span>
     <el-button-group class="crud-opts-right">
-      <el-button size="mini" type="primary" icon="el-icon-search" @click="toggleSearch" />
-      <el-button size="mini" icon="el-icon-refresh" @click="crud.refresh()" />
-      <el-popover placement="bottom-end" width="150" trigger="click">
-        <el-button slot="reference" size="mini" icon="el-icon-s-grid">
-          <i class="fa fa-caret-down" aria-hidden="true" />
-        </el-button>
+      <el-button class="popover-item" type="primary" icon="el-icon-search" round @click="toggleSearch" />
+      <el-button class="popover-item" icon="el-icon-refresh" round @click="crud.refresh()" />
+      <el-popover placement="bottom-end" width="150" transition="el-zoom-in-top" trigger="click">
+        <el-button id="popover-button" slot="reference" icon="el-icon-s-grid" class="popover-button" />
         <el-checkbox
           v-model="allColumnsSelected"
           :indeterminate="allColumnsSelectedIndeterminate"
@@ -87,7 +77,7 @@
 </template>
 
 <script>
-import CRUD, { crud } from '@/utils/crud'
+import CRUD, {crud} from '@/utils/crud'
 
 export default {
   name: 'ButtonOperation',
@@ -110,6 +100,9 @@ export default {
   created() {
     // 向CRUD中props注册属性searchToggle,是否显示搜索框
     this.crud.updateProp('searchToggle', true)
+  },
+  mounted() {
+    document.getElementById('popover-button').style.padding = window.getComputedStyle(document.getElementsByClassName('popover-item')[0], null).padding
   },
   methods: {
     toDelete(data) {
@@ -158,15 +151,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .crud-opts {
   padding: 6px 0;
   display: -webkit-flex;
   display: flex;
   align-items: center;
-}
+  margin-top: 10px;
 
-.crud-opts .crud-opts-right {
-  margin-left: auto;
+  .crud-opts-right {
+    margin-left: auto;
+
+    .popover-button{
+      margin-left: 1px;
+      border-radius: 0 20px 20px 0;
+    }
+  }
 }
 </style>

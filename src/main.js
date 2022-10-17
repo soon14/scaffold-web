@@ -46,7 +46,7 @@ Vue.use(JsonViewer)
 Vue.use(Permission)
 // 设置 element-ui 默认大小
 Vue.use(Element, {
-  size: Cookies.get('size') || 'default'
+  size: Cookies.get('size') || 'small'
 })
 
 // 将Lottie挂载到Vue上

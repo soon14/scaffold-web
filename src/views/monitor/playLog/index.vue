@@ -6,10 +6,8 @@
       <button-operation>
         <el-button
           slot="left"
-          class="filter-item"
           type="danger"
           icon="el-icon-delete"
-          size="mini"
           :loading="crud.delAllLoading"
           round
           @click="confirmDelAll"
@@ -132,11 +130,6 @@ export default {
       del: false,
       download: true
     }
-  },
-  beforeUpdate() {
-    this.$nextTick(() => {
-      this.$refs.scaffoldTable.$refs.table.doLayout()
-    })
   },
   methods: {
     confirmDelAll() {

@@ -2,8 +2,7 @@
 <template>
   <span>
     <el-button
-      class="filter-item buttonClass"
-      size="mini"
+      class="buttonClass"
       type="primary"
       icon="el-icon-search"
       round
@@ -12,8 +11,7 @@
       {{ $t('crud.searchResetOperation.search') }}
     </el-button>
     <el-button
-      class="filter-item buttonClass"
-      size="mini"
+      class="buttonClass"
       type="warning"
       icon="el-icon-refresh-right"
       round

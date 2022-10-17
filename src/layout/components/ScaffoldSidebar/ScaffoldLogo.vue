@@ -20,7 +20,7 @@
 import { getLogoAndTitle } from '@/api/system/logo'
 
 export default {
-  name: 'Logo',
+  name: 'ScaffoldLogo',
   props: {
     // 设置属性,菜单是否关闭
     collapse: {

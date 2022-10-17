@@ -8,7 +8,6 @@
             v-model="query.enabled"
             clearable
             :placeholder="String($t('userPage.placeholderSelect'))"
-            class="filter-item"
             style="width: 90px"
             @change="crud.toQuery"
           >

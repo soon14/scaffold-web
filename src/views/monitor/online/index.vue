@@ -9,7 +9,6 @@
           size="small"
           :placeholder="$t('onlinePage.blurry')"
           style="width: 200px"
-          class="filter-item"
           @keyup.enter.native="crud.toQuery"
         />
         <search-reset-operation :crud="crud" />
@@ -17,10 +16,8 @@
       <button-operation>
         <el-button
           slot="left"
-          class="filter-item"
           type="danger"
           icon="el-icon-delete"
-          size="mini"
           round
           :loading="delLoading"
           :disabled="crud.selections.length === 0"
@@ -70,19 +67,20 @@
             >
               <p>{{ $t('onlinePage.tips') }}</p>
               <div style="text-align: right;margin: 0">
-                <el-button size="mini" type="primary" plain @click="$refs[scope.$index].doClose()">
+                <el-button size="mini" round @click="$refs[scope.$index].doClose()">
                   {{ $t('cancel') }}
                 </el-button>
                 <el-button
                   :loading="delLoading"
                   type="danger"
                   size="mini"
+                  round
                   @click="delMethod(scope.row.key,scope.$index)"
                 >
                   {{ $t('ok') }}
                 </el-button>
               </div>
-              <el-button slot="reference" size="mini" type="danger" icon="el-icon-delete">
+              <el-button slot="reference" size="mini" type="danger" round icon="el-icon-delete">
                 {{ $t('onlinePage.forcedOut') }}
               </el-button>
             </el-popover>
@@ -145,11 +143,6 @@ export default {
       del: false,
       download: true
     }
-  },
-  beforeUpdate() {
-    this.$nextTick(() => {
-      this.$refs.scaffoldTable.$refs.table.doLayout()
-    })
   },
   methods: {
     doDelete(data) {
