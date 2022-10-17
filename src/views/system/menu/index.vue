@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation>
         <template #right>
           <el-select
             v-model="query.enabled"
             clearable
-            placeholder="状态"
+            :placeholder="String($t('menuPage.state'))"
             style="width: 90px"
             @change="crud.toQuery"
           >
@@ -40,14 +40,14 @@
           label-width="125px"
           :rules="rulesForType"
         >
-          <el-form-item label="菜单类型" prop="type">
+          <el-form-item :label="String($t('menuPage.form.type'))" prop="type">
             <el-radio-group v-model="form.type" size="small" @change="typeChange">
-              <el-radio-button label="顶级菜单">顶级菜单</el-radio-button>
-              <el-radio-button label="子菜单">子菜单</el-radio-button>
-              <el-radio-button label="权限菜单">权限菜单</el-radio-button>
+              <el-radio-button label="顶级菜单">{{ $t('menuPage.form.type_1') }}</el-radio-button>
+              <el-radio-button label="子菜单">{{ $t('menuPage.form.type_2') }}</el-radio-button>
+              <el-radio-button label="权限菜单">{{ $t('menuPage.form.type_3') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
-          <el-form-item v-show="form.type.toString() !== '权限菜单'" label="菜单图标" prop="iconCls">
+          <el-form-item v-show="form.type.toString() !== '权限菜单'" :label="String($t('menuPage.form.iconCls'))" prop="iconCls">
             <el-popover
               placement="bottom-start"
               width="470"
@@ -58,7 +58,7 @@
               <el-input
                 slot="reference"
                 v-model="form.iconCls"
-                placeholder="点击选择图标"
+                :placeholder="String($t('menuPage.form.iconSelect'))"
                 readonly
                 clearable
                 style="width: 178px"
@@ -74,45 +74,46 @@
               </el-input>
             </el-popover>
           </el-form-item>
-          <el-form-item label="上级菜单" prop="parentId">
+          <el-form-item :label="String($t('menuPage.form.parentId'))" prop="parentId">
             <scaffold-tree-select
               :parent-id="form.parentId"
               :tree-data="menus"
               width="450"
+              :placeholder="String($t('menuPage.form.treeSelect'))"
               @selected="treeSelected"
             />
           </el-form-item>
-          <el-form-item :label="form.type === '权限菜单' ? '菜单操作权限' : '菜单名称'" prop="name">
-            <el-input v-model="form.name" :placeholder="form.type === '权限菜单' ? '菜单操作权限' : '菜单名称'" style="width: 178px" clearable />
+          <el-form-item :label="form.type === '权限菜单' ? String($t('menuPage.form.name1')) : String($t('menuPage.form.name2'))" prop="name">
+            <el-input v-model="form.name" :placeholder="form.type === '权限菜单' ? String($t('menuPage.form.name1')) : String($t('menuPage.form.name2'))" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item label="国际化zh-CN" prop="nameZhCn">
-            <el-input v-model="form.nameZhCn" placeholder="国际化zh-CN" style="width: 178px" clearable />
+          <el-form-item label="zh-CN" prop="nameZhCn">
+            <el-input v-model="form.nameZhCn" placeholder="zh-CN" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item label="国际化zh-HK" prop="nameZhHk">
-            <el-input v-model="form.nameZhHk" placeholder="国际化zh-HK" style="width: 178px" clearable />
+          <el-form-item label="zh-HK" prop="nameZhHk">
+            <el-input v-model="form.nameZhHk" placeholder="zh-HK" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item label="国际化zh-TW" prop="nameZhTw">
-            <el-input v-model="form.nameZhTw" placeholder="国际化zh-TW" style="width: 178px" clearable />
+          <el-form-item label="zh-TW" prop="nameZhTw">
+            <el-input v-model="form.nameZhTw" placeholder="zh-TW" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item label="国际化en-US" prop="nameEnUs">
-            <el-input v-model="form.nameEnUs" placeholder="国际化en-US" style="width: 178px" clearable />
+          <el-form-item label="en-US" prop="nameEnUs">
+            <el-input v-model="form.nameEnUs" placeholder="en-US" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item v-show="form.type.toString() !== '权限菜单'" label="前端使用的Path" prop="path">
-            <el-input v-model="form.path" placeholder="前端使用的Path" style="width: 178px" clearable />
+          <el-form-item v-show="form.type.toString() !== '权限菜单'" :label="String($t('menuPage.form.path'))" prop="path">
+            <el-input v-model="form.path" :placeholder="String($t('menuPage.form.path'))" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item v-show="form.type.toString() !== '权限菜单'" label="后端使用的Url" prop="url">
-            <el-input v-model="form.url" placeholder="后端使用的Url" style="width: 178px" clearable />
+          <el-form-item v-show="form.type.toString() !== '权限菜单'" :label="String($t('menuPage.form.url'))" prop="url">
+            <el-input v-model="form.url" :placeholder="String($t('menuPage.form.url'))" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item v-show="form.type.toString() !== '顶级菜单'" label="权限标识" prop="permission">
-            <el-input v-model="form.permission" placeholder="权限标识" style="width: 178px" clearable />
+          <el-form-item v-show="form.type.toString() !== '顶级菜单'" :label="String($t('menuPage.form.permission'))" prop="permission">
+            <el-input v-model="form.permission" :placeholder="String($t('menuPage.form.permission'))" style="width: 178px" clearable />
           </el-form-item>
-          <el-form-item label="保持激活" prop="keepAlive">
+          <el-form-item :label="String($t('menuPage.form.keepAlive'))" prop="keepAlive">
             <el-radio-group v-model="form.keepAlive" size="mini">
-              <el-radio-button label="true">是</el-radio-button>
-              <el-radio-button label="false">否</el-radio-button>
+              <el-radio-button label="true">{{ $t('menuPage.form.yes') }}</el-radio-button>
+              <el-radio-button label="false">{{ $t('menuPage.form.no') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="排序" prop="sort">
+          <el-form-item :label="String($t('menuPage.form.sort'))" prop="sort">
             <el-input-number
               v-model.number="form.sort"
               :min="0"
@@ -121,23 +122,23 @@
               style="width: 178px"
             />
           </el-form-item>
-          <el-form-item label="菜单可见" prop="hidden">
+          <el-form-item :label="String($t('menuPage.form.hidden'))" prop="hidden">
             <el-radio-group v-model="form.hidden" size="mini">
-              <el-radio-button label="false">是</el-radio-button>
-              <el-radio-button label="true">否</el-radio-button>
+              <el-radio-button label="false">{{ $t('menuPage.form.yes') }}</el-radio-button>
+              <el-radio-button label="true">{{ $t('menuPage.form.no') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="菜单是否可用" prop="enabled">
+          <el-form-item :label="String($t('menuPage.form.enabled'))" prop="enabled">
             <el-radio-group v-model="form.enabled" size="mini">
-              <el-radio-button label="true">是</el-radio-button>
-              <el-radio-button label="false">否</el-radio-button>
+              <el-radio-button label="true">{{ $t('menuPage.form.yes') }}</el-radio-button>
+              <el-radio-button label="false">{{ $t('menuPage.form.no') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
-          <el-form-item v-show="form.type.toString() === '子菜单'" label="组件路径" prop="component">
-            <el-input v-model="form.component" placeholder="组件路径" style="width: 100%" clearable />
+          <el-form-item v-show="form.type.toString() === '子菜单'" :label="String($t('menuPage.form.component'))" prop="component">
+            <el-input v-model="form.component" :placeholder="String($t('menuPage.form.component'))" style="width: 100%" clearable />
           </el-form-item>
-          <el-form-item v-show="form.type.toString() === '子菜单'" label="组件名称" prop="componentName">
-            <el-input v-model="form.componentName" placeholder="组件名称" style="width: 178px" clearable />
+          <el-form-item v-show="form.type.toString() === '子菜单'" :label="String($t('menuPage.form.componentName'))" prop="componentName">
+            <el-input v-model="form.componentName" :placeholder="String($t('menuPage.form.componentName'))" style="width: 178px" clearable />
           </el-form-item>
         </el-form>
       </template>
@@ -169,13 +170,14 @@
             :width="item.width"
             :fixed="item.fixed"
             :show-overflow-tooltip="item.showOverflowTooltip"
+            :align="item.align"
           >
             <template v-slot="scope">
               <span v-if="item.prop === 'iconCls'">
                 <scaffold-svg :icon-class="scope.row[item.prop]" class-name="icon-class" />
               </span>
               <span v-else-if="item.prop === 'hidden'">
-                {{ scope.row[item.prop] ? '否' : '是' }}
+                {{ scope.row[item.prop] ? String($t('menuPage.form.no')) : String($t('menuPage.form.yes')) }}
               </span>
               <span v-else-if="item.prop === 'enabled'">
                 <el-switch
@@ -199,7 +201,7 @@
         </template>
         <el-table-column
           v-permission="['root','Menu:delete','Menu:update']"
-          label="操作"
+          :label="String($t('menuPage.operate'))"
           width="125"
           align="center"
           fixed="right"
@@ -222,7 +224,7 @@ import scaffoldTreeSelect from '@/components/ScaffoldTreeSelect'
 import scaffoldDialog from '@/components/ScaffoldDialog'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldIconSelect from '@/components/ScaffoldIconSelect'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
@@ -230,7 +232,11 @@ import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getMenusTree, add, edit, del } from '@/api/system/menu'
 import i18n from '@/i18n'
 
-const defaultCrud = CRUD({ title: '菜单', url: '/menus', crudMethod: { add, edit, del }})
+const defaultCrud = CRUD({
+  title: String(i18n.t('menuPage.title')),
+  url: '/menus',
+  crudMethod: { add, edit, del }
+})
 const defaultForm = {
   id: null,
   component: null,
@@ -257,7 +263,7 @@ export default {
   components: {
     searchDatePickerOperation,
     buttonOperation,
-    backTopAndBottom,
+    scaffoldBackTopAndBottom,
     scaffoldTable,
     scaffoldDialog,
     scaffoldIconSelect,
@@ -279,46 +285,46 @@ export default {
         del: ['Menu:delete', 'root']
       },
       enabledTypeOptions: [
-        { key: 'true', displayName: '启用' },
-        { key: 'false', displayName: '禁用' }
+        { key: 'true', displayName: String(i18n.t('menuPage.enable')) },
+        { key: 'false', displayName: String(i18n.t('menuPage.disable')) }
       ],
       rules_0: {
         name: [
-          { required: true, message: '请输入菜单名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.name')), trigger: 'blur' }
         ],
         path: [
-          { required: true, message: '请输入前端使用的Path', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.path')), trigger: 'blur' }
         ],
         url: [
-          { required: true, message: '请输入后端使用的Url', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.url')), trigger: 'blur' }
         ]
       },
       rules_1: {
         name: [
-          { required: true, message: '请输入菜单名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.name')), trigger: 'blur' }
         ],
         componentName: [
-          { required: true, message: '请输入组件名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.componentName')), trigger: 'blur' }
         ],
         component: [
-          { required: true, message: '请输入组件路径', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.component')), trigger: 'blur' }
         ],
         permission: [
-          { required: true, message: '请输入权限标识', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.permission')), trigger: 'blur' }
         ],
         path: [
-          { required: true, message: '请输入前端使用的Path', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.path')), trigger: 'blur' }
         ],
         url: [
-          { required: true, message: '请输入后端使用的Url', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.url')), trigger: 'blur' }
         ]
       },
       rules_2: {
         name: [
-          { required: true, message: '请输入菜单操作权限', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.name1')), trigger: 'blur' }
         ],
         permission: [
-          { required: true, message: '请输入权限标识', trigger: 'blur' }
+          { required: true, message: String(i18n.t('menuPage.rules.permission')), trigger: 'blur' }
         ]
       }
     }
@@ -346,7 +352,7 @@ export default {
     [CRUD.HOOK.afterToCU](crud, form) {
       getMenusTree().then(res => {
         this.menus = []
-        const menu = { id: 0, label: '顶级菜单', children: [] }
+        const menu = { id: 0, label: String(i18n.t('menuPage.topMenu')), children: [] }
         menu.children = res.data
         this.menus.push(menu)
       })
@@ -358,14 +364,14 @@ export default {
       this.$refs.form.clearValidate()
     },
     changeEnabled(data, enabled) {
-      const operate = enabled === true ? '启用' : '禁用'
-      this.$confirm('此操作将' + operate + ' 菜单 [' + data.name + '] ' + ', 是否继续?', String(i18n.t('confirmTips')), {
+      const operate = enabled === true ? String(i18n.t('menuPage.enable')) : String(i18n.t('menuPage.disable'))
+      this.$confirm(String(i18n.t('menuPage.changeEnabled.tip1')) + operate + String(i18n.t('menuPage.changeEnabled.tip2')) + data.name + String(i18n.t('menuPage.changeEnabled.tip3')), String(i18n.t('confirmTips')), {
         confirmButtonText: String(i18n.t('ok')),
         cancelButtonText: String(i18n.t('cancel')),
         type: 'warning'
       }).then(() => {
         edit(data).then(() => {
-          this.crud.notify(operate + '成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+          this.crud.notify(operate + String(i18n.t('menuPage.success')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         }).catch(() => {
           data.enabled = !data.enabled
         })

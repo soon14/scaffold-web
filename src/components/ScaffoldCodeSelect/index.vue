@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'Code',
+  name: 'ScaffoldCodeSelect',
   data() {
     return {
       codeOptions: [

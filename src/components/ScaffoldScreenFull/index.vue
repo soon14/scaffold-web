@@ -10,9 +10,10 @@
 
 <script>
 import ScreenFull from 'screenfull'
+import i18n from '@/i18n'
 
 export default {
-  name: 'ScreenFull',
+  name: 'ScaffoldScreenFull',
   data() {
     return {
       isFullscreen: false
@@ -25,7 +26,7 @@ export default {
     click() {
       if (!ScreenFull.enabled) {
         this.$message({
-          message: '你的浏览器不支持该操作!',
+          message: String(i18n.t('scaffoldScreenFull.tip')),
           type: 'warning'
         })
         return false

@@ -1,20 +1,20 @@
 <template>
   <div class="navbar">
     <!-- 顶部缩放菜单栏按钮 -->
-    <hamburger
+    <scaffold-hamburger
       id="hamburger-container"
       :is-active="sidebar.opened"
       class="hamburger-container"
       @toggleClick="toggleSideBar"
     />
     <!-- 面包屑 -->
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+    <scaffold-breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
     <!-- 工具栏 -->
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <!-- 查找框 -->
-        <header-search id="header-search" class="right-menu-item" />
+        <scaffold-header-search id="header-search" class="right-menu-item" />
         <!-- 源码地址 -->
         <el-tooltip
           :content="String($t('navbar.codeAddress'))"
@@ -22,7 +22,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <code-address class="right-menu-item hover-effect" />
+          <scaffold-code-select class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 全屏缩放 -->
         <el-tooltip
@@ -31,7 +31,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <screen-full id="screenFull" class="right-menu-item hover-effect" />
+          <scaffold-screen-full id="screenFull" class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 多语言切换 -->
         <el-tooltip
@@ -40,7 +40,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <i18n-select id="i18n-select" class="right-menu-item hover-effect" />
+          <scaffold-i18n-select id="i18n-select" class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 布局设置 -->
         <el-tooltip
@@ -49,7 +49,7 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <size-select id="size-select" class="right-menu-item hover-effect" />
+          <scaffold-size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
       </template>
 
@@ -83,26 +83,26 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
-import ScreenFull from '@/components/ScreenFull'
-import SizeSelect from '@/components/SizeSelect'
-import HeaderSearch from '@/components/HeaderSearch'
-import CodeAddress from '@/components/Code'
-import I18nSelect from '@/components/I18nSelect'
+import scaffoldBreadcrumb from '@/components/ScaffoldBreadcrumb'
+import scaffoldHamburger from '@/components/ScaffoldHamburger'
+import scaffoldScreenFull from '@/components/ScaffoldScreenFull'
+import scaffoldSizeSelect from '@/components/ScaffoldSizeSelect'
+import scaffoldHeaderSearch from '@/components/ScaffoldHeaderSearch'
+import scaffoldCodeSelect from '@/components/ScaffoldCodeSelect'
+import scaffoldI18nSelect from '@/components/ScaffoldI18nSelect'
 import Avatar from '@/assets/images/avatar.png'
 import AvatarNoEnabled from '@/assets/images/avatarNoEnabled.png'
 
 export default {
   name: 'ScaffoldNavbar',
   components: {
-    Breadcrumb,
-    Hamburger,
-    ScreenFull,
-    SizeSelect,
-    HeaderSearch,
-    CodeAddress,
-    I18nSelect
+    scaffoldBreadcrumb,
+    scaffoldHamburger,
+    scaffoldScreenFull,
+    scaffoldSizeSelect,
+    scaffoldHeaderSearch,
+    scaffoldCodeSelect,
+    scaffoldI18nSelect
   },
   data() {
     return {

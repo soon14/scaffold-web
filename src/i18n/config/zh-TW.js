@@ -130,7 +130,10 @@ export default {
       edit: '編輯',
       del: '删除',
       download: '匯出',
-      chooseAll: '全選'
+      chooseAll: '全選',
+      tip1: '確認删除選中的',
+      tip2: '條數據?',
+      tip3: '請至少選擇一列'
     },
     searchResetOperation: {
       search: '蒐索',
@@ -250,6 +253,18 @@ export default {
       permission: '角色許可權',
       level: '角色等級',
       updateTime: '修改時間',
+      createTime: '創建時間'
+    },
+    menu: {
+      name: '選單名稱',
+      iconCls: '圖標',
+      sort: '排序',
+      componentName: '組件名',
+      url: '路徑',
+      permission: '許可權',
+      hidden: '可見',
+      enabled: '狀態',
+      type: '選單類型',
       createTime: '創建時間'
     }
   },
@@ -387,6 +402,90 @@ export default {
       tip2: '用戶 [',
       tip3: '] 的頭像，是否繼續？',
       tip4: '成功'
+    }
+  },
+  menuPage: {
+    title: '選單',
+    state: '狀態',
+    form: {
+      type: '選單類型',
+      type_1: '頂級選單',
+      type_2: '子功能表',
+      type_3: '許可權選單',
+      iconCls: '功能表圖示',
+      iconSelect: '點擊選擇圖標',
+      parentId: '上級選單',
+      treeSelect: '點擊選擇上級選單',
+      name1: '選單操作許可權',
+      name2: '選單名稱',
+      path: '前端使用的Path',
+      url: '後端使用的Url',
+      permission: '許可權標識',
+      keepAlive: '保持啟動',
+      yes: '是',
+      no: '否',
+      sort: '排序',
+      hidden: '選單可見',
+      enabled: '選單是否可用',
+      component: '組件路徑',
+      componentName: '組件名稱'
+    },
+    operate: '操作',
+    enable: '啟用',
+    disable: '禁用',
+    rules: {
+      name: '請輸入選單名稱',
+      name1: '請輸入選單操作許可權',
+      path: '請輸入前端使用的Path',
+      url: '請輸入後端使用的Url',
+      componentName: '請輸入組件名稱',
+      component: '請輸入組件路徑',
+      permission: '請輸入許可權標識'
+    },
+    topMenu: '頂級選單',
+    changeEnabled: {
+      tip1: '此操作將',
+      tip2: ' 選單 [',
+      tip3: '] , 是否繼續?'
+    },
+    success: '成功'
+  },
+  scaffoldIconSelect: {
+    placeholder: '請輸入圖標名稱'
+  },
+  scaffoldScreenFull: {
+    tip: '你的瀏覽器不支持該操作!'
+  },
+  scaffoldSizeSelect: {
+    tip: '佈局設定成功!'
+  },
+  scaffoldThemePicker: {
+    tip: '正在編譯主題...'
+  },
+  scaffoldTreeSelect: {
+    tip: '點擊選擇!'
+  },
+  rolePage: {
+    title: '角色',
+    inputPlaceholder: '請輸入角色名稱或許可權等級蒐索',
+    form: {
+      name: '角色名稱',
+      permission: '角色許可權',
+      level: '角色級別'
+    },
+    roleCardTitle: '角色清單（修改選單後該角色需要註銷重新登入）',
+    operate: '操作',
+    tooltipContent: '選擇指定角色分配選單',
+    menuCardTitle: '選單分配',
+    save: '保存',
+    rules: {
+      name: '請輸入名稱',
+      permission: '請輸入許可權',
+      nameZhCn: '請輸入中國大陸名稱',
+      nameZhHk: '請輸入中國香港名稱',
+      nameZhTw: '請輸入中國臺灣名稱',
+      nameEnUs: '請輸入英文名稱',
+      saveSuccess: '保存成功!'
     }
   },
   ...zhTWLocale

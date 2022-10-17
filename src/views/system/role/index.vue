@@ -1,8 +1,10 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation input-placeholder="请输入角色名称或权限等级搜索" />
+      <search-date-picker-operation
+        :input-placeholder="String($t('rolePage.inputPlaceholder'))"
+      />
       <button-operation :permission="permission" />
     </div>
     <scaffold-dialog
@@ -21,33 +23,34 @@
           ref="form"
           inline
           :model="form"
-          label-width="120px"
+          label-width="150px"
           :rules="rules"
         >
-          <el-form-item label="角色名称" prop="name">
-            <el-input v-model="form.name" clearable />
+          <el-form-item :label="String($t('rolePage.form.name'))" prop="name">
+            <el-input v-model="form.name" clearable :placeholder="String($t('rolePage.form.name'))" />
           </el-form-item>
-          <el-form-item label="国际化zh-CN" prop="nameZhCn">
-            <el-input v-model="form.nameZhCn" clearable />
+          <el-form-item label="zh-CN" prop="nameZhCn">
+            <el-input v-model="form.nameZhCn" clearable placeholder="zh-CN" />
           </el-form-item>
-          <el-form-item label="国际化zh-HK" prop="nameZhHk">
-            <el-input v-model="form.nameZhHk" clearable />
+          <el-form-item label="zh-HK" prop="nameZhHk">
+            <el-input v-model="form.nameZhHk" clearable placeholder="zh-HK" />
           </el-form-item>
-          <el-form-item label="国际化zh-TW" prop="nameZhTw">
-            <el-input v-model="form.nameZhTw" clearable />
+          <el-form-item label="zh-TW" prop="nameZhTw">
+            <el-input v-model="form.nameZhTw" clearable placeholder="zh-TW" />
           </el-form-item>
-          <el-form-item label="国际化en-US" prop="nameEnUs">
-            <el-input v-model="form.nameEnUs" clearable />
+          <el-form-item label="en-US" prop="nameEnUs">
+            <el-input v-model="form.nameEnUs" clearable placeholder="en-US" />
           </el-form-item>
-          <el-form-item label="角色权限" prop="permission">
-            <el-input v-model="form.permission" clearable />
+          <el-form-item :label="String($t('rolePage.form.permission'))" prop="permission">
+            <el-input v-model="form.permission" clearable :placeholder="String($t('rolePage.form.permission'))" />
           </el-form-item>
-          <el-form-item label="角色级别" prop="level">
+          <el-form-item :label="String($t('rolePage.form.level'))" prop="level">
             <el-input-number
               v-if="crud.status.edit === 1"
               v-model.number="form.level"
               :min="Number(levelMin)"
               :max="Number(levelMax)"
+              :placeholder="String($t('rolePage.form.level'))"
               controls-position="right"
               style="width: 145px;"
             />
@@ -55,6 +58,7 @@
               v-if="crud.status.add === 1"
               v-model.number="form.level"
               :min="1"
+              :placeholder="String($t('rolePage.form.level'))"
               controls-position="right"
               style="width: 145px;"
             />
@@ -70,7 +74,7 @@
       <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="17" style="margin-bottom: 10px">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span class="role-span">角色列表 (修改菜单后该角色需要注销重新登录)</span>
+            <span class="role-span">{{ $t('rolePage.roleCardTitle') }}</span>
           </div>
           <scaffold-table
             ref="scaffoldTable"
@@ -91,11 +95,12 @@
                   :sortable="item.sortable"
                   :width="item.width"
                   :fixed="item.fixed"
+                  align="center"
                 />
               </template>
               <el-table-column
                 v-permission="['root','Role:delete','Role:update']"
-                label="操作"
+                :label="String($t('rolePage.operate'))"
                 width="125"
                 align="center"
                 fixed="right"
@@ -116,9 +121,14 @@
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="7">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <el-tooltip class="item" effect="light" content="选择指定角色分配菜单" placeholder="top">
+            <el-tooltip
+              class="item"
+              effect="light"
+              :content="String($t('rolePage.tooltipContent'))"
+              placeholder="top"
+            >
               <span class="role-span">
-                菜单分配
+                {{ $t('rolePage.menuCardTitle') }}
               </span>
             </el-tooltip>
             <el-button
@@ -129,7 +139,7 @@
               style="float: right; padding: 6px 9px"
               type="primary"
               @click="saveMenus"
-            >保存</el-button>
+            >{{ $t('rolePage.save') }}</el-button>
           </div>
           <el-tree
             ref="menu"
@@ -148,7 +158,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
@@ -158,13 +168,23 @@ import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getLevelScope, edit, del, editMenu, getRoleById, add } from '@/api/system/roles'
 import { getMenusTree } from '@/api/system/menu'
+import i18n from '@/i18n'
 
-const defaultCrud = CRUD({ url: '/roles', title: '角色', crudMethod: { edit, del, add }})
-const defaultForm = { id: null, name: null, permission: null, level: 4, nameZhCn: null, nameZhHk: null, nameZhTw: null, nameEnUs: null }
+const defaultCrud = CRUD({
+  url: '/roles',
+  title: String(i18n.t('rolePage.title')),
+  crudMethod: { edit, del, add }
+})
+const defaultForm = {
+  id: null,
+  name: null,
+  permission: null,
+  level: 4, nameZhCn: null, nameZhHk: null, nameZhTw: null, nameEnUs: null
+}
 export default {
   name: 'Role',
   components: {
-    backTopAndBottom,
+    scaffoldBackTopAndBottom,
     searchDatePickerOperation,
     buttonOperation,
     scaffoldTable,
@@ -195,22 +215,22 @@ export default {
       menuIds: [],
       rules: {
         name: [
-          { required: true, message: '请输入名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('rolePage.rules.name')), trigger: 'blur' }
         ],
         permission: [
-          { required: true, message: '请输入权限', trigger: 'blur' }
+          { required: true, message: String(i18n.t('rolePage.rules.permission')), trigger: 'blur' }
         ],
         nameZhCn: [
-          { required: true, message: '请输入中国大陆名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('rolePage.rules.nameZhCn')), trigger: 'blur' }
         ],
         nameZhHk: [
-          { required: true, message: '请输入中国香港名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('rolePage.rules.nameZhHk')), trigger: 'blur' }
         ],
         nameZhTw: [
-          { required: true, message: '请输入中国台湾名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('rolePage.rules.nameZhTw')), trigger: 'blur' }
         ],
         nameEnUs: [
-          { required: true, message: '请输入英文名称', trigger: 'blur' }
+          { required: true, message: String(i18n.t('rolePage.rules.nameEnUs')), trigger: 'blur' }
         ]
       }
     }
@@ -273,7 +293,7 @@ export default {
       })
       // 调用方法
       editMenu(role).then(res => {
-        this.crud.notify('保存成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+        this.crud.notify(String(i18n.t('rolePage.rules.saveSuccess')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         this.menuLoading = false
         this.update()
       }).catch(err => {

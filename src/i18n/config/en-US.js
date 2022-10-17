@@ -130,7 +130,10 @@ export default {
       edit: 'Edit',
       del: 'Delete',
       download: 'Download',
-      chooseAll: 'Select All'
+      chooseAll: 'Select All',
+      tip1: 'Confirm to delete the selected ',
+      tip2: ' pieces of Data?',
+      tip3: 'Please select at least one column'
     },
     searchResetOperation: {
       search: 'Search',
@@ -251,6 +254,18 @@ export default {
       level: 'Level',
       updateTime: 'UpdateTime',
       createTime: 'CreateTime'
+    },
+    menu: {
+      name: 'Name',
+      iconCls: 'Icon',
+      sort: 'Sort',
+      componentName: 'Component Name',
+      url: 'URL',
+      permission: 'Permission',
+      hidden: 'Hidden',
+      enabled: 'State',
+      type: 'Type',
+      createTime: 'CreateTime'
     }
   },
   scaffoldJsonViewer: {
@@ -370,7 +385,7 @@ export default {
     enabledTips: {
       tip1: 'This action will ',
       tip2: ', Do you want to continue?',
-      tip3: 'Success'
+      tip3: ' Success'
     }
   },
   avatarPage: {
@@ -386,7 +401,91 @@ export default {
       tip1: 'This action will ',
       tip2: ' User [',
       tip3: '] \'s avatar, Do you want to continue?',
-      tip4: 'Success'
+      tip4: ' Success'
+    }
+  },
+  menuPage: {
+    title: 'Menu',
+    state: 'State',
+    form: {
+      type: 'Menu Type',
+      type_1: 'TopMenu',
+      type_2: 'SubMenu',
+      type_3: 'PermissionMenu',
+      iconCls: 'ICON',
+      iconSelect: 'Click the select icon',
+      parentId: 'Parent Menu',
+      treeSelect: 'Click to select the parent menu',
+      name1: 'Menu operation permission',
+      name2: 'Menu Name',
+      path: 'Vue Path',
+      url: 'Backend Url',
+      permission: 'Permission',
+      keepAlive: 'Keep Alive',
+      yes: 'Yes',
+      no: 'No',
+      sort: 'Sort',
+      hidden: 'Hidden',
+      enabled: 'Enabled',
+      component: 'Component Path',
+      componentName: 'Component Name'
+    },
+    operate: 'Operate',
+    enable: 'Enabled',
+    disable: 'Disabled',
+    rules: {
+      name: 'Please enter a menu name',
+      name1: 'Please enter the menu operation permission',
+      path: 'Please enter the Vue Path',
+      url: 'Please enter the Backend Url',
+      componentName: 'Please enter a component name',
+      component: 'Please enter the component path',
+      permission: 'Please enter a permission ID'
+    },
+    topMenu: 'Top Menu',
+    changeEnabled: {
+      tip1: 'This action will ',
+      tip2: ' Menu [',
+      tip3: '] , Do you want to continue?'
+    },
+    success: ' Success'
+  },
+  scaffoldIconSelect: {
+    placeholder: 'Please enter the icon name'
+  },
+  scaffoldScreenFull: {
+    tip: 'Your browser does not support this operation!'
+  },
+  scaffoldSizeSelect: {
+    tip: 'Layout set successfully!'
+  },
+  scaffoldThemePicker: {
+    tip: 'Compiling the theme...'
+  },
+  scaffoldTreeSelect: {
+    tip: 'Click to select!'
+  },
+  rolePage: {
+    title: 'Role',
+    inputPlaceholder: 'Please enter the role name or permission level to search',
+    form: {
+      name: 'Role Name',
+      permission: 'Role Permission',
+      level: 'Level'
+    },
+    roleCardTitle: 'Role list (after modifying the menu, the role needs to be logged out and logged in again)',
+    operate: 'Operate',
+    tooltipContent: 'Select the Assign Roles menu',
+    menuCardTitle: 'Menu Assignment',
+    save: 'Save',
+    rules: {
+      name: 'Please enter a name',
+      permission: 'Please enter permission',
+      nameZhCn: 'Please enter the name of Chinese Mainland',
+      nameZhHk: 'Please enter the name of Hong Kong, China',
+      nameZhTw: 'Please enter the name of Taiwan, China',
+      nameEnUs: 'Please enter English name',
+      saveSuccess: 'Saving succeeded!'
     }
   },
   ...enLocale

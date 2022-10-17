@@ -15,7 +15,7 @@
     />
     <el-input
       slot="reference"
-      placeholder="点击选择上级菜单"
+      :placeholder="placeholder"
       readonly
       clearable
       :value="menuName"
@@ -26,6 +26,7 @@
 
 <script>
 import { getMenuName } from '@/utils'
+import i18n from '@/i18n'
 
 export default {
   name: 'ScaffoldTreeSelect',
@@ -52,6 +53,11 @@ export default {
       type: String,
       required: false,
       default: 'click'
+    },
+    placeholder: {
+      type: String,
+      required: false,
+      default: String(i18n.t('scaffoldTreeSelect.tip'))
     }
   },
   computed: {

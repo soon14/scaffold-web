@@ -77,7 +77,8 @@
 </template>
 
 <script>
-import CRUD, {crud} from '@/utils/crud'
+import CRUD, { crud } from '@/utils/crud'
+import i18n from '@/i18n'
 
 export default {
   name: 'ButtonOperation',
@@ -106,7 +107,7 @@ export default {
   },
   methods: {
     toDelete(data) {
-      this.$confirm(`确认删除选中的` + data.length + `条数据?`, '提示', {
+      this.$confirm(String(i18n.t('crud.buttonOperation.tip1')) + data.length + String(i18n.t('crud.buttonOperation.tip2')), String(i18n.t('confirmTips')), {
         confirmButtonText: String(this.$i18n.t('ok')),
         cancelButtonText: String(this.$i18n.t('cancel')),
         type: 'warning'
@@ -138,7 +139,7 @@ export default {
         selectedCount += this.crud.props.tableColumns[key].visible ? 1 : 0
       }
       if (selectedCount === 0) {
-        this.crud.notify('请至少选择一列', CRUD.NOTIFICATION_TYPE.WARNING)
+        this.crud.notify(String(i18n.t('crud.buttonOperation.tip3')), CRUD.NOTIFICATION_TYPE.WARNING)
         this.$nextTick(function () {
           item.visible = true
         })

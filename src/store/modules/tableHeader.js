@@ -50,62 +50,62 @@ const state = {
   },
   center: {
     playLogs: [
-      { prop: 'title', label: String(i18n.t('tableHeader.center.playLogs.title')), sortable: false, width: '200', showOverflowTooltip: false },
-      { prop: 'requestIp', label: String(i18n.t('tableHeader.center.playLogs.requestIp')), sortable: false, width: '150', showOverflowTooltip: false },
-      { prop: 'browser', label: String(i18n.t('tableHeader.center.playLogs.browser')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'address', label: String(i18n.t('tableHeader.center.playLogs.address')), sortable: false, width: '', showOverflowTooltip: true },
-      { prop: 'time', label: String(i18n.t('tableHeader.center.playLogs.time')), sortable: true, width: '100', showOverflowTooltip: false },
-      { prop: 'createTime', label: String(i18n.t('tableHeader.center.playLogs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
+      { prop: 'title', label: String(i18n.t('tableHeader.center.playLogs.title')), width: '200' },
+      { prop: 'requestIp', label: String(i18n.t('tableHeader.center.playLogs.requestIp')), width: '150' },
+      { prop: 'browser', label: String(i18n.t('tableHeader.center.playLogs.browser')) },
+      { prop: 'address', label: String(i18n.t('tableHeader.center.playLogs.address')), showOverflowTooltip: true },
+      { prop: 'time', label: String(i18n.t('tableHeader.center.playLogs.time')), sortable: true, width: '100' },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.center.playLogs.createTime')), sortable: true, width: '200' }
     ],
     errorLogs: [
-      { prop: 'title', label: String(i18n.t('tableHeader.center.errorLogs.title')), sortable: false, width: '200', showOverflowTooltip: false },
-      { prop: 'requestIp', label: String(i18n.t('tableHeader.center.errorLogs.requestIp')), sortable: false, width: '150', showOverflowTooltip: false },
-      { prop: 'browser', label: String(i18n.t('tableHeader.center.errorLogs.browser')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'address', label: String(i18n.t('tableHeader.center.errorLogs.address')), sortable: false, width: '', showOverflowTooltip: true },
-      { prop: 'createTime', label: String(i18n.t('tableHeader.center.errorLogs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
+      { prop: 'title', label: String(i18n.t('tableHeader.center.errorLogs.title')), width: '200' },
+      { prop: 'requestIp', label: String(i18n.t('tableHeader.center.errorLogs.requestIp')), width: '150' },
+      { prop: 'browser', label: String(i18n.t('tableHeader.center.errorLogs.browser')) },
+      { prop: 'address', label: String(i18n.t('tableHeader.center.errorLogs.address')), showOverflowTooltip: true },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.center.errorLogs.createTime')), sortable: true, width: '200' }
     ]
   },
   users: [
-    { prop: 'username', label: String(i18n.t('tableHeader.user.username')), sortable: false, width: '100', fixed: 'left' },
-    { prop: 'avatar.path', label: String(i18n.t('tableHeader.user.avatarPath')), sortable: false, width: '' },
-    { prop: 'sex', label: String(i18n.t('tableHeader.user.sex')), sortable: false, width: '' },
-    { prop: 'email', label: String(i18n.t('tableHeader.user.email')), sortable: false, width: '200' },
-    { prop: 'phone', label: String(i18n.t('tableHeader.user.phone')), sortable: false, width: '150' },
-    { prop: 'enabled', label: String(i18n.t('tableHeader.user.enabled')), sortable: false, width: '' },
+    { prop: 'username', label: String(i18n.t('tableHeader.user.username')), width: '100', fixed: 'left' },
+    { prop: 'avatar.path', label: String(i18n.t('tableHeader.user.avatarPath')) },
+    { prop: 'sex', label: String(i18n.t('tableHeader.user.sex')) },
+    { prop: 'email', label: String(i18n.t('tableHeader.user.email')), width: '200' },
+    { prop: 'phone', label: String(i18n.t('tableHeader.user.phone')), width: '150' },
+    { prop: 'enabled', label: String(i18n.t('tableHeader.user.enabled')) },
     { prop: 'updateTime', label: String(i18n.t('tableHeader.user.updateTime')), sortable: true, width: '200' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.user.createTime')), sortable: true, width: '200' }
   ],
   avatars: [
-    { prop: 'username', label: String(i18n.t('tableHeader.avatar.username')), showOverflowTooltip: false, sortable: false, width: '150', fixed: 'left' },
-    { prop: 'path', label: String(i18n.t('tableHeader.avatar.path')), showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'realName', label: String(i18n.t('tableHeader.avatar.realName')), showOverflowTooltip: true, sortable: false, width: '' },
-    { prop: 'size', label: String(i18n.t('tableHeader.avatar.size')), showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'enabled', label: String(i18n.t('tableHeader.avatar.enabled')), showOverflowTooltip: false, sortable: false, width: '150' },
-    { prop: 'updateTime', label: String(i18n.t('tableHeader.avatar.updateTime')), showOverflowTooltip: false, sortable: true, width: '200' },
-    { prop: 'createTime', label: String(i18n.t('tableHeader.avatar.createTime')), showOverflowTooltip: false, sortable: true, width: '200' }
+    { prop: 'username', label: String(i18n.t('tableHeader.avatar.username')), width: '150', fixed: 'left' },
+    { prop: 'path', label: String(i18n.t('tableHeader.avatar.path')), width: '150' },
+    { prop: 'realName', label: String(i18n.t('tableHeader.avatar.realName')), showOverflowTooltip: true },
+    { prop: 'size', label: String(i18n.t('tableHeader.avatar.size')), width: '150' },
+    { prop: 'enabled', label: String(i18n.t('tableHeader.avatar.enabled')), width: '150' },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.avatar.updateTime')), sortable: true, width: '200' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.avatar.createTime')), sortable: true, width: '200' }
   ],
   roles: [
-    { prop: 'name', label: String(i18n.t('tableHeader.role.name')), sortable: false, width: '100', fixed: 'left' },
-    { prop: 'nameZhCn', label: 'zh-CN', sortable: false, width: '100' },
-    { prop: 'nameZhHk', label: 'zh-HK', sortable: false, width: '100' },
-    { prop: 'nameZhTw', label: 'zh-TW', sortable: false, width: '100' },
-    { prop: 'nameEnUs', label: 'en-US', sortable: false, width: '100' },
-    { prop: 'permission', label: String(i18n.t('tableHeader.role.permission')), sortable: false, width: '100' },
+    { prop: 'name', label: String(i18n.t('tableHeader.role.name')), width: '100', fixed: 'left' },
+    { prop: 'nameZhCn', label: 'zh-CN', width: '100' },
+    { prop: 'nameZhHk', label: 'zh-HK', width: '100' },
+    { prop: 'nameZhTw', label: 'zh-TW', width: '100' },
+    { prop: 'nameEnUs', label: 'en-US', width: '100' },
+    { prop: 'permission', label: String(i18n.t('tableHeader.role.permission')), width: '100' },
     { prop: 'level', label: String(i18n.t('tableHeader.role.level')), sortable: true, width: '100' },
     { prop: 'updateTime', label: String(i18n.t('tableHeader.role.updateTime')), sortable: true, width: '200' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.role.createTime')), sortable: true, width: '200' }
   ],
   menus: [
-    { prop: 'name', label: '菜单名称', sortable: false, width: '200', showOverflowTooltip: true, fixed: 'left' },
-    { prop: 'iconCls', label: '图标', sortable: false, width: '100', showOverflowTooltip: false, align: 'center' },
-    { prop: 'sort', label: '排序', sortable: true, width: '100', showOverflowTooltip: false },
-    { prop: 'componentName', label: '组件名', sortable: false, width: '150', showOverflowTooltip: true },
-    { prop: 'url', label: '路径', sortable: false, width: '', showOverflowTooltip: true },
-    { prop: 'permission', label: '权限', sortable: false, width: '200', showOverflowTooltip: false, align: 'center' },
-    { prop: 'hidden', label: '可见', sortable: false, width: '', showOverflowTooltip: false },
-    { prop: 'enabled', label: '状态', sortable: false, width: '', showOverflowTooltip: false },
-    { prop: 'type', label: '菜单类型', sortable: false, width: '100', showOverflowTooltip: false },
-    { prop: 'createTime', label: '创建时间', sortable: true, width: '200', showOverflowTooltip: false }
+    { prop: 'name', label: String(i18n.t('tableHeader.menu.name')), width: '200', showOverflowTooltip: true, fixed: 'left' },
+    { prop: 'iconCls', label: String(i18n.t('tableHeader.menu.iconCls')), width: '100' },
+    { prop: 'sort', label: String(i18n.t('tableHeader.menu.sort')), sortable: true, width: '100', align: 'center' },
+    { prop: 'componentName', label: String(i18n.t('tableHeader.menu.componentName')), width: '150', showOverflowTooltip: true },
+    { prop: 'url', label: String(i18n.t('tableHeader.menu.url')), showOverflowTooltip: true },
+    { prop: 'permission', label: String(i18n.t('tableHeader.menu.permission')), width: '200' },
+    { prop: 'hidden', label: String(i18n.t('tableHeader.menu.hidden')) },
+    { prop: 'enabled', label: String(i18n.t('tableHeader.menu.enabled')) },
+    { prop: 'type', label: String(i18n.t('tableHeader.menu.type')), width: '100' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.menu.createTime')), sortable: true, width: '200', align: 'center' }
   ]
 }
 

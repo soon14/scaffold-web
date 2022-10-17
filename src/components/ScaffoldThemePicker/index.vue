@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import i18n from '@/i18n'
+
 const version = require('element-ui/package.json').version // 从 node_modules 中获取element-ui的版本
 const ORIGINAL_THEME = '#409EFF' // 默认颜色
 
@@ -39,7 +41,7 @@ export default {
       console.log(themeCluster, originalCluster)
 
       const $message = this.$message({
-        message: ' Compiling the theme',
+        message: String(i18n.t('scaffoldThemePicker.tip')),
         customClass: 'theme-message',
         type: 'success',
         duration: 0,

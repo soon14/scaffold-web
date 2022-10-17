@@ -86,6 +86,7 @@
                       :sortable="item.sortable"
                       :width="item.width"
                       :show-overflow-tooltip="item.showOverflowTooltip"
+                      align="center"
                     >
                       <template v-slot="scope">
                         <span v-if="item.prop === 'time'">
@@ -123,6 +124,7 @@
                       :sortable="item.sortable"
                       :width="item.width"
                       :show-overflow-tooltip="item.showOverflowTooltip"
+                      align="center"
                     />
                   </template>
                   <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">
@@ -140,7 +142,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <back-top-and-bottom :bottom="90" :right="30" />
+    <scaffold-back-top-and-bottom />
     <update-email ref="email" :email="user.email" />
     <update-pass ref="pass" />
     <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
@@ -158,7 +160,7 @@ import updatePass from '@/views/userCenter/update/updatePass'
 import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
 import scaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import CRUD, { presenter } from '@/utils/crud'
 import { getErrorDetails } from '@/api/system/logs'
 import i18n from '@/i18n'
@@ -172,7 +174,7 @@ export default {
     scaffoldTable,
     paginationOperation,
     scaffoldExceptionInfo,
-    backTopAndBottom
+    scaffoldBackTopAndBottom
   },
   mixins: [presenter(defaultCrud)],
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation />
       <button-operation>
@@ -91,7 +91,7 @@ import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldJson from '@/components/ScaffoldJson'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import buttonOperation from '@/components/Crud/Button.operation'
@@ -106,7 +106,7 @@ export default {
     paginationOperation,
     searchDatePickerOperation,
     buttonOperation,
-    backTopAndBottom,
+    scaffoldBackTopAndBottom,
     scaffoldTable,
     scaffoldJson,
     scaffoldExceptionInfo

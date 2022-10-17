@@ -42,7 +42,7 @@ const easeInOutCubic = value => value < 0.5
   : 1 - cubic((1 - value) * 2) / 2
 
 export default {
-  name: 'BackTopAndBottom',
+  name: 'ScaffoldBackTopAndBottom',
   props: {
     goTopVisibilityHeight: {
       type: Number,

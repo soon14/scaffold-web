@@ -28,8 +28,10 @@
 </template>
 
 <script>
+import i18n from '@/i18n'
+
 export default {
-  name: 'SizeSelect',
+  name: 'ScaffoldSizeSelect',
   data() {
     return {
       sizeOptions: [
@@ -67,7 +69,7 @@ export default {
       this.$store.dispatch('app/setSize', size)// 修改Vuex中的状态
       this.refreshView()
       this.$message({
-        message: '布局设置成功',
+        message: String(i18n.t('scaffoldSizeSelect.tip')),
         type: 'success'
       })
     },

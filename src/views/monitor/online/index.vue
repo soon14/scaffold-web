@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <el-input
@@ -94,7 +94,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import searchResetOperation from '@/components/Crud/SearchReset.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
@@ -112,7 +112,7 @@ export default {
     paginationOperation,
     searchResetOperation,
     scaffoldTable,
-    backTopAndBottom
+    scaffoldBackTopAndBottom
   },
   mixins: [presenter(defaultCrud), header(), crud()],
   data() {

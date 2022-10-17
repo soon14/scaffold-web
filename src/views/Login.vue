@@ -65,7 +65,7 @@
             placement="right"
             transition="el-zoom-in-top"
           >
-            <i18n-select style="float: right" />
+            <scaffold-i18n-select style="float: right" />
           </el-tooltip>
         </el-form-item>
         <el-form-item>
@@ -89,11 +89,11 @@ import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
 import { encrypt } from '@/utils/rsaEncrypt'
 import Global from '@/global'
-import I18nSelect from '@/components/I18nSelect'
+import scaffoldI18nSelect from '@/components/ScaffoldI18nSelect'
 
 export default {
   name: 'Login',
-  components: { I18nSelect },
+  components: { scaffoldI18nSelect },
   data() {
     return {
       captchaUrl: '',

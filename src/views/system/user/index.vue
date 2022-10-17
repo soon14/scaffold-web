@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
         <template #right>
@@ -43,13 +43,13 @@
           label-position="right"
         >
           <el-form-item :label="String($t('userPage.form.username'))" prop="username">
-            <el-input v-model="form.username" clearable />
+            <el-input v-model="form.username" clearable :placeholder="String($t('userPage.form.username'))" />
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.phone'))" prop="phone">
-            <el-input v-model.number="form.phone" clearable />
+            <el-input v-model.number="form.phone" clearable :placeholder="String($t('userPage.form.phone'))" />
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.email'))" prop="email">
-            <el-input v-model="form.email" clearable />
+            <el-input v-model="form.email" clearable :placeholder="String($t('userPage.form.email'))" />
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
@@ -107,6 +107,7 @@
             :sortable="item.sortable"
             :width="item.width"
             :fixed="item.fixed"
+            align="center"
           >
             <template v-slot="scope">
               <span v-if="item.prop === 'avatar.path'">
@@ -171,7 +172,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import { add, edit, del } from '@/api/system/user'
 import Avatar from '@/assets/images/avatar.png'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
@@ -186,8 +187,20 @@ import { isvalidPhone } from '@/utils/validate'
 
 let userRoles = []
 
-const defaultCrud = CRUD({ title: String(i18n.t('userPage.title')), url: '/users', crudMethod: { add, edit, del }})
-const defaultForm = { username: null, sex: String(i18n.t('userPage.form.man')), email: null, phone: null, enabled: 'false', roles: [] }
+const defaultCrud = CRUD({
+  title: String(i18n.t('userPage.title')),
+  url: '/users',
+  crudMethod: { add, edit, del }
+})
+const defaultForm = {
+  username: null,
+  sex: String(i18n.t('userPage.form.man')),
+  email: null,
+  phone: null,
+  enabled: false,
+  roles: []
+}
+
 export default {
   name: 'User',
   components: {
@@ -197,7 +210,7 @@ export default {
     paginationOperation,
     updateDeleteOperation,
     scaffoldDialog,
-    backTopAndBottom
+    scaffoldBackTopAndBottom
   },
   mixins: [
     presenter(defaultCrud),

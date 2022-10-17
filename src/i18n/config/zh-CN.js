@@ -130,7 +130,10 @@ export default {
       edit: '编辑',
       del: '删除',
       download: '导出',
-      chooseAll: '全选'
+      chooseAll: '全选',
+      tip1: '确认删除选中的',
+      tip2: '条数据?',
+      tip3: '请至少选择一列'
     },
     searchResetOperation: {
       search: '搜索',
@@ -250,6 +253,18 @@ export default {
       permission: '角色权限',
       level: '角色等级',
       updateTime: '修改时间',
+      createTime: '创建时间'
+    },
+    menu: {
+      name: '菜单名称',
+      iconCls: '图标',
+      sort: '排序',
+      componentName: '组件名',
+      url: '路径',
+      permission: '权限',
+      hidden: '可见',
+      enabled: '状态',
+      type: '菜单类型',
       createTime: '创建时间'
     }
   },
@@ -387,6 +402,90 @@ export default {
       tip2: '用户 [',
       tip3: '] 的头像, 是否继续?',
       tip4: '成功'
+    }
+  },
+  menuPage: {
+    title: '菜单',
+    state: '状态',
+    form: {
+      type: '菜单类型',
+      type_1: '顶级菜单',
+      type_2: '子菜单',
+      type_3: '权限菜单',
+      iconCls: '菜单图标',
+      iconSelect: '点击选择图标',
+      parentId: '上级菜单',
+      treeSelect: '点击选择上级菜单',
+      name1: '菜单操作权限',
+      name2: '菜单名称',
+      path: '前端使用的Path',
+      url: '后端使用的Url',
+      permission: '权限标识',
+      keepAlive: '保持激活',
+      yes: '是',
+      no: '否',
+      sort: '排序',
+      hidden: '菜单可见',
+      enabled: '菜单是否可用',
+      component: '组件路径',
+      componentName: '组件名称'
+    },
+    operate: '操作',
+    enable: '启用',
+    disable: '禁用',
+    rules: {
+      name: '请输入菜单名称',
+      name1: '请输入菜单操作权限',
+      path: '请输入前端使用的Path',
+      url: '请输入后端使用的Url',
+      componentName: '请输入组件名称',
+      component: '请输入组件路径',
+      permission: '请输入权限标识'
+    },
+    topMenu: '顶级菜单',
+    changeEnabled: {
+      tip1: '此操作将',
+      tip2: ' 菜单 [',
+      tip3: '] , 是否继续?'
+    },
+    success: '成功'
+  },
+  scaffoldIconSelect: {
+    placeholder: '请输入图标名称'
+  },
+  scaffoldScreenFull: {
+    tip: '你的浏览器不支持该操作!'
+  },
+  scaffoldSizeSelect: {
+    tip: '布局设置成功!'
+  },
+  scaffoldThemePicker: {
+    tip: '正在编译主题...'
+  },
+  scaffoldTreeSelect: {
+    tip: '点击选择!'
+  },
+  rolePage: {
+    title: '角色',
+    inputPlaceholder: '请输入角色名称或权限等级搜索',
+    form: {
+      name: '角色名称',
+      permission: '角色权限',
+      level: '角色级别'
+    },
+    roleCardTitle: '角色列表 (修改菜单后该角色需要注销重新登录)',
+    operate: '操作',
+    tooltipContent: '选择指定角色分配菜单',
+    menuCardTitle: '菜单分配',
+    save: '保存',
+    rules: {
+      name: '请输入名称',
+      permission: '请输入权限',
+      nameZhCn: '请输入中国大陆名称',
+      nameZhHk: '请输入中国香港名称',
+      nameZhTw: '请输入中国台湾名称',
+      nameEnUs: '请输入英文名称',
+      saveSuccess: '保存成功!'
     }
   },
   ...zhCNLocale

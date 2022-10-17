@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Hamburger',
+  name: 'ScaffoldHamburger',
   props: {
     // 菜单栏是否已经打开
     isActive: {

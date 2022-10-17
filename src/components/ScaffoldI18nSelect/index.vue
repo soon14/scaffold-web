@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'I18nSelect',
+  name: 'ScaffoldI18nSelect',
   data() {
     return {
       i18nOptions: [

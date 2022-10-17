@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation />
       <button-operation>
@@ -95,7 +95,7 @@
 
 <script>
 import i18n from '@/i18n'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import scaffoldJson from '@/components/ScaffoldJson'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
@@ -115,7 +115,7 @@ export default {
     searchDatePickerOperation,
     buttonOperation,
     scaffoldJson,
-    backTopAndBottom
+    scaffoldBackTopAndBottom
   },
   mixins: [presenter(defaultCrud)],
   computed: {

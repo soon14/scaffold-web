@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <back-top-and-bottom />
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation :input-placeholder="String($t('avatarPage.placeholderInput'))">
         <template #right>
@@ -40,6 +40,7 @@
             :sortable="item.sortable"
             :width="item.width"
             :fixed="item.fixed"
+            align="center"
           >
             <template slot-scope="scope">
               <span v-if="scope.row[item.prop] === null">
@@ -109,7 +110,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import backTopAndBottom from '@/components/BackTopAndBottom'
+import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import { del, editEnabled } from '@/api/system/avatar'
 import Avatar from '@/assets/images/avatar.png'
 import scaffoldTable from '@/components/ScaffoldTable'
@@ -120,7 +121,11 @@ import paginationOperation from '@/components/Crud/Pagination.operation'
 import CRUD, { header, presenter } from '@/utils/crud'
 import i18n from '@/i18n'
 
-const defaultCrud = CRUD({ url: '/avatars', title: String(i18n.t('avatarPage.title')), crudMethod: { del }})
+const defaultCrud = CRUD({
+  url: '/avatars',
+  title: String(i18n.t('avatarPage.title')),
+  crudMethod: { del }
+})
 export default {
   name: 'Avatar',
   components: {
@@ -129,7 +134,7 @@ export default {
     searchDatePickerOperation,
     paginationOperation,
     updateDeleteOperation,
-    backTopAndBottom
+    scaffoldBackTopAndBottom
   },
   mixins: [
     presenter(defaultCrud),

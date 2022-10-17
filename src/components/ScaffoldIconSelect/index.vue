@@ -4,7 +4,7 @@
       v-model="name"
       style="position: relative;"
       clearable
-      placeholder="请输入图标名称"
+      :placeholder="String($t('scaffoldIconSelect.placeholder'))"
       @clear="filterIcons"
       @input.native="filterIcons"
     >

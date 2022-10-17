@@ -28,7 +28,7 @@ import Fuse from 'fuse.js'
 import path from 'path'
 
 export default {
-  name: 'HeaderSearch',
+  name: 'ScaffoldHeaderSearch',
   data() {
     return {
       search: '',
