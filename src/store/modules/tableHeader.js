@@ -10,14 +10,14 @@ const state = {
   ],
   playLogs: {
     logs: [
-      { prop: 'username', label: String(i18n.t('tableHeader.playLogs.logs.username')), sortable: false, width: '100', showOverflowTooltip: false },
-      { prop: 'requestIp', label: String(i18n.t('tableHeader.playLogs.logs.requestIp')), sortable: false, width: '150', showOverflowTooltip: false },
-      { prop: 'address', label: String(i18n.t('tableHeader.playLogs.logs.address')), sortable: false, width: '200', showOverflowTooltip: true },
-      { prop: 'title', label: String(i18n.t('tableHeader.playLogs.logs.title')), sortable: false, width: '200', showOverflowTooltip: false },
-      { prop: 'browser', label: String(i18n.t('tableHeader.playLogs.logs.browser')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'businessType', label: String(i18n.t('tableHeader.playLogs.logs.businessType')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'time', label: String(i18n.t('tableHeader.playLogs.logs.time')), sortable: true, width: '150', showOverflowTooltip: false },
-      { prop: 'createTime', label: String(i18n.t('tableHeader.playLogs.logs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
+      { prop: 'username', label: String(i18n.t('tableHeader.playLogs.logs.username')), width: '100' },
+      { prop: 'requestIp', label: String(i18n.t('tableHeader.playLogs.logs.requestIp')), width: '150' },
+      { prop: 'address', label: String(i18n.t('tableHeader.playLogs.logs.address')), width: '200', showOverflowTooltip: true },
+      { prop: 'title', label: String(i18n.t('tableHeader.playLogs.logs.title')), width: '200' },
+      { prop: 'browser', label: String(i18n.t('tableHeader.playLogs.logs.browser')) },
+      { prop: 'businessType', label: String(i18n.t('tableHeader.playLogs.logs.businessType')) },
+      { prop: 'time', label: String(i18n.t('tableHeader.playLogs.logs.time')), sortable: true, width: '150' },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.playLogs.logs.createTime')), sortable: true, width: '200' }
     ],
     expand: [
       { prop: 'requestMethod', label: String(i18n.t('tableHeader.playLogs.expand.requestMethod')) },
@@ -30,14 +30,14 @@ const state = {
   },
   errorLogs: {
     logs: [
-      { prop: 'username', label: String(i18n.t('tableHeader.errorLogs.logs.username')), sortable: false, width: '100', showOverflowTooltip: false },
-      { prop: 'requestIp', label: String(i18n.t('tableHeader.errorLogs.logs.requestIp')), sortable: false, width: '150', showOverflowTooltip: false },
-      { prop: 'address', label: String(i18n.t('tableHeader.errorLogs.logs.address')), sortable: false, width: '200', showOverflowTooltip: true },
-      { prop: 'title', label: String(i18n.t('tableHeader.errorLogs.logs.title')), sortable: false, width: '200', showOverflowTooltip: false },
-      { prop: 'logType', label: String(i18n.t('tableHeader.errorLogs.logs.logType')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'browser', label: String(i18n.t('tableHeader.errorLogs.logs.browser')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'businessType', label: String(i18n.t('tableHeader.errorLogs.logs.businessType')), sortable: false, width: '', showOverflowTooltip: false },
-      { prop: 'createTime', label: String(i18n.t('tableHeader.errorLogs.logs.createTime')), sortable: true, width: '200', showOverflowTooltip: false }
+      { prop: 'username', label: String(i18n.t('tableHeader.errorLogs.logs.username')), width: '100' },
+      { prop: 'requestIp', label: String(i18n.t('tableHeader.errorLogs.logs.requestIp')), width: '150' },
+      { prop: 'address', label: String(i18n.t('tableHeader.errorLogs.logs.address')), width: '200', showOverflowTooltip: true },
+      { prop: 'title', label: String(i18n.t('tableHeader.errorLogs.logs.title')), width: '200' },
+      { prop: 'logType', label: String(i18n.t('tableHeader.errorLogs.logs.logType')) },
+      { prop: 'browser', label: String(i18n.t('tableHeader.errorLogs.logs.browser')) },
+      { prop: 'businessType', label: String(i18n.t('tableHeader.errorLogs.logs.businessType')) },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.errorLogs.logs.createTime')), sortable: true, width: '200' }
     ],
     expand: [
       { prop: 'requestMethod', label: String(i18n.t('tableHeader.errorLogs.expand.requestMethod')) },

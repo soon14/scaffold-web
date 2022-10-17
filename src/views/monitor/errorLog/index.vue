@@ -58,6 +58,7 @@
             :sortable="item.sortable"
             :width="item.width"
             :show-overflow-tooltip="item.showOverflowTooltip"
+            align="center"
           >
             <template v-slot="scope">
               <span v-if="item.prop === 'logType'" :class="{'logType_error':(scope.row[item.prop] === 'ERROR')}">
@@ -66,9 +67,16 @@
               <span v-else-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">
                 {{ scope.row[item.prop] }}
               </span>
+              <span
+                v-else-if="item.prop === 'businessType'"
+                :class="scope.row[item.prop]"
+              >
+                {{ scope.row[item.prop] }}
+              </span>
               <span v-else-if="scope.row[item.prop] === '' || scope.row[item.prop] === null" style="color: red;font-weight: bold">
                 {{ $t('errorLogsPage.noUser') }}
               </span>
+
               <span v-else>{{ scope.row[item.prop] }}</span>
             </template>
           </el-table-column>
@@ -195,5 +203,25 @@ export default {
 .logType_error {
   color: red;
   font-weight: bold;
+}
+
+.OTHER{
+  font-weight: bold;
+  color: black;
+}
+
+.INSERT{
+  font-weight: bold;
+  color: #9370BE;
+}
+
+.UPDATE{
+  font-weight: bold;
+  color: #CEB00E
+}
+
+.DELETE{
+  font-weight: bold;
+  color: red;
 }
 </style>
