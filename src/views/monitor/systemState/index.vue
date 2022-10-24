@@ -224,7 +224,7 @@ export default {
   data() {
     return {
       loading: true,
-      timeNow: '',
+      timeNow: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       timer: '',
       systemParams: {
         os: '', // 操作系统

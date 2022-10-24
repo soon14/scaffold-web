@@ -96,7 +96,17 @@
                   :width="item.width"
                   :fixed="item.fixed"
                   align="center"
-                />
+                >
+                  <template v-slot="scope">
+                    <span v-if="item.prop === 'updateTime'">
+                      <span v-if="scope.row[item.prop] === null" style="font-weight: bold;font-size: 13px">
+                        {{ String($t('no')) }}
+                      </span>
+                      <span v-else>{{ scope.row[item.prop] }}</span>
+                    </span>
+                    <span v-else>{{ scope.row[item.prop] }}</span>
+                  </template>
+                </el-table-column>
               </template>
               <el-table-column
                 v-permission="['root','Role:delete','Role:update']"

@@ -8,6 +8,7 @@
       style="width: 200px"
       @keyup.enter.native="crud.toQuery"
     />
+    <slot name="center" />
     <el-date-picker
       v-model="query.createTime"
       :default-time="['00:00:00','23:59:59']"

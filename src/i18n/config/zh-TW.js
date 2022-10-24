@@ -346,7 +346,8 @@ export default {
     }
   },
   userPage: {
-    placeholderInput: '請輸入郵箱或用戶名査詢',
+    placeholderInput: '請輸入用戶名査詢',
+    placeholderPhone: '請輸入手機號後四位',
     placeholderSelect: '狀態',
     form: {
       username: '用戶名',

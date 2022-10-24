@@ -59,7 +59,7 @@ export default {
     closeAll: 'Close All'
   },
   headerSearch: 'Search',
-  no: 'No',
+  no: 'No Data',
   nodata: 'No Data',
   error: 'error',
   serverException: 'Server Exception',
@@ -346,7 +346,8 @@ export default {
     }
   },
   userPage: {
-    placeholderInput: 'Please enter the email or user name to query',
+    placeholderInput: 'Please enter the username to query',
+    placeholderPhone: 'Please enter the last four digits of your mobile number',
     placeholderSelect: 'State',
     form: {
       username: 'Username',

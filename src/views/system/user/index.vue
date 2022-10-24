@@ -3,6 +3,15 @@
     <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
+        <template #center>
+          <el-input
+            v-model="query.phone"
+            clearable
+            :placeholder="String($t('userPage.placeholderPhone'))"
+            style="width: 200px"
+            @keyup.enter.native="crud.toQuery"
+          />
+        </template>
         <template #right>
           <el-select
             v-model="query.enabled"
@@ -160,6 +169,7 @@
               :permission="permission"
               :data="scope.row"
               :disabled-del="scope.row.id === user.id"
+              @edit-click="alert('123')"
             />
           </template>
         </el-table-column>

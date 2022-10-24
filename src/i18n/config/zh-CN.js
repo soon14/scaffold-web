@@ -346,7 +346,8 @@ export default {
     }
   },
   userPage: {
-    placeholderInput: '请输入邮箱或用户名查询',
+    placeholderInput: '请输入用户名查询',
+    placeholderPhone: '请输入手机号后四位',
     placeholderSelect: '状态',
     form: {
       username: '用户名',

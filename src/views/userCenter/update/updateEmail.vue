@@ -34,7 +34,12 @@
               :placeholder="String($t('userCenter.update.email.suffix'))"
               class="my-select"
             >
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
             </el-select>
           </el-form-item>
           <el-button
