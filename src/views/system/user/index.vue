@@ -150,7 +150,7 @@
                 />
               </span>
               <span v-else-if="item.prop === 'updateTime'">
-                <span v-if="scope.row[item.prop] === null" style="font-weight: bold;font-size: 13px">{{ $t('no') }}</span>
+                <span v-if="scope.row[item.prop] === null" style="font-weight: bold">{{ $t('no') }}</span>
                 <span v-else>{{ scope.row[item.prop] }}</span>
               </span>
               <span v-else>{{ scope.row[item.prop] }}</span>
@@ -169,7 +169,6 @@
               :permission="permission"
               :data="scope.row"
               :disabled-del="scope.row.id === user.id"
-              @edit-click="alert('123')"
             />
           </template>
         </el-table-column>

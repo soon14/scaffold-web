@@ -5,7 +5,9 @@
       v-model="query.blurry"
       clearable
       :placeholder="inputPlaceholder === null ? $t('crud.searchDatePickerOperation.placeholder') : inputPlaceholder"
-      style="width: 200px"
+      :style="{
+        'width' : inputWidth + 'px'
+      }"
       @keyup.enter.native="crud.toQuery"
     />
     <slot name="center" />
@@ -18,7 +20,9 @@
       :start-placeholder="String($t('crud.searchDatePickerOperation.startTime'))"
       :end-placeholder="String($t('crud.searchDatePickerOperation.endTime'))"
       align="left"
-      style="width: 300px"
+      :style="{
+        'width' : pickerWidth + 'px'
+      }"
     />
     <slot name="right" />
     <search-reset-operation :crud="crud" />
@@ -38,6 +42,16 @@ export default {
       type: String,
       required: false,
       default: null
+    },
+    inputWidth: {
+      type: Number,
+      required: false,
+      default: 200
+    },
+    pickerWidth: {
+      type: Number,
+      required: false,
+      default: 300
     }
   }
 }

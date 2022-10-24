@@ -99,7 +99,7 @@
                 >
                   <template v-slot="scope">
                     <span v-if="item.prop === 'updateTime'">
-                      <span v-if="scope.row[item.prop] === null" style="font-weight: bold;font-size: 13px">
+                      <span v-if="scope.row[item.prop] === null" style="font-weight: bold">
                         {{ String($t('no')) }}
                       </span>
                       <span v-else>{{ scope.row[item.prop] }}</span>

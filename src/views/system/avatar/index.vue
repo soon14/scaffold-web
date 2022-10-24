@@ -118,7 +118,7 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
-import CRUD, { header, presenter } from '@/utils/crud'
+import CRUD, { crud, header, presenter } from '@/utils/crud'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
@@ -138,7 +138,8 @@ export default {
   },
   mixins: [
     presenter(defaultCrud),
-    header()
+    header(),
+    crud()
   ],
   data() {
     return {

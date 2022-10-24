@@ -106,6 +106,15 @@ const state = {
     { prop: 'enabled', label: String(i18n.t('tableHeader.menu.enabled')) },
     { prop: 'type', label: String(i18n.t('tableHeader.menu.type')), width: '100' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.menu.createTime')), sortable: true, width: '200', align: 'center' }
+  ],
+  ownerInfo: [
+    { prop: 'name', label: '业主姓名', fixed: 'left', width: '200' },
+    { prop: 'sex', label: '性别' },
+    { prop: 'phone', label: '手机号', width: '150' },
+    { prop: 'identityId', label: '身份证', width: '250' },
+    { prop: 'email', label: '邮箱', width: '200' },
+    { prop: 'createTime', label: '创建时间', width: '200', sortable: true },
+    { prop: 'updateTime', label: '修改时间', width: '200', sortable: true }
   ]
 }
 
