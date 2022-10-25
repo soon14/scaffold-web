@@ -489,5 +489,15 @@ export default {
       saveSuccess: '保存成功!'
     }
   },
+  validate: {
+    ip: '請輸入正確的IP地址',
+    phoneTwo: '請輸入正確的電話號碼或者固話號碼',
+    telephone: '請輸入正確的固話（格式：區號+號碼，如010-1234567）',
+    idNo: '請輸入正確的身份證號碼',
+    phone1: '請輸入手機號碼！',
+    phone2: '請輸入正確的11比特手機號碼',
+    email1: '請輸入郵箱！',
+    email2: '請輸入正確的郵箱！'
+  },
   ...zhTWLocale
 }

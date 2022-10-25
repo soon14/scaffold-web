@@ -489,5 +489,15 @@ export default {
       saveSuccess: '保存成功!'
     }
   },
+  validate: {
+    ip: '请输入正确的IP地址',
+    phoneTwo: '请输入正确的电话号码或者固话号码',
+    telephone: '请输入正确的固话（格式：区号+号码,如010-1234567）',
+    idNo: '请输入正确的身份证号码',
+    phone1: '请输入手机号码!',
+    phone2: '请输入正确的11位手机号码',
+    email1: '请输入邮箱!',
+    email2: '请输入正确的邮箱！'
+  },
   ...zhCNLocale
 }

@@ -14,7 +14,7 @@
       :close-on-click-modal="false"
       append-to-body
       width="520px"
-      top="60px"
+      top="80px"
     >
       <template #title>
         <div style="padding:15px 20px;">{{ crud.status.title }}</div>
@@ -23,6 +23,7 @@
         <el-form
           ref="form"
           inline
+          :rules="rules"
           :model="form"
           label-width="150px"
           label-position="right"
@@ -33,10 +34,6 @@
           <el-form-item label="业主电话" prop="phone">
             <el-input v-model.number="form.phone" clearable placeholder="业主电话" />
           </el-form-item>
-          <el-form-item v-if="crud.status.edit === 1" label="密码" prop="password">
-            <el-input ref="passInput" v-model="form.password" disabled clearable placeholder="密码" />
-          </el-form-item>
-          <el-button v-if="crud.status.edit === 1" type="primary" round @click="resetPass">重置密码</el-button>
           <el-form-item label="性别">
             <el-radio-group v-model="form.sex" style="width: 178px">
               <el-radio label="男">男</el-radio>
@@ -98,7 +95,7 @@
         <el-table-column
           v-permission="['root','OwnerInfo:update','OwnerInfo:delete']"
           label="操作"
-          width="125"
+          width="230"
           align="center"
           fixed="right"
         >
@@ -106,7 +103,17 @@
             <update-delete-operation
               :permission="permission"
               :data="scope.row"
-            />
+            >
+              <template #left>
+                <scaffold-popover
+                  :ok-btn-loading="loading"
+                  reference-btn-text="重置密码"
+                  reference-icon="el-icon-refresh-right"
+                  :content="content"
+                  @confirm="resetPass(scope.row)"
+                />
+              </template>
+            </update-delete-operation>
           </template>
         </el-table-column>
       </template>
@@ -122,13 +129,20 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
+import scaffoldPopover from '@/components/ScaffoldPopover'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldDialog from '@/components/ScaffoldDialog'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
+import { add, edit, del, getById, resetPass } from '@/api/system/owner'
+import { validateIdNo, validEmail, validPhone } from '@/utils/validate'
+import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
   url: '/owners',
-  title: '业主'
+  title: '业主',
+  crudMethod: {
+    add, edit, del
+  }
 })
 
 const defaultForm = {
@@ -144,6 +158,7 @@ export default {
   name: 'OwnerInfo',
   components: {
     scaffoldBackTopAndBottom,
+    scaffoldPopover,
     searchDatePickerOperation,
     updateDeleteOperation,
     buttonOperation,
@@ -159,10 +174,26 @@ export default {
   ],
   data() {
     return {
+      loading: false,
+      content: '确认重置密码吗?<br>原始密码为手机号',
       permission: {
         add: ['OwnerInfo:add', 'root'],
         edit: ['OwnerInfo:update', 'root'],
         del: ['OwnerInfo:delete', 'root']
+      },
+      rules: {
+        phone: [
+          { required: true, trigger: 'blur', validator: validPhone }
+        ],
+        email: [
+          { required: true, trigger: 'blur', validator: validEmail }
+        ],
+        identityId: [
+          { required: true, trigger: 'blur', validator: validateIdNo }
+        ],
+        name: [
+          { required: true, message: '请输入姓名', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -172,8 +203,20 @@ export default {
     ])
   },
   methods: {
-    resetPass() {
-      this.$refs.passInput.value = '123456'
+    resetPass(row) {
+      this.loading = true
+      resetPass(row.id, row.phone).then(res => {
+        this.crud.notify('重置成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+        this.loading = false
+      }).catch(() => {
+        this.loading = false
+      })
+    },
+    [CRUD.HOOK.beforeToEdit](crud, form) {
+      getById(form.id).then(res => {
+        this.crud.form = res.data
+        this.$refs.form.resetFields()
+      })
     }
   }
 }

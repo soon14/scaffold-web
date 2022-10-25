@@ -489,5 +489,15 @@ export default {
       saveSuccess: 'Saving succeeded!'
     }
   },
+  validate: {
+    ip: 'Please enter the correct IP address',
+    phoneTwo: 'Please enter the correct phone number or fixed line number',
+    telephone: 'Please enter the correct fixed line telephone (format: area code+number, such as 010-1234567)',
+    idNo: 'Please enter the correct ID number',
+    phone1: 'Please enter your mobile number!',
+    phone2: 'Please enter the correct 11 bit mobile phone number',
+    email1: 'Please enter your email!',
+    email2: 'Please enter the correct email!'
+  },
   ...enLocale
 }

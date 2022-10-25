@@ -2,6 +2,8 @@
  * Created by PanJiaChen on 16/11/18.
  */
 
+import i18n from '@/i18n'
+
 /**
  * @param {string} path
  * @returns {Boolean}
@@ -59,13 +61,13 @@ export function validAlphabets(str) {
  * @param {string} email
  * @returns {Boolean}
  */
-export function validEmail(email) {
+export function isValidEmail(email) {
   const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return reg.test(email)
 }
 
-export function isvalidPhone(phone) {
-  const reg = /^1[3|4|5|7|8][0-9]\d{8}$/
+export function isValidPhone(phone) {
+  const reg = /^(13\d|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18\d|19[0-35-9])\d{8}$/
   return reg.test(phone)
 }
 
@@ -74,10 +76,7 @@ export function isvalidPhone(phone) {
  * @returns {Boolean}
  */
 export function isString(str) {
-  if (typeof str === 'string' || str instanceof String) {
-    return true
-  }
-  return false
+  return typeof str === 'string' || str instanceof String
 }
 
 /**
@@ -103,7 +102,7 @@ export function validateIP(rule, value, callback) {
   } else {
     const reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
     if ((!reg.test(value)) && value !== '') {
-      callback(new Error('请输入正确的IP地址'))
+      callback(new Error(String(i18n.t('validate.ip'))))
     } else {
       callback()
     }
@@ -117,7 +116,7 @@ export function validatePhoneTwo(rule, value, callback) {
     callback()
   } else {
     if ((!reg.test(value)) && value !== '') {
-      callback(new Error('请输入正确的电话号码或者固话号码'))
+      callback(new Error(String(i18n.t('validate.phoneTwo'))))
     } else {
       callback()
     }
@@ -131,21 +130,7 @@ export function validateTelephone(rule, value, callback) {
     callback()
   } else {
     if ((!reg.test(value)) && value !== '') {
-      callback(new Error('请输入正确的固话（格式：区号+号码,如010-1234567）'))
-    } else {
-      callback()
-    }
-  }
-}
-
-/* 是否手机号码*/
-export function validatePhone(rule, value, callback) {
-  const reg = /^[1][3,4,5,7,8][0-9]{9}$/
-  if (value === '' || value === undefined || value == null) {
-    callback()
-  } else {
-    if ((!reg.test(value)) && value !== '') {
-      callback(new Error('请输入正确的电话号码'))
+      callback(new Error(String(i18n.t('validate.telephone'))))
     } else {
       callback()
     }
@@ -159,10 +144,30 @@ export function validateIdNo(rule, value, callback) {
     callback()
   } else {
     if ((!reg.test(value)) && value !== '') {
-      callback(new Error('请输入正确的身份证号码'))
+      callback(new Error(String(i18n.t('validate.idNo'))))
     } else {
       callback()
     }
+  }
+}
+
+export function validPhone(rule, value, callback) {
+  if (!value) {
+    callback(new Error(String(i18n.t('validate.phone1'))))
+  } else if (!isValidPhone(value)) {
+    callback(new Error(String(i18n.t('validate.phone2'))))
+  } else {
+    callback()
+  }
+}
+
+export function validEmail (rule, value, callback) {
+  if (!value) {
+    callback(new Error(String(i18n.t('validate.email1'))))
+  } else if (!isValidEmail(value)) {
+    callback(new Error(String(i18n.t('validate.email2'))))
+  } else {
+    callback()
   }
 }
 

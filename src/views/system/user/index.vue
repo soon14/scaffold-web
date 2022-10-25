@@ -192,7 +192,7 @@ import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getRoles } from '@/api/system/roles'
-import { isvalidPhone } from '@/utils/validate'
+import { validPhone } from '@/utils/validate'
 
 let userRoles = []
 
@@ -228,16 +228,6 @@ export default {
     crud()
   ],
   data() {
-    // 自定义验证
-    const validPhone = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error(String(i18n.t('userPage.validPhone.error1'))))
-      } else if (!isvalidPhone(value)) {
-        callback(new Error(String(i18n.t('userPage.validPhone.error2'))))
-      } else {
-        callback()
-      }
-    }
     return {
       Avatar: Avatar,
       roles: [],

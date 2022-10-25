@@ -11,51 +11,28 @@
       icon="el-icon-edit"
       @click="crud.toEdit(data)"
     />
-    <el-popover
+    <scaffold-popover
       v-if="showDel"
-      v-model="pop"
       v-permission="permission.del"
-      placement="top"
+      :ok-btn-loading="crud.dataStatus[data.id].delete === 2"
       width="180"
-      trigger="manual"
-      @show="onPopoverShow"
-      @hide="onPopoverHide"
-    >
-      <p>{{ msg }}</p>
-      <div style="text-align: right;margin: 0">
-        <el-button size="mini" round @click="doCancel">
-          {{ $t('cancel') }}
-        </el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          round
-          :loading="crud.dataStatus[data.id].delete === 2"
-          @click="crud.doDelete(data)"
-        >
-          {{ $t('ok') }}
-        </el-button>
-      </div>
-      <el-button
-        slot="reference"
-        :disabled="disabledDel"
-        type="danger"
-        round
-        icon="el-icon-delete"
-        size="mini"
-        @click="toDelete"
-      />
-    </el-popover>
+      :content="msg"
+      :reference-disabled="disabledDel"
+      reference-icon="el-icon-delete"
+      @confirm="crud.doDelete(data)"
+    />
     <slot name="right" />
   </div>
 </template>
 
 <script>
 import CRUD, { crud } from '@/utils/crud'
+import scaffoldPopover from '@/components/ScaffoldPopover'
 import i18n from '@/i18n'
 
 export default {
   name: 'UpdateDeleteOperation',
+  components: { scaffoldPopover },
   mixins: [crud()],
   props: {
     // 传入要编辑的数据行
