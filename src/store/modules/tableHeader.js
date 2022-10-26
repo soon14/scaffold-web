@@ -108,13 +108,13 @@ const state = {
     { prop: 'createTime', label: String(i18n.t('tableHeader.menu.createTime')), sortable: true, width: '200', align: 'center' }
   ],
   ownerInfo: [
-    { prop: 'name', label: '业主姓名', fixed: 'left', width: '200' },
-    { prop: 'sex', label: '性别' },
-    { prop: 'phone', label: '手机号', width: '150' },
-    { prop: 'identityId', label: '身份证', width: '250' },
-    { prop: 'email', label: '邮箱', width: '200' },
-    { prop: 'createTime', label: '创建时间', width: '200', sortable: true },
-    { prop: 'updateTime', label: '修改时间', width: '200', sortable: true }
+    { prop: 'name', label: String(i18n.t('tableHeader.owner.name')), fixed: 'left', width: '200' },
+    { prop: 'sex', label: String(i18n.t('tableHeader.owner.sex')) },
+    { prop: 'phone', label: String(i18n.t('tableHeader.owner.phone')), width: '150' },
+    { prop: 'identityId', label: String(i18n.t('tableHeader.owner.identityId')), width: '250' },
+    { prop: 'email', label: String(i18n.t('tableHeader.owner.email')), width: '200' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.owner.createTime')), width: '200', sortable: true },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.owner.updateTime')), width: '200', sortable: true }
   ]
 }
 

@@ -266,6 +266,15 @@ export default {
       enabled: 'State',
       type: 'Type',
       createTime: 'CreateTime'
+    },
+    owner: {
+      name: 'OwnerName',
+      sex: 'Sex',
+      phone: 'Phone',
+      identityId: 'ID Card',
+      email: 'Email',
+      createTime: 'Create Time',
+      updateTime: 'Update Time'
     }
   },
   scaffoldJsonViewer: {
@@ -498,6 +507,34 @@ export default {
     phone2: 'Please enter the correct 11 bit mobile phone number',
     email1: 'Please enter your email!',
     email2: 'Please enter the correct email!'
+  },
+  ownerPage: {
+    title: 'Owner',
+    inputPlaceholder: 'Please enter the last four digits of your name or mobile number to search',
+    form: {
+      name: 'Owner Name',
+      phone: 'Phone',
+      sex: 'Sex',
+      male: 'Male',
+      female: 'Female',
+      identityId: 'ID Card',
+      email: 'Email'
+    },
+    dialog: {
+      title: 'Verify Password',
+      pass: 'Password',
+      passPlaceholder: 'Please input a password'
+    },
+    operate: 'Operate',
+    btnText: 'Reset',
+    content1: 'Are you sure to reset the password?',
+    content2: 'The original password is the last six digits of the ID number',
+    rule: 'Please enter your name',
+    resetSuccess: 'Reset succeeded!',
+    notify: {
+      title: 'Error',
+      message: 'Password error！'
+    }
   },
   ...enLocale
 }

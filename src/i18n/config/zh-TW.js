@@ -266,6 +266,15 @@ export default {
       enabled: '狀態',
       type: '選單類型',
       createTime: '創建時間'
+    },
+    owner: {
+      name: '業主姓名',
+      sex: '性別',
+      phone: '手機',
+      identityId: '身份證',
+      email: '郵箱',
+      createTime: '創建時間',
+      updateTime: '修改時間'
     }
   },
   scaffoldJsonViewer: {
@@ -498,6 +507,34 @@ export default {
     phone2: '請輸入正確的11比特手機號碼',
     email1: '請輸入郵箱！',
     email2: '請輸入正確的郵箱！'
+  },
+  ownerPage: {
+    title: '業主',
+    inputPlaceholder: '請輸入姓名或者手機號後四比特蒐索',
+    form: {
+      name: '業主姓名',
+      phone: '業主電話',
+      sex: '性別',
+      male: '男',
+      female: '女',
+      identityId: '身份證',
+      email: '郵箱'
+    },
+    dialog: {
+      title: '驗證密碼',
+      pass: '密碼',
+      passPlaceholder: '請輸入密碼'
+    },
+    operate: '操作',
+    btnText: '重置密碼',
+    content1: '確認重置密碼嗎?',
+    content2: '原始密碼為身份證號後六比特',
+    rule: '請輸入姓名',
+    resetSuccess: '重置成功!',
+    notify: {
+      title: '錯誤',
+      message: '密碼錯誤！'
+    }
   },
   ...zhTWLocale
 }

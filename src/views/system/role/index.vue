@@ -27,7 +27,7 @@
           :rules="rules"
         >
           <el-form-item :label="String($t('rolePage.form.name'))" prop="name">
-            <el-input v-model="form.name" clearable :placeholder="String($t('rolePage.form.name'))" />
+            <el-input ref="first" v-model="form.name" clearable :placeholder="String($t('rolePage.form.name'))" />
           </el-form-item>
           <el-form-item label="zh-CN" prop="nameZhCn">
             <el-input v-model="form.nameZhCn" clearable placeholder="zh-CN" />

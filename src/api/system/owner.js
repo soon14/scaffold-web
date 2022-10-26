@@ -32,13 +32,20 @@ export function getById(id) {
   })
 }
 
-export function resetPass(id, phone) {
+export function resetPass(id) {
   return request({
     url: '/owners/reset',
     method: 'put',
     data: {
-      id: id,
-      phone: phone
+      id: id
     }
+  })
+}
+
+export function verifyAccount(password) {
+  return request({
+    url: '/users/verifyAccount',
+    method: 'post',
+    data: { password: password }
   })
 }

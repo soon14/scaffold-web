@@ -266,6 +266,15 @@ export default {
       enabled: '状态',
       type: '菜单类型',
       createTime: '创建时间'
+    },
+    owner: {
+      name: '业主姓名',
+      sex: '性别',
+      phone: '手机',
+      identityId: '身份证',
+      email: '邮箱',
+      createTime: '创建时间',
+      updateTime: '修改时间'
     }
   },
   scaffoldJsonViewer: {
@@ -498,6 +507,34 @@ export default {
     phone2: '请输入正确的11位手机号码',
     email1: '请输入邮箱!',
     email2: '请输入正确的邮箱！'
+  },
+  ownerPage: {
+    title: '业主',
+    inputPlaceholder: '请输入姓名或者手机号后四位搜索',
+    form: {
+      name: '业主姓名',
+      phone: '业主电话',
+      sex: '性别',
+      male: '男',
+      female: '女',
+      identityId: '身份证',
+      email: '邮箱'
+    },
+    dialog: {
+      title: '验证密码',
+      pass: '密码',
+      passPlaceholder: '请输入密码'
+    },
+    operate: '操作',
+    btnText: '重置密码',
+    content1: '确认重置密码吗?',
+    content2: '原始密码为身份证号后六位',
+    rule: '请输入姓名',
+    resetSuccess: '重置成功!',
+    notify: {
+      title: '错误',
+      message: '密码错误！'
+    }
   },
   ...zhCNLocale
 }

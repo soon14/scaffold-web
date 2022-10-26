@@ -3,7 +3,7 @@
     <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation
-        input-placeholder="请输入姓名或者手机号后四位搜索"
+        :input-placeholder="String($t('ownerPage.inputPlaceholder'))"
         input-width="250"
       />
       <button-operation :permission="permission" />
@@ -28,29 +28,56 @@
           label-width="150px"
           label-position="right"
         >
-          <el-form-item label="业主姓名" prop="name">
-            <el-input v-model="form.name" clearable placeholder="业主姓名" />
+          <el-form-item :label="String($t('ownerPage.form.name'))" prop="name">
+            <el-input ref="first" v-model="form.name" clearable :placeholder="String($t('ownerPage.form.name'))" />
           </el-form-item>
-          <el-form-item label="业主电话" prop="phone">
-            <el-input v-model.number="form.phone" clearable placeholder="业主电话" />
+          <el-form-item :label="String($t('ownerPage.form.phone'))" prop="phone">
+            <el-input v-model.number="form.phone" clearable :placeholder="String($t('ownerPage.form.phone'))" />
           </el-form-item>
-          <el-form-item label="性别">
+          <el-form-item :label="String($t('ownerPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
-              <el-radio label="男">男</el-radio>
-              <el-radio label="女">女</el-radio>
+              <el-radio label="男">{{ String($t('ownerPage.form.male')) }}</el-radio>
+              <el-radio label="女">{{ String($t('ownerPage.form.female')) }}</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="身份证" prop="identityId">
-            <el-input v-model="form.identityId" clearable placeholder="身份证" />
+          <el-form-item :label="String($t('ownerPage.form.identityId'))" prop="identityId">
+            <el-input v-model="form.identityId" clearable :placeholder="String($t('ownerPage.form.identityId'))" />
           </el-form-item>
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="form.email" clearable placeholder="邮箱" />
+          <el-form-item :label="String($t('ownerPage.form.email'))" prop="email">
+            <el-input v-model="form.email" clearable :placeholder="String($t('ownerPage.form.email'))" />
           </el-form-item>
         </el-form>
       </template>
       <template #footer>
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
+      </template>
+    </scaffold-dialog>
+    <scaffold-dialog
+      :visible="dialog"
+      :close-on-click-modal="false"
+      :before-close="closeVerifyAccount"
+      append-to-body
+      width="520px"
+      top="150px"
+    >
+      <template #title>
+        <div style="padding:15px 20px;">{{ String($t('ownerPage.dialog.title')) }}</div>
+      </template>
+      <template #content>
+        <el-form
+          label-width="75px"
+          style="padding-right: 25px"
+          @submit.native.prevent="handlerOpenVerifyAccount"
+        >
+          <el-form-item :label="String($t('ownerPage.dialog.pass'))">
+            <el-input ref="pass" v-model="password" type="password" clearable :placeholder="String($t('ownerPage.dialog.passPlaceholder'))" />
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #footer>
+        <el-button round @click="closeVerifyAccount">{{ $t('cancel') }}</el-button>
+        <el-button type="primary" round @click.native.prevent="handlerOpenVerifyAccount">{{ $t('ok') }}</el-button>
       </template>
     </scaffold-dialog>
     <scaffold-table
@@ -94,7 +121,7 @@
         </template>
         <el-table-column
           v-permission="['root','OwnerInfo:update','OwnerInfo:delete']"
-          label="操作"
+          :label="String($t('ownerPage.operate'))"
           width="230"
           align="center"
           fixed="right"
@@ -107,9 +134,10 @@
               <template #left>
                 <scaffold-popover
                   :ok-btn-loading="loading"
-                  reference-btn-text="重置密码"
-                  reference-icon="el-icon-refresh-right"
+                  :reference-btn-text="String($t('ownerPage.btnText'))"
                   :content="content"
+                  reference-icon="el-icon-refresh-right"
+                  width="200"
                   @confirm="resetPass(scope.row)"
                 />
               </template>
@@ -133,13 +161,14 @@ import scaffoldPopover from '@/components/ScaffoldPopover'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldDialog from '@/components/ScaffoldDialog'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { add, edit, del, getById, resetPass } from '@/api/system/owner'
+import { add, edit, del, getById, resetPass, verifyAccount } from '@/api/system/owner'
 import { validateIdNo, validEmail, validPhone } from '@/utils/validate'
+import { encrypt } from '@/utils/rsaEncrypt'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
   url: '/owners',
-  title: '业主',
+  title: String(i18n.t('ownerPage.title')),
   crudMethod: {
     add, edit, del
   }
@@ -175,7 +204,11 @@ export default {
   data() {
     return {
       loading: false,
-      content: '确认重置密码吗?<br>原始密码为手机号',
+      dialog: false,
+      flag: false,
+      password: '',
+      data: {},
+      content: String(i18n.t('ownerPage.content1')) + '<br>' + String(i18n.t('ownerPage.content2')),
       permission: {
         add: ['OwnerInfo:add', 'root'],
         edit: ['OwnerInfo:update', 'root'],
@@ -192,7 +225,7 @@ export default {
           { required: true, trigger: 'blur', validator: validateIdNo }
         ],
         name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' }
+          { required: true, message: String(i18n.t('ownerPage.rule')), trigger: 'blur' }
         ]
       }
     }
@@ -202,20 +235,55 @@ export default {
       'tableHeader'
     ])
   },
+  activated() {
+    this.flag = false
+  },
   methods: {
     resetPass(row) {
       this.loading = true
-      resetPass(row.id, row.phone).then(res => {
-        this.crud.notify('重置成功', CRUD.NOTIFICATION_TYPE.SUCCESS)
+      resetPass(row.id, row.identityId).then(res => {
+        this.crud.notify(String(i18n.t('ownerPage.resetSuccess')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         this.loading = false
       }).catch(() => {
         this.loading = false
       })
     },
+    closeVerifyAccount() {
+      this.dialog = false
+      this.flag = false
+      this.password = ''
+      this.crud.cancelCU()
+    },
     [CRUD.HOOK.beforeToEdit](crud, form) {
-      getById(form.id).then(res => {
-        this.crud.form = res.data
-        this.$refs.form.resetFields()
+      if (!this.flag) {
+        this.dialog = true
+        this.$nextTick(() => {
+          this.$refs.pass.focus()
+        })
+        this.data = form
+        return false
+      } else {
+        getById(form.id).then(res => {
+          this.crud.form.identityId = res.data.identityId
+          this.crud.form.name = res.data.name
+        })
+      }
+    },
+    handlerOpenVerifyAccount() {
+      verifyAccount(encrypt(this.password)).then(res => {
+        if (res.data === 'Password error!') {
+          this.flag = false
+          this.$notify({
+            title: String(i18n.t('ownerPage.notify.title')),
+            message: String(i18n.t('ownerPage.notify.message')),
+            type: 'error'
+          })
+        } else {
+          this.password = ''
+          this.dialog = false
+          this.flag = true
+          this.crud.toEdit(this.data)
+        }
       })
     }
   }

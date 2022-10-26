@@ -52,7 +52,7 @@
           label-position="right"
         >
           <el-form-item :label="String($t('userPage.form.username'))" prop="username">
-            <el-input v-model="form.username" clearable :placeholder="String($t('userPage.form.username'))" />
+            <el-input ref="first" v-model="form.username" clearable :placeholder="String($t('userPage.form.username'))" />
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.phone'))" prop="phone">
             <el-input v-model.number="form.phone" clearable :placeholder="String($t('userPage.form.phone'))" />

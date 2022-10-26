@@ -13,6 +13,7 @@
     />
     <scaffold-popover
       v-if="showDel"
+      ref="scaffoldPopover"
       v-permission="permission.del"
       :ok-btn-loading="crud.dataStatus[data.id].delete === 2"
       width="180"
@@ -76,34 +77,11 @@ export default {
       default: true
     }
   },
-  data() {
-    return {
-      pop: false
-    }
-  },
   methods: {
-    doCancel() {
-      this.pop = false
-      this.crud.cancelDelete(this.data)
-    },
-    toDelete() {
-      this.pop = true
-    },
     [CRUD.HOOK.afterDelete](crud, data) {
       if (data === this.data) {
-        this.pop = false
+        this.$refs.scaffoldPopover.pop = false
       }
-    },
-    onPopoverShow() {
-      setTimeout(() => {
-        document.addEventListener('click', this.handleDocumentClick)
-      }, 0)
-    },
-    onPopoverHide() {
-      document.removeEventListener('click', this.handleDocumentClick)
-    },
-    handleDocumentClick(event) {
-      this.pop = false
     }
   }
 }

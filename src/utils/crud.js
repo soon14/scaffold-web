@@ -173,6 +173,9 @@ function CRUD(options) {
         return
       }
       crud.status.add = CRUD.STATUS.PREPARED
+      crud.findVM('form').$nextTick(() => {
+        crud.findVM('form').$refs['first'].focus()
+      })
       callVmHook(crud, CRUD.HOOK.afterToAdd, crud.form)
       callVmHook(crud, CRUD.HOOK.afterToCU, crud.form)
     },
