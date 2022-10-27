@@ -108,7 +108,7 @@ import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operat
 import buttonOperation from '@/components/Crud/Button.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import { mapGetters } from 'vuex'
-import { delAllLogs } from '@/api/system/logs'
+import { delAllLogs } from '@/api/tools/logs'
 import ScaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 

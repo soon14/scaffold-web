@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { getLogoAndTitle } from '@/api/system/logo'
+import { getLogoAndTitle } from '@/api/tools/logo'
 
 export default {
   name: 'ScaffoldLogo',

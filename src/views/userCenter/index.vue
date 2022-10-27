@@ -162,7 +162,7 @@ import scaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import CRUD, { presenter } from '@/utils/crud'
-import { getErrorDetails } from '@/api/system/logs'
+import { getErrorDetails } from '@/api/tools/logs'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({ url: '/center/logs' })
