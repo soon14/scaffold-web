@@ -275,6 +275,14 @@ export default {
       email: 'Email',
       createTime: 'Create Time',
       updateTime: 'Update Time'
+    },
+    localStorage: {
+      serverUrl: 'Preview',
+      fileName: 'File Name',
+      suffix: 'File Suffix',
+      type: 'File Type',
+      size: 'File Size',
+      creteTime: 'Upload Time'
     }
   },
   scaffoldJsonViewer: {
@@ -475,6 +483,9 @@ export default {
   scaffoldTreeSelect: {
     tip: 'Click to select!'
   },
+  scaffoldTable: {
+    operate: 'Operate'
+  },
   rolePage: {
     title: 'Role',
     inputPlaceholder: 'Please enter the role name or permission level to search',
@@ -535,6 +546,20 @@ export default {
       title: 'Error',
       message: 'Password error！'
     }
+  },
+  localStoragePage: {
+    title: 'LocalStorage',
+    upload: 'Upload',
+    fileUpload: 'File Upload',
+    fileUpdate: 'Edit File',
+    fileName: 'FileName',
+    fileNamePlaceholder: 'File name (without suffix)',
+    putFile: 'Add File',
+    uploadTip: 'Files in any format can be uploaded, and the size shall not exceed 20M',
+    uploadErrorTip: 'The size of the uploaded file cannot exceed 20MB!',
+    uploadSuccess: 'Upload succeeded!',
+    uploadFail: 'Upload failed!',
+    uploadFailTip: 'File upload failed!'
   },
   ...enLocale
 }

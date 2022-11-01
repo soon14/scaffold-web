@@ -71,72 +71,109 @@
         <el-card class="box-card">
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
+
               <scaffold-table
+                :table-header="tableHeader.center.playLogs"
                 :table-data="crud.data"
                 :crud="crud"
-                :default-sort="{prop:'createTime',order:'descending'}"
+                :is-first-col="false"
+                :is-last-col="false"
               >
-                <template #tableColumns>
-                  <template v-for="item in tableHeader.center.playLogs">
-                    <el-table-column
-                      v-if="columns.visible(item.prop)"
-                      :key="item"
-                      :prop="item.prop"
-                      :label="item.label"
-                      :sortable="item.sortable"
-                      :width="item.width"
-                      :show-overflow-tooltip="item.showOverflowTooltip"
-                      align="center"
-                    >
-                      <template v-slot="scope">
-                        <span v-if="item.prop === 'time'">
-                          <el-tag v-if="scope.row[item.prop] <= 300" size="mini" type="success">
-                            {{ scope.row[item.prop] }}ms
-                          </el-tag>
-                          <el-tag v-else-if="scope.row[item.prop] <= 1000" size="mini" type="warning">
-                            {{ scope.row[item.prop] }}ms
-                          </el-tag>
-                          <el-tag v-else size="mini" type="danger">
-                            {{ scope.row[item.prop] }}ms
-                          </el-tag>
-                        </span>
-                        <span v-else>{{ scope.row[item.prop] }}</span>
-                      </template>
-                    </el-table-column>
-                  </template>
+                <template slot="time" slot-scope="scope">
+                  <el-tag v-if="scope.row.time <= 300" size="mini" type="success">
+                    {{ scope.row.time }}ms
+                  </el-tag>
+                  <el-tag v-else-if="scope.row.time <= 1000" size="mini" type="warning">
+                    {{ scope.row.time }}ms
+                  </el-tag>
+                  <el-tag v-else size="mini" type="danger">
+                    {{ scope.row.time }}ms
+                  </el-tag>
                 </template>
               </scaffold-table>
-              <pagination-operation />
+
+              <!--              <scaffold-table-->
+              <!--                :table-data="crud.data"-->
+              <!--                :crud="crud"-->
+              <!--                :default-sort="{prop:'createTime',order:'descending'}"-->
+              <!--              >-->
+              <!--                <template #tableColumns>-->
+              <!--                  <template v-for="item in tableHeader.center.playLogs">-->
+              <!--                    <el-table-column-->
+              <!--                      v-if="columns.visible(item.prop)"-->
+              <!--                      :key="item"-->
+              <!--                      :prop="item.prop"-->
+              <!--                      :label="item.label"-->
+              <!--                      :sortable="item.sortable"-->
+              <!--                      :width="item.width"-->
+              <!--                      :show-overflow-tooltip="item.showOverflowTooltip"-->
+              <!--                      align="center"-->
+              <!--                    >-->
+              <!--                      <template v-slot="scope">-->
+              <!--                        <span v-if="item.prop === 'time'">-->
+              <!--                          <el-tag v-if="scope.row[item.prop] <= 300" size="mini" type="success">-->
+              <!--                            {{ scope.row[item.prop] }}ms-->
+              <!--                          </el-tag>-->
+              <!--                          <el-tag v-else-if="scope.row[item.prop] <= 1000" size="mini" type="warning">-->
+              <!--                            {{ scope.row[item.prop] }}ms-->
+              <!--                          </el-tag>-->
+              <!--                          <el-tag v-else size="mini" type="danger">-->
+              <!--                            {{ scope.row[item.prop] }}ms-->
+              <!--                          </el-tag>-->
+              <!--                        </span>-->
+              <!--                        <span v-else>{{ scope.row[item.prop] }}</span>-->
+              <!--                      </template>-->
+              <!--                    </el-table-column>-->
+              <!--                  </template>-->
+              <!--                </template>-->
+              <!--              </scaffold-table>-->
+              <!--              <pagination-operation />-->
             </el-tab-pane>
             <el-tab-pane :label="String($t('userCenter.rightCard.errorLogs'))" name="errorLogs">
+
               <scaffold-table
+                :table-header="tableHeader.center.errorLogs"
                 :table-data="crud.data"
                 :crud="crud"
-                :default-sort="{prop:'createTime',order:'descending'}"
+                last-col-width="100"
+                :is-first-col="false"
+                :last-col-label="String($t('errorLogsPage.exceptionInfo'))"
               >
-                <template #tableColumns>
-                  <template v-for="item in tableHeader.center.errorLogs">
-                    <el-table-column
-                      v-if="columns.visible(item.prop)"
-                      :key="item"
-                      :prop="item.prop"
-                      :label="item.label"
-                      :sortable="item.sortable"
-                      :width="item.width"
-                      :show-overflow-tooltip="item.showOverflowTooltip"
-                      align="center"
-                    />
-                  </template>
-                  <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">
-                    <template slot-scope="scope">
-                      <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">
-                        {{ $t('errorLogsPage.lookInfo') }}
-                      </el-button>
-                    </template>
-                  </el-table-column>
+                <template slot="data-operate" slot-scope="scope">
+                  <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">
+                    {{ $t('errorLogsPage.lookInfo') }}
+                  </el-button>
                 </template>
               </scaffold-table>
-              <pagination-operation />
+
+              <!--              <scaffold-table-->
+              <!--                :table-data="crud.data"-->
+              <!--                :crud="crud"-->
+              <!--                :default-sort="{prop:'createTime',order:'descending'}"-->
+              <!--              >-->
+              <!--                <template #tableColumns>-->
+              <!--                  <template v-for="item in tableHeader.center.errorLogs">-->
+              <!--                    <el-table-column-->
+              <!--                      v-if="columns.visible(item.prop)"-->
+              <!--                      :key="item"-->
+              <!--                      :prop="item.prop"-->
+              <!--                      :label="item.label"-->
+              <!--                      :sortable="item.sortable"-->
+              <!--                      :width="item.width"-->
+              <!--                      :show-overflow-tooltip="item.showOverflowTooltip"-->
+              <!--                      align="center"-->
+              <!--                    />-->
+              <!--                  </template>-->
+              <!--                  <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">-->
+              <!--                    <template slot-scope="scope">-->
+              <!--                      <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">-->
+              <!--                        {{ $t('errorLogsPage.lookInfo') }}-->
+              <!--                      </el-button>-->
+              <!--                    </template>-->
+              <!--                  </el-table-column>-->
+              <!--                </template>-->
+              <!--              </scaffold-table>-->
+              <!--              <pagination-operation />-->
             </el-tab-pane>
           </el-tabs>
         </el-card>
@@ -240,7 +277,6 @@ export default {
     beforeAvatarUpload(file) {
       const isOK = file.type === 'image/jpeg' || file.type === 'image/png'
       const isLt50M = file.size / 1024 / 1024 <= 50
-      console.log(isOK)
       if (!isOK) {
         this.$message.error(String(i18n.t('userCenter.avatar.typeTip')))
       }

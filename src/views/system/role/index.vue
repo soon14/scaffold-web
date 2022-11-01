@@ -16,7 +16,7 @@
       top="60px"
     >
       <template #title>
-        <div style="padding:15px 20px;">{{ crud.status.title }}</div>
+        {{ crud.status.title }}
       </template>
       <template #content>
         <el-form
@@ -78,54 +78,29 @@
           </div>
           <scaffold-table
             ref="scaffoldTable"
+            :table-header="tableHeader.roles"
             :table-data="crud.data"
             :crud="crud"
             highlight-current-row
             :default-sort="{prop:'level',order:'ascending'}"
+            :last-col-permission="['root','Role:delete','Role:update']"
+            :last-col-label="String($t('rolePage.operate'))"
             @current-change="handleCurrentChange"
           >
-            <template #tableColumns>
-              <el-table-column type="selection" width="55" fixed="left" />
-              <template v-for="item in tableHeader.roles">
-                <el-table-column
-                  v-if="columns.visible(item.prop)"
-                  :key="item"
-                  :prop="item.prop"
-                  :label="item.label"
-                  :sortable="item.sortable"
-                  :width="item.width"
-                  :fixed="item.fixed"
-                  align="center"
-                >
-                  <template v-slot="scope">
-                    <span v-if="item.prop === 'updateTime'">
-                      <span v-if="scope.row[item.prop] === null" style="font-weight: bold">
-                        {{ String($t('no')) }}
-                      </span>
-                      <span v-else>{{ scope.row[item.prop] }}</span>
-                    </span>
-                    <span v-else>{{ scope.row[item.prop] }}</span>
-                  </template>
-                </el-table-column>
-              </template>
-              <el-table-column
-                v-permission="['root','Role:delete','Role:update']"
-                :label="String($t('rolePage.operate'))"
-                width="125"
-                align="center"
-                fixed="right"
-              >
-                <template slot-scope="scope">
-                  <update-delete-operation
-                    v-if="scope.row.level >= level"
-                    :permission="permission"
-                    :data="scope.row"
-                  />
-                </template>
-              </el-table-column>
+            <template slot="updateTime" slot-scope="scope">
+              <span v-if="scope.row.updateTime === null" style="font-weight: bold">
+                {{ String($t('no')) }}
+              </span>
+              <span v-else>{{ scope.row.updateTime }}</span>
+            </template>
+            <template slot="data-operate" slot-scope="scope">
+              <update-delete-operation
+                v-if="scope.row.level >= level"
+                :permission="permission"
+                :data="scope.row"
+              />
             </template>
           </scaffold-table>
-          <pagination-operation />
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="7">
@@ -173,7 +148,6 @@ import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operat
 import buttonOperation from '@/components/Crud/Button.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldDialog from '@/components/ScaffoldDialog'
-import paginationOperation from '@/components/Crud/Pagination.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getLevelScope, edit, del, editMenu, getRoleById, add } from '@/api/system/roles'
@@ -198,7 +172,6 @@ export default {
     searchDatePickerOperation,
     buttonOperation,
     scaffoldTable,
-    paginationOperation,
     scaffoldDialog,
     updateDeleteOperation
   },

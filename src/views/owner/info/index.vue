@@ -17,7 +17,7 @@
       top="80px"
     >
       <template #title>
-        <div style="padding:15px 20px;">{{ crud.status.title }}</div>
+        {{ crud.status.title }}
       </template>
       <template #content>
         <el-form
@@ -62,7 +62,7 @@
       top="150px"
     >
       <template #title>
-        <div style="padding:15px 20px;">{{ String($t('ownerPage.dialog.title')) }}</div>
+        {{ String($t('ownerPage.dialog.title')) }}
       </template>
       <template #content>
         <el-form
@@ -82,71 +82,47 @@
     </scaffold-dialog>
     <scaffold-table
       ref="scaffoldTable"
+      :table-header="tableHeader.ownerInfo"
       :table-data="crud.data"
       :crud="crud"
-      :default-sort="{prop:'createTime',order:'descending'}"
+      last-col-width="230"
+      :last-col-permission="['root','OwnerInfo:update','OwnerInfo:delete']"
+      :last-col-label="String($t('ownerPage.operate'))"
     >
-      <template #tableColumns>
-        <el-table-column type="selection" width="55" fixed="left" />
-        <template v-for="item in tableHeader.ownerInfo">
-          <el-table-column
-            v-if="columns.visible(item.prop)"
-            :key="item"
-            :prop="item.prop"
-            :label="item.label"
-            :sortable="item.sortable"
-            :width="item.width"
-            :fixed="item.fixed"
-            align="center"
-          >
-            <template v-slot="scope">
-              <span v-if="item.prop === 'phone' || item.prop === 'email'">
-                <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
-                  <div style="text-align: center;padding: 0">{{ scope.row[item.prop] }}</div>
-                  <template v-if="item.prop === 'phone'" #reference>
-                    <span>{{ scope.row[item.prop] | phone }}</span>
-                  </template>
-                  <template v-else-if="item.prop === 'email'" #reference>
-                    <span>{{ scope.row[item.prop] | email }}</span>
-                  </template>
-                </el-popover>
-              </span>
-              <span v-else-if="item.prop === 'updateTime'">
-                <span v-if="scope.row[item.prop] === null" style="font-weight: bold">{{ String($t('no')) }}</span>
-                <span v-else>{{ scope.row[item.prop] }}</span>
-              </span>
-              <span v-else>{{ scope.row[item.prop] }}</span>
-            </template>
-          </el-table-column>
-        </template>
-        <el-table-column
-          v-permission="['root','OwnerInfo:update','OwnerInfo:delete']"
-          :label="String($t('ownerPage.operate'))"
-          width="230"
-          align="center"
-          fixed="right"
-        >
-          <template v-slot="scope">
-            <update-delete-operation
-              :permission="permission"
-              :data="scope.row"
-            >
-              <template #left>
-                <scaffold-popover
-                  :ok-btn-loading="loading"
-                  :reference-btn-text="String($t('ownerPage.btnText'))"
-                  :content="content"
-                  reference-icon="el-icon-refresh-right"
-                  width="200"
-                  @confirm="resetPass(scope.row)"
-                />
-              </template>
-            </update-delete-operation>
+      <template slot="phone" slot-scope="scope">
+        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
+          <div style="text-align: center;padding: 0">{{ scope.row.phone }}</div>
+          <template #reference>
+            <span>{{ scope.row.phone | phone }}</span>
           </template>
-        </el-table-column>
+        </el-popover>
+      </template>
+      <template slot="email" slot-scope="scope">
+        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
+          <div style="text-align: center;padding: 0">{{ scope.row.email }}</div>
+          <template #reference>
+            <span>{{ scope.row.email | email }}</span>
+          </template>
+        </el-popover>
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <update-delete-operation
+          :permission="permission"
+          :data="scope.row"
+        >
+          <template #left>
+            <scaffold-popover
+              :ok-btn-loading="loading"
+              :reference-btn-text="String($t('ownerPage.btnText'))"
+              :content="content"
+              reference-icon="el-icon-refresh-right"
+              width="200"
+              @confirm="resetPass(scope.row)"
+            />
+          </template>
+        </update-delete-operation>
       </template>
     </scaffold-table>
-    <pagination-operation />
   </div>
 </template>
 
@@ -155,7 +131,6 @@ import { mapGetters } from 'vuex'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import scaffoldPopover from '@/components/ScaffoldPopover'
 import scaffoldTable from '@/components/ScaffoldTable'
@@ -192,8 +167,7 @@ export default {
     updateDeleteOperation,
     buttonOperation,
     scaffoldTable,
-    scaffoldDialog,
-    paginationOperation
+    scaffoldDialog
   },
   mixins: [
     crud(),

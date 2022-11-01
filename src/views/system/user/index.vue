@@ -40,7 +40,7 @@
       top="100px"
     >
       <template #title>
-        <div style="padding:15px 20px;">{{ crud.status.title }}</div>
+        <div>{{ crud.status.title }}</div>
       </template>
       <template #content>
         <el-form
@@ -101,80 +101,55 @@
     </scaffold-dialog>
     <scaffold-table
       ref="scaffoldTable"
-      :crud="crud"
+      :table-header="tableHeader.users"
       :table-data="crud.data"
-      :default-sort="{prop:'createTime',order:'descending'}"
+      :crud="crud"
+      :last-col-permission="['root','User:delete','User:update']"
     >
-      <template #tableColumns>
-        <el-table-column type="selection" width="55" fixed="left" />
-        <template v-for="item in tableHeader.users">
-          <el-table-column
-            v-if="columns.visible(item.prop)"
-            :key="item"
-            :prop="item.prop"
-            :label="item.label"
-            :sortable="item.sortable"
-            :width="item.width"
-            :fixed="item.fixed"
-            align="center"
-          >
-            <template v-slot="scope">
-              <span v-if="item.prop === 'avatar.path'">
-                <a v-if="scope.row.avatar !== null" :href="scope.row.avatar.path" target="_blank">
-                  <el-avatar :src="scope.row.avatar.path ? scope.row.avatar.path : Avatar" size="80" />
-                </a>
-                <el-avatar v-else :src="Avatar" size="80" />
-              </span>
-              <span v-else-if="item.prop === 'username'">
-                <span v-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">{{ scope.row[item.prop] }}</span>
-                <span v-else>{{ scope.row[item.prop] }}</span>
-              </span>
-              <span v-else-if="item.prop === 'phone' || item.prop === 'email'">
-                <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
-                  <div style="text-align: center;padding: 0">{{ scope.row[item.prop] }}</div>
-                  <template v-if="item.prop === 'phone'" #reference>
-                    <span>{{ scope.row[item.prop] | phone }}</span>
-                  </template>
-                  <template v-else-if="item.prop === 'email'" #reference>
-                    <span>{{ scope.row[item.prop] | email }}</span>
-                  </template>
-                </el-popover>
-              </span>
-              <span v-else-if="item.prop === 'enabled'">
-                <el-switch
-                  v-model="scope.row[item.prop]"
-                  :disabled="user.id === scope.row.id"
-                  active-color="#409EFF"
-                  inactive-color="#F56C6C"
-                  @change="changeEnabled(scope.row, scope.row.enabled)"
-                />
-              </span>
-              <span v-else-if="item.prop === 'updateTime'">
-                <span v-if="scope.row[item.prop] === null" style="font-weight: bold">{{ $t('no') }}</span>
-                <span v-else>{{ scope.row[item.prop] }}</span>
-              </span>
-              <span v-else>{{ scope.row[item.prop] }}</span>
-            </template>
-          </el-table-column>
-        </template>
-        <el-table-column
-          v-permission="['root','User:delete','User:update']"
-          :label="String($t('userPage.column.operate'))"
-          width="125"
-          align="center"
-          fixed="right"
-        >
-          <template slot-scope="scope">
-            <update-delete-operation
-              :permission="permission"
-              :data="scope.row"
-              :disabled-del="scope.row.id === user.id"
-            />
+      <template slot="avatar.path" slot-scope="scope">
+        <scaffold-avatar-image :src="scope.row.avatar.path" />
+      </template>
+      <template slot="username" slot-scope="scope">
+        <span v-if="scope.row.username === 'root'" style="color: red;font-weight: bold">{{ scope.row.username }}</span>
+        <span v-else>{{ scope.row.username }}</span>
+      </template>
+      <template slot="phone" slot-scope="scope">
+        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
+          <div style="text-align: center;padding: 0">{{ scope.row.phone }}</div>
+          <template #reference>
+            <span>{{ scope.row.phone | phone }}</span>
           </template>
-        </el-table-column>
+        </el-popover>
+      </template>
+      <template slot="email" slot-scope="scope">
+        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
+          <div style="text-align: center;padding: 0">{{ scope.row.email }}</div>
+          <template #reference>
+            <span>{{ scope.row.email | email }}</span>
+          </template>
+        </el-popover>
+      </template>
+      <template slot="enabled" slot-scope="scope">
+        <el-switch
+          v-model="scope.row.enabled"
+          :disabled="user.id === scope.row.id"
+          active-color="#409EFF"
+          inactive-color="#F56C6C"
+          @change="changeEnabled(scope.row, scope.row.enabled)"
+        />
+      </template>
+      <template slot="updateTime" slot-scope="scope">
+        <span v-if="scope.row.updateTime === null" style="font-weight: bold">{{ $t('no') }}</span>
+        <span v-else>{{ scope.row.updateTime }}</span>
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <update-delete-operation
+          :permission="permission"
+          :data="scope.row"
+          :disabled-del="scope.row.id === user.id"
+        />
       </template>
     </scaffold-table>
-    <pagination-operation />
   </div>
 </template>
 
@@ -182,14 +157,13 @@
 import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
+import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
 import { add, edit, del } from '@/api/system/user'
-import Avatar from '@/assets/images/avatar.png'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldDialog from '@/components/ScaffoldDialog'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import paginationOperation from '@/components/Crud/Pagination.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getRoles } from '@/api/system/roles'
 import { validPhone } from '@/utils/validate'
@@ -214,9 +188,9 @@ export default {
   name: 'User',
   components: {
     scaffoldTable,
+    scaffoldAvatarImage,
     searchDatePickerOperation,
     buttonOperation,
-    paginationOperation,
     updateDeleteOperation,
     scaffoldDialog,
     scaffoldBackTopAndBottom
@@ -229,7 +203,6 @@ export default {
   ],
   data() {
     return {
-      Avatar: Avatar,
       roles: [],
       enabledTypeOptions: [
         { key: 'true', displayName: String(i18n.t('userPage.form.statusOk')) },

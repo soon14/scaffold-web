@@ -275,6 +275,14 @@ export default {
       email: '郵箱',
       createTime: '創建時間',
       updateTime: '修改時間'
+    },
+    localStorage: {
+      serverUrl: '預覽圖',
+      fileName: '檔名',
+      suffix: '檔案尾碼',
+      type: '檔案類型',
+      size: '文件大小',
+      creteTime: '上傳時間'
     }
   },
   scaffoldJsonViewer: {
@@ -475,6 +483,9 @@ export default {
   scaffoldTreeSelect: {
     tip: '點擊選擇!'
   },
+  scaffoldTable: {
+    operate: '操作'
+  },
   rolePage: {
     title: '角色',
     inputPlaceholder: '請輸入角色名稱或許可權等級蒐索',
@@ -535,6 +546,20 @@ export default {
       title: '錯誤',
       message: '密碼錯誤！'
     }
+  },
+  localStoragePage: {
+    title: '存儲',
+    upload: '上傳',
+    fileUpload: '檔案上傳',
+    fileUpdate: '編輯檔案',
+    fileName: '檔名',
+    fileNamePlaceholder: '檔名（不帶尾碼）',
+    putFile: '添加檔案',
+    uploadTip: '可上傳任意格式檔案，且不超過20M',
+    uploadErrorTip: '上傳文件大小不能超過 20MB！',
+    uploadSuccess: '上傳成功!',
+    uploadFail: '上傳失敗!',
+    uploadFailTip: '文件上傳失敗!'
   },
   ...zhTWLocale
 }

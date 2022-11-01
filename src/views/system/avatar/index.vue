@@ -24,100 +24,61 @@
     </div>
     <scaffold-table
       ref="scaffoldTable"
+      :table-header="tableHeader.avatars"
       :table-data="crud.data"
       :crud="crud"
-      :default-sort="{prop:'createTime',order:'descending'}"
+      :last-col-permission="['root','Avatar:delete','Avatar:edit']"
+      :last-col-label="String($t('avatarPage.operate'))"
     >
-      <template #tableColumns>
-        <el-table-column type="selection" width="55" fixed="left" />
-        <template v-for="item in tableHeader.avatars">
-          <el-table-column
-            v-if="columns.visible(item.prop)"
-            :key="item"
-            :prop="item.prop"
-            :label="item.label"
-            :show-overflow-tooltip="item.showOverflowTooltip"
-            :sortable="item.sortable"
-            :width="item.width"
-            :fixed="item.fixed"
-            align="center"
-          >
-            <template slot-scope="scope">
-              <span v-if="scope.row[item.prop] === null">
-                <span v-if="item.prop === 'path'">
-                  <el-avatar :src="Avatar" size="80" />
-                </span>
-                <span v-else-if="item.prop === 'enabled'">
-                  <el-tag type="warning">{{ $t('nodata') }}</el-tag>
-                </span>
-                <span v-else>{{ $t('nodata') }}</span>
-              </span>
-              <span v-else>
-                <span v-if="item.prop === 'path'">
-                  <a :href="scope.row[item.prop]" target="_blank">
-                    <el-avatar :src="scope.row[item.prop] ? scope.row[item.prop] : Avatar" size="80" />
-                  </a>
-                </span>
-                <span v-else-if="item.prop === 'username'">
-                  <span v-if="scope.row[item.prop] === 'root'" style="font-weight: bold;color: red">{{ scope.row[item.prop] }}</span>
-                  <span v-else>{{ scope.row[item.prop] }}</span>
-                </span>
-                <span v-else-if="item.prop === 'enabled'">
-                  <el-tag v-if="scope.row[item.prop] === '已审核'" type="success">{{ scope.row[item.prop] }}</el-tag>
-                  <el-tag v-else type="danger">{{ scope.row[item.prop] }}</el-tag>
-                </span>
-                <span v-else-if="item.prop === 'updateTime'">
-                  {{ scope.row[item.prop] }}
-                </span>
-                <span v-else>{{ scope.row[item.prop] }}</span>
-              </span>
-            </template>
-          </el-table-column>
-        </template>
-        <el-table-column
-          v-permission="['root','Avatar:delete','Avatar:edit']"
-          :label="String($t('avatarPage.operate'))"
-          width="125"
-          align="center"
-          fixed="right"
+      <template slot="path" slot-scope="scope">
+        <el-avatar v-if="scope.row.path === null" :src="Avatar" size="80" />
+        <scaffold-avatar-image v-else :src="scope.row.path" />
+      </template>
+      <template slot="username" slot-scope="scope">
+        <span v-if="scope.row.username === 'root'" style="font-weight: bold;color: red">{{ scope.row.username }}</span>
+        <span v-else>{{ scope.row.username }}</span>
+      </template>
+      <template slot="enabled" slot-scope="scope">
+        <el-tag v-if="scope.row.enabled === null" type="warning">{{ $t('nodata') }}</el-tag>
+        <span v-else>
+          <el-tag v-if="scope.row.enabled === '已审核'" type="success">{{ scope.row.enabled }}</el-tag>
+          <el-tag v-else type="danger">{{ scope.row.enabled }}</el-tag>
+        </span>
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <update-delete-operation
+          :permission="permission"
+          :data="scope.row"
+          :show-edit="false"
+          :disabled-del="scope.row.id === user.avatar.id"
         >
-          <template slot-scope="scope">
-            <update-delete-operation
-              :permission="permission"
-              :data="scope.row"
-              :show-edit="false"
-              :disabled-del="scope.row.id === user.avatar.id"
-            >
-              <template #left>
-                <el-switch
-                  v-model="scope.row.enabled"
-                  active-value="已审核"
-                  inactive-value="未审核"
-                  active-color="#409EFF"
-                  inactive-color="#F56C6C"
-                  :disabled="scope.row.id === user.avatar.id"
-                  @change="changeEnabled(scope.row,scope.row.enabled)"
-                />
-              </template>
-            </update-delete-operation>
+          <template #left>
+            <el-switch
+              v-model="scope.row.enabled"
+              active-value="已审核"
+              inactive-value="未审核"
+              active-color="#409EFF"
+              inactive-color="#F56C6C"
+              :disabled="scope.row.id === user.avatar.id"
+              @change="changeEnabled(scope.row,scope.row.enabled)"
+            />
           </template>
-        </el-table-column>
+        </update-delete-operation>
       </template>
     </scaffold-table>
-    <pagination-operation />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
+import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
 import { del, editEnabled } from '@/api/system/avatar'
 import Avatar from '@/assets/images/avatar.png'
 import scaffoldTable from '@/components/ScaffoldTable'
 import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import paginationOperation from '@/components/Crud/Pagination.operation'
 import CRUD, { crud, header, presenter } from '@/utils/crud'
 import i18n from '@/i18n'
 
@@ -129,10 +90,10 @@ const defaultCrud = CRUD({
 export default {
   name: 'Avatar',
   components: {
+    scaffoldAvatarImage,
     scaffoldTable,
     buttonOperation,
     searchDatePickerOperation,
-    paginationOperation,
     updateDeleteOperation,
     scaffoldBackTopAndBottom
   },

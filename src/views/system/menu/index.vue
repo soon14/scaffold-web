@@ -30,7 +30,7 @@
       top="70px"
     >
       <template #title>
-        <div style="padding:15px 20px;">{{ crud.status.title }}</div>
+        {{ crud.status.title }}
       </template>
       <template #content>
         <el-form
@@ -149,70 +149,48 @@
     </scaffold-dialog>
     <scaffold-table
       ref="scaffoldTable"
+      :table-header="tableHeader.menus"
       :table-data="crud.data"
       :crud="crud"
       :is-stripe="false"
       row-key="id"
       :default-sort="{prop:'createTime',order:'descending'}"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
+      :last-col-permission="['root','Menu:delete','Menu:update']"
+      :last-col-label="String($t('menuPage.operate'))"
+      :is-pagination="false"
       @select="crud.selectChange"
       @select-all="crud.selectAllChange"
     >
-      <template #tableColumns>
-        <el-table-column type="selection" width="55" fixed="left" />
-        <template v-for="item in tableHeader.menus">
-          <el-table-column
-            v-if="columns.visible(item.prop)"
-            :key="item"
-            :prop="item.prop"
-            :label="item.label"
-            :sortable="item.sortable"
-            :width="item.width"
-            :fixed="item.fixed"
-            :show-overflow-tooltip="item.showOverflowTooltip"
-            :align="item.align"
-          >
-            <template v-slot="scope">
-              <span v-if="item.prop === 'iconCls'">
-                <scaffold-svg :icon-class="scope.row[item.prop]" class-name="icon-class" />
-              </span>
-              <span v-else-if="item.prop === 'hidden'">
-                {{ scope.row[item.prop] ? String($t('menuPage.form.no')) : String($t('menuPage.form.yes')) }}
-              </span>
-              <span v-else-if="item.prop === 'enabled'">
-                <el-switch
-                  v-model="scope.row[item.prop]"
-                  active-color="#409EFF"
-                  inactive-color="#F56C6C"
-                  @change="changeEnabled(scope.row, scope.row.enabled)"
-                />
-              </span>
-              <span v-else-if="item.prop === 'type'">
-                <el-tag v-if="scope.row[item.prop] === '顶级菜单'" type="danger" effect="plain">{{ scope.row[item.prop] }}</el-tag>
-                <el-tag v-else-if="scope.row[item.prop] === '子菜单'" effect="plain">{{ scope.row[item.prop] }}</el-tag>
-                <el-tag v-else effect="plain" type="success">{{ scope.row[item.prop] }}</el-tag>
-              </span>
-              <span v-else-if="item.prop === 'sort'" style="font-weight: bold">
-                {{ scope.row[item.prop] }}
-              </span>
-              <span v-else>{{ scope.row[item.prop] }}</span>
-            </template>
-          </el-table-column>
-        </template>
-        <el-table-column
-          v-permission="['root','Menu:delete','Menu:update']"
-          :label="String($t('menuPage.operate'))"
-          width="125"
-          align="center"
-          fixed="right"
-        >
-          <template slot-scope="scope">
-            <update-delete-operation
-              :permission="permission"
-              :data="scope.row"
-            />
-          </template>
-        </el-table-column>
+      <template slot="iconCls" slot-scope="scope">
+        <scaffold-svg :icon-class="scope.row.iconCls" class-name="icon-class" />
+      </template>
+      <template slot="hidden" slot-scope="scope">
+        {{ scope.row.hidden ? String($t('menuPage.form.no')) : String($t('menuPage.form.yes')) }}
+      </template>
+      <template slot="enabled" slot-scope="scope">
+        <el-switch
+          v-model="scope.row.enabled"
+          active-color="#409EFF"
+          inactive-color="#F56C6C"
+          @change="changeEnabled(scope.row, scope.row.enabled)"
+        />
+      </template>
+      <template slot="type" slot-scope="scope">
+        <el-tag v-if="scope.row.type === '顶级菜单'" type="danger" effect="plain">{{ scope.row.type }}</el-tag>
+        <el-tag v-else-if="scope.row.type === '子菜单'" effect="plain">{{ scope.row.type }}</el-tag>
+        <el-tag v-else effect="plain" type="success">{{ scope.row.type }}</el-tag>
+      </template>
+      <template slot="sort" slot-scope="scope">
+        <span style="font-weight: bold">
+          {{ scope.row.sort }}
+        </span>
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <update-delete-operation
+          :permission="permission"
+          :data="scope.row"
+        />
       </template>
     </scaffold-table>
   </div>
@@ -228,7 +206,7 @@ import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import CRUD, { crud, form, header, presenter } from '@/utils/crud'
+import CRUD, { crud, form, header, menuPresenter } from '@/utils/crud'
 import { getMenusTree, add, edit, del } from '@/api/system/menu'
 import i18n from '@/i18n'
 
@@ -271,7 +249,7 @@ export default {
     updateDeleteOperation
   },
   mixins: [
-    presenter(defaultCrud),
+    menuPresenter(defaultCrud),
     header(),
     crud(),
     form(defaultForm)

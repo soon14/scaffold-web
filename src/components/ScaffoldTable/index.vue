@@ -1,32 +1,89 @@
 <template>
-  <el-table
-    ref="table"
-    v-loading="crud.loading"
-    class="my-table"
-    style="width: 100%;"
-    :data="tableData"
-    :border="isBorder"
-    :stripe="isStripe"
-    :default-sort="defaultSort"
-    :tooltip-effect="tooltipEffect"
-    :header-cell-style="{color:'#333333',fontWeight:'bold'}"
-    :size="size"
-    :highlight-current-row="highlightCurrentRow"
-    :tree-props="treeProps"
-    :row-key="rowKey"
-    @current-change="currentChange"
-    @select="select"
-    @select-all="selectAll"
-    @selection-change="crud.selectionChangeHandler"
-  >
-    <slot name="tableColumns" />
-  </el-table>
+  <div>
+    <el-table
+      ref="table"
+      v-loading="crud.loading"
+      class="my-table"
+      style="width: 100%;"
+      :data="tableData"
+      :border="isBorder"
+      :stripe="isStripe"
+      :default-sort="defaultSort"
+      :tooltip-effect="tooltipEffect"
+      :header-cell-style="{color:'#333333',fontWeight:'bold'}"
+      :size="size"
+      :highlight-current-row="highlightCurrentRow"
+      :tree-props="treeProps"
+      :row-key="rowKey"
+      @current-change="currentChange"
+      @select="select"
+      @select-all="selectAll"
+      @selection-change="crud.selectionChangeHandler"
+    >
+      <slot v-if="openExpand" name="expand-col" />
+
+      <el-table-column
+        v-if="showFirstCol"
+        type="selection"
+        :width="firstColWidth"
+        :fixed="firstColFixed"
+        :align="firstColAlign"
+      />
+
+      <template v-for="(item,index) in tableHeader">
+        <el-table-column
+          v-if="columns.visible(item.prop)"
+          :key="index"
+          :prop="item.prop"
+          :label="item.label"
+          :fixed="item.fixed"
+          :width="item.width"
+          :sortable="item.sortable"
+          :show-overflow-tooltip="item.showOverflowTooltip"
+          :align="colAlignComputed(item.align)"
+        >
+          <template slot-scope="scope">
+            <slot v-if="item.slot" :name="item.prop" :row="scope.row" :$index="scope.$index" />
+            <span v-else-if="scope.row[item.prop] === null || scope.row[item.prop] === '' || scope.row[item.prop] === undefined">
+              {{ $t('nodata') }}
+            </span>
+            <span v-else>{{ scope.row[item.prop] }}</span>
+          </template>
+        </el-table-column>
+      </template>
+
+      <el-table-column
+        v-if="isLastCol"
+        v-permission="lastColPermission"
+        :label="lastColLabel"
+        :width="lastColWidth"
+        :align="lastColAlign"
+        :fixed="lastColFixed"
+      >
+        <template slot-scope="scope">
+          <slot name="data-operate" :row="scope.row" :$index="scope.$index" />
+        </template>
+      </el-table-column>
+
+      <slot name="right-col" />
+    </el-table>
+
+    <pagination-operation v-if="isPagination" />
+
+  </div>
 </template>
 
 <script>
+import { presenter } from '@/utils/crud'
+import paginationOperation from '@/components/Crud/Pagination.operation'
+import i18n from '@/i18n'
 
 export default {
   name: 'ScaffoldTable',
+  components: { paginationOperation },
+  mixins: [
+    presenter()
+  ],
   props: {
     // CRUD对象
     crud: {
@@ -48,10 +105,12 @@ export default {
       default: false
     },
     // 表格渲染时候默认的排序规则
-    // eslint-disable-next-line vue/require-default-prop
     defaultSort: {
       type: Object,
-      required: false
+      required: false,
+      default: () => {
+        return { prop: 'createTime', order: 'descending' }
+      }
     },
     // 是否是斑马纹
     isStripe: {
@@ -90,6 +149,104 @@ export default {
     rowKey: {
       type: [String, Function],
       required: false
+    },
+    // 是否需要第一列
+    isFirstCol: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    // 开启第一列是expand模式
+    openExpand: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    // 第一列的宽度
+    firstColWidth: {
+      type: String,
+      required: false,
+      default: '55'
+    },
+    // 第一列的固定(left/right)
+    firstColFixed: {
+      type: String || Boolean,
+      required: false,
+      default: 'left'
+    },
+    // 表格的表头
+    tableHeader: {
+      type: Array,
+      required: true
+    },
+    // 第一列列对齐方式
+    firstColAlign: {
+      type: String,
+      required: false,
+      default: 'center'
+    },
+    // 列对齐的方式
+    colAlign: {
+      type: String,
+      required: false,
+      default: 'center'
+    },
+    // 是否显示最后一列
+    isLastCol: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    // 最后一列操作权限数组
+    lastColPermission: {
+      type: Array,
+      required: false,
+      default: () => {}
+    },
+    // 最后一列的列名
+    lastColLabel: {
+      type: String,
+      required: false,
+      default: String(i18n.t('scaffoldTable.operate'))
+    },
+    // 最后一列的宽度
+    lastColWidth: {
+      type: String,
+      required: false,
+      default: '125'
+    },
+    // 最后一列列对齐方式
+    lastColAlign: {
+      type: String,
+      required: false,
+      default: 'center'
+    },
+    // 最后一列的固定(left/right)
+    lastColFixed: {
+      type: String || Boolean,
+      required: false,
+      default: 'right'
+    },
+    // 第一列为"expand"的标题
+    expandTitle: {
+      type: Array,
+      required: false,
+      default: () => {}
+    },
+    // 是否显示分页
+    isPagination: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
+  computed: {
+    showFirstCol() {
+      if (this.openExpand) {
+        return false
+      } else {
+        return this.isFirstCol
+      }
     }
   },
   beforeUpdate() {
@@ -112,6 +269,13 @@ export default {
       this.$nextTick(() => {
         this.$refs.table.doLayout()
       })
+    },
+    colAlignComputed(itemAlign) {
+      if (itemAlign) {
+        return itemAlign
+      } else {
+        return this.colAlign
+      }
     }
   }
 }
@@ -144,5 +308,10 @@ export default {
       border-radius: 10px;
     }
   }
+}
+
+.demo-table-expand {
+  font-size: 0;
+  margin-left: 25px;
 }
 </style>

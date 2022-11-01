@@ -11,7 +11,7 @@
       @close="cancel"
     >
       <template #title>
-        <div class="my-title">{{ title }}</div>
+        {{ title }}
       </template>
       <template #content>
         <el-form
@@ -240,9 +240,6 @@ export default {
 
 <style lang="scss" scoped>
 .my-dialog{
-  .my-title{
-    padding:15px 20px;
-  }
 
   .my-form{
     margin-top: 30px;

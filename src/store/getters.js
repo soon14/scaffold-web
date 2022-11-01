@@ -42,7 +42,7 @@ const getters = {
   // ICON列表API
   iconListApi: state => state.api.iconListApi,
   // 图片上传
-  imagesUploadApi: state => state.api.imagesUploadApi
+  fileUploadApi: state => state.api.fileUploadApi
 }
 
 export default getters

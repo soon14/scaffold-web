@@ -27,68 +27,53 @@
         </el-button>
       </button-operation>
     </div>
+
     <scaffold-table
       ref="scaffoldTable"
+      :table-header="tableHeader.online"
       :table-data="tableData"
       :crud="crud"
       :default-sort="{prop:'loginTime',order:'descending'}"
+      last-col-width="100"
+      :last-col-label="String($t('onlinePage.operation'))"
     >
-      <template #tableColumns>
-        <el-table-column type="selection" width="55" />
-        <template v-for="item in tableHeader.online">
-          <el-table-column
-            v-if="columns.visible(item.prop)"
-            :key="item"
-            :prop="item.prop"
-            :label="item.label"
-            :sortable="item.sortable"
-          >
-            <template v-slot="scope">
-              <span v-if="item.prop === 'username'">
-                <span v-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">
-                  {{ scope.row[item.prop] }}
-                </span>
-                <span v-else>{{ scope.row[item.prop] }}</span>
-              </span>
-              <span v-else-if="item.prop === 'browser'">
-                <el-tag size="mini">{{ scope.row[item.prop] }}</el-tag>
-              </span>
-              <span v-else>{{ scope.row[item.prop] }}</span>
-            </template>
-          </el-table-column>
-        </template>
-        <el-table-column :label="String($t('onlinePage.operation'))" width="100px" fixed="right">
-          <template slot-scope="scope">
-            <el-popover
-              :ref="scope.$index"
-              v-permission="['root','Online:delete']"
-              placement="top"
-              width="180"
+      <template slot="username" slot-scope="scope">
+        <span v-if="scope.row.username === 'root'" style="color: red;font-weight: bold">
+          {{ scope.row.username }}
+        </span>
+        <span v-else>{{ scope.row.username }}</span>
+      </template>
+      <template slot="browser" slot-scope="scope">
+        <el-tag size="mini">{{ scope.row.browser }}</el-tag>
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <el-popover
+          :ref="scope.$index"
+          v-permission="['root','Online:delete']"
+          placement="top"
+          width="180"
+        >
+          <p>{{ $t('onlinePage.tips') }}</p>
+          <div style="text-align: right;margin: 0">
+            <el-button size="mini" round @click="$refs[scope.$index].doClose()">
+              {{ $t('cancel') }}
+            </el-button>
+            <el-button
+              :loading="delLoading"
+              type="danger"
+              size="mini"
+              round
+              @click="delMethod(scope.row.key,scope.$index)"
             >
-              <p>{{ $t('onlinePage.tips') }}</p>
-              <div style="text-align: right;margin: 0">
-                <el-button size="mini" round @click="$refs[scope.$index].doClose()">
-                  {{ $t('cancel') }}
-                </el-button>
-                <el-button
-                  :loading="delLoading"
-                  type="danger"
-                  size="mini"
-                  round
-                  @click="delMethod(scope.row.key,scope.$index)"
-                >
-                  {{ $t('ok') }}
-                </el-button>
-              </div>
-              <el-button slot="reference" size="mini" type="danger" round icon="el-icon-delete">
-                {{ $t('onlinePage.forcedOut') }}
-              </el-button>
-            </el-popover>
-          </template>
-        </el-table-column>
+              {{ $t('ok') }}
+            </el-button>
+          </div>
+          <el-button slot="reference" size="mini" type="danger" round icon="el-icon-delete">
+            {{ $t('onlinePage.forcedOut') }}
+          </el-button>
+        </el-popover>
       </template>
     </scaffold-table>
-    <pagination-operation />
   </div>
 </template>
 
@@ -97,7 +82,6 @@ import { mapGetters } from 'vuex'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import searchResetOperation from '@/components/Crud/SearchReset.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
-import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldTable from '@/components/ScaffoldTable'
 import CRUD, { crud, header, presenter } from '@/utils/crud'
 import { del } from '@/api/system/online'
@@ -109,7 +93,6 @@ export default {
   name: 'Online',
   components: {
     buttonOperation,
-    paginationOperation,
     searchResetOperation,
     scaffoldTable,
     scaffoldBackTopAndBottom

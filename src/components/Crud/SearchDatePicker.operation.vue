@@ -4,7 +4,7 @@
     <el-input
       v-model="query.blurry"
       clearable
-      :placeholder="inputPlaceholder === null ? $t('crud.searchDatePickerOperation.placeholder') : inputPlaceholder"
+      :placeholder="inputPlaceholder === null ? String($t('crud.searchDatePickerOperation.placeholder')) : inputPlaceholder"
       :style="{
         'width' : inputWidth + 'px'
       }"

@@ -18,11 +18,13 @@
     </div>
     <scaffold-table
       ref="scaffoldTable"
+      :table-header="tableHeader.playLogs.logs"
       :table-data="crud.data"
       :crud="crud"
-      :default-sort="{prop:'createTime',order:'descending'}"
+      open-expand
+      :is-last-col="false"
     >
-      <template #tableColumns>
+      <template #expand-col>
         <el-table-column type="expand">
           <template v-slot="props">
             <el-form label-position="left" inline class="demo-table-expand" label-suffix=":">
@@ -55,48 +57,30 @@
             </el-form>
           </template>
         </el-table-column>
-        <template v-for="item in tableHeader.playLogs.logs">
-          <el-table-column
-            v-if="columns.visible(item.prop)"
-            :key="item"
-            :prop="item.prop"
-            :label="item.label"
-            :sortable="item.sortable"
-            :width="item.width"
-            :show-overflow-tooltip="item.showOverflowTooltip"
-            align="center"
-          >
-            <template v-slot="scope">
-              <span v-if="item.prop === 'username'">
-                <span v-if="scope.row[item.prop] === 'root'" style="color: red;font-weight: bold">
-                  {{ scope.row[item.prop] }}
-                </span>
-                <span v-else>{{ scope.row[item.prop] }}</span>
-              </span>
-              <span v-else-if="item.prop === 'time'">
-                <el-tag v-if="scope.row[item.prop] <= 300" size="mini" type="success">
-                  {{ scope.row[item.prop] }}ms
-                </el-tag>
-                <el-tag v-else-if="scope.row[item.prop] <= 1000" size="mini" type="warning">
-                  {{ scope.row[item.prop] }}ms
-                </el-tag>
-                <el-tag v-else size="mini" type="danger">
-                  {{ scope.row[item.prop] }}ms
-                </el-tag>
-              </span>
-              <span
-                v-else-if="item.prop === 'businessType'"
-                :class="scope.row[item.prop]"
-              >
-                {{ scope.row[item.prop] }}
-              </span>
-              <span v-else>{{ scope.row[item.prop] }}</span>
-            </template>
-          </el-table-column>
-        </template>
+      </template>
+      <template slot="username" slot-scope="scope">
+        <span v-if="scope.row.username === 'root'" style="color: red;font-weight: bold">
+          {{ scope.row.username }}
+        </span>
+        <span v-else>{{ scope.row.username }}</span>
+      </template>
+      <template slot="time" slot-scope="scope">
+        <el-tag v-if="scope.row.time <= 300" size="mini" type="success">
+          {{ scope.row.time }}ms
+        </el-tag>
+        <el-tag v-else-if="scope.row.time <= 1000" size="mini" type="warning">
+          {{ scope.row.time }}ms
+        </el-tag>
+        <el-tag v-else size="mini" type="danger">
+          {{ scope.row.time }}ms
+        </el-tag>
+      </template>
+      <template slot="businessType" slot-scope="scope">
+        <span :class="scope.row.businessType">
+          {{ scope.row.businessType }}
+        </span>
       </template>
     </scaffold-table>
-    <pagination-operation />
   </div>
 </template>
 
@@ -109,16 +93,14 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import { mapGetters } from 'vuex'
 import { delAllLogs } from '@/api/tools/logs'
-import ScaffoldTable from '@/components/ScaffoldTable'
-import paginationOperation from '@/components/Crud/Pagination.operation'
+import scaffoldTable from '@/components/ScaffoldTable'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: String(i18n.t('playLogsPage.title')), url: '/logs' })
 export default {
   name: 'PlayLog',
   components: {
-    paginationOperation,
-    ScaffoldTable,
+    scaffoldTable,
     searchDatePickerOperation,
     buttonOperation,
     scaffoldJson,

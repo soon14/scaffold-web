@@ -12,7 +12,9 @@
     @close="close"
   >
     <div slot="title" class="header-title" :style="{'background': theme, 'color': 'white'}">
-      <slot name="title" />
+      <div style="padding:15px 20px;">
+        <slot name="title" />
+      </div>
     </div>
     <slot name="content" />
     <div slot="footer" class="dialog-footer">

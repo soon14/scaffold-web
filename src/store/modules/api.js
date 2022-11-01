@@ -12,8 +12,8 @@ const api = {
     updateAvatarApi: apiBaseUrl + '/users/avatar',
     // ICON列表API
     iconListApi: baseUrl + '/local/iconList/index.html',
-    // 图片上传
-    imagesUploadApi: apiBaseUrl + '/localStorage'
+    // 文件上传
+    fileUploadApi: apiBaseUrl + '/localStorage'
   }
 }
 

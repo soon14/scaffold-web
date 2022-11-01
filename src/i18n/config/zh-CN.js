@@ -275,6 +275,14 @@ export default {
       email: '邮箱',
       createTime: '创建时间',
       updateTime: '修改时间'
+    },
+    localStorage: {
+      serverUrl: '预览图',
+      fileName: '文件名',
+      suffix: '文件后缀',
+      type: '文件类型',
+      size: '文件大小',
+      creteTime: '上传时间'
     }
   },
   scaffoldJsonViewer: {
@@ -475,6 +483,9 @@ export default {
   scaffoldTreeSelect: {
     tip: '点击选择!'
   },
+  scaffoldTable: {
+    operate: '操作'
+  },
   rolePage: {
     title: '角色',
     inputPlaceholder: '请输入角色名称或权限等级搜索',
@@ -535,6 +546,20 @@ export default {
       title: '错误',
       message: '密码错误！'
     }
+  },
+  localStoragePage: {
+    title: '存储',
+    upload: '上传',
+    fileUpload: '文件上传',
+    fileUpdate: '编辑文件',
+    fileName: '文件名',
+    fileNamePlaceholder: '文件名(不带后缀)',
+    putFile: '添加文件',
+    uploadTip: '可上传任意格式文件，且不超过20M',
+    uploadErrorTip: '上传文件大小不能超过 20MB!',
+    uploadSuccess: '上传成功！',
+    uploadFail: '上传失败！',
+    uploadFailTip: '文件上传失败！'
   },
   ...zhCNLocale
 }
