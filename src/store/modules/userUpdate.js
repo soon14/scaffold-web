@@ -1,4 +1,4 @@
-import { getSelectList } from '@/api/tools/email'
+import { getSelectList } from '@/api/userCenter/email'
 
 const state = {
   options: []

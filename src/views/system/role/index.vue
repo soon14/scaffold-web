@@ -150,7 +150,7 @@ import scaffoldTable from '@/components/ScaffoldTable'
 import scaffoldDialog from '@/components/ScaffoldDialog'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { getLevelScope, edit, del, editMenu, getRoleById, add } from '@/api/system/roles'
+import { add, del, edit, editMenu, getLevelScope, getRoleById } from '@/api/system/roles'
 import { getMenusTree } from '@/api/system/menu'
 import i18n from '@/i18n'
 

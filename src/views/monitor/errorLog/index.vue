@@ -95,7 +95,7 @@ import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operat
 import CRUD, { presenter } from '@/utils/crud'
 import buttonOperation from '@/components/Crud/Button.operation'
 import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
-import { delAllErrorLogs, getErrorDetails } from '@/api/tools/logs'
+import { delAllErrorLogs, getErrorDetails } from '@/api/monitor/logs'
 
 const defaultCrud = CRUD({ title: String(i18n.t('errorLogsPage.title')), url: '/errorLogs' })
 export default {

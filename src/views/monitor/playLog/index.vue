@@ -92,7 +92,7 @@ import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operat
 import buttonOperation from '@/components/Crud/Button.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import { mapGetters } from 'vuex'
-import { delAllLogs } from '@/api/tools/logs'
+import { delAllLogs } from '@/api/monitor/logs'
 import scaffoldTable from '@/components/ScaffoldTable'
 
 // crud交由presenter持有

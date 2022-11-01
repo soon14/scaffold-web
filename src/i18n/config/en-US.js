@@ -517,7 +517,9 @@ export default {
     phone1: 'Please enter your mobile number!',
     phone2: 'Please enter the correct 11 bit mobile phone number',
     email1: 'Please enter your email!',
-    email2: 'Please enter the correct email!'
+    email2: 'Please enter the correct email!',
+    url1: 'Please enter the URL！',
+    url2: 'Please enter the correct URL！'
   },
   ownerPage: {
     title: 'Owner',
@@ -560,6 +562,26 @@ export default {
     uploadSuccess: 'Upload succeeded!',
     uploadFail: 'Upload failed!',
     uploadFailTip: 'File upload failed!'
+  },
+  sysSetting: {
+    sysName: 'System Title',
+    sysNameZhCn: 'System Title zh-CN',
+    sysNameZhHk: 'System Title zh-HK',
+    sysNameZhTw: 'System Title zh-TW',
+    sysNameEnUs: 'System Title en-US',
+    sysLogo: 'System Logo Address',
+    userInitPassword: 'User initial password',
+    form: {
+      sysName: 'Please enter the system title',
+      sysNameZhCn: 'Please enter the system title zh-CN',
+      sysNameZhHk: 'Please enter the system title zh-HK',
+      sysNameZhTw: 'Please enter the system title zh-TW',
+      sysNameEnUs: 'Please enter the system title en-US',
+      userInitPassword: 'Please enter the user\'s initial password'
+    },
+    saveSuccess: 'Saving succeeded！',
+    saveMessage: 'System parameters saved successfully！',
+    saveBtn: 'Save'
   },
   ...enLocale
 }

@@ -517,7 +517,9 @@ export default {
     phone1: '請輸入手機號碼！',
     phone2: '請輸入正確的11比特手機號碼',
     email1: '請輸入郵箱！',
-    email2: '請輸入正確的郵箱！'
+    email2: '請輸入正確的郵箱！',
+    url1: '請輸入URL！',
+    url2: '請輸入正確的URL！'
   },
   ownerPage: {
     title: '業主',
@@ -560,6 +562,26 @@ export default {
     uploadSuccess: '上傳成功!',
     uploadFail: '上傳失敗!',
     uploadFailTip: '文件上傳失敗!'
+  },
+  sysSetting: {
+    sysName: '系統標題',
+    sysNameZhCn: '系統標題zh-CN',
+    sysNameZhHk: '系統標題zh-HK',
+    sysNameZhTw: '系統標題zh-TW',
+    sysNameEnUs: '系統標題en-US',
+    sysLogo: '系統Logo地址',
+    userInitPassword: '用戶初始密碼',
+    form: {
+      sysName: '請輸入系統標題',
+      sysNameZhCn: '請輸入系統標題zh-CN',
+      sysNameZhHk: '請輸入系統標題zh-HK',
+      sysNameZhTw: '請輸入系統標題zh-TW',
+      sysNameEnUs: '請輸入系統標題en-US',
+      userInitPassword: '請輸入用戶初始密碼'
+    },
+    saveSuccess: '保存成功！',
+    saveMessage: '系統參數保存成功！',
+    saveBtn: '保存配寘'
   },
   ...zhTWLocale
 }

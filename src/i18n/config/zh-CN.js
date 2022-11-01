@@ -517,7 +517,9 @@ export default {
     phone1: '请输入手机号码!',
     phone2: '请输入正确的11位手机号码',
     email1: '请输入邮箱!',
-    email2: '请输入正确的邮箱！'
+    email2: '请输入正确的邮箱！',
+    url1: '请输入URL',
+    url2: '请输入正确的URL'
   },
   ownerPage: {
     title: '业主',
@@ -560,6 +562,26 @@ export default {
     uploadSuccess: '上传成功！',
     uploadFail: '上传失败！',
     uploadFailTip: '文件上传失败！'
+  },
+  sysSetting: {
+    sysName: '系统标题',
+    sysNameZhCn: '系统标题zh-CN',
+    sysNameZhHk: '系统标题zh-HK',
+    sysNameZhTw: '系统标题zh-TW',
+    sysNameEnUs: '系统标题en-US',
+    sysLogo: '系统Logo地址',
+    userInitPassword: '用户初始密码',
+    form: {
+      sysName: '请输入系统标题',
+      sysNameZhCn: '请输入系统标题zh-CN',
+      sysNameZhHk: '请输入系统标题zh-HK',
+      sysNameZhTw: '请输入系统标题zh-TW',
+      sysNameEnUs: '请输入系统标题en-US',
+      userInitPassword: '请输入用户初始密码'
+    },
+    saveSuccess: '保存成功！',
+    saveMessage: '系统参数保存成功！',
+    saveBtn: '保存配置'
   },
   ...zhCNLocale
 }

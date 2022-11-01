@@ -71,7 +71,6 @@
         <el-card class="box-card">
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
-
               <scaffold-table
                 :table-header="tableHeader.center.playLogs"
                 :table-data="crud.data"
@@ -130,7 +129,6 @@
               <!--              <pagination-operation />-->
             </el-tab-pane>
             <el-tab-pane :label="String($t('userCenter.rightCard.errorLogs'))" name="errorLogs">
-
               <scaffold-table
                 :table-header="tableHeader.center.errorLogs"
                 :table-data="crud.data"
@@ -199,7 +197,7 @@ import scaffoldTable from '@/components/ScaffoldTable'
 import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import CRUD, { presenter } from '@/utils/crud'
-import { getErrorDetails } from '@/api/tools/logs'
+import { getErrorDetails } from '@/api/monitor/logs'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({ url: '/center/logs' })

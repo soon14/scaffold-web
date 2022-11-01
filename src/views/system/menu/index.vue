@@ -207,7 +207,7 @@ import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { crud, form, header, menuPresenter } from '@/utils/crud'
-import { getMenusTree, add, edit, del } from '@/api/system/menu'
+import { add, del, edit, getMenusTree } from '@/api/system/menu'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({

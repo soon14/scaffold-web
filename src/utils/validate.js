@@ -171,3 +171,13 @@ export function validEmail (rule, value, callback) {
   }
 }
 
+export function validUrl(rule, value, callback) {
+  if (!value) {
+    callback(new Error(String(i18n.t('validate.url1'))))
+  } else if (!isExternal(value)) {
+    callback(new Error(String(i18n.t('validate.url2'))))
+  } else {
+    callback()
+  }
+}
+
