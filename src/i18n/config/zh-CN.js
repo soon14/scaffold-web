@@ -583,5 +583,21 @@ export default {
     saveMessage: '系统参数保存成功！',
     saveBtn: '保存配置'
   },
+  notice: {
+    title: '通知',
+    inputPlaceholder: '请输入通知标题和内容查询',
+    isOverdue: '是否过期',
+    sendScope: '发送范围',
+    sender: '发送人',
+    noticeScope: '通知范围',
+    all: '全体业主',
+    allP: '全体员工',
+    allp: '全体人员',
+    overdue: '已过期',
+    noOverdue: '未过期',
+    noticeTitle: '通知标题',
+    noticeContent: '通知内容',
+    delPopoverTip: '确认删除该通知吗?'
+  },
   ...zhCNLocale
 }

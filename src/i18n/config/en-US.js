@@ -583,5 +583,21 @@ export default {
     saveMessage: 'System parameters saved successfully！',
     saveBtn: 'Save'
   },
+  notice: {
+    title: 'Notice',
+    inputPlaceholder: 'Please enter the notification title and content query',
+    isOverdue: 'Expired or not',
+    sendScope: 'Sending range',
+    sender: 'Sender',
+    noticeScope: 'Scope of notification',
+    all: 'All owners',
+    allP: 'All hands',
+    allp: 'All staff',
+    overdue: 'Expired',
+    noOverdue: 'Not expired',
+    noticeTitle: 'Notification Title',
+    noticeContent: 'Notice content',
+    delPopoverTip: 'Are you sure to delete this notification?'
+  },
   ...enLocale
 }

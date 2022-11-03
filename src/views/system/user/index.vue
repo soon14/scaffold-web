@@ -49,7 +49,7 @@
           :model="form"
           :rules="rules"
           label-width="90px"
-          label-position="right"
+          label-suffix=":"
         >
           <el-form-item :label="String($t('userPage.form.username'))" prop="username">
             <el-input ref="first" v-model="form.username" clearable :placeholder="String($t('userPage.form.username'))" />

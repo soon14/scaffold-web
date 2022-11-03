@@ -24,6 +24,7 @@
           inline
           :model="form"
           label-width="150px"
+          label-suffix=":"
           :rules="rules"
         >
           <el-form-item :label="String($t('rolePage.form.name'))" prop="name">

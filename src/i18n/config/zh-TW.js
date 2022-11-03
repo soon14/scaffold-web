@@ -583,5 +583,21 @@ export default {
     saveMessage: '系統參數保存成功！',
     saveBtn: '保存配寘'
   },
+  notice: {
+    title: '通知',
+    inputPlaceholder: '請輸入通知標題和內容査詢',
+    isOverdue: '是否過期',
+    sendScope: '發送範圍',
+    sender: '發送人',
+    noticeScope: '通知範圍',
+    all: '全體業主',
+    allP: '全體員工',
+    allp: '全體人員',
+    overdue: '已過期',
+    noOverdue: '未過期',
+    noticeTitle: '通知標題',
+    noticeContent: '通知內容',
+    delPopoverTip: '確認删除該通知嗎?'
+  },
   ...zhTWLocale
 }

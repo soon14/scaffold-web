@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click" @command="handleChangeLanguage">
+  <el-dropdown trigger="hover" @command="handleChangeLanguage">
     <div>
       <scaffold-svg
         icon-class="i18n"
@@ -7,6 +7,8 @@
       />
     </div>
     <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item disabled style="text-align: center;color: black;font-size: 14px;padding: 0">{{ String($t('navbar.i18nSelect')) }}</el-dropdown-item>
+      <hr color="#dcdfe6">
       <template v-for="item in i18nOptions">
         <el-dropdown-item
           :key="item.value"

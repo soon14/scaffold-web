@@ -30,31 +30,37 @@
     <el-button
       v-if="referenceBtnText!==null"
       slot="reference"
-      size="mini"
+      :size="btnSize"
       type="danger"
       :icon="referenceIcon"
       :disabled="referenceDisabled"
       round
+      :plain="btnPlain"
+      :circle="btnCircle"
       @click="toConfirm"
     >{{ referenceBtnText }}</el-button>
     <el-button
       v-else-if="referenceBtnText===null && referenceIcon===''"
       slot="reference"
-      size="mini"
+      :size="btnSize"
       type="danger"
       icon="el-icon-eleme"
       :disabled="referenceDisabled"
       round
+      :plain="btnPlain"
+      :circle="btnCircle"
       @click="toConfirm"
     />
     <el-button
       v-else
       slot="reference"
-      size="mini"
+      :size="btnSize"
       type="danger"
       :icon="referenceIcon"
       :disabled="referenceDisabled"
       round
+      :plain="btnPlain"
+      :circle="btnCircle"
       @click="toConfirm"
     />
   </el-popover>
@@ -66,59 +72,88 @@ import i18n from '@/i18n'
 export default {
   name: 'ScaffoldPopover',
   props: {
+    // 弹框出现的地方
     placement: {
       type: String,
       required: false,
       default: 'top'
     },
+    // 启动的方式
     trigger: {
       type: String,
       required: false,
       default: 'manual'
     },
+    // 动画
     transition: {
       type: String,
       required: false,
       default: 'el-zoom-in-bottom'
     },
+    // 弹出框的宽度
     width: {
       type: String,
       required: false,
       default: '100'
     },
+    // 弹出框的内容
     content: {
       type: String,
       required: false,
       default: 'Hello Scaffold'
     },
+    // 取消按钮的文本
     cancelBtnText: {
       type: String,
       required: false,
       default: i18n.t('cancel')
     },
+    // 确定按钮的文本
     okBtnText: {
       type: String,
       required: false,
       default: i18n.t('ok')
     },
+    // 外层按钮的文本
     referenceBtnText: {
       type: String,
       required: false,
       default: null
     },
+    // 确定按钮的loading
     okBtnLoading: {
       type: Boolean,
       required: true
     },
+    // 外层按钮的icon
     referenceIcon: {
       type: String,
       required: false,
       default: ''
     },
+    // 是否禁用外层按钮
     referenceDisabled: {
       type: Boolean,
       required: false,
       default: false
+    },
+    // 外层按钮
+    btnPlain: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    // 外层按钮
+    btnCircle: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    // 外层按钮
+    btnSize: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data() {

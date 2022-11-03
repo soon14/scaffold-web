@@ -26,7 +26,7 @@
           <el-form-item :label="String($t('userCenter.update.email.newEmail'))" prop="newEmail">
             <el-input v-model="form.newEmail" :placeholder="String($t('userCenter.update.email.prefix'))" clearable style="width: 200px" />
           </el-form-item>
-          <el-form-item prop="value">
+          <el-form-item>
             <el-select
               ref="emailSuffix"
               v-model="value"
@@ -80,7 +80,7 @@
 import { mapGetters } from 'vuex'
 import store from '@/store'
 import scaffoldDialog from '@/components/ScaffoldDialog'
-import { validEmail } from '@/utils/validate'
+import {isValidEmail, validEmail} from '@/utils/validate'
 import { sendCodeToEmail, updateEmail } from '@/api/userCenter/email'
 import { encrypt } from '@/utils/rsaEncrypt'
 import i18n from '@/i18n'
@@ -159,7 +159,7 @@ export default {
       }
     },
     sendCode() {
-      if (this.form.newEmail && this.form.newEmail + this.$refs.emailSuffix.selectedLabel !== this.email && validEmail(this.form.newEmail + this.$refs.emailSuffix.selectedLabel)) {
+      if (this.form.newEmail && this.form.newEmail + this.$refs.emailSuffix.selectedLabel !== this.email && isValidEmail(this.form.newEmail + this.$refs.emailSuffix.selectedLabel)) {
         this.codeLoading = true
         this.buttonName = String(i18n.t('userCenter.update.email.codeSending'))
         const _this = this

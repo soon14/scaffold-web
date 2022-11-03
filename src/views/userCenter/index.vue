@@ -194,7 +194,6 @@ import updateEmail from '@/views/userCenter/update/updateEmail'
 import updatePass from '@/views/userCenter/update/updatePass'
 import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
 import scaffoldTable from '@/components/ScaffoldTable'
-import paginationOperation from '@/components/Crud/Pagination.operation'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import CRUD, { presenter } from '@/utils/crud'
 import { getErrorDetails } from '@/api/monitor/logs'
@@ -207,7 +206,6 @@ export default {
     updatePass,
     updateEmail,
     scaffoldTable,
-    paginationOperation,
     scaffoldExceptionInfo,
     scaffoldBackTopAndBottom
   },

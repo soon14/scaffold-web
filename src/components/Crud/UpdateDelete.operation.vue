@@ -17,6 +17,7 @@
       v-permission="permission.del"
       :ok-btn-loading="crud.dataStatus[data.id].delete === 2"
       width="180"
+      btn-size="mini"
       :content="msg"
       :reference-disabled="disabledDel"
       reference-icon="el-icon-delete"

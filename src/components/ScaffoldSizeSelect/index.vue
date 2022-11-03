@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click" @command="handleSetSize">
+  <el-dropdown trigger="hover" @command="handleSetSize">
     <div>
       <scaffold-svg
         icon-class="font-size"
@@ -7,6 +7,8 @@
       />
     </div>
     <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item disabled style="text-align: center;color: black;font-size: 14px;padding: 0">{{ String($t('navbar.sizeSelect')) }}</el-dropdown-item>
+      <hr color="#dcdfe6">
       <template v-for="item in sizeOptions">
         <el-dropdown-item
           :key="item.value"

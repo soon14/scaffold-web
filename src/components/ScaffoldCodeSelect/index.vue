@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click" @command="handleOpenUrl">
+  <el-dropdown trigger="hover" @command="handleOpenUrl">
     <div>
       <scaffold-svg
         icon-class="code"
@@ -7,6 +7,8 @@
       />
     </div>
     <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item disabled style="text-align: center;color: black;font-size: 14px;padding: 0">{{ String($t('navbar.codeAddress')) }}</el-dropdown-item>
+      <hr color="#dcdfe6">
       <template v-for="item in codeOptions">
         <el-dropdown-item :key="item.url" :command="item.url">
           <template #default>

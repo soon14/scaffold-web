@@ -37,7 +37,8 @@
           ref="form"
           inline
           :model="form"
-          label-width="125px"
+          label-width="140px"
+          label-suffix=":"
           :rules="rulesForType"
         >
           <el-form-item :label="String($t('menuPage.form.type'))" prop="type">

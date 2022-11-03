@@ -15,15 +15,6 @@
       <template v-if="device !== 'mobile'">
         <!-- 查找框 -->
         <scaffold-header-search id="header-search" class="right-menu-item" />
-        <!-- 源码地址 -->
-        <el-tooltip
-          :content="String($t('navbar.codeAddress'))"
-          effect="light"
-          placement="bottom"
-          transition="el-zoom-in-top"
-        >
-          <scaffold-code-select class="right-menu-item hover-effect" />
-        </el-tooltip>
         <!-- 全屏缩放 -->
         <el-tooltip
           :content="String($t('navbar.screenFull'))"
@@ -33,24 +24,12 @@
         >
           <scaffold-screen-full id="screenFull" class="right-menu-item hover-effect" />
         </el-tooltip>
+        <!-- 源码地址 -->
+        <scaffold-code-select class="right-menu-item hover-effect" />
         <!-- 多语言切换 -->
-        <el-tooltip
-          :content="String($t('navbar.i18nSelect'))"
-          effect="light"
-          placement="bottom"
-          transition="el-zoom-in-top"
-        >
-          <scaffold-i18n-select id="i18n-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
+        <scaffold-i18n-select id="i18n-select" class="right-menu-item hover-effect" />
         <!-- 布局设置 -->
-        <el-tooltip
-          :content="String($t('navbar.sizeSelect'))"
-          effect="light"
-          placement="bottom"
-          transition="el-zoom-in-top"
-        >
-          <scaffold-size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
+        <scaffold-size-select id="size-select" class="right-menu-item hover-effect" />
       </template>
 
       <!-- 头像 -->

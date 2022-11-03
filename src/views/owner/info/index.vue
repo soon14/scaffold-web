@@ -26,7 +26,7 @@
           :rules="rules"
           :model="form"
           label-width="150px"
-          label-position="right"
+          label-suffix=":"
         >
           <el-form-item :label="String($t('ownerPage.form.name'))" prop="name">
             <el-input ref="first" v-model="form.name" clearable :placeholder="String($t('ownerPage.form.name'))" />
@@ -68,6 +68,7 @@
         <el-form
           label-width="75px"
           style="padding-right: 25px"
+          label-suffix=":"
           @submit.native.prevent="handlerOpenVerifyAccount"
         >
           <el-form-item :label="String($t('ownerPage.dialog.pass'))">
@@ -117,6 +118,7 @@
               :content="content"
               reference-icon="el-icon-refresh-right"
               width="200"
+              btn-size="mini"
               @confirm="resetPass(scope.row)"
             />
           </template>

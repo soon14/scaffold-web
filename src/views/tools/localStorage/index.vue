@@ -48,7 +48,7 @@
               :headers="headers"
               :on-success="handleSuccess"
               :on-error="handleError"
-              :action="fileUploadApi + '?filename=' + form.filename"
+              :action="fileUploadApi + '?filename=' + form.fileName"
             >
               <div
                 :style="{

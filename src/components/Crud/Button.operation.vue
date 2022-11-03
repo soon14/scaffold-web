@@ -52,9 +52,9 @@
       <slot name="right" />
     </span>
     <el-button-group class="crud-opts-right">
-      <el-button class="popover-item" type="primary" icon="el-icon-search" round @click="toggleSearch" />
+      <el-button class="popover-item" :type="crud.props.searchToggle ? 'primary' : 'default'" icon="el-icon-search" round @click="toggleSearch" />
       <el-button class="popover-item" icon="el-icon-refresh" round @click="crud.refresh()" />
-      <el-popover placement="bottom-end" width="150" transition="el-zoom-in-top" trigger="click">
+      <el-popover v-if="tableCol" placement="bottom-end" width="150" transition="el-zoom-in-top" trigger="click">
         <el-button id="popover-button" slot="reference" icon="el-icon-s-grid" class="popover-button" />
         <el-checkbox
           v-model="allColumnsSelected"
@@ -88,6 +88,12 @@ export default {
     permission: {
       type: Object,
       default: null
+    },
+    // 是否动态表格列
+    tableCol: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data() {
