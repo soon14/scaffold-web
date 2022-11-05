@@ -220,7 +220,7 @@ import dayjs from 'dayjs'
 import { closeWebSocket, createWebSocket } from '@/utils/socket'
 
 export default {
-  name: 'SystemState',
+  name: 'HardwareStatus',
   data() {
     return {
       loading: true,
@@ -257,7 +257,7 @@ export default {
       'roles'
     ]),
     flag() {
-      return this.roles.includes('SystemState:read')
+      return this.roles.includes('HardwareStatus:read')
     }
   },
   mounted() {

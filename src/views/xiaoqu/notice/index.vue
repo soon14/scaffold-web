@@ -7,48 +7,26 @@
         input-width="250"
       >
         <template #right>
-          <el-select
+          <scaffold-select
             v-model="query.isOverdue"
-            clearable
             :placeholder="String($t('notice.isOverdue'))"
-            style="width: 120px"
+            :options="isOverdueSelect"
+            name
             @change="crud.toQuery"
-          >
-            <el-option
-              v-for="(item,index) in isOverdueSelect"
-              :key="index"
-              :label="item.label"
-              :value="item.name"
-            />
-          </el-select>
-          <el-select
+          />
+          <scaffold-select
             v-model="query.type"
-            clearable
             :placeholder="String($t('notice.sendScope'))"
-            style="width: 120px"
+            :options="typeSelect"
+            name
             @change="crud.toQuery"
-          >
-            <el-option
-              v-for="(item,index) in typeSelect"
-              :key="index"
-              :label="item.label"
-              :value="item.name"
-            />
-          </el-select>
-          <el-select
+          />
+          <scaffold-select
             v-model="query.userId"
-            clearable
             :placeholder="String($t('notice.sender'))"
-            style="width: 120px"
+            :options="userList"
             @change="crud.toQuery"
-          >
-            <el-option
-              v-for="(item,index) in userList"
-              :key="index"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+          />
         </template>
       </search-date-picker-operation>
       <button-operation :table-col="false" :permission="permission" />
@@ -67,33 +45,50 @@
         <el-form
           ref="form"
           :model="form"
-          label-width="125px"
+          label-width="200px"
           label-suffix=":"
         >
           <el-form-item :label="String($t('notice.noticeScope'))" prop="type">
-            <el-radio-group v-model="form.type" size="small">
+            <el-radio-group v-model="form.type">
               <el-radio-button label="全体业主">{{ $t('notice.all') }}</el-radio-button>
               <el-radio-button label="全体员工">{{ $t('notice.allP') }}</el-radio-button>
               <el-radio-button label="全体人员">{{ $t('notice.allp') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('notice.isOverdue'))" prop="isOverdue">
-            <el-radio-group v-model="form.isOverdue" size="small">
+            <el-radio-group v-model="form.isOverdue">
               <el-radio-button label="已过期">{{ $t('notice.overdue') }}</el-radio-button>
               <el-radio-button label="未过期">{{ $t('notice.noOverdue') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('notice.noticeTitle'))" prop="title">
-            <el-input ref="first" v-model="form.title" :placeholder="String($t('notice.noticeTitle'))" clearable style="width: 450px" />
+            <el-input
+              ref="first"
+              v-model="form.title"
+              :placeholder="String($t('notice.noticeTitle'))"
+              clearable
+              style="width: 450px"
+            />
           </el-form-item>
           <el-form-item :label="String($t('notice.noticeContent'))" prop="content">
-            <el-input v-model="form.content" type="textarea" :rows="10" :placeholder="String($t('notice.noticeContent'))" style="width: 450px" />
+            <el-input
+              v-model="form.content"
+              type="textarea"
+              :autosize="{ minRows: 4, maxRows: 8}"
+              :placeholder="String($t('notice.noticeContent'))"
+              style="width: 450px"
+            />
           </el-form-item>
         </el-form>
       </template>
       <template #footer>
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
-        <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
+        <el-button
+          :loading="crud.cu === 2"
+          type="primary"
+          round
+          @click="crud.submitCU"
+        >{{ $t('ok') }}</el-button>
       </template>
     </scaffold-dialog>
     <el-row
@@ -140,7 +135,7 @@
 
         <template slot="card-footer">
           <time class="time">
-            {{ item.createTime }}
+            <scaffold-relative-time :timestamp="item.createTime" />
           </time>
         </template>
       </scaffold-card>
@@ -152,6 +147,8 @@
 <script>
 import scaffoldCard from '@/components/ScaffoldCard'
 import scaffoldPopover from '@/components/ScaffoldPopover'
+import scaffoldRelativeTime from '@/components/ScaffoldRelativeTime'
+import scaffoldSelect from '@/components/ScaffoldSelect'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
@@ -183,7 +180,9 @@ export default {
     buttonOperation,
     paginationOperation,
     scaffoldDialog,
-    scaffoldPopover
+    scaffoldPopover,
+    scaffoldSelect,
+    scaffoldRelativeTime
   },
   mixins: [
     header(),

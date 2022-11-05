@@ -21,6 +21,10 @@
         <span>{{ $t('settings.isShowOnceMenu') }}</span>
         <el-switch v-model="uniqueOpened" class="drawer-switch" />
       </div>
+      <div class="drawer-item">
+        <span>{{ $t('settings.showFooter') }}</span>
+        <el-switch v-model="showFooter" class="drawer-switch" />
+      </div>
     </div>
   </div>
 </template>
@@ -75,6 +79,17 @@ export default {
       set(val) {
         this.$store.dispatch('global/changeSetting', {
           key: 'uniqueOpened',
+          value: val
+        })
+      }
+    },
+    showFooter: {
+      get() {
+        return this.$store.state.global.showFooter
+      },
+      set(val) {
+        this.$store.dispatch('global/changeSetting', {
+          key: 'showFooter',
           value: val
         })
       }

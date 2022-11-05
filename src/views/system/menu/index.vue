@@ -207,7 +207,7 @@ import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import buttonOperation from '@/components/Crud/Button.operation'
 import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import CRUD, { crud, form, header, menuPresenter } from '@/utils/crud'
+import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { add, del, edit, getMenusTree } from '@/api/system/menu'
 import i18n from '@/i18n'
 
@@ -250,7 +250,7 @@ export default {
     updateDeleteOperation
   },
   mixins: [
-    menuPresenter(defaultCrud),
+    presenter(defaultCrud),
     header(),
     crud(),
     form(defaultForm)

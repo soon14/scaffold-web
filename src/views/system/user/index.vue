@@ -138,10 +138,6 @@
           @change="changeEnabled(scope.row, scope.row.enabled)"
         />
       </template>
-      <template slot="updateTime" slot-scope="scope">
-        <span v-if="scope.row.updateTime === null" style="font-weight: bold">{{ $t('no') }}</span>
-        <span v-else>{{ scope.row.updateTime }}</span>
-      </template>
       <template slot="data-operate" slot-scope="scope">
         <update-delete-operation
           :permission="permission"

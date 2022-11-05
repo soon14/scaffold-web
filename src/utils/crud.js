@@ -663,64 +663,6 @@ function presenter(crud) {
 }
 
 /**
- * crud 主页
- * @param crud
- * @returns {{inject: string[]}}
- */
-export function menuPresenter(crud) {
-  function obColumns(columns) {
-    return {
-      visible(col) {
-        return !columns || !columns[col] ? true : columns[col].visible
-      }
-    }
-  }
-
-  return {
-    inject: ['crud'],
-    beforeCreate() {
-      // 由于initInjections在initProvide之前执行，如果该组件自己就需要crud，需要在initInjections前准备好crud
-      this._provided = {
-        crud,
-        'crud.query': crud.query,
-        'crud.page': crud.page,
-        'crud.form': crud.form
-      }
-    },
-    data() {
-      return {
-        searchToggle: true,
-        columns: obColumns()
-      }
-    },
-    methods: {},
-    created() {
-      this.crud.registerVM('presenter', this, 0)
-      if (crud.queryOnPresenterCreated) {
-        crud.toQuery()
-      }
-    },
-    beforeDestroy() {
-      this.crud.unregisterVM(this)
-    },
-    mounted() {
-      const columns = {}
-      this.$refs.scaffoldTable.$refs.table.columns.forEach(e => {
-        if (!e.property || e.type !== 'default') {
-          return
-        }
-        columns[e.property] = {
-          label: e.label,
-          visible: true
-        }
-      })
-      this.columns = obColumns(columns)
-      this.crud.updateProp('tableColumns', columns)
-    }
-  }
-}
-
-/**
  * 头部
  * @returns {{created(): void, beforeDestroy(): void, inject: {crud: {from: string}, query: {from: string}}}}
  */

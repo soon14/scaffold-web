@@ -47,6 +47,10 @@
             <span v-else-if="scope.row[item.prop] === null || scope.row[item.prop] === '' || scope.row[item.prop] === undefined">
               {{ $t('nodata') }}
             </span>
+            <scaffold-relative-time
+              v-else-if="item.prop === 'createTime' || item.prop === 'updateTime' || item.prop === 'answerTime'"
+              :timestamp="scope.row[item.prop]"
+            />
             <span v-else>{{ scope.row[item.prop] }}</span>
           </template>
         </el-table-column>
@@ -76,11 +80,12 @@
 <script>
 import { presenter } from '@/utils/crud'
 import paginationOperation from '@/components/Crud/Pagination.operation'
+import scaffoldRelativeTime from '@/components/ScaffoldRelativeTime'
 import i18n from '@/i18n'
 
 export default {
   name: 'ScaffoldTable',
-  components: { paginationOperation },
+  components: { paginationOperation, scaffoldRelativeTime },
   mixins: [
     presenter()
   ],
@@ -223,7 +228,7 @@ export default {
     },
     // 最后一列的固定(left/right)
     lastColFixed: {
-      type: String || Boolean,
+      type: [String, Boolean],
       required: false,
       default: 'right'
     },

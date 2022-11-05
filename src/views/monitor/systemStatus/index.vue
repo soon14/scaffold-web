@@ -1,17 +1,19 @@
 <template>
-  <scaffold-frame :src="sqlMonitorApi" />
+  <scaffold-frame :src="actuatorMonitorApi" />
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import ScaffoldFrame from '@/components/ScaffoldFrame'
+import scaffoldFrame from '@/components/ScaffoldFrame'
 
 export default {
-  name: 'SqlMonitor',
-  components: { ScaffoldFrame },
+  name: 'SystemStatus',
+  components: {
+    scaffoldFrame
+  },
   computed: {
     ...mapGetters([
-      'sqlMonitorApi'
+      'actuatorMonitorApi'
     ])
   },
   activated() {

@@ -41,9 +41,13 @@ import axios from 'axios'
 // 脱敏
 import './utils/desensitize'
 
+// 时间格式化
+import Time from '@/components/Time'
+
 Vue.use(VueHighlightJS)
 Vue.use(JsonViewer)
 Vue.use(Permission)
+Vue.use(Time)
 // 设置 element-ui 默认大小
 Vue.use(Element, {
   size: Cookies.get('size') || 'small'

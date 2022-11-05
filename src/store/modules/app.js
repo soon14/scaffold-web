@@ -31,6 +31,12 @@ const mutations = {
     state.sidebar.withoutAnimation = withoutAnimation
   },
 
+  OPEN_SIDEBAR: (state, withoutAnimation) => {
+    Cookies.set('sidebarStatus', 1)
+    state.sidebar.opened = true
+    state.sidebar.withoutAnimation = withoutAnimation
+  },
+
   TOGGLE_DEVICE: (state, device) => {
     state.device = device
   },
@@ -49,6 +55,9 @@ const actions = {
   // 关闭菜单栏
   closeSideBar({ commit }, { withoutAnimation }) {
     commit('CLOSE_SIDEBAR', withoutAnimation)
+  },
+  openSideBar({ commit }, { withoutAnimation }) {
+    commit('OPEN_SIDEBAR', withoutAnimation)
   },
   // 切换设备(移动端)
   toggleDevice({ commit }, device) {

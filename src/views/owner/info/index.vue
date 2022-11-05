@@ -88,7 +88,6 @@
       :crud="crud"
       last-col-width="230"
       :last-col-permission="['root','OwnerInfo:update','OwnerInfo:delete']"
-      :last-col-label="String($t('ownerPage.operate'))"
     >
       <template slot="phone" slot-scope="scope">
         <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">

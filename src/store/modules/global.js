@@ -21,7 +21,7 @@ const state = {
   fixedHeader: fixedHeader,
   // 是否显示logo
   sidebarLogo: sidebarLogo,
-  // 是否只保持一个子菜单的展开
+  // 菜单是否开启手风琴模式
   uniqueOpened: uniqueOpened
 }
 

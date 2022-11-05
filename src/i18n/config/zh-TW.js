@@ -43,7 +43,8 @@ export default {
     isShowLabels: '顯示標籤',
     isFixedHead: '固定頭部',
     isShowLogo: '顯示LOGO',
-    isShowOnceMenu: '只保持一個子選單的展開'
+    isShowOnceMenu: '選單手風琴模式',
+    showFooter: '是否開啟頁腳'
   },
   code: {
     frontCode: '前端源碼',
@@ -283,6 +284,19 @@ export default {
       type: '檔案類型',
       size: '文件大小',
       creteTime: '上傳時間'
+    },
+    feedback: {
+      ownerName: '業主名稱',
+      title: '標題',
+      feedbackType: '迴響類型',
+      content: '內容',
+      feedbackImage: '迴響圖片',
+      answer: '回復',
+      username: '處理人',
+      result: '處理結果',
+      remarks: '備註',
+      answerTime: '回復時間',
+      createTime: '迴響時間'
     }
   },
   scaffoldJsonViewer: {
@@ -486,6 +500,12 @@ export default {
   scaffoldTable: {
     operate: '操作'
   },
+  scaffoldRelativeTime: {
+    just: '剛剛',
+    minute: '分鐘前',
+    hour: '小時前',
+    day: '天前'
+  },
   rolePage: {
     title: '角色',
     inputPlaceholder: '請輸入角色名稱或許可權等級蒐索',
@@ -598,6 +618,24 @@ export default {
     noticeTitle: '通知標題',
     noticeContent: '通知內容',
     delPopoverTip: '確認删除該通知嗎?'
+  },
+  feedback: {
+    placeholderInput: '請輸入迴響標題，內容或備註進行蒐索',
+    type: '迴響類型',
+    result: '處理結果',
+    unResolved: '未解决',
+    resolved: '已解决',
+    other: '其他',
+    ownerName: '迴響業主',
+    title: '迴響標題',
+    content: '迴響內容',
+    image: '迴響圖片',
+    answer: '回復',
+    remarks: '備註',
+    noData: '暫無數據',
+    feedback: '反饋',
+    message: '回復不能為空!',
+    no: '無'
   },
   ...zhTWLocale
 }

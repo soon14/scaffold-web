@@ -43,7 +43,8 @@ export default {
     isShowLabels: 'Show Labels',
     isFixedHead: 'Fixed Head',
     isShowLogo: 'Show Logo',
-    isShowOnceMenu: 'Menu Unique Opened'
+    isShowOnceMenu: 'Menu Accordion Mode',
+    showFooter: 'Whether to open footer'
   },
   code: {
     frontCode: 'Front Code',
@@ -283,6 +284,19 @@ export default {
       type: 'File Type',
       size: 'File Size',
       creteTime: 'Upload Time'
+    },
+    feedback: {
+      ownerName: 'Owner Name',
+      title: 'Title',
+      feedbackType: 'Type',
+      content: 'Content',
+      feedbackImage: 'Image',
+      answer: 'Answer',
+      username: 'Handled by',
+      result: 'Result',
+      remarks: 'Remarks',
+      answerTime: 'AnswerTime',
+      createTime: 'CreateTime'
     }
   },
   scaffoldJsonViewer: {
@@ -486,6 +500,12 @@ export default {
   scaffoldTable: {
     operate: 'Operate'
   },
+  scaffoldRelativeTime: {
+    just: 'Just Now',
+    minute: ' Minutes Ago',
+    hour: ' Hours Ago',
+    day: ' Days Ago'
+  },
   rolePage: {
     title: 'Role',
     inputPlaceholder: 'Please enter the role name or permission level to search',
@@ -598,6 +618,24 @@ export default {
     noticeTitle: 'Notification Title',
     noticeContent: 'Notice content',
     delPopoverTip: 'Are you sure to delete this notification?'
+  },
+  feedback: {
+    placeholderInput: 'Please enter the feedback title, content',
+    type: 'Feedback Type',
+    result: 'Result',
+    unResolved: 'Unresolved',
+    resolved: 'Resolved',
+    other: 'Other',
+    ownerName: 'OwnerName',
+    title: 'Title',
+    content: 'Content',
+    image: 'Image',
+    answer: 'Answer',
+    remarks: 'Remarks',
+    noData: 'No Data',
+    feedback: 'Feedback',
+    message: 'Reply cannot be blank!',
+    no: 'No'
   },
   ...enLocale
 }

@@ -72,7 +72,7 @@ const state = {
     { prop: 'email', label: String(i18n.t('tableHeader.user.email')), width: '200', slot: true },
     { prop: 'phone', label: String(i18n.t('tableHeader.user.phone')), width: '150', slot: true },
     { prop: 'enabled', label: String(i18n.t('tableHeader.user.enabled')), slot: true },
-    { prop: 'updateTime', label: String(i18n.t('tableHeader.user.updateTime')), sortable: true, width: '200', slot: true },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.user.updateTime')), sortable: true, width: '200' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.user.createTime')), sortable: true, width: '200' }
   ],
   avatars: [
@@ -92,7 +92,7 @@ const state = {
     { prop: 'nameEnUs', label: 'en-US', width: '100' },
     { prop: 'permission', label: String(i18n.t('tableHeader.role.permission')), width: '100' },
     { prop: 'level', label: String(i18n.t('tableHeader.role.level')), sortable: true, width: '100' },
-    { prop: 'updateTime', label: String(i18n.t('tableHeader.role.updateTime')), sortable: true, width: '200', slot: true },
+    { prop: 'updateTime', label: String(i18n.t('tableHeader.role.updateTime')), sortable: true, width: '200' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.role.createTime')), sortable: true, width: '200' }
   ],
   menus: [
@@ -123,6 +123,19 @@ const state = {
     { prop: 'type', label: String(i18n.t('tableHeader.localStorage.type')), slot: true },
     { prop: 'size', label: String(i18n.t('tableHeader.localStorage.size')), slot: true },
     { prop: 'createTime', label: String(i18n.t('tableHeader.localStorage.creteTime')), width: '200', sortable: true }
+  ],
+  feedback: [
+    { prop: 'ownerName', label: String(i18n.t('tableHeader.feedback.ownerName')), fixed: 'left', width: '150' },
+    { prop: 'title', label: String(i18n.t('tableHeader.feedback.title')), width: '150', showOverflowTooltip: true, fixed: 'left' },
+    { prop: 'type', label: String(i18n.t('tableHeader.feedback.feedbackType')), slot: true },
+    { prop: 'content', label: String(i18n.t('tableHeader.feedback.content')), showOverflowTooltip: true, width: '150' },
+    { prop: 'feedbackImage', label: String(i18n.t('tableHeader.feedback.feedbackImage')), width: '150', slot: true },
+    { prop: 'answer', label: String(i18n.t('tableHeader.feedback.answer')), showOverflowTooltip: true, width: '150' },
+    { prop: 'username', label: String(i18n.t('tableHeader.feedback.username')), width: '150' },
+    { prop: 'result', label: String(i18n.t('tableHeader.feedback.result')), width: '150', slot: true },
+    { prop: 'remarks', label: String(i18n.t('tableHeader.feedback.remarks')), showOverflowTooltip: true, width: '200' },
+    { prop: 'answerTime', label: String(i18n.t('tableHeader.feedback.answerTime')), width: '200' },
+    { prop: 'createTime', label: String(i18n.t('tableHeader.feedback.createTime')), sortable: true, width: '200' }
   ]
 }
 

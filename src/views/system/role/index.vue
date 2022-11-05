@@ -88,12 +88,6 @@
             :last-col-label="String($t('rolePage.operate'))"
             @current-change="handleCurrentChange"
           >
-            <template slot="updateTime" slot-scope="scope">
-              <span v-if="scope.row.updateTime === null" style="font-weight: bold">
-                {{ String($t('no')) }}
-              </span>
-              <span v-else>{{ scope.row.updateTime }}</span>
-            </template>
             <template slot="data-operate" slot-scope="scope">
               <update-delete-operation
                 v-if="scope.row.level >= level"

@@ -34,7 +34,6 @@
                     <scaffold-json
                       :json-data="props.row[item.prop]"
                       sort
-                      boxed
                       show-array-index
                       expanded
                       preview-mode

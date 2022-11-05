@@ -13,7 +13,9 @@ const api = {
     // ICON列表API
     iconListApi: baseUrl + '/local/iconList/index.html',
     // 文件上传
-    fileUploadApi: apiBaseUrl + '/localStorage'
+    fileUploadApi: apiBaseUrl + '/localStorage',
+    // Actuator Monitor控制台
+    actuatorMonitorApi: baseUrl + '/monitor'
   }
 }
 

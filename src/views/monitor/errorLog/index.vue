@@ -26,6 +26,7 @@
       open-expand
       :last-col-label="String($t('errorLogsPage.exceptionInfo'))"
       last-col-width="100"
+      :last-col-fixed="false"
     >
       <template #expand-col>
         <el-table-column type="expand" width="55" fixed="left" align="center">

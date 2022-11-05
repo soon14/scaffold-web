@@ -43,7 +43,8 @@ export default {
     isShowLabels: '显示标签',
     isFixedHead: '固定头部',
     isShowLogo: '显示LOGO',
-    isShowOnceMenu: '只保持一个子菜单的展开'
+    isShowOnceMenu: '菜单手风琴模式',
+    showFooter: '是否开启页脚'
   },
   code: {
     frontCode: '前端源码',
@@ -283,6 +284,19 @@ export default {
       type: '文件类型',
       size: '文件大小',
       creteTime: '上传时间'
+    },
+    feedback: {
+      ownerName: '业主名称',
+      title: '标题',
+      feedbackType: '反馈类型',
+      content: '内容',
+      feedbackImage: '反馈图片',
+      answer: '回复',
+      username: '处理人',
+      result: '处理结果',
+      remarks: '备注',
+      answerTime: '回复时间',
+      createTime: '反馈时间'
     }
   },
   scaffoldJsonViewer: {
@@ -486,6 +500,12 @@ export default {
   scaffoldTable: {
     operate: '操作'
   },
+  scaffoldRelativeTime: {
+    just: '刚刚',
+    minute: '分钟前',
+    hour: '小时前',
+    day: '天前'
+  },
   rolePage: {
     title: '角色',
     inputPlaceholder: '请输入角色名称或权限等级搜索',
@@ -598,6 +618,24 @@ export default {
     noticeTitle: '通知标题',
     noticeContent: '通知内容',
     delPopoverTip: '确认删除该通知吗?'
+  },
+  feedback: {
+    placeholderInput: '请输入反馈标题,内容或备注进行搜索',
+    type: '反馈类型',
+    result: '处理结果',
+    unResolved: '未解决',
+    resolved: '已解决',
+    other: '其他',
+    ownerName: '反馈业主',
+    title: '反馈标题',
+    content: '反馈内容',
+    image: '反馈图片',
+    answer: '回复',
+    remarks: '备注',
+    noData: '暂无数据',
+    feedback: '反馈',
+    message: '回复不能为空!',
+    no: '无'
   },
   ...zhCNLocale
 }
