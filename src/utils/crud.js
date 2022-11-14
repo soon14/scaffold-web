@@ -635,7 +635,13 @@ function presenter(crud) {
         columns: obColumns()
       }
     },
-    methods: {},
+    methods: {
+      [CRUD.HOOK.afterRefresh]() {
+        if (this.changeFlag) {
+          this.changeFlag()
+        }
+      }
+    },
     created() {
       this.crud.registerVM('presenter', this, 0)
       if (crud.queryOnPresenterCreated) {

@@ -1,6 +1,7 @@
 import zhHKLocale from 'element-ui/lib/locale/lang/zh-TW'
 
 export default {
+  ...zhHKLocale,
   global: {
     title: 'Scaffold - 管理系統',
     login: '登入',
@@ -297,6 +298,14 @@ export default {
       remarks: '備註',
       answerTime: '回復時間',
       createTime: '迴響時間'
+    },
+    building: {
+      buildingNum: '樓宇棟號',
+      floor: '樓宇層數',
+      floorNum: '一梯幾戶',
+      number: '總戶數',
+      createTime: '創建時間',
+      updateTime: '修改時間'
     }
   },
   scaffoldJsonViewer: {
@@ -637,5 +646,13 @@ export default {
     message: '回復不能為空!',
     no: '無'
   },
-  ...zhHKLocale
+  building: {
+    title: '樓宇',
+    buildingNum: '建築棟號',
+    floor: '建築層數',
+    floorNum: '一梯幾戶',
+    message1: '請輸入建築棟號',
+    message2: '建築層數必須是數位',
+    message3: '該項必須是數位'
+  }
 }

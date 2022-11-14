@@ -13,20 +13,13 @@
           />
         </template>
         <template #right>
-          <el-select
+          <scaffold-select
             v-model="query.enabled"
-            clearable
+            :options="enabledTypeOptions"
             :placeholder="String($t('userPage.placeholderSelect'))"
-            style="width: 90px"
+            width="90"
             @change="crud.toQuery"
-          >
-            <el-option
-              v-for="item in enabledTypeOptions"
-              :key="item.key"
-              :label="item.displayName"
-              :value="item.key"
-            />
-          </el-select>
+          />
         </template>
       </search-date-picker-operation>
       <button-operation :permission="permission" />
@@ -154,6 +147,7 @@ import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
+import scaffoldSelect from '@/components/ScaffoldSelect'
 import { add, del, edit } from '@/api/system/user'
 import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import buttonOperation from '@/components/Crud/Button.operation'
@@ -183,6 +177,7 @@ const defaultForm = {
 export default {
   name: 'User',
   components: {
+    scaffoldSelect,
     scaffoldTable,
     scaffoldAvatarImage,
     searchDatePickerOperation,
@@ -201,8 +196,8 @@ export default {
     return {
       roles: [],
       enabledTypeOptions: [
-        { key: 'true', displayName: String(i18n.t('userPage.form.statusOk')) },
-        { key: 'false', displayName: String(i18n.t('userPage.form.statusNo')) }
+        { value: 'true', label: String(i18n.t('userPage.form.statusOk')) },
+        { value: 'false', label: String(i18n.t('userPage.form.statusNo')) }
       ],
       permission: {
         add: ['User:add', 'root'],

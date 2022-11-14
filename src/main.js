@@ -44,6 +44,10 @@ import './utils/desensitize'
 // 时间格式化
 import Time from '@/components/Time'
 
+// ECharts
+import 'echarts'
+import ECharts from 'vue-echarts'
+
 Vue.use(VueHighlightJS)
 Vue.use(JsonViewer)
 Vue.use(Permission)
@@ -58,6 +62,9 @@ Vue.prototype.$lottie = lottie
 
 // 挂载axios
 Vue.prototype.$axios = axios
+
+// 全局组件ECharts
+Vue.component('v-charts', ECharts)
 
 Vue.config.productionTip = false
 

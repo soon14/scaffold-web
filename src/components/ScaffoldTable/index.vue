@@ -19,6 +19,7 @@
       @select="select"
       @select-all="selectAll"
       @selection-change="crud.selectionChangeHandler"
+      @sort-change="changeFlag"
     >
       <slot v-if="openExpand" name="expand-col" />
 
@@ -47,10 +48,15 @@
             <span v-else-if="scope.row[item.prop] === null || scope.row[item.prop] === '' || scope.row[item.prop] === undefined">
               {{ $t('nodata') }}
             </span>
-            <scaffold-relative-time
-              v-else-if="item.prop === 'createTime' || item.prop === 'updateTime' || item.prop === 'answerTime'"
-              :timestamp="scope.row[item.prop]"
-            />
+            <template
+              v-else-if="item.prop === 'createTime' || item.prop === 'updateTime'
+                || item.prop === 'answerTime' || item.prop === 'loginTime'"
+            >
+              <scaffold-relative-time
+                v-if="flag"
+                :timestamp="scope.row[item.prop]"
+              />
+            </template>
             <span v-else>{{ scope.row[item.prop] }}</span>
           </template>
         </el-table-column>
@@ -245,6 +251,11 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      flag: true
+    }
+  },
   computed: {
     showFirstCol() {
       if (this.openExpand) {
@@ -261,6 +272,12 @@ export default {
     this.updateLayout()
   },
   methods: {
+    changeFlag() {
+      this.flag = false
+      this.$nextTick(() => {
+        this.flag = true
+      })
+    },
     currentChange(val) {
       this.$emit('current-change', val)
     },

@@ -1,6 +1,7 @@
 import enLocale from 'element-ui/lib/locale/lang/en'
 
 export default {
+  ...enLocale,
   global: {
     title: 'Scaffold - Management System',
     login: 'Login',
@@ -297,6 +298,14 @@ export default {
       remarks: 'Remarks',
       answerTime: 'AnswerTime',
       createTime: 'CreateTime'
+    },
+    building: {
+      buildingNum: 'Building Num',
+      floor: 'Floor',
+      floorNum: 'Floor Num',
+      number: 'Total',
+      createTime: 'CreateTime',
+      updateTime: 'UpdateTime'
     }
   },
   scaffoldJsonViewer: {
@@ -637,5 +646,13 @@ export default {
     message: 'Reply cannot be blank!',
     no: 'No'
   },
-  ...enLocale
+  building: {
+    title: 'Building',
+    buildingNum: 'Building Num',
+    floor: 'Floor',
+    floorNum: 'Floor Num',
+    message1: 'Please enter building number',
+    message2: 'The number of building floors must be a number',
+    message3: 'The item must be a number'
+  }
 }

@@ -36,7 +36,7 @@
           label-width="80px"
         >
           <el-form-item :label="String($t('localStoragePage.fileName'))" prop="fileName">
-            <el-input v-model="form.fileName" :placeholder="String($t('localStoragePage.fileNamePlaceholder'))" style="width:340px" clearable />
+            <el-input ref="first" v-model="form.fileName" :placeholder="String($t('localStoragePage.fileNamePlaceholder'))" style="width:340px" clearable />
           </el-form-item>
           <!-- 上传文件 -->
           <el-form-item v-if="crud.status.add === 1" :label="String($t('localStoragePage.upload'))">

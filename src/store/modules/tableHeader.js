@@ -136,6 +136,14 @@ const state = {
     { prop: 'remarks', label: String(i18n.t('tableHeader.feedback.remarks')), showOverflowTooltip: true, width: '200' },
     { prop: 'answerTime', label: String(i18n.t('tableHeader.feedback.answerTime')), width: '200' },
     { prop: 'createTime', label: String(i18n.t('tableHeader.feedback.createTime')), sortable: true, width: '200' }
+  ],
+  building: [
+    { prop: 'buildingNum', label: i18n.t('tableHeader.building.buildingNum'), fixed: 'left', width: '200' },
+    { prop: 'floor', label: i18n.t('tableHeader.building.floor'), width: '200', sortable: true, slot: true },
+    { prop: 'floorNum', label: i18n.t('tableHeader.building.floorNum'), width: '150', sortable: true, slot: true },
+    { prop: 'number', label: i18n.t('tableHeader.building.number'), sortable: true, width: '150', slot: true },
+    { prop: 'createTime', label: i18n.t('tableHeader.building.createTime'), sortable: true, width: '200' },
+    { prop: 'updateTime', label: i18n.t('tableHeader.building.updateTime'), width: '200' }
   ]
 }
 

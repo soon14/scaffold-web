@@ -1,6 +1,7 @@
 import zhCNLocale from 'element-ui/lib/locale/lang/zh-CN'
 
 export default {
+  ...zhCNLocale,
   global: {
     title: 'Scaffold - 管理系统',
     login: '登录',
@@ -297,6 +298,14 @@ export default {
       remarks: '备注',
       answerTime: '回复时间',
       createTime: '反馈时间'
+    },
+    building: {
+      buildingNum: '楼宇栋号',
+      floor: '楼宇层数',
+      floorNum: '一梯几户',
+      number: '总户数',
+      createTime: '创建时间',
+      updateTime: '修改时间'
     }
   },
   scaffoldJsonViewer: {
@@ -637,5 +646,13 @@ export default {
     message: '回复不能为空!',
     no: '无'
   },
-  ...zhCNLocale
+  building: {
+    title: '楼宇',
+    buildingNum: '建筑栋号',
+    floor: '建筑层数',
+    floorNum: '一梯几户',
+    message1: '请输入建筑栋号',
+    message2: '建筑层数必须是数字',
+    message3: '该项必须是数字'
+  }
 }

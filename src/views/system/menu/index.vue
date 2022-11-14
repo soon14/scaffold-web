@@ -4,20 +4,13 @@
     <div class="head-container">
       <search-date-picker-operation>
         <template #right>
-          <el-select
+          <scaffold-select
             v-model="query.enabled"
-            clearable
+            :options="enabledTypeOptions"
             :placeholder="String($t('menuPage.state'))"
-            style="width: 90px"
+            width="90"
             @change="crud.toQuery"
-          >
-            <el-option
-              v-for="item in enabledTypeOptions"
-              :key="item.key"
-              :label="item.displayName"
-              :value="item.key"
-            />
-          </el-select>
+          />
         </template>
       </search-date-picker-operation>
       <button-operation :permission="permission" />
@@ -202,6 +195,7 @@ import { mapGetters } from 'vuex'
 import scaffoldTreeSelect from '@/components/ScaffoldTreeSelect'
 import scaffoldDialog from '@/components/ScaffoldDialog'
 import scaffoldTable from '@/components/ScaffoldTable'
+import scaffoldSelect from '@/components/ScaffoldSelect'
 import scaffoldIconSelect from '@/components/ScaffoldIconSelect'
 import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import buttonOperation from '@/components/Crud/Button.operation'
@@ -245,6 +239,7 @@ export default {
     scaffoldBackTopAndBottom,
     scaffoldTable,
     scaffoldDialog,
+    scaffoldSelect,
     scaffoldIconSelect,
     scaffoldTreeSelect,
     updateDeleteOperation
@@ -264,8 +259,8 @@ export default {
         del: ['Menu:delete', 'root']
       },
       enabledTypeOptions: [
-        { key: 'true', displayName: String(i18n.t('menuPage.enable')) },
-        { key: 'false', displayName: String(i18n.t('menuPage.disable')) }
+        { value: 'true', label: String(i18n.t('menuPage.enable')) },
+        { value: 'false', label: String(i18n.t('menuPage.disable')) }
       ],
       rules_0: {
         name: [

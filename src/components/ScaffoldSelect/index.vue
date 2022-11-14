@@ -20,11 +20,13 @@
 <script>
 export default {
   name: 'ScaffoldSelect',
+  model: {
+    prop: 'childValue',
+    event: 'change'
+  },
   props: {
     // eslint-disable-next-line vue/require-default-prop
-    value: {
-      type: String
-    },
+    value: null,
     placeholder: {
       type: String,
       required: false,
@@ -52,18 +54,17 @@ export default {
     }
   },
   watch: {
-    value(val) {
-      this.dictValue = val
-    },
-    dictValue(val, oldVal) {
-      if (val !== oldVal) {
-        this.$emit('input', val)
-      }
+    value: {
+      handler(val) {
+        this.dictValue = val
+      },
+      immediate: true
     }
   },
   methods: {
-    handlerChange() {
-      this.$emit('change', this.dictValue)
+    handlerChange(val) {
+      this.$emit('input', val)
+      this.$emit('change', val)
     }
   }
 }
