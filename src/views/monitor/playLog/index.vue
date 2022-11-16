@@ -85,26 +85,14 @@
 
 <script>
 import i18n from '@/i18n'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import scaffoldJson from '@/components/ScaffoldJson'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
 import CRUD, { presenter } from '@/utils/crud'
 import { mapGetters } from 'vuex'
 import { delAllLogs } from '@/api/monitor/logs'
-import scaffoldTable from '@/components/ScaffoldTable'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: String(i18n.t('playLogsPage.title')), url: '/logs' })
 export default {
   name: 'PlayLog',
-  components: {
-    scaffoldTable,
-    searchDatePickerOperation,
-    buttonOperation,
-    scaffoldJson,
-    scaffoldBackTopAndBottom
-  },
   mixins: [presenter(defaultCrud)],
   computed: {
     ...mapGetters([

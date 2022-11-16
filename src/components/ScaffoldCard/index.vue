@@ -27,7 +27,7 @@
         <slot name="card-header-btn" />
       </div>
 
-      <div :class="{'notice-content':fixHeight}">
+      <div :class="{'notice-content' : fixHeight}">
         <slot />
       </div>
 

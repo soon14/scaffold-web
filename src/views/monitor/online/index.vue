@@ -79,10 +79,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import searchResetOperation from '@/components/Crud/SearchReset.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
-import scaffoldTable from '@/components/ScaffoldTable'
 import CRUD, { crud, header, presenter } from '@/utils/crud'
 import { del } from '@/api/monitor/online'
 import i18n from '@/i18n'
@@ -91,12 +87,6 @@ import i18n from '@/i18n'
 const defaultCrud = CRUD({ title: String(i18n.t('onlinePage.title')), url: '/online' })
 export default {
   name: 'Online',
-  components: {
-    buttonOperation,
-    searchResetOperation,
-    scaffoldTable,
-    scaffoldBackTopAndBottom
-  },
   mixins: [presenter(defaultCrud), header(), crud()],
   data() {
     return {

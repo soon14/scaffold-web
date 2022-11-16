@@ -4,13 +4,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldFrame from '@/components/ScaffoldFrame'
 
 export default {
   name: 'SystemStatus',
-  components: {
-    scaffoldFrame
-  },
   computed: {
     ...mapGetters([
       'actuatorMonitorApi'

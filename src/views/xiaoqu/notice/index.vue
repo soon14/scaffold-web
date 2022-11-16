@@ -145,16 +145,7 @@
 </template>
 
 <script>
-import scaffoldCard from '@/components/ScaffoldCard'
-import scaffoldPopover from '@/components/ScaffoldPopover'
-import scaffoldRelativeTime from '@/components/ScaffoldRelativeTime'
-import scaffoldSelect from '@/components/ScaffoldSelect'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import scaffoldDialog from '@/components/ScaffoldDialog'
-import paginationOperation from '@/components/Crud/Pagination.operation'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import { edit, add, del, getOverdueList, getNoticeScope, getDistinctUser } from '@/api/xiaoqu/notice'
 import i18n from '@/i18n'
 
@@ -173,17 +164,6 @@ const defaultForm = {
 }
 export default {
   name: 'Notice',
-  components: {
-    scaffoldCard,
-    scaffoldBackTopAndBottom,
-    searchDatePickerOperation,
-    buttonOperation,
-    paginationOperation,
-    scaffoldDialog,
-    scaffoldPopover,
-    scaffoldSelect,
-    scaffoldRelativeTime
-  },
   mixins: [
     header(),
     crud(),

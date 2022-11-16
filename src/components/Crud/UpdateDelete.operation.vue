@@ -29,12 +29,10 @@
 
 <script>
 import CRUD, { crud } from '@/utils/crud'
-import scaffoldPopover from '@/components/ScaffoldPopover'
 import i18n from '@/i18n'
 
 export default {
   name: 'UpdateDeleteOperation',
-  components: { scaffoldPopover },
   mixins: [crud()],
   props: {
     // 传入要编辑的数据行

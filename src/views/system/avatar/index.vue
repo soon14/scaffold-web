@@ -71,14 +71,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
 import { del, editEnabled } from '@/api/system/avatar'
 import Avatar from '@/assets/images/avatar.png'
-import scaffoldTable from '@/components/ScaffoldTable'
-import buttonOperation from '@/components/Crud/Button.operation'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { crud, header, presenter } from '@/utils/crud'
 import i18n from '@/i18n'
 
@@ -89,14 +83,6 @@ const defaultCrud = CRUD({
 })
 export default {
   name: 'Avatar',
-  components: {
-    scaffoldAvatarImage,
-    scaffoldTable,
-    buttonOperation,
-    searchDatePickerOperation,
-    updateDeleteOperation,
-    scaffoldBackTopAndBottom
-  },
   mixins: [
     presenter(defaultCrud),
     header(),

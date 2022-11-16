@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <scaffold-back-top-and-bottom />
     <div class="head-container">
       <search-date-picker-operation />
       <button-operation :permission="permission" />
@@ -65,11 +66,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldTable from '@/components/ScaffoldTable'
-import buttonOperation from '@/components/Crud/Button.operation'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import scaffoldDialog from '@/components/ScaffoldDialog'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { add, edit, del } from '@/api/xiaoqu/building'
 import i18n from '@/i18n'
@@ -90,13 +86,6 @@ const defaultForm = {
 
 export default {
   name: 'Building',
-  components: {
-    buttonOperation,
-    searchDatePickerOperation,
-    scaffoldTable,
-    scaffoldDialog,
-    updateDeleteOperation
-  },
   mixins: [
     presenter(defaultCrud),
     crud(),

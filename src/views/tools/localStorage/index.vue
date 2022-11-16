@@ -145,13 +145,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import scaffoldDialog from '@/components/ScaffoldDialog'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { del, downloadOne, edit } from '@/api/tools/localStorage'
 import { getToken } from '@/utils/auth'
@@ -166,15 +159,6 @@ const defaultCrud = CRUD({
 const defaultForm = { id: null, fileName: '' }
 export default {
   name: 'LocalStorage',
-  components: {
-    scaffoldBackTopAndBottom,
-    scaffoldDialog,
-    scaffoldTable,
-    scaffoldAvatarImage,
-    searchDatePickerOperation,
-    buttonOperation,
-    updateDeleteOperation
-  },
   mixins: [
     presenter(defaultCrud),
     header(),

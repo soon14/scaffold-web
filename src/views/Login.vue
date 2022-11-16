@@ -89,11 +89,9 @@ import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
 import { encrypt } from '@/utils/rsaEncrypt'
 import Global from '@/global'
-import scaffoldI18nSelect from '@/components/ScaffoldI18nSelect'
 
 export default {
   name: 'Login',
-  components: { scaffoldI18nSelect },
   data() {
     return {
       captchaUrl: '',

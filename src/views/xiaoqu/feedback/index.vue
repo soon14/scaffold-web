@@ -148,15 +148,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import scaffoldSelect from '@/components/ScaffoldSelect'
-import scaffoldTable from '@/components/ScaffoldTable'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
 import { del, edit, getFeedbackResult, getFeedbackTypes } from '@/api/xiaoqu/feedback'
-import scaffoldDialog from '@/components/ScaffoldDialog'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
@@ -180,16 +172,6 @@ const defaultForm = {
 
 export default {
   name: 'Feedback',
-  components: {
-    scaffoldDialog,
-    scaffoldBackTopAndBottom,
-    searchDatePickerOperation,
-    buttonOperation,
-    scaffoldSelect,
-    scaffoldTable,
-    scaffoldAvatarImage,
-    updateDeleteOperation
-  },
   mixins: [
     presenter(defaultCrud),
     header(),

@@ -79,17 +79,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import store from '@/store'
-import scaffoldDialog from '@/components/ScaffoldDialog'
-import {isValidEmail, validEmail} from '@/utils/validate'
+import { isValidEmail, validEmail } from '@/utils/validate'
 import { sendCodeToEmail, updateEmail } from '@/api/userCenter/email'
 import { encrypt } from '@/utils/rsaEncrypt'
 import i18n from '@/i18n'
 
 export default {
   name: 'UpdateEmail',
-  components: {
-    scaffoldDialog
-  },
   props: {
     // 当前绑定邮箱
     email: {

@@ -129,13 +129,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import scaffoldPopover from '@/components/ScaffoldPopover'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldDialog from '@/components/ScaffoldDialog'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { add, del, edit, getById, resetPass, verifyAccount } from '@/api/owner/owner'
 import { validateIdNo, validEmail, validPhone } from '@/utils/validate'
@@ -161,15 +154,6 @@ const defaultForm = {
 
 export default {
   name: 'OwnerInfo',
-  components: {
-    scaffoldBackTopAndBottom,
-    scaffoldPopover,
-    searchDatePickerOperation,
-    updateDeleteOperation,
-    buttonOperation,
-    scaffoldTable,
-    scaffoldDialog
-  },
   mixins: [
     crud(),
     presenter(defaultCrud),

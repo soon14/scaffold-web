@@ -192,15 +192,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldTreeSelect from '@/components/ScaffoldTreeSelect'
-import scaffoldDialog from '@/components/ScaffoldDialog'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldSelect from '@/components/ScaffoldSelect'
-import scaffoldIconSelect from '@/components/ScaffoldIconSelect'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import buttonOperation from '@/components/Crud/Button.operation'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { add, del, edit, getMenusTree } from '@/api/system/menu'
 import i18n from '@/i18n'
@@ -233,17 +224,6 @@ const defaultForm = {
 
 export default {
   name: 'Menu',
-  components: {
-    searchDatePickerOperation,
-    buttonOperation,
-    scaffoldBackTopAndBottom,
-    scaffoldTable,
-    scaffoldDialog,
-    scaffoldSelect,
-    scaffoldIconSelect,
-    scaffoldTreeSelect,
-    updateDeleteOperation
-  },
   mixins: [
     presenter(defaultCrud),
     header(),

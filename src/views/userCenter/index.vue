@@ -90,43 +90,6 @@
                   </el-tag>
                 </template>
               </scaffold-table>
-
-              <!--              <scaffold-table-->
-              <!--                :table-data="crud.data"-->
-              <!--                :crud="crud"-->
-              <!--                :default-sort="{prop:'createTime',order:'descending'}"-->
-              <!--              >-->
-              <!--                <template #tableColumns>-->
-              <!--                  <template v-for="item in tableHeader.center.playLogs">-->
-              <!--                    <el-table-column-->
-              <!--                      v-if="columns.visible(item.prop)"-->
-              <!--                      :key="item"-->
-              <!--                      :prop="item.prop"-->
-              <!--                      :label="item.label"-->
-              <!--                      :sortable="item.sortable"-->
-              <!--                      :width="item.width"-->
-              <!--                      :show-overflow-tooltip="item.showOverflowTooltip"-->
-              <!--                      align="center"-->
-              <!--                    >-->
-              <!--                      <template v-slot="scope">-->
-              <!--                        <span v-if="item.prop === 'time'">-->
-              <!--                          <el-tag v-if="scope.row[item.prop] <= 300" size="mini" type="success">-->
-              <!--                            {{ scope.row[item.prop] }}ms-->
-              <!--                          </el-tag>-->
-              <!--                          <el-tag v-else-if="scope.row[item.prop] <= 1000" size="mini" type="warning">-->
-              <!--                            {{ scope.row[item.prop] }}ms-->
-              <!--                          </el-tag>-->
-              <!--                          <el-tag v-else size="mini" type="danger">-->
-              <!--                            {{ scope.row[item.prop] }}ms-->
-              <!--                          </el-tag>-->
-              <!--                        </span>-->
-              <!--                        <span v-else>{{ scope.row[item.prop] }}</span>-->
-              <!--                      </template>-->
-              <!--                    </el-table-column>-->
-              <!--                  </template>-->
-              <!--                </template>-->
-              <!--              </scaffold-table>-->
-              <!--              <pagination-operation />-->
             </el-tab-pane>
             <el-tab-pane :label="String($t('userCenter.rightCard.errorLogs'))" name="errorLogs">
               <scaffold-table
@@ -143,35 +106,6 @@
                   </el-button>
                 </template>
               </scaffold-table>
-
-              <!--              <scaffold-table-->
-              <!--                :table-data="crud.data"-->
-              <!--                :crud="crud"-->
-              <!--                :default-sort="{prop:'createTime',order:'descending'}"-->
-              <!--              >-->
-              <!--                <template #tableColumns>-->
-              <!--                  <template v-for="item in tableHeader.center.errorLogs">-->
-              <!--                    <el-table-column-->
-              <!--                      v-if="columns.visible(item.prop)"-->
-              <!--                      :key="item"-->
-              <!--                      :prop="item.prop"-->
-              <!--                      :label="item.label"-->
-              <!--                      :sortable="item.sortable"-->
-              <!--                      :width="item.width"-->
-              <!--                      :show-overflow-tooltip="item.showOverflowTooltip"-->
-              <!--                      align="center"-->
-              <!--                    />-->
-              <!--                  </template>-->
-              <!--                  <el-table-column :label="String($t('errorLogsPage.exceptionInfo'))" width="100" fixed="right">-->
-              <!--                    <template slot-scope="scope">-->
-              <!--                      <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">-->
-              <!--                        {{ $t('errorLogsPage.lookInfo') }}-->
-              <!--                      </el-button>-->
-              <!--                    </template>-->
-              <!--                  </el-table-column>-->
-              <!--                </template>-->
-              <!--              </scaffold-table>-->
-              <!--              <pagination-operation />-->
             </el-tab-pane>
           </el-tabs>
         </el-card>
@@ -192,9 +126,6 @@ import { getToken } from '@/utils/auth'
 import store from '@/store'
 import updateEmail from '@/views/userCenter/update/updateEmail'
 import updatePass from '@/views/userCenter/update/updatePass'
-import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
 import CRUD, { presenter } from '@/utils/crud'
 import { getErrorDetails } from '@/api/monitor/logs'
 import i18n from '@/i18n'
@@ -204,10 +135,7 @@ export default {
   name: 'Center',
   components: {
     updatePass,
-    updateEmail,
-    scaffoldTable,
-    scaffoldExceptionInfo,
-    scaffoldBackTopAndBottom
+    updateEmail
   },
   mixins: [presenter(defaultCrud)],
   data() {

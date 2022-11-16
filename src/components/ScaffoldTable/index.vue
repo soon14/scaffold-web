@@ -85,13 +85,10 @@
 
 <script>
 import { presenter } from '@/utils/crud'
-import paginationOperation from '@/components/Crud/Pagination.operation'
-import scaffoldRelativeTime from '@/components/ScaffoldRelativeTime'
 import i18n from '@/i18n'
 
 export default {
   name: 'ScaffoldTable',
-  components: { paginationOperation, scaffoldRelativeTime },
   mixins: [
     presenter()
   ],
@@ -272,6 +269,7 @@ export default {
     this.updateLayout()
   },
   methods: {
+    // 为了让ScaffoldRelativeTime组件在改变表格排序条件时重新渲染
     changeFlag() {
       this.flag = false
       this.$nextTick(() => {

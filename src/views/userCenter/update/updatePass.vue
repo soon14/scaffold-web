@@ -72,16 +72,12 @@
 
 <script>
 import store from '@/store'
-import scaffoldDialog from '@/components/ScaffoldDialog'
 import { verifyPassword } from '@/utils'
 import { updatePassword } from '@/api/system/user'
 import i18n from '@/i18n'
 
 export default {
   name: 'UpdatePass',
-  components: {
-    scaffoldDialog
-  },
   data() {
     const confirmPass = (rule, value, callback) => {
       if (value) {

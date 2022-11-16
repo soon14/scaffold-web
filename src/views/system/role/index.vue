@@ -105,7 +105,7 @@
               class="item"
               effect="light"
               :content="String($t('rolePage.tooltipContent'))"
-              placeholder="top"
+              placement="top"
             >
               <span class="role-span">
                 {{ $t('rolePage.menuCardTitle') }}
@@ -138,12 +138,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldDialog from '@/components/ScaffoldDialog'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { add, del, edit, editMenu, getLevelScope, getRoleById } from '@/api/system/roles'
 import { getMenusTree } from '@/api/system/menu'
@@ -162,14 +156,6 @@ const defaultForm = {
 }
 export default {
   name: 'Role',
-  components: {
-    scaffoldBackTopAndBottom,
-    searchDatePickerOperation,
-    buttonOperation,
-    scaffoldTable,
-    scaffoldDialog,
-    updateDeleteOperation
-  },
   mixins: [
     presenter(defaultCrud),
     form(defaultForm),
@@ -274,6 +260,7 @@ export default {
         this.crud.notify(String(i18n.t('rolePage.rules.saveSuccess')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         this.menuLoading = false
         this.update()
+        this.crud.toQuery()
       }).catch(err => {
         this.menuLoading = false
         console.log(err.response.data.message)

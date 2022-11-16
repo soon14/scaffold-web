@@ -89,26 +89,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldJson from '@/components/ScaffoldJson'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
 import CRUD, { presenter } from '@/utils/crud'
-import buttonOperation from '@/components/Crud/Button.operation'
-import scaffoldExceptionInfo from '@/components/ScaffoldExceptionInfo'
 import { delAllErrorLogs, getErrorDetails } from '@/api/monitor/logs'
 
 const defaultCrud = CRUD({ title: String(i18n.t('errorLogsPage.title')), url: '/errorLogs' })
 export default {
   name: 'ErrorLog',
-  components: {
-    searchDatePickerOperation,
-    buttonOperation,
-    scaffoldBackTopAndBottom,
-    scaffoldTable,
-    scaffoldJson,
-    scaffoldExceptionInfo
-  },
   mixins: [presenter(defaultCrud)],
   data() {
     return {

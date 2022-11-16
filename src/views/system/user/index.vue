@@ -145,15 +145,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import i18n from '@/i18n'
-import scaffoldBackTopAndBottom from '@/components/ScaffoldBackTopAndBottom'
-import scaffoldAvatarImage from '@/components/ScaffoldAvatarImage'
-import scaffoldSelect from '@/components/ScaffoldSelect'
 import { add, del, edit } from '@/api/system/user'
-import searchDatePickerOperation from '@/components/Crud/SearchDatePicker.operation'
-import buttonOperation from '@/components/Crud/Button.operation'
-import scaffoldTable from '@/components/ScaffoldTable'
-import scaffoldDialog from '@/components/ScaffoldDialog'
-import updateDeleteOperation from '@/components/Crud/UpdateDelete.operation'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getRoles } from '@/api/system/roles'
 import { validPhone } from '@/utils/validate'
@@ -176,16 +168,6 @@ const defaultForm = {
 
 export default {
   name: 'User',
-  components: {
-    scaffoldSelect,
-    scaffoldTable,
-    scaffoldAvatarImage,
-    searchDatePickerOperation,
-    buttonOperation,
-    updateDeleteOperation,
-    scaffoldDialog,
-    scaffoldBackTopAndBottom
-  },
   mixins: [
     presenter(defaultCrud),
     header(),
