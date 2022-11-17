@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ScaffoldFrame',
+  name: 'SWFrame',
   props: {
     src: {
       type: String,

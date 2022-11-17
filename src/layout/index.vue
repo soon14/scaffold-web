@@ -2,18 +2,18 @@
   <div :class="classObj" class="app-wrapper">
     <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <!-- 菜单栏 -->
-    <scaffold-sidebar class="sidebar-container" />
+    <sw-sidebar class="sidebar-container" />
     <div :class="{hasTagsView : needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <!-- 顶部栏 -->
-        <scaffold-navbar />
+        <sw-navbar />
         <!-- 标签栏 -->
-        <scaffold-tags-view v-if="needTagsView" />
+        <sw-tags-view v-if="needTagsView" />
       </div>
       <!-- 主要页面 -->
-      <scaffold-app-main />
+      <sw-app-main />
       <!-- 系统布局设置 -->
-      <scaffold-drawer
+      <sw-drawer
         :visible="showSettings"
         :before-close="beforeCloseDrawer"
         size="20%"
@@ -22,29 +22,19 @@
           <h1 class="drawer-title">{{ $t('settings.systemLayoutSettings') }}</h1>
         </template>
         <template #body>
-          <scaffold-settings />
+          <sw-settings />
         </template>
-      </scaffold-drawer>
+      </sw-drawer>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { scaffoldAppMain, scaffoldNavbar, scaffoldSettings, scaffoldSidebar, scaffoldTagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-import scaffoldDrawer from '@/components/ScaffoldDrawer'
 
 export default {
   name: 'Layout',
-  components: {
-    scaffoldAppMain,
-    scaffoldNavbar,
-    scaffoldSettings,
-    scaffoldSidebar,
-    scaffoldTagsView,
-    scaffoldDrawer
-  },
   mixins: [ResizeMixin],
   computed: {
     ...mapState({

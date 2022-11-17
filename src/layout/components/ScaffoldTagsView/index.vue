@@ -1,6 +1,6 @@
 <template>
   <div id="tags-view-container" class="tags-view-container">
-    <scaffold-scroll-pane ref="scrollPane" class="tags-view-wrapper">
+    <sw-scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link
         v-for="tag in visitedViews"
         ref="tag"
@@ -15,7 +15,7 @@
         {{ tag.title }}
         <span v-if="!tag.meta.affix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
-    </scaffold-scroll-pane>
+    </sw-scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
       <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
       <li v-if="!(selectedTag.meta && selectedTag.meta.affix)" @click="closeSelectedTag(selectedTag)">
@@ -28,12 +28,10 @@
 </template>
 
 <script>
-import scaffoldScrollPane from './ScaffoldScrollPane'
 import path from 'path'
 
 export default {
-  name: 'ScaffoldTagsView',
-  components: { scaffoldScrollPane },
+  name: 'SWTagsView',
   data() {
     return {
       visible: false,

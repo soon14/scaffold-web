@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="hover" @command="handleOpenUrl">
     <div>
-      <scaffold-svg
+      <sw-svg
         icon-class="code"
         class-name="code-address"
       />
@@ -12,7 +12,7 @@
       <template v-for="item in codeOptions">
         <el-dropdown-item :key="item.url" :command="item.url">
           <template #default>
-            <scaffold-svg
+            <sw-svg
               :icon-class="item.icon"
               class-name="code-address-item"
             />
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'ScaffoldCodeSelect',
+  name: 'SWCodeSelect',
   data() {
     return {
       codeOptions: [

@@ -15,7 +15,7 @@
 import pathToRegexp from 'path-to-regexp'
 
 export default {
-  name: 'ScaffoldBreadcrumb',
+  name: 'SWBreadcrumb',
   data() {
     return {
       levelList: null

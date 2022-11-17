@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="hover" @command="handleChangeLanguage">
     <div>
-      <scaffold-svg
+      <sw-svg
         icon-class="i18n"
         class-name="i18n-select"
       />
@@ -16,7 +16,7 @@
           :command="item.value"
         >
           <template #default>
-            <scaffold-svg
+            <sw-svg
               :icon-class="item.icon"
               class-name="i18n-select-item"
             />
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'ScaffoldI18nSelect',
+  name: 'SWI18nSelect',
   data() {
     return {
       i18nOptions: [

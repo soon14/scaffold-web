@@ -654,5 +654,6 @@ export default {
     message1: 'Please enter building number',
     message2: 'The number of building floors must be a number',
     message3: 'The item must be a number'
-  }
+  },
+  scaffoldLogoAlt: 'Home'
 }

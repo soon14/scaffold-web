@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation />
-      <button-operation>
+      <sw-search-date-picker-operation />
+      <sw-button-operation>
         <el-button
           slot="left"
           type="danger"
@@ -14,11 +14,11 @@
         >
           {{ $t('errorLogsPage.empty') }}
         </el-button>
-      </button-operation>
+      </sw-button-operation>
     </div>
-    <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
+    <sw-exception-info ref="exception" :error-logs="errorLogs" />
 
-    <scaffold-table
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.errorLogs.logs"
       :table-data="crud.data"
@@ -40,7 +40,7 @@
               <el-form-item v-for="item in tableHeader.errorLogs.expand" :key="item" :label="item.label">
                 <span v-if="item.prop === 'requestParams' || item.prop === 'responseResult'">
                   <span v-if="props.row[item.prop] !== '{}' && props.row[item.prop] !== null && props.row[item.prop] !== ''">
-                    <scaffold-json :json-data="props.row[item.prop]" sort show-array-index expanded />
+                    <sw-json :json-data="props.row[item.prop]" sort show-array-index expanded />
                   </span>
                   <span v-else style="color: red;">{{ $t('errorLogsPage.none') }}</span>
                 </span>
@@ -82,7 +82,7 @@
           {{ $t('errorLogsPage.lookInfo') }}
         </el-button>
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

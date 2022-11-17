@@ -1,6 +1,6 @@
 <template>
   <div>
-    <scaffold-svg
+    <sw-svg
       :icon-class="isFullscreen ? 'compress' : 'expend'"
       class-name="screen-full"
       @click="click"
@@ -13,7 +13,7 @@ import ScreenFull from 'screenfull'
 import i18n from '@/i18n'
 
 export default {
-  name: 'ScaffoldScreenFull',
+  name: 'SWScreenFull',
   data() {
     return {
       isFullscreen: false

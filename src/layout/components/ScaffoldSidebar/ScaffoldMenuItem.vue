@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'ScaffoldMenuItem',
+  name: 'SWMenuItem',
   functional: true,
   props: {
     //  菜单的icon图标
@@ -20,7 +20,7 @@ export default {
     // 组件体
     const nodes = []
     if (icon) {
-      nodes.push(<scaffold-svg icon-class={icon} class-name='svg-icon'/>)
+      nodes.push(<sw-svg icon-class={icon} class-name='svg-icon'/>)
     }
     if (title) {
       nodes.push(<span slot='title'>{(title)}</span>)

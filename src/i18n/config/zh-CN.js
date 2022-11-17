@@ -654,5 +654,6 @@ export default {
     message1: '请输入建筑栋号',
     message2: '建筑层数必须是数字',
     message3: '该项必须是数字'
-  }
+  },
+  scaffoldLogoAlt: '首页'
 }

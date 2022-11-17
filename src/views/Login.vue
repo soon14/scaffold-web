@@ -13,7 +13,7 @@
             auto-complete="false"
             clearable
           >
-            <scaffold-svg
+            <sw-svg
               slot="prefix"
               icon-class="user"
               class="el-input__icon input-icon"
@@ -30,7 +30,7 @@
             show-password
             @keyup.enter.native="submitLogin"
           >
-            <scaffold-svg
+            <sw-svg
               slot="prefix"
               icon-class="password"
               class="el-input__icon input-icon"
@@ -47,7 +47,7 @@
             clearable
             @keyup.enter.native="submitLogin"
           >
-            <scaffold-svg
+            <sw-svg
               slot="prefix"
               icon-class="verify-code"
               class="el-input__icon input-icon"
@@ -65,7 +65,7 @@
             placement="right"
             transition="el-zoom-in-top"
           >
-            <scaffold-i18n-select style="float: right" />
+            <sw-i18n-select style="float: right" />
           </el-tooltip>
         </el-form-item>
         <el-form-item>

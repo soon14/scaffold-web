@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation />
-      <button-operation :permission="permission" />
+      <sw-search-date-picker-operation />
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -37,8 +37,8 @@
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-table
+    </sw-dialog>
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.building"
       :table-data="crud.data"
@@ -55,12 +55,12 @@
         <span style="color: red;font-weight: bold">{{ scope.row.number }}</span>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
         />
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

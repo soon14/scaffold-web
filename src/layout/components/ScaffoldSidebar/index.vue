@@ -1,7 +1,7 @@
 <template>
   <div :class="{'has-logo':showLogo}">
     <!-- Logo -->
-    <scaffold-logo v-if="showLogo" :collapse="isCollapse" />
+    <sw-logo v-if="showLogo" :collapse="isCollapse" />
     <!-- 菜单 -->
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -14,7 +14,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path" />
+        <sw-sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -22,15 +22,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldLogo from './ScaffoldLogo'
-import SidebarItem from './SidebarItem'
+import SidebarItem from './ScaffoldSidebarItem'
 import variables from '@/assets/styles/variables.scss'
 
 export default {
-  name: 'ScaffoldSidebar',
+  name: 'SWSidebar',
   components: {
-    SidebarItem,
-    scaffoldLogo
+    SidebarItem
   },
   computed: {
     ...mapGetters([

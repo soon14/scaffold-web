@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation />
-      <button-operation>
+      <sw-search-date-picker-operation />
+      <sw-button-operation>
         <el-button
           slot="left"
           type="danger"
@@ -14,9 +14,9 @@
         >
           {{ $t('playLogsPage.empty') }}
         </el-button>
-      </button-operation>
+      </sw-button-operation>
     </div>
-    <scaffold-table
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.playLogs.logs"
       :table-data="crud.data"
@@ -31,7 +31,7 @@
               <el-form-item v-for="item in tableHeader.playLogs.expand" :key="item" :label="item.label">
                 <span v-if="item.prop === 'requestParams' || item.prop === 'responseResult'">
                   <span v-if="props.row[item.prop] !== '{}' && props.row[item.prop] !== null">
-                    <scaffold-json
+                    <sw-json
                       :json-data="props.row[item.prop]"
                       sort
                       show-array-index
@@ -79,7 +79,7 @@
           {{ scope.row.businessType }}
         </span>
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

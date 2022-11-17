@@ -11,7 +11,7 @@
       icon="el-icon-edit"
       @click="crud.toEdit(data)"
     />
-    <scaffold-popover
+    <sw-popover
       v-if="showDel"
       ref="scaffoldPopover"
       v-permission="permission.del"
@@ -32,7 +32,7 @@ import CRUD, { crud } from '@/utils/crud'
 import i18n from '@/i18n'
 
 export default {
-  name: 'UpdateDeleteOperation',
+  name: 'SWUpdateDeleteOperation',
   mixins: [crud()],
   props: {
     // 传入要编辑的数据行

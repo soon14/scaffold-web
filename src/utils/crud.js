@@ -610,14 +610,6 @@ function mergeOptions(src, opts) {
  * @returns {{inject: string[]}}
  */
 function presenter(crud) {
-  function obColumns(columns) {
-    return {
-      visible(col) {
-        return !columns || !columns[col] ? true : columns[col].visible
-      }
-    }
-  }
-
   return {
     inject: ['crud'],
     beforeCreate() {
@@ -631,15 +623,7 @@ function presenter(crud) {
     },
     data() {
       return {
-        searchToggle: true,
-        columns: obColumns()
-      }
-    },
-    methods: {
-      [CRUD.HOOK.afterRefresh]() {
-        if (this.changeFlag) {
-          this.changeFlag()
-        }
+        searchToggle: true
       }
     },
     created() {
@@ -650,20 +634,6 @@ function presenter(crud) {
     },
     beforeDestroy() {
       this.crud.unregisterVM(this)
-    },
-    mounted() {
-      const columns = {}
-      this.$refs.table.columns.forEach(e => {
-        if (!e.property || e.type !== 'default') {
-          return
-        }
-        columns[e.property] = {
-          label: e.label,
-          visible: true
-        }
-      })
-      this.columns = obColumns(columns)
-      this.crud.updateProp('tableColumns', columns)
     }
   }
 }

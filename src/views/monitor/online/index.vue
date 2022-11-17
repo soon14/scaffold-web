@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <el-input
@@ -11,9 +11,9 @@
           style="width: 200px"
           @keyup.enter.native="crud.toQuery"
         />
-        <search-reset-operation :crud="crud" />
+        <sw-search-reset-operation :crud="crud" />
       </div>
-      <button-operation>
+      <sw-button-operation>
         <el-button
           slot="left"
           type="danger"
@@ -25,10 +25,10 @@
         >
           {{ $t('onlinePage.forcedOut') }}
         </el-button>
-      </button-operation>
+      </sw-button-operation>
     </div>
 
-    <scaffold-table
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.online"
       :table-data="tableData"
@@ -73,7 +73,7 @@
           </el-button>
         </el-popover>
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

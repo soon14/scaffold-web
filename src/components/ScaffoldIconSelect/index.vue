@@ -16,7 +16,7 @@
         :key="index"
         @click="selectedIcon(item)"
       >
-        <scaffold-svg :icon-class="item" style="height: 30px;width: 16px;fill: black" />
+        <sw-svg :icon-class="item" style="height: 30px;width: 16px;fill: black" />
         <span>{{ item }}</span>
       </div>
     </div>
@@ -27,7 +27,7 @@
 import icons from './requireIcons'
 
 export default {
-  name: 'ScaffoldIconSelect',
+  name: 'SWIconSelect',
   data() {
     return {
       name: '',

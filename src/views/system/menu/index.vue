@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation>
+      <sw-search-date-picker-operation>
         <template #right>
-          <scaffold-select
+          <sw-select
             v-model="query.enabled"
             :options="enabledTypeOptions"
             :placeholder="String($t('menuPage.state'))"
@@ -12,10 +12,10 @@
             @change="crud.toQuery"
           />
         </template>
-      </search-date-picker-operation>
-      <button-operation :permission="permission" />
+      </sw-search-date-picker-operation>
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :close-on-click-modal="false"
       :before-close="crud.cancelCU"
@@ -48,7 +48,7 @@
               trigger="click"
               @show="$refs['iconSelect'].reset()"
             >
-              <scaffold-icon-select ref="iconSelect" @selected="selected" />
+              <sw-icon-select ref="iconSelect" @selected="selected" />
               <el-input
                 slot="reference"
                 v-model="form.iconCls"
@@ -57,7 +57,7 @@
                 clearable
                 style="width: 178px"
               >
-                <scaffold-svg
+                <sw-svg
                   v-if="form.iconCls"
                   slot="prefix"
                   :icon-class="form.iconCls"
@@ -69,7 +69,7 @@
             </el-popover>
           </el-form-item>
           <el-form-item :label="String($t('menuPage.form.parentId'))" prop="parentId">
-            <scaffold-tree-select
+            <sw-tree-select
               :parent-id="form.parentId"
               :tree-data="menus"
               width="450"
@@ -140,8 +140,8 @@
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-table
+    </sw-dialog>
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.menus"
       :table-data="crud.data"
@@ -157,7 +157,7 @@
       @select-all="crud.selectAllChange"
     >
       <template slot="iconCls" slot-scope="scope">
-        <scaffold-svg :icon-class="scope.row.iconCls" class-name="icon-class" />
+        <sw-svg :icon-class="scope.row.iconCls" class-name="icon-class" />
       </template>
       <template slot="hidden" slot-scope="scope">
         {{ scope.row.hidden ? String($t('menuPage.form.no')) : String($t('menuPage.form.yes')) }}
@@ -181,12 +181,12 @@
         </span>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
         />
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

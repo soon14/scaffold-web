@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block">
-    <scaffold-dialog
+    <sw-dialog
       :visible="dialog"
       :close-on-click-modal="false"
       :before-close="cancel"
@@ -72,7 +72,7 @@
         <el-button size="small" round @click="cancel">{{ $t('cancel') }}</el-button>
         <el-button :loading="loading" type="primary" round size="small" @click="doSubmit">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
+    </sw-dialog>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import ScaffoldSvgIcon from '@/components/ScaffoldSvgIcon'
+import ScaffoldSvg from '@/components/ScaffoldSvg'
 
-Vue.component('scaffold-svg',ScaffoldSvgIcon)
+Vue.component('sw-svg', ScaffoldSvg)
 
 const req = require.context('./svg',false,/\.svg$/)
 const requireAll = requireContext => requireContext.keys().map(requireContext)

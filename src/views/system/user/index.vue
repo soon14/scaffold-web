@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
+      <sw-search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
         <template #center>
           <el-input
             v-model="query.phone"
@@ -13,7 +13,7 @@
           />
         </template>
         <template #right>
-          <scaffold-select
+          <sw-select
             v-model="query.enabled"
             :options="enabledTypeOptions"
             :placeholder="String($t('userPage.placeholderSelect'))"
@@ -21,10 +21,10 @@
             @change="crud.toQuery"
           />
         </template>
-      </search-date-picker-operation>
-      <button-operation :permission="permission" />
+      </sw-search-date-picker-operation>
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -91,8 +91,8 @@
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-table
+    </sw-dialog>
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.users"
       :table-data="crud.data"
@@ -100,7 +100,7 @@
       :last-col-permission="['root','User:delete','User:update']"
     >
       <template slot="avatar.path" slot-scope="scope">
-        <scaffold-avatar-image :src="scope.row.avatar.path" />
+        <sw-avatar-image :src="scope.row.avatar.path" />
       </template>
       <template slot="username" slot-scope="scope">
         <span v-if="scope.row.username === 'root'" style="color: red;font-weight: bold">{{ scope.row.username }}</span>
@@ -132,13 +132,13 @@
         />
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
           :disabled-del="scope.row.id === user.id"
         />
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

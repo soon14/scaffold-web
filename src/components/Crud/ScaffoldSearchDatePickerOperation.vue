@@ -25,17 +25,15 @@
       }"
     />
     <slot name="right" />
-    <search-reset-operation :crud="crud" />
+    <sw-search-reset-operation :crud="crud" />
   </div>
 </template>
 
 <script>
-import searchResetOperation from '@/components/Crud/SearchReset.operation'
 import { header } from '@/utils/crud'
 
 export default {
-  name: 'SearchDatePickerOperation',
-  components: { searchResetOperation },
+  name: 'SWSearchDatePickerOperation',
   mixins: [header()],
   props: {
     inputPlaceholder: {

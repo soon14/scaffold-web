@@ -1,14 +1,14 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation
+      <sw-search-date-picker-operation
         :input-placeholder="String($t('ownerPage.inputPlaceholder'))"
         input-width="250"
       />
-      <button-operation :permission="permission" />
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -52,8 +52,8 @@
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-dialog
+    </sw-dialog>
+    <sw-dialog
       :visible="dialog"
       :close-on-click-modal="false"
       :before-close="closeVerifyAccount"
@@ -80,8 +80,8 @@
         <el-button round @click="closeVerifyAccount">{{ $t('cancel') }}</el-button>
         <el-button type="primary" round @click.native.prevent="handlerOpenVerifyAccount">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-table
+    </sw-dialog>
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.ownerInfo"
       :table-data="crud.data"
@@ -106,12 +106,12 @@
         </el-popover>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
         >
           <template #left>
-            <scaffold-popover
+            <sw-popover
               :ok-btn-loading="loading"
               :reference-btn-text="String($t('ownerPage.btnText'))"
               :content="content"
@@ -121,9 +121,9 @@
               @confirm="resetPass(scope.row)"
             />
           </template>
-        </update-delete-operation>
+        </sw-update-delete-operation>
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

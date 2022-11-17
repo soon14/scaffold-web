@@ -1,5 +1,5 @@
 <template>
-  <scaffold-frame :src="iconListApi" />
+  <sw-frame :src="iconListApi" />
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation />
-      <button-operation :permission="permission">
+      <sw-search-date-picker-operation />
+      <sw-button-operation :permission="permission">
         <template #left>
           <el-button
             v-permission="['root','Storage:add']"
@@ -15,9 +15,9 @@
             {{ $t('localStoragePage.upload') }}
           </el-button>
         </template>
-      </button-operation>
+      </sw-button-operation>
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -73,8 +73,8 @@
         <el-button v-if="crud.status.add === 1" :loading="loading" type="primary" round @click="upload">{{ $t('ok') }}</el-button>
         <el-button v-else :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-table
+    </sw-dialog>
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.localStorage"
       :table-data="crud.data"
@@ -83,7 +83,7 @@
       last-col-width="200"
     >
       <template slot="serverUrl" slot-scope="scope">
-        <scaffold-avatar-image
+        <sw-avatar-image
           v-if="scope.row.type === 'pic'"
           :src="scope.row.serverUrl"
           :preview-list="[scope.row.serverUrl]"
@@ -123,7 +123,7 @@
         <span style="font-weight: bold;font-size: 14px">{{ scope.row.size }}</span>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
         >
@@ -137,9 +137,9 @@
               @click="downloadOne(scope.row)"
             />
           </template>
-        </update-delete-operation>
+        </sw-update-delete-operation>
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

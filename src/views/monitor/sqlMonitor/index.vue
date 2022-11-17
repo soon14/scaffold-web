@@ -1,5 +1,5 @@
 <template>
-  <scaffold-frame :src="sqlMonitorApi" />
+  <sw-frame :src="sqlMonitorApi" />
 </template>
 
 <script>

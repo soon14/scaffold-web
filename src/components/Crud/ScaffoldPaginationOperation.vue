@@ -15,7 +15,7 @@
 import { pagination } from '@/utils/crud'
 
 export default {
-  name: 'PaginationOperation',
+  name: 'SWPaginationOperation',
   mixins: [pagination()]
 }
 </script>

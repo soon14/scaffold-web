@@ -1,18 +1,18 @@
 <template>
   <div v-if="!item.hidden" class="menu-wrapper">
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)">
-      <scaffold-app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+      <sw-app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <scaffold-menu-item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title" />
+          <sw-menu-item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title" />
         </el-menu-item>
-      </scaffold-app-link>
+      </sw-app-link>
     </template>
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <scaffold-menu-item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
+        <sw-menu-item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
-      <sidebar-item
+      <sw-sidebar-item
         v-for="(child,index) in item.children"
         :key="index"
         :is-nest="true"
@@ -25,18 +25,12 @@
 </template>
 
 <script>
-import scaffoldMenuItem from './ScaffoldMenuItem'
-import scaffoldAppLink from './ScaffoldAppLink'
 import FixiOSBug from './FixiOSBug'
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 
 export default {
-  name: 'SidebarItem',
-  components: {
-    scaffoldMenuItem,
-    scaffoldAppLink
-  },
+  name: 'SWSidebarItem',
   mixins: [FixiOSBug],
   props: {
     // 传入的菜单体

@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'ScaffoldSelect',
+  name: 'SWSelect',
   model: {
     prop: 'childValue',
     event: 'change'

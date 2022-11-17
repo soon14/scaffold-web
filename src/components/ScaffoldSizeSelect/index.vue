@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="hover" @command="handleSetSize">
     <div>
-      <scaffold-svg
+      <sw-svg
         icon-class="font-size"
         class-name="size-select"
       />
@@ -17,7 +17,7 @@
           style="font-size: 15px"
         >
           <template #default>
-            <scaffold-svg
+            <sw-svg
               :icon-class="item.icon"
               class-name="size-select-item"
             />
@@ -33,7 +33,7 @@
 import i18n from '@/i18n'
 
 export default {
-  name: 'ScaffoldSizeSelect',
+  name: 'SWSizeSelect',
   data() {
     return {
       sizeOptions: [

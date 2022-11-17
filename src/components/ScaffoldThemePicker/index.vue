@@ -14,7 +14,7 @@ const version = require('element-ui/package.json').version // 从 node_modules �
 const ORIGINAL_THEME = '#409EFF' // 默认颜色
 
 export default {
-  name: 'ScaffoldThemePicker',
+  name: 'SWThemePicker',
   data() {
     return {
       chalk: '', // content of theme-chalk css

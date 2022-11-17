@@ -27,7 +27,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'ScaffoldDialog',
+  name: 'SWDialog',
   props: {
     // 是否显示 Dialog
     visible: {

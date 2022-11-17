@@ -1,20 +1,20 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation
+      <sw-search-date-picker-operation
         :input-placeholder="String($t('feedback.placeholderInput'))"
         input-width="270"
       >
         <template #right>
-          <scaffold-select
+          <sw-select
             v-model="query.type"
             :options="feedbackType"
             :placeholder="String($t('feedback.type'))"
             name
             @change="crud.toQuery"
           />
-          <scaffold-select
+          <sw-select
             v-model="query.result"
             :options="feedbackResult"
             :placeholder="String($t('feedback.result'))"
@@ -22,10 +22,10 @@
             @change="crud.toQuery"
           />
         </template>
-      </search-date-picker-operation>
-      <button-operation :permission="permission" />
+      </sw-search-date-picker-operation>
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -108,8 +108,8 @@
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
-    <scaffold-table
+    </sw-dialog>
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.feedback"
       :table-data="crud.data"
@@ -122,7 +122,7 @@
         <el-tag v-else effect="dark" size="mini" type="danger">{{ scope.row.type }}</el-tag>
       </template>
       <template slot="feedbackImage" slot-scope="scope">
-        <scaffold-avatar-image
+        <sw-avatar-image
           v-if="scope.row.feedbackImage"
           shape="square"
           :src="handlerImage(scope.row.feedbackImage)[0]"
@@ -136,12 +136,12 @@
         <el-tag v-else effect="dark" size="mini" type="info">{{ scope.row.result }}</el-tag>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
         />
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

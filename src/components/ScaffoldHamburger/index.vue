@@ -1,11 +1,11 @@
 <template>
   <div style="padding: 0 15px;" @click="toggleClick">
-    <scaffold-svg
+    <sw-svg
       v-if="isActive"
       icon-class="hamburger-left"
       class-name="hamburger"
     />
-    <scaffold-svg
+    <sw-svg
       v-else
       icon-class="hamburger-right"
       class-name="hamburger"
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'ScaffoldHamburger',
+  name: 'SWHamburger',
   props: {
     // 菜单栏是否已经打开
     isActive: {

@@ -27,35 +27,35 @@
             <div class="ul-div">
               <ul class="user-info">
                 <li>
-                  <scaffold-svg icon-class="center-username" /> {{ $t('userCenter.leftCard.loginName') }}
+                  <sw-svg icon-class="center-username" /> {{ $t('userCenter.leftCard.loginName') }}
                   <div class="user-right">{{ user.username }}</div>
                 </li>
                 <li>
-                  <scaffold-svg icon-class="center-sex" /> {{ $t('userCenter.leftCard.sex') }}
+                  <sw-svg icon-class="center-sex" /> {{ $t('userCenter.leftCard.sex') }}
                   <div class="user-right">{{ user.sex }}</div>
                 </li>
                 <li>
-                  <scaffold-svg icon-class="center-phone" /> {{ $t('userCenter.leftCard.phone') }}
+                  <sw-svg icon-class="center-phone" /> {{ $t('userCenter.leftCard.phone') }}
                   <div class="user-right">{{ user.phone }}</div>
                 </li>
                 <li>
-                  <scaffold-svg icon-class="center-email" /> {{ $t('userCenter.leftCard.email') }}
+                  <sw-svg icon-class="center-email" /> {{ $t('userCenter.leftCard.email') }}
                   <div class="user-right">{{ user.email }}</div>
                 </li>
                 <li>
-                  <scaffold-svg icon-class="center-last-pass-change" /> {{ $t('userCenter.leftCard.lastChangePass') }}
+                  <sw-svg icon-class="center-last-pass-change" /> {{ $t('userCenter.leftCard.lastChangePass') }}
                   <div class="user-right">{{ user.lastPassResetTime === null ? $t('userCenter.leftCard.no') : user.lastPassResetTime }}</div>
                 </li>
                 <li v-if="user.avatar !== null">
-                  <scaffold-svg icon-class="center-last-avatar-change" /> {{ $t('userCenter.leftCard.lastChangeAvatar') }}
+                  <sw-svg icon-class="center-last-avatar-change" /> {{ $t('userCenter.leftCard.lastChangeAvatar') }}
                   <div class="user-right">{{ user.avatar.updateTime === null ? $t('userCenter.leftCard.no') : user.avatar.updateTime }}</div>
                 </li>
                 <li>
-                  <scaffold-svg icon-class="center-createTime" /> {{ $t('userCenter.leftCard.resTime') }}
+                  <sw-svg icon-class="center-createTime" /> {{ $t('userCenter.leftCard.resTime') }}
                   <div class="user-right">{{ user.createTime }}</div>
                 </li>
                 <li>
-                  <scaffold-svg icon-class="center-security" /> {{ $t('userCenter.leftCard.securitySetting') }}
+                  <sw-svg icon-class="center-security" /> {{ $t('userCenter.leftCard.securitySetting') }}
                   <div class="user-right">
                     <el-link style="font-size: 12px" @click="$refs.pass.dialog = true"><i class="el-icon-edit" />&nbsp;{{ $t('userCenter.leftCard.changePass') }}</el-link>
                     <el-divider direction="vertical" />
@@ -71,7 +71,7 @@
         <el-card class="box-card">
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
-              <scaffold-table
+              <sw-table
                 :table-header="tableHeader.center.playLogs"
                 :table-data="crud.data"
                 :crud="crud"
@@ -89,10 +89,10 @@
                     {{ scope.row.time }}ms
                   </el-tag>
                 </template>
-              </scaffold-table>
+              </sw-table>
             </el-tab-pane>
             <el-tab-pane :label="String($t('userCenter.rightCard.errorLogs'))" name="errorLogs">
-              <scaffold-table
+              <sw-table
                 :table-header="tableHeader.center.errorLogs"
                 :table-data="crud.data"
                 :crud="crud"
@@ -105,16 +105,16 @@
                     {{ $t('errorLogsPage.lookInfo') }}
                   </el-button>
                 </template>
-              </scaffold-table>
+              </sw-table>
             </el-tab-pane>
           </el-tabs>
         </el-card>
       </el-col>
     </el-row>
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <update-email ref="email" :email="user.email" />
     <update-pass ref="pass" />
-    <scaffold-exception-info ref="exception" :error-logs="errorLogs" />
+    <sw-exception-info ref="exception" :error-logs="errorLogs" />
   </div>
 </template>
 

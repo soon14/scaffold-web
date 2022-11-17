@@ -24,7 +24,7 @@ import jsonViewer from 'vue-json-viewer'
 import i18n from '@/i18n'
 
 export default {
-  name: 'ScaffoldJson',
+  name: 'SWJson',
   components: { jsonViewer },
   props: {
     // 要显示的json对象(不能是json字符串)

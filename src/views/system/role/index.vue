@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation
+      <sw-search-date-picker-operation
         :input-placeholder="String($t('rolePage.inputPlaceholder'))"
       />
-      <button-operation :permission="permission" />
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -70,14 +70,14 @@
         <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
         <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
+    </sw-dialog>
     <el-row :gutter="15">
       <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="17" style="margin-bottom: 10px">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span class="role-span">{{ $t('rolePage.roleCardTitle') }}</span>
           </div>
-          <scaffold-table
+          <sw-table
             ref="scaffoldTable"
             :table-header="tableHeader.roles"
             :table-data="crud.data"
@@ -89,13 +89,13 @@
             @current-change="handleCurrentChange"
           >
             <template slot="data-operate" slot-scope="scope">
-              <update-delete-operation
+              <sw-update-delete-operation
                 v-if="scope.row.level >= level"
                 :permission="permission"
                 :data="scope.row"
               />
             </template>
-          </scaffold-table>
+          </sw-table>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="7">

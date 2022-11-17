@@ -1,6 +1,6 @@
 <template>
   <div :class="{'show':show}" class="header-search">
-    <scaffold-svg
+    <sw-svg
       icon-class="search"
       class-name="search-icon"
       @click.stop="click"
@@ -33,7 +33,7 @@ import Fuse from 'fuse.js'
 import path from 'path'
 
 export default {
-  name: 'ScaffoldHeaderSearch',
+  name: 'SWHeaderSearch',
   data() {
     return {
       search: '',

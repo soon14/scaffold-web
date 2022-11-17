@@ -1,5 +1,0 @@
-export { default as scaffoldAppMain } from './ScaffoldAppMain'
-export { default as scaffoldNavbar } from './ScaffoldNavbar'
-export { default as scaffoldSettings } from './ScaffoldSettings'
-export { default as scaffoldSidebar } from './ScaffoldSidebar'
-export { default as scaffoldTagsView } from './ScaffoldTagsView'

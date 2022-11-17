@@ -70,7 +70,7 @@
 import i18n from '@/i18n'
 
 export default {
-  name: 'ScaffoldPopover',
+  name: 'SWPopover',
   props: {
     // 弹框出现的地方
     placement: {

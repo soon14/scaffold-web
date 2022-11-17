@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation :input-placeholder="String($t('avatarPage.placeholderInput'))">
+      <sw-search-date-picker-operation :input-placeholder="String($t('avatarPage.placeholderInput'))">
         <template #right>
           <el-select
             v-model="query.enabled"
@@ -19,10 +19,10 @@
             />
           </el-select>
         </template>
-      </search-date-picker-operation>
-      <button-operation :permission="permission" />
+      </sw-search-date-picker-operation>
+      <sw-button-operation :permission="permission" />
     </div>
-    <scaffold-table
+    <sw-table
       ref="scaffoldTable"
       :table-header="tableHeader.avatars"
       :table-data="crud.data"
@@ -32,7 +32,7 @@
     >
       <template slot="path" slot-scope="scope">
         <el-avatar v-if="scope.row.path === null" :src="Avatar" size="80" />
-        <scaffold-avatar-image v-else :src="scope.row.path" />
+        <sw-avatar-image v-else :src="scope.row.path" />
       </template>
       <template slot="username" slot-scope="scope">
         <span v-if="scope.row.username === 'root'" style="font-weight: bold;color: red">{{ scope.row.username }}</span>
@@ -46,7 +46,7 @@
         </span>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
           :show-edit="false"
@@ -63,9 +63,9 @@
               @change="changeEnabled(scope.row,scope.row.enabled)"
             />
           </template>
-        </update-delete-operation>
+        </sw-update-delete-operation>
       </template>
-    </scaffold-table>
+    </sw-table>
   </div>
 </template>
 

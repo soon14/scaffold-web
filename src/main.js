@@ -30,7 +30,7 @@ Vue.use(Element, {
 })
 Vue.prototype.$lottie = lottie // 将Lottie挂载到Vue上
 Vue.component('v-charts', ECharts) // 全局组件ECharts
-Vue.config.productionTip = false
+Vue.config.productionTip = false // 关闭Vue的生产提示
 
 new Vue({
   el: '#app',

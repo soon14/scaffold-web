@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'SearchResetOperation',
+  name: 'SWSearchResetOperation',
   props: {
     // CRUD对象
     crud: {

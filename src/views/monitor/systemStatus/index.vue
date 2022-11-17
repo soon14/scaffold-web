@@ -1,5 +1,5 @@
 <template>
-  <scaffold-frame :src="actuatorMonitorApi" />
+  <sw-frame :src="actuatorMonitorApi" />
 </template>
 
 <script>

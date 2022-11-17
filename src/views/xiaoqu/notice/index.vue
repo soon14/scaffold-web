@@ -1,37 +1,37 @@
 <template>
   <div class="app-container">
-    <scaffold-back-top-and-bottom />
+    <sw-back-top-and-bottom />
     <div class="head-container">
-      <search-date-picker-operation
+      <sw-search-date-picker-operation
         :input-placeholder="String($t('notice.inputPlaceholder'))"
         input-width="250"
       >
         <template #right>
-          <scaffold-select
+          <sw-select
             v-model="query.isOverdue"
             :placeholder="String($t('notice.isOverdue'))"
             :options="isOverdueSelect"
             name
             @change="crud.toQuery"
           />
-          <scaffold-select
+          <sw-select
             v-model="query.type"
             :placeholder="String($t('notice.sendScope'))"
             :options="typeSelect"
             name
             @change="crud.toQuery"
           />
-          <scaffold-select
+          <sw-select
             v-model="query.userId"
             :placeholder="String($t('notice.sender'))"
             :options="userList"
             @change="crud.toQuery"
           />
         </template>
-      </search-date-picker-operation>
-      <button-operation :table-col="false" :permission="permission" />
+      </sw-search-date-picker-operation>
+      <sw-button-operation :table-col="false" :permission="permission" />
     </div>
-    <scaffold-dialog
+    <sw-dialog
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
@@ -90,12 +90,12 @@
           @click="crud.submitCU"
         >{{ $t('ok') }}</el-button>
       </template>
-    </scaffold-dialog>
+    </sw-dialog>
     <el-row
       v-loading="crud.loading"
       :gutter="20"
     >
-      <scaffold-card
+      <sw-card
         v-for="(item,index) in crud.data"
         :key="index"
         open-header
@@ -109,7 +109,7 @@
           <span style="font-size: 13px">{{ $t('notice.sender') }} : {{ item.username }}</span>
         </template>
         <template slot="card-header-btn">
-          <scaffold-popover
+          <sw-popover
             v-permission="['root','Notice:delete']"
             :ok-btn-loading="crud.dataStatus[item.id].delete === 2"
             :content="String($t('notice.delPopoverTip'))"
@@ -135,12 +135,12 @@
 
         <template slot="card-footer">
           <time class="time">
-            <scaffold-relative-time :timestamp="item.createTime" />
+            <sw-popover :timestamp="item.createTime" />
           </time>
         </template>
-      </scaffold-card>
+      </sw-card>
     </el-row>
-    <pagination-operation />
+    <sw-pagination-operation />
   </div>
 </template>
 

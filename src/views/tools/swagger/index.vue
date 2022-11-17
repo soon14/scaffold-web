@@ -1,5 +1,5 @@
 <template>
-  <scaffold-frame :src="swaggerApi" />
+  <sw-frame :src="swaggerApi" />
 </template>
 
 <script>

@@ -52,7 +52,7 @@
               v-else-if="item.prop === 'createTime' || item.prop === 'updateTime'
                 || item.prop === 'answerTime' || item.prop === 'loginTime'"
             >
-              <scaffold-relative-time
+              <sw-relative-time
                 v-if="flag"
                 :timestamp="scope.row[item.prop]"
               />
@@ -78,20 +78,24 @@
       <slot name="right-col" />
     </el-table>
 
-    <pagination-operation v-if="isPagination" />
+    <sw-pagination-operation v-if="isPagination" />
 
   </div>
 </template>
 
 <script>
-import { presenter } from '@/utils/crud'
 import i18n from '@/i18n'
 
+function obColumns(columns) {
+  return {
+    visible(col) {
+      return !columns || !columns[col] ? true : columns[col].visible
+    }
+  }
+}
+
 export default {
-  name: 'ScaffoldTable',
-  mixins: [
-    presenter()
-  ],
+  name: 'SWTable',
   props: {
     // CRUD对象
     crud: {
@@ -250,7 +254,8 @@ export default {
   },
   data() {
     return {
-      flag: true
+      flag: true,
+      columns: obColumns()
     }
   },
   computed: {
@@ -262,6 +267,20 @@ export default {
       }
     }
   },
+  mounted() {
+    const columns = {}
+    this.$refs.table.columns.forEach(e => {
+      if (!e.property || e.type !== 'default') {
+        return
+      }
+      columns[e.property] = {
+        label: e.label,
+        visible: true
+      }
+    })
+    this.columns = obColumns(columns)
+    this.crud.updateProp('tableColumns', columns)
+  },
   beforeUpdate() {
     this.updateLayout()
   },
@@ -269,7 +288,7 @@ export default {
     this.updateLayout()
   },
   methods: {
-    // 为了让ScaffoldRelativeTime组件在改变表格排序条件时重新渲染
+    // 为了让SWRelativeTime组件在改变表格排序条件时重新渲染
     changeFlag() {
       this.flag = false
       this.$nextTick(() => {

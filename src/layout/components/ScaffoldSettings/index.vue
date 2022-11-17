@@ -3,7 +3,7 @@
     <div>
       <div class="drawer-item">
         <span>{{ $t('settings.themeColor') }}</span>
-        <scaffold-theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange" />
+        <sw-theme-picker style="float: right;height: 26px;margin:-3px 8px 0 0;" @change="themeChange" />
       </div>
       <div class="drawer-item">
         <span>{{ $t('settings.isShowLabels') }}</span>
@@ -30,11 +30,9 @@
 </template>
 
 <script>
-import scaffoldThemePicker from '@/components/ScaffoldThemePicker'
 
 export default {
-  name: 'ScaffoldSettings',
-  components: { scaffoldThemePicker },
+  name: 'SWSettings',
   data() {
     return {}
   },

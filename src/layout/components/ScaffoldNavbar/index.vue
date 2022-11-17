@@ -1,20 +1,20 @@
 <template>
   <div class="navbar">
     <!-- 顶部缩放菜单栏按钮 -->
-    <scaffold-hamburger
+    <sw-hamburger
       id="hamburger-container"
       :is-active="sidebar.opened"
       class="hamburger-container"
       @toggleClick="toggleSideBar"
     />
     <!-- 面包屑 -->
-    <scaffold-breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+    <sw-breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
     <!-- 工具栏 -->
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <!-- 查找框 -->
-        <scaffold-header-search id="header-search" class="right-menu-item" />
+        <sw-header-search id="header-search" class="right-menu-item" />
         <!-- 全屏缩放 -->
         <el-tooltip
           :content="String($t('navbar.screenFull'))"
@@ -22,18 +22,18 @@
           placement="bottom"
           transition="el-zoom-in-top"
         >
-          <scaffold-screen-full id="screenFull" class="right-menu-item hover-effect" />
+          <sw-screen-full id="screenFull" class="right-menu-item hover-effect" />
         </el-tooltip>
         <!-- 源码地址 -->
-        <scaffold-code-select class="right-menu-item hover-effect" />
+        <sw-code-select class="right-menu-item hover-effect" />
         <!-- 多语言切换 -->
-        <scaffold-i18n-select id="i18n-select" class="right-menu-item hover-effect" />
+        <sw-i18n-select id="i18n-select" class="right-menu-item hover-effect" />
         <!-- 布局设置 -->
-        <scaffold-size-select id="size-select" class="right-menu-item hover-effect" />
+        <sw-size-select id="size-select" class="right-menu-item hover-effect" />
       </template>
 
       <!-- 头像 -->
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="hover">
         <div class="avatar-wrapper">
           <el-avatar shape="square" style="margin-bottom: 15px" :src="avatarShow" />
           <i class="el-icon-caret-bottom" />
@@ -62,27 +62,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import scaffoldBreadcrumb from '@/components/ScaffoldBreadcrumb'
-import scaffoldHamburger from '@/components/ScaffoldHamburger'
-import scaffoldScreenFull from '@/components/ScaffoldScreenFull'
-import scaffoldSizeSelect from '@/components/ScaffoldSizeSelect'
-import scaffoldHeaderSearch from '@/components/ScaffoldHeaderSearch'
-import scaffoldCodeSelect from '@/components/ScaffoldCodeSelect'
-import scaffoldI18nSelect from '@/components/ScaffoldI18nSelect'
 import Avatar from '@/assets/images/avatar.png'
 import AvatarNoEnabled from '@/assets/images/avatarNoEnabled.png'
 
 export default {
-  name: 'ScaffoldNavbar',
-  components: {
-    scaffoldBreadcrumb,
-    scaffoldHamburger,
-    scaffoldScreenFull,
-    scaffoldSizeSelect,
-    scaffoldHeaderSearch,
-    scaffoldCodeSelect,
-    scaffoldI18nSelect
-  },
+  name: 'SWNavbar',
   data() {
     return {
       Avatar: Avatar,
