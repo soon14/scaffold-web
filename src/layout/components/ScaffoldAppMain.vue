@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'SWAppMain',
+  name: 'SwAppMain',
   computed: {
     cachedViews() {
       return this.$store.state.tagsView.cachedViews

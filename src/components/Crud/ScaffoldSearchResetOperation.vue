@@ -15,7 +15,7 @@
       type="warning"
       icon="el-icon-refresh-right"
       round
-      @click="crud.resetQuery"
+      @click="reset"
     >
       {{ $t('crud.searchResetOperation.reset') }}
     </el-button>
@@ -24,12 +24,18 @@
 
 <script>
 export default {
-  name: 'SWSearchResetOperation',
+  name: 'SwSearchResetOperation',
   props: {
     // CRUD对象
     crud: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    reset() {
+      this.crud.resetQuery()
+      this.$emit('reset')
     }
   }
 }

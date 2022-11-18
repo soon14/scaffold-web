@@ -33,7 +33,7 @@ import Fuse from 'fuse.js'
 import path from 'path'
 
 export default {
-  name: 'SWHeaderSearch',
+  name: 'SwHeaderSearch',
   data() {
     return {
       search: '',

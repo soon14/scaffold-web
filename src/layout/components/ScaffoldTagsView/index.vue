@@ -31,7 +31,7 @@
 import path from 'path'
 
 export default {
-  name: 'SWTagsView',
+  name: 'SwTagsView',
   data() {
     return {
       visible: false,

@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'SWI18nSelect',
+  name: 'SwI18nSelect',
   data() {
     return {
       i18nOptions: [

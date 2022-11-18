@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'SWDrawer',
+  name: 'SwDrawer',
   props: {
     // 是否打开抽屉
     visible: {

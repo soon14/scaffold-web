@@ -12,6 +12,7 @@
     />
     <slot name="center" />
     <el-date-picker
+      v-if="showCreateTimePicker"
       v-model="query.createTime"
       :default-time="['00:00:00','23:59:59']"
       type="daterange"
@@ -25,7 +26,11 @@
       }"
     />
     <slot name="right" />
-    <sw-search-reset-operation :crud="crud" />
+    <sw-search-reset-operation
+      :crud="crud"
+      style="margin-left: 10px"
+      @reset="reset"
+    />
   </div>
 </template>
 
@@ -33,7 +38,7 @@
 import { header } from '@/utils/crud'
 
 export default {
-  name: 'SWSearchDatePickerOperation',
+  name: 'SwSearchDatePickerOperation',
   mixins: [header()],
   props: {
     inputPlaceholder: {
@@ -50,6 +55,16 @@ export default {
       type: Number,
       required: false,
       default: 300
+    },
+    showCreateTimePicker: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
+  methods: {
+    reset() {
+      this.$emit('reset')
     }
   }
 }

@@ -255,6 +255,7 @@ export default {
       return true
     },
     changeEnabled(data, val) {
+      console.log(data)
       const operate = val === true ? String(i18n.t('userPage.form.statusOk')) : String(i18n.t('userPage.form.statusNo'))
       this.$confirm(String(i18n.t('userPage.enabledTips.tip1')) + operate + ' [' + data.username + '] ' + String(i18n.t('userPage.enabledTips.tip2')), String(i18n.t('confirmTips')), {
         confirmButtonText: String(i18n.t('ok')),

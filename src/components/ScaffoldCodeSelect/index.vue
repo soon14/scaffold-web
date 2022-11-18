@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'SWCodeSelect',
+  name: 'SwCodeSelect',
   data() {
     return {
       codeOptions: [

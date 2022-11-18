@@ -33,7 +33,7 @@
 import i18n from '@/i18n'
 
 export default {
-  name: 'SWSizeSelect',
+  name: 'SwSizeSelect',
   data() {
     return {
       sizeOptions: [

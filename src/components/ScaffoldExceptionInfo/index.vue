@@ -20,7 +20,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'SWExceptionInfo',
+  name: 'SwExceptionInfo',
   props: {
     errorLogs: {
       type: String,

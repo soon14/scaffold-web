@@ -19,7 +19,7 @@
 import { isExternal } from '@/utils/validate'
 
 export default {
-  name: 'SWSvgIcon',
+  name: 'SwSvgIcon',
   props: {
     // ICON的名称
     // eslint-disable-next-line vue/require-default-prop

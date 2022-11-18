@@ -29,7 +29,7 @@ import { getMenuName } from '@/utils'
 import i18n from '@/i18n'
 
 export default {
-  name: 'SWTreeSelect',
+  name: 'SwTreeSelect',
   props: {
     treeData: {
       type: Array,

@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'SWRelativeTime',
+  name: 'SwRelativeTime',
   props: {
     timestamp: {
       type: Number,

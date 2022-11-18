@@ -23,3 +23,10 @@ export function del(ids) {
     data: ids
   })
 }
+
+export function getBuildingNums() {
+  return request({
+    url: '/buildings/buildingNums',
+    method: 'get'
+  })
+}

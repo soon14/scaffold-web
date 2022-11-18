@@ -26,7 +26,7 @@ import SidebarItem from './ScaffoldSidebarItem'
 import variables from '@/assets/styles/variables.scss'
 
 export default {
-  name: 'SWSidebar',
+  name: 'SwSidebar',
   components: {
     SidebarItem
   },

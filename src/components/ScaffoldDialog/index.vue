@@ -27,7 +27,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'SWDialog',
+  name: 'SwDialog',
   props: {
     // 是否显示 Dialog
     visible: {

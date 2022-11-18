@@ -655,5 +655,8 @@ export default {
     message2: '建築層數必須是數位',
     message3: '該項必須是數位'
   },
-  scaffoldLogoAlt: '首頁'
+  scaffoldLogoAlt: '首頁',
+  scaffoldSelect: {
+    placeholder: '請選擇'
+  }
 }

@@ -32,7 +32,7 @@
 <script>
 
 export default {
-  name: 'SWSettings',
+  name: 'SwSettings',
   data() {
     return {}
   },

@@ -655,5 +655,8 @@ export default {
     message2: 'The number of building floors must be a number',
     message3: 'The item must be a number'
   },
-  scaffoldLogoAlt: 'Home'
+  scaffoldLogoAlt: 'Home',
+  scaffoldSelect: {
+    placeholder: 'Please Select'
+  }
 }

@@ -66,7 +66,7 @@ import Avatar from '@/assets/images/avatar.png'
 import AvatarNoEnabled from '@/assets/images/avatarNoEnabled.png'
 
 export default {
-  name: 'SWNavbar',
+  name: 'SwNavbar',
   data() {
     return {
       Avatar: Avatar,

@@ -18,8 +18,10 @@
 </template>
 
 <script>
+import i18n from '@/i18n'
+
 export default {
-  name: 'SWSelect',
+  name: 'SwSelect',
   model: {
     prop: 'childValue',
     event: 'change'
@@ -30,7 +32,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: ''
+      default: String(i18n.t('scaffoldSelect.placeholder'))
     },
     width: {
       type: Number,

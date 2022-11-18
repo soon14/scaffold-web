@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'SWCard',
+  name: 'SwCard',
   props: {
     // 设置阴影显示时机
     shadow: {

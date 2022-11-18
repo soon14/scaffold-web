@@ -27,7 +27,7 @@
 import icons from './requireIcons'
 
 export default {
-  name: 'SWIconSelect',
+  name: 'SwIconSelect',
   data() {
     return {
       name: '',

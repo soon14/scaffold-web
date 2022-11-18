@@ -95,7 +95,7 @@ function obColumns(columns) {
 }
 
 export default {
-  name: 'SWTable',
+  name: 'SwTable',
   props: {
     // CRUD对象
     crud: {
@@ -281,6 +281,7 @@ export default {
     this.columns = obColumns(columns)
     this.crud.updateProp('tableColumns', columns)
   },
+  // 让其动态显示列时候更加平滑
   beforeUpdate() {
     this.updateLayout()
   },

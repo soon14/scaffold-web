@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'SWMenuItem',
+  name: 'SwMenuItem',
   functional: true,
   props: {
     //  菜单的icon图标

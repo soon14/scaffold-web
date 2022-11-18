@@ -32,7 +32,7 @@ import CRUD, { crud } from '@/utils/crud'
 import i18n from '@/i18n'
 
 export default {
-  name: 'SWUpdateDeleteOperation',
+  name: 'SwUpdateDeleteOperation',
   mixins: [crud()],
   props: {
     // 传入要编辑的数据行

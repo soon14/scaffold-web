@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'SWFrame',
+  name: 'SwFrame',
   props: {
     src: {
       type: String,

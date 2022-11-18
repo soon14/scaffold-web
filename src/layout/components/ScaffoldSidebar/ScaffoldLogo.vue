@@ -20,7 +20,7 @@
 import { getLogoAndTitle } from '@/api/tools/logo'
 
 export default {
-  name: 'SWLogo',
+  name: 'SwLogo',
   props: {
     // 设置属性,菜单是否关闭
     collapse: {

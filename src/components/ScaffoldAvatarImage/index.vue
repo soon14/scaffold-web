@@ -20,7 +20,7 @@
 import Avatar from '@/assets/images/avatar.png'
 
 export default {
-  name: 'SWAvatarImage',
+  name: 'SwAvatarImage',
   props: {
     src: {
       type: String,

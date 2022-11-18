@@ -30,7 +30,7 @@ import path from 'path'
 import { isExternal } from '@/utils/validate'
 
 export default {
-  name: 'SWSidebarItem',
+  name: 'SwSidebarItem',
   mixins: [FixiOSBug],
   props: {
     // 传入的菜单体
