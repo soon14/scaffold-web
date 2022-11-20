@@ -17,10 +17,10 @@ import 'element-ui/lib/theme-chalk/index.css' // element-ui CSS
 import '@/assets/icons/index' // 阿里巴巴icon库
 import 'highlight.js/styles/atom-one-dark.css' // 代码高亮
 import '@/router/index' // 动态路由表
-import '@/utils/desensitize'// 脱敏过滤器
+import '@/utils/desensitize' // 脱敏过滤器
 import 'echarts' // ECharts
-import Enum from 'vue-enum'
-import enumInfo from '@/enums/index'
+import Enum from 'vue-enum' // 枚举处理器
+import enumInfo from '@/enums/index' // 枚举管理器
 
 Vue.use(Time)
 Vue.use(Permission)
