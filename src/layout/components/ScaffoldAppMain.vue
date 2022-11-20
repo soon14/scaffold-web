@@ -72,8 +72,8 @@ export default {
 <style lang="scss">
 // 修复打开 el-dialog 中的 css 样式错误
 .el-popup-parent--hidden {
-  .fixed-header {
-    padding-right: 15px;
-  }
+  //.fixed-header {
+  //  padding-right: 15px;
+  //}
 }
 </style>

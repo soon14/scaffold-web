@@ -2,7 +2,10 @@
   <div class="app-container">
     <sw-back-top-and-bottom />
     <div class="head-container">
-      <sw-search-date-picker-operation :input-placeholder="String($t('userPage.placeholderInput'))">
+      <sw-search-date-picker-operation
+        :input-placeholder="String($t('userPage.placeholderInput'))"
+        @reset="reset"
+      >
         <template #center>
           <el-input
             v-model="query.phone"
@@ -14,6 +17,7 @@
         </template>
         <template #right>
           <sw-select
+            v-if="userSelector"
             v-model="query.enabled"
             :options="enabledTypeOptions"
             :placeholder="String($t('userPage.placeholderSelect'))"
@@ -114,6 +118,9 @@
           </template>
         </el-popover>
       </template>
+      <template slot="sex" slot-scope="scope">
+        {{ $enum.getDescByValue('SexEnum',scope.row.sex) }}
+      </template>
       <template slot="email" slot-scope="scope">
         <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
           <div style="text-align: center;padding: 0">{{ scope.row.email }}</div>
@@ -176,10 +183,11 @@ export default {
   ],
   data() {
     return {
+      userSelector: true,
       roles: [],
       enabledTypeOptions: [
-        { value: 'true', label: String(i18n.t('userPage.form.statusOk')) },
-        { value: 'false', label: String(i18n.t('userPage.form.statusNo')) }
+        { value: true, desc: String(i18n.t('userPage.form.statusOk')) },
+        { value: false, desc: String(i18n.t('userPage.form.statusNo')) }
       ],
       permission: {
         add: ['User:add', 'root'],
@@ -297,6 +305,12 @@ export default {
         initRoles.push(role.id)
       })
       crud.form.roles = initRoles
+    },
+    reset() {
+      this.userSelector = false
+      this.$nextTick(() => {
+        this.userSelector = true
+      })
     }
   }
 }

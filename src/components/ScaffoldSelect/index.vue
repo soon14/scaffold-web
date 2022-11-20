@@ -8,12 +8,22 @@
     }"
     @change="handlerChange"
   >
-    <el-option
-      v-for="(item,index) in options"
-      :key="index"
-      :label="item.label"
-      :value="name ? item.name : item.value"
-    />
+    <template v-if="enums">
+      <el-option
+        v-for="(item,index) in options"
+        :key="index"
+        :label="item.desc"
+        :value="Number(item.value)"
+      />
+    </template>
+    <template v-else>
+      <el-option
+        v-for="(item,index) in options"
+        :key="index"
+        :label="item.label"
+        :value="item.value"
+      />
+    </template>
   </el-select>
 </template>
 
@@ -43,11 +53,10 @@ export default {
       type: Array,
       required: true
     },
-    // 开启name模式(针对枚举类传参)
-    name: {
+    enums: {
       type: Boolean,
       required: false,
-      default: false
+      default: true
     }
   },
   data() {

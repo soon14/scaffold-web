@@ -2,22 +2,19 @@
   <div class="app-container">
     <sw-back-top-and-bottom />
     <div class="head-container">
-      <sw-search-date-picker-operation :input-placeholder="String($t('avatarPage.placeholderInput'))">
+      <sw-search-date-picker-operation
+        :input-placeholder="String($t('avatarPage.placeholderInput'))"
+        @reset="reset"
+      >
         <template #right>
-          <el-select
+          <sw-select
+            v-if="avatarSelector"
             v-model="query.enabled"
-            clearable
+            :options="$enum.getValueDescList('AuditEnum')"
             :placeholder="String($t('avatarPage.placeholderState'))"
-            style="width: 120px"
+            width="150"
             @change="crud.toQuery"
-          >
-            <el-option
-              v-for="item in enabledTypeOptions"
-              :key="item.key"
-              :label="item.displayName"
-              :value="item.key"
-            />
-          </el-select>
+          />
         </template>
       </sw-search-date-picker-operation>
       <sw-button-operation :permission="permission" />
@@ -27,7 +24,7 @@
       :table-header="tableHeader.avatars"
       :table-data="crud.data"
       :crud="crud"
-      :last-col-permission="['root','Avatar:delete','Avatar:edit']"
+      :last-col-permission="['root','Avatar:delete','Avatar:update']"
       :last-col-label="String($t('avatarPage.operate'))"
     >
       <template slot="path" slot-scope="scope">
@@ -41,8 +38,8 @@
       <template slot="enabled" slot-scope="scope">
         <el-tag v-if="scope.row.enabled === null" type="warning">{{ $t('nodata') }}</el-tag>
         <span v-else>
-          <el-tag v-if="scope.row.enabled === '已审核'" type="success">{{ scope.row.enabled }}</el-tag>
-          <el-tag v-else type="danger">{{ scope.row.enabled }}</el-tag>
+          <el-tag v-if="scope.row.enabled === 1" type="success">{{ $enum.getDescByValue('AuditEnum',scope.row.enabled) }}</el-tag>
+          <el-tag v-else type="danger">{{ $enum.getDescByValue('AuditEnum',scope.row.enabled) }}</el-tag>
         </span>
       </template>
       <template slot="data-operate" slot-scope="scope">
@@ -55,8 +52,8 @@
           <template #left>
             <el-switch
               v-model="scope.row.enabled"
-              active-value="已审核"
-              inactive-value="未审核"
+              :active-value="1"
+              :inactive-value="0"
               active-color="#409EFF"
               inactive-color="#F56C6C"
               :disabled="scope.row.id === user.avatar.id"
@@ -90,16 +87,13 @@ export default {
   ],
   data() {
     return {
+      avatarSelector: true,
       Avatar: Avatar,
       permission: {
         add: ['Avatar:add', 'root'],
         edit: ['Avatar:update', 'root'],
-        del: ['Avatar:del', 'root']
-      },
-      enabledTypeOptions: [
-        { key: 'AUDIT_NO', displayName: String(i18n.t('avatarPage.enabledNo')) },
-        { key: 'AUDIT_OK', displayName: String(i18n.t('avatarPage.enabledOK')) }
-      ]
+        del: ['Avatar:delete', 'root']
+      }
     }
   },
   computed: {
@@ -118,7 +112,7 @@ export default {
   },
   methods: {
     changeEnabled(data, val) {
-      const operate = val === '已审核' ? String(i18n.t('avatarPage.enable')) : String(i18n.t('avatarPage.disable'))
+      const operate = val === 1 ? String(i18n.t('avatarPage.enable')) : String(i18n.t('avatarPage.disable'))
       this.$confirm(String(i18n.t('avatarPage.enabledTips.tip1')) + operate + String(i18n.t('avatarPage.enabledTips.tip2')) + data.username + String(i18n.t('avatarPage.enabledTips.tip3')), String(i18n.t('confirmTips')), {
         confirmButtonText: String(i18n.t('ok')),
         cancelButtonText: String(i18n.t('cancel')),
@@ -127,18 +121,24 @@ export default {
         editEnabled(data.id, data.enabled).then(() => {
           this.crud.notify(operate + String(i18n.t('avatarPage.enabledTips.tip4')), CRUD.NOTIFICATION_TYPE.SUCCESS)
         }).catch(() => {
-          if (data.enabled === '已审核') {
-            data.enabled = '未审核'
+          if (data.enabled === 1) {
+            data.enabled = 0
           } else {
-            data.enabled = '已审核'
+            data.enabled = 1
           }
         })
       }).catch(() => {
-        if (data.enabled === '已审核') {
-          data.enabled = '未审核'
+        if (data.enabled === 1) {
+          data.enabled = 0
         } else {
-          data.enabled = '已审核'
+          data.enabled = 1
         }
+      })
+    },
+    reset() {
+      this.avatarSelector = false
+      this.$nextTick(() => {
+        this.avatarSelector = true
       })
     }
   }

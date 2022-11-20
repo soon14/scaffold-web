@@ -158,7 +158,7 @@ export default {
     ]),
     avatarShow() {
       if (this.user.avatar !== null) {
-        if (this.user.avatar.enabled === '已审核') {
+        if (this.user.avatar.enabled === 1) {
           return this.user.avatar.path
         } else {
           return this.AvatarNoEnabled

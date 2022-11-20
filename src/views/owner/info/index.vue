@@ -36,8 +36,8 @@
           </el-form-item>
           <el-form-item :label="String($t('ownerPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
-              <el-radio label="男">{{ String($t('ownerPage.form.male')) }}</el-radio>
-              <el-radio label="女">{{ String($t('ownerPage.form.female')) }}</el-radio>
+              <el-radio label="1">{{ String($t('ownerPage.form.male')) }}</el-radio>
+              <el-radio label="0">{{ String($t('ownerPage.form.female')) }}</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('ownerPage.form.identityId'))" prop="identityId">
@@ -96,6 +96,9 @@
             <span>{{ scope.row.phone | phone }}</span>
           </template>
         </el-popover>
+      </template>
+      <template slot="sex" slot-scope="scope">
+        {{ $enum.getDescByValue('SexEnum',scope.row.sex) }}
       </template>
       <template slot="email" slot-scope="scope">
         <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">

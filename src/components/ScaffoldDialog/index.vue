@@ -123,7 +123,7 @@ export default {
     color: gray;
   }
 
-  .el-dialog__body {
+  .el-dialog__body .el-dialog__wrapper {
     overflow: overlay;
 
     // 滚动条适配火狐浏览器

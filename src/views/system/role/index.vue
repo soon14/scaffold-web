@@ -4,6 +4,7 @@
     <div class="head-container">
       <sw-search-date-picker-operation
         :input-placeholder="String($t('rolePage.inputPlaceholder'))"
+        input-width="250"
       />
       <sw-button-operation :permission="permission" />
     </div>

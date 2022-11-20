@@ -15,17 +15,3 @@ export function del(ids) {
     data: ids
   })
 }
-
-export function getFeedbackResult() {
-  return request({
-    url: '/feedbacks/feedbackResult',
-    method: 'get'
-  })
-}
-
-export function getFeedbackTypes() {
-  return request({
-    url: '/feedbacks/feedbackTypes',
-    method: 'get'
-  })
-}

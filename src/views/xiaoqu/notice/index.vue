@@ -5,24 +5,29 @@
       <sw-search-date-picker-operation
         :input-placeholder="String($t('notice.inputPlaceholder'))"
         input-width="250"
+        @reset="reset"
       >
         <template #right>
           <sw-select
+            v-if="noticeSelector"
             v-model="query.isOverdue"
+            width="150"
             :placeholder="String($t('notice.isOverdue'))"
-            :options="isOverdueSelect"
-            name
+            :options="$enum.getValueDescList('OverdueEnum')"
             @change="crud.toQuery"
           />
           <sw-select
+            v-if="noticeSelector"
             v-model="query.type"
+            width="150"
             :placeholder="String($t('notice.sendScope'))"
-            :options="typeSelect"
-            name
+            :options="$enum.getValueDescList('NoticeToEnum')"
             @change="crud.toQuery"
           />
           <sw-select
+            v-if="noticeSelector"
             v-model="query.userId"
+            :enums="false"
             :placeholder="String($t('notice.sender'))"
             :options="userList"
             @change="crud.toQuery"
@@ -50,15 +55,15 @@
         >
           <el-form-item :label="String($t('notice.noticeScope'))" prop="type">
             <el-radio-group v-model="form.type">
-              <el-radio-button label="全体业主">{{ $t('notice.all') }}</el-radio-button>
-              <el-radio-button label="全体员工">{{ $t('notice.allP') }}</el-radio-button>
-              <el-radio-button label="全体人员">{{ $t('notice.allp') }}</el-radio-button>
+              <el-radio-button label="0">{{ $t('notice.all') }}</el-radio-button>
+              <el-radio-button label="1">{{ $t('notice.allP') }}</el-radio-button>
+              <el-radio-button label="2">{{ $t('notice.allp') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('notice.isOverdue'))" prop="isOverdue">
             <el-radio-group v-model="form.isOverdue">
-              <el-radio-button label="已过期">{{ $t('notice.overdue') }}</el-radio-button>
-              <el-radio-button label="未过期">{{ $t('notice.noOverdue') }}</el-radio-button>
+              <el-radio-button label="1">{{ $t('notice.overdue') }}</el-radio-button>
+              <el-radio-button label="0">{{ $t('notice.noOverdue') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('notice.noticeTitle'))" prop="title">
@@ -135,7 +140,7 @@
 
         <template slot="card-footer">
           <time class="time">
-            <sw-popover :timestamp="item.createTime" />
+            <sw-relative-time :timestamp="item.createTime" />
           </time>
         </template>
       </sw-card>
@@ -146,7 +151,7 @@
 
 <script>
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { edit, add, del, getOverdueList, getNoticeScope, getDistinctUser } from '@/api/xiaoqu/notice'
+import { edit, add, del } from '@/api/xiaoqu/notice'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
@@ -157,10 +162,10 @@ const defaultCrud = CRUD({
 })
 
 const defaultForm = {
-  type: null,
+  type: 2,
   title: '',
   content: '',
-  isOverdue: null
+  isOverdue: 0
 }
 export default {
   name: 'Notice',
@@ -172,6 +177,7 @@ export default {
   ],
   data() {
     return {
+      noticeSelector: true,
       permission: {
         add: ['root', 'Notice:add']
       },
@@ -181,7 +187,6 @@ export default {
     }
   },
   created() {
-    this.init()
     this.crud.optShow = {
       add: true,
       edit: false,
@@ -190,23 +195,10 @@ export default {
     }
   },
   methods: {
-    init() {
-      getOverdueList().then(res => {
-        this.isOverdueSelect = res.data
-      }).catch(err => {
-        console.log(err)
-      })
-
-      getNoticeScope().then(res => {
-        this.typeSelect = res.data
-      }).catch(err => {
-        console.log(err)
-      })
-
-      getDistinctUser().then(res => {
-        this.userList = res.data
-      }).catch(err => {
-        console.log(err)
+    reset() {
+      this.noticeSelector = false
+      this.$nextTick(() => {
+        this.noticeSelector = true
       })
     }
   }

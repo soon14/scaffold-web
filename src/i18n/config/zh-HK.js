@@ -1,7 +1,9 @@
 import zhHKLocale from 'element-ui/lib/locale/lang/zh-TW'
+import enumZhHkLocale from '@/enums/lang/zh-HK'
 
 export default {
   ...zhHKLocale,
+  ...enumZhHkLocale,
   global: {
     title: 'Scaffold - 管理系統',
     login: '登入',
@@ -434,8 +436,6 @@ export default {
     placeholderState: '稽核狀態',
     operate: '操作',
     title: '頭像',
-    enabledOK: '已稽核',
-    enabledNo: '未稽核',
     enable: '啟用',
     disable: '禁用',
     enabledTips: {
@@ -658,5 +658,6 @@ export default {
   scaffoldLogoAlt: '首頁',
   scaffoldSelect: {
     placeholder: '請選擇'
-  }
+  },
+  data: '數據'
 }

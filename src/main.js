@@ -19,11 +19,14 @@ import 'highlight.js/styles/atom-one-dark.css' // 代码高亮
 import '@/router/index' // 动态路由表
 import '@/utils/desensitize'// 脱敏过滤器
 import 'echarts' // ECharts
+import Enum from 'vue-enum'
+import enumInfo from '@/enums/index'
 
 Vue.use(Time)
 Vue.use(Permission)
 Vue.use(JsonViewer)
 Vue.use(Scaffolds)
+Vue.use(Enum, { enumInfo })
 Vue.use(VueHighlightJS)
 Vue.use(Element, {
   size: Cookies.get('size') || 'small' // 设置 element-ui 默认大小

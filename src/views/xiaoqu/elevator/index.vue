@@ -8,9 +8,10 @@
       >
         <template #center>
           <sw-select
-            ref="timeSelect"
+            v-if="elevatorSelector"
             v-model="timeType"
             :options="timeOptions"
+            :enums="false"
             placeholder="选择查找的时间类型"
             width="200"
           />
@@ -28,9 +29,10 @@
         </template>
         <template #right>
           <sw-select
-            ref="buildingNumSelect"
+            v-if="elevatorSelector"
             v-model="query.buildingId"
             :options="buildingNums"
+            :enums="false"
             placeholder="请选择楼宇栋号"
             width="200"
             @change="crud.toQuery"
@@ -60,6 +62,7 @@ export default {
   ],
   data() {
     return {
+      elevatorSelector: true,
       buildingNums: [],
       permissions: {
         add: ['root', 'Elevator:add'],
@@ -89,7 +92,10 @@ export default {
       })
     },
     reset() {
-      this.$refs.timeSelect.$forceUpdate()
+      this.elevatorSelector = false
+      this.$nextTick(() => {
+        this.elevatorSelector = true
+      })
     }
   }
 }

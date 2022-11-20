@@ -5,20 +5,22 @@
       <sw-search-date-picker-operation
         :input-placeholder="String($t('feedback.placeholderInput'))"
         input-width="270"
+        @reset="reset"
       >
         <template #right>
           <sw-select
+            v-if="feedbackSelector"
             v-model="query.type"
-            :options="feedbackType"
+            :options="$enum.getValueDescList('FeedbackTypeEnum')"
+            width="150"
             :placeholder="String($t('feedback.type'))"
-            name
             @change="crud.toQuery"
           />
           <sw-select
+            v-if="feedbackSelector"
             v-model="query.result"
-            :options="feedbackResult"
+            :options="$enum.getValueDescList('FeedbackResultEnum')"
             :placeholder="String($t('feedback.result'))"
-            name
             @change="crud.toQuery"
           />
         </template>
@@ -45,9 +47,9 @@
         >
           <el-form-item :label="String($t('feedback.result'))" prop="result">
             <el-radio-group v-model="form.result" @change="typeChange">
-              <el-radio-button label="未解决">{{ $t('feedback.unResolved') }}</el-radio-button>
-              <el-radio-button label="已解决">{{ $t('feedback.resolved') }}</el-radio-button>
-              <el-radio-button label="其他">{{ $t('feedback.other') }}</el-radio-button>
+              <el-radio-button label="0">{{ $t('feedback.unResolved') }}</el-radio-button>
+              <el-radio-button label="1">{{ $t('feedback.resolved') }}</el-radio-button>
+              <el-radio-button label="2">{{ $t('feedback.other') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('feedback.ownerName'))" prop="ownerName">
@@ -90,7 +92,7 @@
             />
           </el-form-item>
           <el-form-item
-            v-show="form.result.toString() !== '已解决'"
+            v-show="form.result.toString() !== '1'"
             :label="String($t('feedback.remarks'))"
             prop="remarks"
           >
@@ -117,9 +119,9 @@
       :last-col-permission="['root','Feedback:update','Feedback:delete']"
     >
       <template slot="type" slot-scope="scope">
-        <el-tag v-if="scope.row.type === '建议'" effect="dark" size="mini" type="success">{{ scope.row.type }}</el-tag>
-        <el-tag v-else-if="scope.row.type === '报修'" effect="dark" size="mini" type="warning">{{ scope.row.type }}</el-tag>
-        <el-tag v-else effect="dark" size="mini" type="danger">{{ scope.row.type }}</el-tag>
+        <el-tag v-if="scope.row.type === 2" effect="dark" size="mini" type="success">{{ $enum.getDescByValue('FeedbackTypeEnum',scope.row.type) }}</el-tag>
+        <el-tag v-else-if="scope.row.type === 0" effect="dark" size="mini" type="warning">{{ $enum.getDescByValue('FeedbackTypeEnum',scope.row.type) }}</el-tag>
+        <el-tag v-else effect="dark" size="mini" type="danger">{{ $enum.getDescByValue('FeedbackTypeEnum',scope.row.type) }}</el-tag>
       </template>
       <template slot="feedbackImage" slot-scope="scope">
         <sw-avatar-image
@@ -131,9 +133,9 @@
         <span v-else>{{ $t('feedback.noData') }}</span>
       </template>
       <template slot="result" slot-scope="scope">
-        <el-tag v-if="scope.row.result === '未解决'" effect="dark" size="mini" type="warning">{{ scope.row.result }}</el-tag>
-        <el-tag v-else-if="scope.row.result === '已解决'" effect="dark" size="mini" type="success">{{ scope.row.result }}</el-tag>
-        <el-tag v-else effect="dark" size="mini" type="info">{{ scope.row.result }}</el-tag>
+        <el-tag v-if="scope.row.result === 0" effect="dark" size="mini" type="warning">{{ $enum.getDescByValue('FeedbackResultEnum',scope.row.result) }}</el-tag>
+        <el-tag v-else-if="scope.row.result === 1" effect="dark" size="mini" type="success">{{ $enum.getDescByValue('FeedbackResultEnum',scope.row.result) }}</el-tag>
+        <el-tag v-else effect="dark" size="mini" type="info">{{ $enum.getDescByValue('FeedbackResultEnum',scope.row.result) }}</el-tag>
       </template>
       <template slot="data-operate" slot-scope="scope">
         <sw-update-delete-operation
@@ -148,7 +150,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { del, edit, getFeedbackResult, getFeedbackTypes } from '@/api/xiaoqu/feedback'
+import { del, edit } from '@/api/xiaoqu/feedback'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
@@ -180,12 +182,11 @@ export default {
   ],
   data() {
     return {
+      feedbackSelector: true,
       permission: {
         edit: ['root', 'Feedback:update'],
         del: ['root', 'Feedback:delete']
       },
-      feedbackType: [],
-      feedbackResult: [],
       rules: {
         answer: [
           { required: true, trigger: 'blur', message: String(i18n.t('feedback.message')) }
@@ -205,18 +206,8 @@ export default {
       del: true,
       download: true
     }
-    this.init()
   },
   methods: {
-    init() {
-      getFeedbackTypes().then(res => {
-        this.feedbackType = res.data
-      })
-
-      getFeedbackResult().then(res => {
-        this.feedbackResult = res.data
-      })
-    },
     handlerImage(str) {
       if (str) {
         return str.split(',')
@@ -226,6 +217,12 @@ export default {
     },
     typeChange(label) {
       this.$refs.form.clearValidate()
+    },
+    reset() {
+      this.feedbackSelector = false
+      this.$nextTick(() => {
+        this.feedbackSelector = true
+      })
     }
   }
 }

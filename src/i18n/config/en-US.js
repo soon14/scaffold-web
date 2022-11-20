@@ -1,7 +1,9 @@
 import enLocale from 'element-ui/lib/locale/lang/en'
+import enumEnUSLocale from '@/enums/lang/en-US'
 
 export default {
   ...enLocale,
+  ...enumEnUSLocale,
   global: {
     title: 'Scaffold - Management System',
     login: 'Login',
@@ -434,8 +436,6 @@ export default {
     placeholderState: 'Audit status',
     operate: 'Operate',
     title: 'Avatar',
-    enabledOK: 'Reviewed',
-    enabledNo: 'Unapproved',
     enable: 'Enable',
     disable: 'Disable',
     enabledTips: {
@@ -658,5 +658,6 @@ export default {
   scaffoldLogoAlt: 'Home',
   scaffoldSelect: {
     placeholder: 'Please Select'
-  }
+  },
+  data: 'Data'
 }

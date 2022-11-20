@@ -1,7 +1,9 @@
 import zhCNLocale from 'element-ui/lib/locale/lang/zh-CN'
+import enumZhCnLocale from '@/enums/lang/zh-CN'
 
 export default {
   ...zhCNLocale,
+  ...enumZhCnLocale,
   global: {
     title: 'Scaffold - 管理系统',
     login: '登录',
@@ -434,8 +436,6 @@ export default {
     placeholderState: '审核状态',
     operate: '操作',
     title: '头像',
-    enabledOK: '已审核',
-    enabledNo: '未审核',
     enable: '启用',
     disable: '禁用',
     enabledTips: {
@@ -658,5 +658,6 @@ export default {
   scaffoldLogoAlt: '首页',
   scaffoldSelect: {
     placeholder: '请选择'
-  }
+  },
+  data: '数据'
 }
