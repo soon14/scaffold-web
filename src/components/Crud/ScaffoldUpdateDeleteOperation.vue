@@ -11,7 +11,7 @@
       icon="el-icon-edit"
       @click="crud.toEdit(data)"
     />
-    <sw-popover
+    <sw-button-popover
       v-if="showDel"
       ref="scaffoldPopover"
       v-permission="permission.del"

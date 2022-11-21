@@ -13,7 +13,7 @@ import ScaffoldHeaderSearch from '@/components/ScaffoldHeaderSearch'
 import ScaffoldI18nSelect from '@/components/ScaffoldI18nSelect'
 import ScaffoldIconSelect from '@/components/ScaffoldIconSelect'
 import ScaffoldJson from '@/components/ScaffoldJson'
-import ScaffoldPopover from '@/components/ScaffoldPopover'
+import ScaffoldButtonPopover from '@/components/ScaffoldButtonPopover'
 import ScaffoldRelativeTime from '@/components/ScaffoldRelativeTime'
 import ScaffoldScreenFull from '@/components/ScaffoldScreenFull'
 import ScaffoldSelect from '@/components/ScaffoldSelect'
@@ -21,6 +21,7 @@ import ScaffoldSizeSelect from '@/components/ScaffoldSizeSelect'
 import ScaffoldTable from '@/components/ScaffoldTable'
 import ScaffoldThemePicker from '@/components/ScaffoldThemePicker'
 import ScaffoldTreeSelect from '@/components/ScaffoldTreeSelect'
+import ScaffoldDesensitizePopover from '@/components/ScaffoldDesensitizePopover'
 
 // CRUD组件
 import ScaffoldButtonOperation from '@/components/Crud/ScaffoldButtonOperation'
@@ -56,7 +57,8 @@ export default (Vue) => {
   Vue.component(ScaffoldI18nSelect.name, ScaffoldI18nSelect)
   Vue.component(ScaffoldIconSelect.name, ScaffoldIconSelect)
   Vue.component(ScaffoldJson.name, ScaffoldJson)
-  Vue.component(ScaffoldPopover.name, ScaffoldPopover)
+  Vue.component(ScaffoldButtonPopover.name, ScaffoldButtonPopover)
+  Vue.component(ScaffoldDesensitizePopover.name, ScaffoldDesensitizePopover)
   Vue.component(ScaffoldRelativeTime.name, ScaffoldRelativeTime)
   Vue.component(ScaffoldScreenFull.name, ScaffoldScreenFull)
   Vue.component(ScaffoldSelect.name, ScaffoldSelect)

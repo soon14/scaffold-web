@@ -114,7 +114,7 @@
           <span style="font-size: 13px">{{ $t('notice.sender') }} : {{ item.username }}</span>
         </template>
         <template slot="card-header-btn">
-          <sw-popover
+          <sw-button-popover
             v-permission="['root','Notice:delete']"
             :ok-btn-loading="crud.dataStatus[item.id].delete === 2"
             :content="String($t('notice.delPopoverTip'))"

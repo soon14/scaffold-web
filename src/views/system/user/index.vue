@@ -111,23 +111,13 @@
         <span v-else>{{ scope.row.username }}</span>
       </template>
       <template slot="phone" slot-scope="scope">
-        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
-          <div style="text-align: center;padding: 0">{{ scope.row.phone }}</div>
-          <template #reference>
-            <span>{{ scope.row.phone | phone }}</span>
-          </template>
-        </el-popover>
+        <sw-desensitize-popover :content="scope.row.phone" strategy="phone" />
       </template>
       <template slot="sex" slot-scope="scope">
         {{ $enum.getDescByValue('SexEnum',scope.row.sex) }}
       </template>
       <template slot="email" slot-scope="scope">
-        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
-          <div style="text-align: center;padding: 0">{{ scope.row.email }}</div>
-          <template #reference>
-            <span>{{ scope.row.email | email }}</span>
-          </template>
-        </el-popover>
+        <sw-desensitize-popover :content="scope.row.email" strategy="email" />
       </template>
       <template slot="enabled" slot-scope="scope">
         <el-switch

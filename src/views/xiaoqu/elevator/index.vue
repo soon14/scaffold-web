@@ -41,10 +41,58 @@
       </sw-search-date-picker-operation>
       <sw-button-operation :permission="permissions" />
     </div>
+    <sw-table
+      ref="scaffoldTable"
+      :table-header="tableHeader.elevator"
+      :table-data="crud.data"
+      :crud="crud"
+      :last-col-permission="['root','elevator:update','elevator:delete']"
+    >
+      <template slot="isComputerRoom" slot-scope="scope">
+        <el-tag v-if="scope.row.isComputerRoom === 0" type="danger" size="mini">{{ $enum.getDescByValue('ElevatorComputerRoomEnum',scope.row.isComputerRoom) }}</el-tag>
+        <el-tag v-else size="mini">{{ $enum.getDescByValue('ElevatorComputerRoomEnum',scope.row.isComputerRoom) }}</el-tag>
+      </template>
+      <template slot="numberOfPeople" slot-scope="scope">
+        <span style="font-weight: bold;color: red">{{ scope.row.numberOfPeople }}</span>
+      </template>
+      <template slot="numberOfWeight" slot-scope="scope">
+        <span style="font-weight: bold;color: red">{{ scope.row.numberOfWeight }}</span>
+      </template>
+      <template slot="liftingHeight" slot-scope="scope">
+        <span style="font-weight: bold">{{ scope.row.liftingHeight }}</span>
+      </template>
+      <template slot="day" slot-scope="scope">
+        <span style="font-weight: bold;color: red">{{ scope.row.day }}</span>
+      </template>
+      <template slot="enabled" slot-scope="scope">
+        <el-switch
+          v-model="scope.row.enabled"
+          active-color="#409EFF"
+          inactive-color="#F56C6C"
+        />
+      </template>
+      <template slot="elevatorTypesString" slot-scope="scope">
+        <el-tag
+          v-for="(item,index) in scope.row.elevatorTypesString"
+          :key="index"
+          size="mini"
+        >{{ item }}</el-tag>&nbsp;
+      </template>
+      <template slot="maintainPeoplePhone" slot-scope="scope">
+        <sw-desensitize-popover :content="scope.row.maintainPeoplePhone" strategy="phone" />
+      </template>
+      <template slot="maintainPeople" slot-scope="scope">
+        <sw-desensitize-popover :content="scope.row.maintainPeople" />
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <sw-update-delete-operation :permission="permissions" :data="scope.row" />
+      </template>
+    </sw-table>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { getBuildingNums } from '@/api/xiaoqu/building'
 import CRUD, { crud, header, presenter } from '@/utils/crud'
 
@@ -76,6 +124,9 @@ export default {
       ],
       timeType: 'createTime'
     }
+  },
+  computed: {
+    ...mapGetters(['tableHeader'])
   },
   watch: {
     timeType(newVal, oldVal) {

@@ -50,7 +50,8 @@
             </span>
             <template
               v-else-if="item.prop === 'createTime' || item.prop === 'updateTime'
-                || item.prop === 'answerTime' || item.prop === 'loginTime'"
+                || item.prop === 'answerTime' || item.prop === 'loginTime'
+                || item.prop === 'lastMaintainTime'"
             >
               <sw-relative-time
                 v-if="flag"

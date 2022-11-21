@@ -144,6 +144,25 @@ const state = {
     { prop: 'number', label: i18n.t('tableHeader.building.number'), sortable: true, width: '150', slot: true },
     { prop: 'createTime', label: i18n.t('tableHeader.building.createTime'), sortable: true, width: '200' },
     { prop: 'updateTime', label: i18n.t('tableHeader.building.updateTime'), width: '200' }
+  ],
+  elevator: [
+    { prop: 'identityId', label: '电梯编号', fixed: 'left', width: '150' },
+    { prop: 'buildingNum', label: '所属楼宇', fixed: 'left', width: '150' },
+    { prop: 'numberOfPeople', label: '核载人数', slot: true, sortable: true, width: '120' },
+    { prop: 'numberOfWeight', label: '核载重量(kg)', width: '120', slot: true, sortable: true },
+    { prop: 'isComputerRoom', label: '有无机房', slot: true },
+    { prop: 'hoistwaySize', label: '井道尺寸(mm)', width: '150' },
+    { prop: 'depthOfFoundationPit', label: '基坑深度(m)', width: '120', sortable: true },
+    { prop: 'reservedSizeOfDoorOpening', label: '门洞预留尺寸(mm)', width: '150' },
+    { prop: 'liftingHeight', label: '提升高度(m)', width: '120', slot: true, sortable: true },
+    { prop: 'lastMaintainTime', label: '上一次维护时间', width: '200', sortable: true },
+    { prop: 'nextMaintainTime', label: '下一次维护时间', width: '200', sortable: true },
+    { prop: 'day', label: '维护间隔(天)', slot: true, width: '120', sortable: true },
+    { prop: 'maintainPeople', label: '维护人', width: '150', slot: true },
+    { prop: 'maintainPeoplePhone', label: '维护人电话', width: '150', slot: true },
+    { prop: 'enabled', label: '是否启用', slot: true },
+    { prop: 'elevatorTypesString', label: '电梯类型', slot: true, width: '200' },
+    { prop: 'createTime', label: i18n.t('tableHeader.building.createTime'), sortable: true, width: '200' }
   ]
 }
 

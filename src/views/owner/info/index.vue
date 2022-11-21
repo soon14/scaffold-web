@@ -90,23 +90,13 @@
       :last-col-permission="['root','OwnerInfo:update','OwnerInfo:delete']"
     >
       <template slot="phone" slot-scope="scope">
-        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
-          <div style="text-align: center;padding: 0">{{ scope.row.phone }}</div>
-          <template #reference>
-            <span>{{ scope.row.phone | phone }}</span>
-          </template>
-        </el-popover>
+        <sw-desensitize-popover strategy="phone" :content="scope.row.phone" />
       </template>
       <template slot="sex" slot-scope="scope">
         {{ $enum.getDescByValue('SexEnum',scope.row.sex) }}
       </template>
       <template slot="email" slot-scope="scope">
-        <el-popover trigger="hover" placement="top" transition="el-zoom-in-bottom">
-          <div style="text-align: center;padding: 0">{{ scope.row.email }}</div>
-          <template #reference>
-            <span>{{ scope.row.email | email }}</span>
-          </template>
-        </el-popover>
+        <sw-desensitize-popover :content="scope.row.email" strategy="email" />
       </template>
       <template slot="data-operate" slot-scope="scope">
         <sw-update-delete-operation
@@ -114,7 +104,7 @@
           :data="scope.row"
         >
           <template #left>
-            <sw-popover
+            <sw-button-popover
               :ok-btn-loading="loading"
               :reference-btn-text="String($t('ownerPage.btnText'))"
               :content="content"

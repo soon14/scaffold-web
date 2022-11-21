@@ -152,6 +152,9 @@ function CRUD(options) {
           crud.page.total = data.data.totalElements
           crud.data = data.data.content
           crud.resetDataStatus()
+          if (crud.findVM('presenter').$refs['scaffoldTable']) {
+            crud.findVM('presenter').$refs['scaffoldTable'].changeFlag()
+          }
           // time 毫秒后显示表格
           setTimeout(() => {
             crud.loading = false
