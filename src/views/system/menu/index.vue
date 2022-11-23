@@ -79,7 +79,7 @@
               @selected="treeSelected"
             />
           </el-form-item>
-          <el-form-item :label="form.type === '权限菜单' ? String($t('menuPage.form.name1')) : String($t('menuPage.form.name2'))" prop="name">
+          <el-form-item :label="form.type === '2' ? String($t('menuPage.form.name1')) : String($t('menuPage.form.name2'))" prop="name">
             <el-input v-model="form.name" :placeholder="form.type === '权限菜单' ? String($t('menuPage.form.name1')) : String($t('menuPage.form.name2'))" style="width: 178px" clearable />
           </el-form-item>
           <el-form-item label="zh-CN" prop="nameZhCn">
@@ -105,8 +105,8 @@
           </el-form-item>
           <el-form-item :label="String($t('menuPage.form.keepAlive'))" prop="keepAlive">
             <el-radio-group v-model="form.keepAlive" size="mini">
-              <el-radio-button label="true">{{ $t('menuPage.form.yes') }}</el-radio-button>
-              <el-radio-button label="false">{{ $t('menuPage.form.no') }}</el-radio-button>
+              <el-radio-button :label="true">{{ $t('menuPage.form.yes') }}</el-radio-button>
+              <el-radio-button :label="false">{{ $t('menuPage.form.no') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('menuPage.form.sort'))" prop="sort">
@@ -120,14 +120,14 @@
           </el-form-item>
           <el-form-item :label="String($t('menuPage.form.hidden'))" prop="hidden">
             <el-radio-group v-model="form.hidden" size="mini">
-              <el-radio-button label="false">{{ $t('menuPage.form.yes') }}</el-radio-button>
-              <el-radio-button label="true">{{ $t('menuPage.form.no') }}</el-radio-button>
+              <el-radio-button :label="false">{{ $t('menuPage.form.yes') }}</el-radio-button>
+              <el-radio-button :label="true">{{ $t('menuPage.form.no') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('menuPage.form.enabled'))" prop="enabled">
             <el-radio-group v-model="form.enabled" size="mini">
-              <el-radio-button label="true">{{ $t('menuPage.form.yes') }}</el-radio-button>
-              <el-radio-button label="false">{{ $t('menuPage.form.no') }}</el-radio-button>
+              <el-radio-button :label="true">{{ $t('menuPage.form.yes') }}</el-radio-button>
+              <el-radio-button :label="false">{{ $t('menuPage.form.no') }}</el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item v-show="form.type.toString() === '1'" :label="String($t('menuPage.form.component'))" prop="component">

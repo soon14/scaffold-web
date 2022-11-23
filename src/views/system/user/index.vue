@@ -59,8 +59,8 @@
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
-              <el-radio label="男">{{ $t('userPage.form.man') }}</el-radio>
-              <el-radio label="女">{{ $t('userPage.form.woman') }}</el-radio>
+              <el-radio label="1">{{ $t('userPage.form.man') }}</el-radio>
+              <el-radio label="0">{{ $t('userPage.form.woman') }}</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('userPage.form.status'))">
@@ -71,7 +71,6 @@
           </el-form-item>
           <el-form-item style="margin-bottom: 0" :label="String($t('userPage.form.role'))" prop="roles">
             <el-select
-              ref="roleSelect"
               v-model="form.roles"
               style="width:400px"
               multiple
@@ -242,7 +241,7 @@ export default {
     },
     // 提交前做的操作
     [CRUD.HOOK.afterValidateCU](crud) {
-      if (this.roles.length === 0) {
+      if (this.form.roles.length === 0) {
         this.$message({
           message: String(i18n.t('userPage.rolesIsNull')),
           type: 'warning'

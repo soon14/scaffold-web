@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function add(data) {
   return request({
-    url: '/notices',
+    url: '/elevators',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function add(data) {
 
 export function edit(data) {
   return request({
-    url: '/notices',
+    url: '/elevators',
     method: 'put',
     data
   })
@@ -18,15 +18,16 @@ export function edit(data) {
 
 export function del(ids) {
   return request({
-    url: '/notices',
+    url: '/elevators',
     method: 'delete',
     data: ids
   })
 }
 
-export function getUserList() {
+export function maintain(data) {
   return request({
-    url: '/notices/distinctUser',
-    method: 'get'
+    url: '/elevators/maintain',
+    method: 'put',
+    data
   })
 }

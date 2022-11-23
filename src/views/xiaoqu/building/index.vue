@@ -55,7 +55,7 @@
         <span style="color: red;font-weight: bold">{{ scope.row.number }}</span>
       </template>
       <template slot="data-operate" slot-scope="scope">
-        <sw-sw-update-delete-operation
+        <sw-update-delete-operation
           :permission="permission"
           :data="scope.row"
         />

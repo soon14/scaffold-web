@@ -66,12 +66,14 @@
       </template>
       <template #content>
         <el-form
+          ref="pwdForm"
           label-width="75px"
+          :rules="pwdRule"
           style="padding-right: 25px"
           label-suffix=":"
           @submit.native.prevent="handlerOpenVerifyAccount"
         >
-          <el-form-item :label="String($t('ownerPage.dialog.pass'))">
+          <el-form-item :label="String($t('ownerPage.dialog.pass'))" prop="password">
             <el-input ref="pass" v-model="password" type="password" clearable :placeholder="String($t('ownerPage.dialog.passPlaceholder'))" />
           </el-form-item>
         </el-form>
@@ -179,6 +181,9 @@ export default {
         name: [
           { required: true, message: String(i18n.t('ownerPage.rule')), trigger: 'blur' }
         ]
+      },
+      pwdRule: {
+        password: [{ required: true, message: String(i18n.t('ownerPage.dialog.pwd')), trigger: 'blur' }]
       }
     }
   },
@@ -222,19 +227,25 @@ export default {
       }
     },
     handlerOpenVerifyAccount() {
-      verifyAccount(encrypt(this.password)).then(res => {
-        if (res.data === 'Password error!') {
-          this.flag = false
-          this.$notify({
-            title: String(i18n.t('ownerPage.notify.title')),
-            message: String(i18n.t('ownerPage.notify.message')),
-            type: 'error'
+      this.$refs.pwdForm.validate((valid) => {
+        if (valid) {
+          verifyAccount(encrypt(this.password)).then(res => {
+            if (res.data === 'Password error!') {
+              this.flag = false
+              this.$notify({
+                title: String(i18n.t('ownerPage.notify.title')),
+                message: String(i18n.t('ownerPage.notify.message')),
+                type: 'error'
+              })
+            } else {
+              this.password = ''
+              this.dialog = false
+              this.flag = true
+              this.crud.toEdit(this.data)
+            }
           })
         } else {
-          this.password = ''
-          this.dialog = false
-          this.flag = true
-          this.crud.toEdit(this.data)
+          return false
         }
       })
     }

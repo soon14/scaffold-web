@@ -565,7 +565,8 @@ export default {
     dialog: {
       title: 'Verify Password',
       pass: 'Password',
-      passPlaceholder: 'Please input a password'
+      passPlaceholder: 'Please input a password',
+      pwd: 'The Password is not null！'
     },
     operate: 'Operate',
     btnText: 'Reset',

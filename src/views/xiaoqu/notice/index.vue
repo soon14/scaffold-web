@@ -151,7 +151,7 @@
 
 <script>
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
-import { edit, add, del } from '@/api/xiaoqu/notice'
+import { edit, add, del, getUserList } from '@/api/xiaoqu/notice'
 import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
@@ -181,12 +181,13 @@ export default {
       permission: {
         add: ['root', 'Notice:add']
       },
-      isOverdueSelect: [],
-      typeSelect: [],
       userList: []
     }
   },
   created() {
+    getUserList().then(res => {
+      this.userList = res.data
+    })
     this.crud.optShow = {
       add: true,
       edit: false,

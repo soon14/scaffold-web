@@ -565,7 +565,8 @@ export default {
     dialog: {
       title: '驗證密碼',
       pass: '密碼',
-      passPlaceholder: '請輸入密碼'
+      passPlaceholder: '請輸入密碼',
+      pwd: '密碼不能為空！'
     },
     operate: '操作',
     btnText: '重置密碼',

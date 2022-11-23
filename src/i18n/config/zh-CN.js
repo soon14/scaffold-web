@@ -565,7 +565,8 @@ export default {
     dialog: {
       title: '验证密码',
       pass: '密码',
-      passPlaceholder: '请输入密码'
+      passPlaceholder: '请输入密码',
+      pwd: '密码不能为空！'
     },
     operate: '操作',
     btnText: '重置密码',

@@ -68,13 +68,14 @@ export default {
     value: {
       handler(val) {
         this.dictValue = val
-      },
-      immediate: true
+      }
+    },
+    dictValue(newVal, oldVal) {
+      this.$emit('input', this.dictValue)
     }
   },
   methods: {
     handlerChange(val) {
-      this.$emit('input', val)
       this.$emit('change', val)
     }
   }
