@@ -1,15 +1,8 @@
 import request from '@/utils/request'
 
-export function getTypeList() {
-  return request({
-    url: '/elevator-types/select',
-    method: 'get'
-  })
-}
-
 export function add(data) {
   return request({
-    url: '/elevator-types',
+    url: '/park-lots',
     method: 'post',
     data
   })
@@ -17,7 +10,7 @@ export function add(data) {
 
 export function edit(data) {
   return request({
-    url: '/elevator-types',
+    url: '/park-lots',
     method: 'put',
     data
   })
@@ -25,7 +18,7 @@ export function edit(data) {
 
 export function del(ids) {
   return request({
-    url: '/elevator-types',
+    url: '/park-lots',
     method: 'delete',
     data: ids
   })

@@ -1,266 +1,275 @@
 <template>
   <div class="app-container">
-    <div class="head-container">
-      <sw-search-date-picker-operation
-        picker-width="200"
-        :show-create-time-picker="false"
-        @reset="reset"
-      >
-        <template #center>
-          <sw-select
-            v-if="elevatorSelector"
-            v-model="timeType"
-            :options="timeOptions"
-            :enums="false"
-            placeholder="选择查找的时间类型"
-            width="200"
-          />
-          <el-date-picker
-            v-model="query[timeType]"
-            :default-time="['00:00:00','23:59:59']"
-            type="daterange"
-            range-separator="-"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            :start-placeholder="String($t('crud.searchDatePickerOperation.startTime'))"
-            :end-placeholder="String($t('crud.searchDatePickerOperation.endTime'))"
-            align="left"
-            style="width: 300px"
-          />
-        </template>
-        <template #right>
-          <sw-select
-            v-if="elevatorSelector"
-            v-model="query.buildingId"
-            :options="buildingNums"
-            :enums="false"
-            placeholder="请选择楼宇栋号"
-            width="200"
-            @change="crud.toQuery"
-          />
-        </template>
-      </sw-search-date-picker-operation>
-      <sw-button-operation :permission="permissions" />
-    </div>
-    <sw-dialog
-      :visible="maintainDialog"
-      :close-on-click-modal="false"
-      append-to-body
-      :before-close="closeMaintainDialog"
-      width="400px"
-    >
-      <template #title>
-        <div>维护登记</div>
-      </template>
-      <template #content>
-        <el-form
-          ref="maintainForm"
-          :rules="maintainRules"
-          :model="maintain"
-          label-suffix=":"
-        >
-          <el-form-item label="维护人" prop="maintainPeople">
-            <el-input v-model="maintain.maintainPeople" clearable placeholder="维护人" />
-          </el-form-item>
-          <el-form-item label="维护人电话" prop="maintainPeoplePhone">
-            <el-input v-model="maintain.maintainPeoplePhone" clearable placeholder="维护人电话" />
-          </el-form-item>
-        </el-form>
-      </template>
-      <template #footer>
-        <el-button round @click="closeMaintainDialog">{{ $t('cancel') }}</el-button>
-        <el-button :loading="maintainLoading" round type="primary" @click="submitMaintain">{{ $t('ok') }}</el-button>
-      </template>
-    </sw-dialog>
-    <sw-dialog
-      :visible="crud.status.cu > 0"
-      :before-close="crud.cancelCU"
-      :close-on-click-modal="false"
-      append-to-body
-    >
-      <template #title>
-        <div>{{ crud.status.title }}</div>
-      </template>
-      <template #content>
-        <el-form
-          ref="form"
-          inline
-          :model="form"
-          :rules="rules"
-          label-suffix=":"
-          label-position="top"
-          style="padding-left: 30px"
-        >
-          <el-form-item label="电梯编号" prop="identityId">
-            <el-input
-              ref="first"
-              v-model="form.identityId"
-              clearable
-              placeholder="电梯编号"
-            />
-          </el-form-item>
-          <el-form-item label="所属楼宇" prop="buildingId">
-            <el-select
-              v-model="form.buildingId"
-              clearable
-              style="width: 120px"
-              placeholder="请选择楼宇"
-            >
-              <el-option
-                v-for="(item,index) in buildingNums"
-                :key="index"
-                :value="item.value"
-                :label="item.label"
+    <sw-back-top-and-bottom />
+    <el-tabs v-model="activeTag" type="card">
+      <el-tab-pane label="电梯列表" name="elevator">
+        <div class="head-container">
+          <sw-search-date-picker-operation
+            picker-width="200"
+            :show-create-time-picker="false"
+            @reset="reset"
+          >
+            <template #center>
+              <sw-select
+                v-if="elevatorSelector"
+                v-model="timeType"
+                :options="timeOptions"
+                :enums="false"
+                placeholder="选择查找的时间类型"
+                width="200"
               />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="核载人数" prop="numberOfPeople">
-            <el-input-number
-              v-model="form.numberOfPeople"
-              controls-position="right"
-              :min="1"
-              :max="99"
-            />
-          </el-form-item>
-          <el-form-item label="核载重量(kg)" prop="numberOfWeight">
-            <el-input-number
-              v-model="form.numberOfWeight"
-              controls-position="right"
-              :min="0.01"
-              :precision="2"
-              :step="0.01"
-            />
-          </el-form-item>
-          <el-form-item label="有无机房" prop="isComputerRoom">
-            <el-radio-group v-model="form.isComputerRoom" size="mini">
-              <el-radio-button label="1">有机房</el-radio-button>
-              <el-radio-button label="0">无机房</el-radio-button>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="井道尺寸(长*宽)(mm)" prop="hoistwaySize">
-            <el-input
-              v-model="form.hoistwaySize"
-              clearable
-              placeholder="井道尺寸(长*宽)(mm)"
-            />
-          </el-form-item>
-          <el-form-item label="基坑深度(m)" prop="depthOfFoundationPit">
-            <el-input-number
-              v-model="form.depthOfFoundationPit"
-              controls-position="right"
-              :min="0.01"
-              :precision="2"
-              :step="0.01"
-            />
-          </el-form-item>
-          <el-form-item label="门洞预留尺寸(长*宽)(mm)" prop="reservedSizeOfDoorOpening">
-            <el-input
-              v-model="form.reservedSizeOfDoorOpening"
-              clearable
-              placeholder="门洞预留尺寸(长*宽)(mm)"
-            />
-          </el-form-item>
-          <el-form-item label="提升高度(m)" prop="liftingHeight">
-            <el-input-number
-              v-model="form.liftingHeight"
-              controls-position="right"
-              :min="0.01"
-              :precision="2"
-              :step="0.01"
-            />
-          </el-form-item>
-          <el-form-item label="维护间隔(天)" prop="day">
-            <el-input-number
-              v-model="form.day"
-              controls-position="right"
-              :min="1"
-            />
-          </el-form-item>
-          <el-form-item label="是否启用" prop="enabled">
-            <el-radio-group v-model="form.enabled" size="mini">
-              <el-radio-button :label="true">是</el-radio-button>
-              <el-radio-button :label="false">否</el-radio-button>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="电梯类型" prop="elevatorTypes">
-            <el-select
-              v-model="form.elevatorTypes"
-              style="width: 400px"
-              multiple
-              placeholder="请选择电梯的类型"
-              clearable
-              @remove-tag="deleteTag"
-              @change="changeType"
-            >
-              <el-option
-                v-for="item in typeList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+              <el-date-picker
+                v-model="query[timeType]"
+                :default-time="['00:00:00','23:59:59']"
+                type="daterange"
+                range-separator="-"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                :start-placeholder="String($t('crud.searchDatePickerOperation.startTime'))"
+                :end-placeholder="String($t('crud.searchDatePickerOperation.endTime'))"
+                align="left"
+                style="width: 300px"
               />
-            </el-select>
-          </el-form-item>
-        </el-form>
-      </template>
-      <template #footer>
-        <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
-        <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
-      </template>
-    </sw-dialog>
-    <sw-table
-      ref="scaffoldTable"
-      :table-header="tableHeader.elevator"
-      :table-data="crud.data"
-      :crud="crud"
-      :last-col-permission="['root','elevator:update','elevator:delete']"
-      last-col-width="190"
-    >
-      <template slot="isComputerRoom" slot-scope="scope">
-        <el-tag v-if="scope.row.isComputerRoom === 0" type="danger" size="mini">{{ $enum.getDescByValue('ElevatorComputerRoomEnum',scope.row.isComputerRoom) }}</el-tag>
-        <el-tag v-else size="mini">{{ $enum.getDescByValue('ElevatorComputerRoomEnum',scope.row.isComputerRoom) }}</el-tag>
-      </template>
-      <template slot="numberOfPeople" slot-scope="scope">
-        <span style="font-weight: bold;color: red">{{ scope.row.numberOfPeople }}</span>
-      </template>
-      <template slot="numberOfWeight" slot-scope="scope">
-        <span style="font-weight: bold;color: red">{{ scope.row.numberOfWeight }}</span>
-      </template>
-      <template slot="liftingHeight" slot-scope="scope">
-        <span style="font-weight: bold">{{ scope.row.liftingHeight }}</span>
-      </template>
-      <template slot="day" slot-scope="scope">
-        <span style="font-weight: bold;color: red">{{ scope.row.day }}</span>
-      </template>
-      <template slot="enabled" slot-scope="scope">
-        <el-switch
-          v-model="scope.row.enabled"
-          active-color="#409EFF"
-          inactive-color="#F56C6C"
-        />
-      </template>
-      <template slot="elevatorTypesString" slot-scope="scope">
-        <el-tag
-          v-for="(item,index) in scope.row.elevatorTypesString"
-          :key="index"
-          size="mini"
-        >{{ item }}</el-tag>&nbsp;
-      </template>
-      <template slot="maintainPeoplePhone" slot-scope="scope">
-        <sw-desensitize-popover :content="scope.row.maintainPeoplePhone" strategy="phone" />
-      </template>
-      <template slot="maintainPeople" slot-scope="scope">
-        <sw-desensitize-popover :content="scope.row.maintainPeople" />
-      </template>
-      <template slot="data-operate" slot-scope="scope">
-        <sw-update-delete-operation
-          :permission="permissions"
-          :data="scope.row"
+            </template>
+            <template #right>
+              <sw-select
+                v-if="elevatorSelector"
+                v-model="query.buildingId"
+                :options="buildingNums"
+                :enums="false"
+                placeholder="请选择楼宇栋号"
+                width="200"
+                @change="crud.toQuery"
+              />
+            </template>
+          </sw-search-date-picker-operation>
+          <sw-button-operation :permission="permissions" />
+        </div>
+        <sw-dialog
+          :visible="maintainDialog"
+          :close-on-click-modal="false"
+          append-to-body
+          :before-close="closeMaintainDialog"
+          width="400px"
         >
-          <template #left>
-            <el-button round size="mini" type="warning" @click="openMaintain(scope.row.id)">维护</el-button>
+          <template #title>
+            <div>维护登记</div>
           </template>
-        </sw-update-delete-operation>
-      </template>
-    </sw-table>
+          <template #content>
+            <el-form
+              ref="maintainForm"
+              :rules="maintainRules"
+              :model="maintain"
+              label-suffix=":"
+            >
+              <el-form-item label="维护人" prop="maintainPeople">
+                <el-input v-model="maintain.maintainPeople" clearable placeholder="维护人" />
+              </el-form-item>
+              <el-form-item label="维护人电话" prop="maintainPeoplePhone">
+                <el-input v-model="maintain.maintainPeoplePhone" clearable placeholder="维护人电话" />
+              </el-form-item>
+            </el-form>
+          </template>
+          <template #footer>
+            <el-button round @click="closeMaintainDialog">{{ $t('cancel') }}</el-button>
+            <el-button :loading="maintainLoading" round type="primary" @click="submitMaintain">{{ $t('ok') }}</el-button>
+          </template>
+        </sw-dialog>
+        <sw-dialog
+          :visible="crud.status.cu > 0"
+          :before-close="crud.cancelCU"
+          :close-on-click-modal="false"
+          append-to-body
+        >
+          <template #title>
+            <div>{{ crud.status.title }}</div>
+          </template>
+          <template #content>
+            <el-form
+              ref="form"
+              inline
+              :model="form"
+              :rules="rules"
+              label-suffix=":"
+              label-position="top"
+              style="padding-left: 30px"
+            >
+              <el-form-item label="电梯编号" prop="identityId">
+                <el-input
+                  ref="first"
+                  v-model="form.identityId"
+                  clearable
+                  placeholder="电梯编号"
+                />
+              </el-form-item>
+              <el-form-item label="所属楼宇" prop="buildingId">
+                <el-select
+                  v-model="form.buildingId"
+                  clearable
+                  style="width: 120px"
+                  placeholder="请选择楼宇"
+                >
+                  <el-option
+                    v-for="(item,index) in buildingNums"
+                    :key="index"
+                    :value="item.value"
+                    :label="item.label"
+                  />
+                </el-select>
+              </el-form-item>
+              <el-form-item label="核载人数" prop="numberOfPeople">
+                <el-input-number
+                  v-model="form.numberOfPeople"
+                  controls-position="right"
+                  :min="1"
+                  :max="99"
+                />
+              </el-form-item>
+              <el-form-item label="核载重量(kg)" prop="numberOfWeight">
+                <el-input-number
+                  v-model="form.numberOfWeight"
+                  controls-position="right"
+                  :min="0.01"
+                  :precision="2"
+                  :step="0.01"
+                />
+              </el-form-item>
+              <el-form-item label="有无机房" prop="isComputerRoom">
+                <el-radio-group v-model="form.isComputerRoom" size="mini">
+                  <el-radio-button label="1">有机房</el-radio-button>
+                  <el-radio-button label="0">无机房</el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="井道尺寸(长*宽)(mm)" prop="hoistwaySize">
+                <el-input
+                  v-model="form.hoistwaySize"
+                  clearable
+                  placeholder="井道尺寸(长*宽)(mm)"
+                />
+              </el-form-item>
+              <el-form-item label="基坑深度(m)" prop="depthOfFoundationPit">
+                <el-input-number
+                  v-model="form.depthOfFoundationPit"
+                  controls-position="right"
+                  :min="0.01"
+                  :precision="2"
+                  :step="0.01"
+                />
+              </el-form-item>
+              <el-form-item label="门洞预留尺寸(长*宽)(mm)" prop="reservedSizeOfDoorOpening">
+                <el-input
+                  v-model="form.reservedSizeOfDoorOpening"
+                  clearable
+                  placeholder="门洞预留尺寸(长*宽)(mm)"
+                />
+              </el-form-item>
+              <el-form-item label="提升高度(m)" prop="liftingHeight">
+                <el-input-number
+                  v-model="form.liftingHeight"
+                  controls-position="right"
+                  :min="0.01"
+                  :precision="2"
+                  :step="0.01"
+                />
+              </el-form-item>
+              <el-form-item label="维护间隔(天)" prop="day">
+                <el-input-number
+                  v-model="form.day"
+                  controls-position="right"
+                  :min="1"
+                />
+              </el-form-item>
+              <el-form-item label="是否启用" prop="enabled">
+                <el-radio-group v-model="form.enabled" size="mini">
+                  <el-radio-button :label="true">是</el-radio-button>
+                  <el-radio-button :label="false">否</el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="电梯类型" prop="elevatorTypes">
+                <el-select
+                  v-model="form.elevatorTypes"
+                  style="width: 400px"
+                  multiple
+                  placeholder="请选择电梯的类型"
+                  clearable
+                  @remove-tag="deleteTag"
+                  @change="changeType"
+                >
+                  <el-option
+                    v-for="item in typeList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-form>
+          </template>
+          <template #footer>
+            <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
+            <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
+          </template>
+        </sw-dialog>
+        <sw-table
+          ref="scaffoldTable"
+          :table-header="tableHeader.elevator"
+          :table-data="crud.data"
+          :crud="crud"
+          :last-col-permission="['root','Elevator:update','Elevator:delete']"
+          last-col-width="190"
+        >
+          <template slot="isComputerRoom" slot-scope="scope">
+            <el-tag v-if="scope.row.isComputerRoom === 0" type="danger" size="mini">{{ $enum.getDescByValue('ElevatorComputerRoomEnum',scope.row.isComputerRoom) }}</el-tag>
+            <el-tag v-else size="mini">{{ $enum.getDescByValue('ElevatorComputerRoomEnum',scope.row.isComputerRoom) }}</el-tag>
+          </template>
+          <template slot="numberOfPeople" slot-scope="scope">
+            <span style="font-weight: bold;color: red">{{ scope.row.numberOfPeople }}</span>
+          </template>
+          <template slot="numberOfWeight" slot-scope="scope">
+            <span style="font-weight: bold;color: red">{{ scope.row.numberOfWeight }}</span>
+          </template>
+          <template slot="liftingHeight" slot-scope="scope">
+            <span style="font-weight: bold">{{ scope.row.liftingHeight }}</span>
+          </template>
+          <template slot="day" slot-scope="scope">
+            <span style="font-weight: bold;color: red">{{ scope.row.day }}</span>
+          </template>
+          <template slot="enabled" slot-scope="scope">
+            <el-switch
+              v-model="scope.row.enabled"
+              active-color="#409EFF"
+              inactive-color="#F56C6C"
+              @change="changeEnabled(scope.row,scope.row.enabled)"
+            />
+          </template>
+          <template slot="elevatorTypesString" slot-scope="scope">
+            <el-tag
+              v-for="(item,index) in scope.row.elevatorTypesString"
+              :key="index"
+              size="mini"
+            >{{ item }}</el-tag>&nbsp;
+          </template>
+          <template slot="maintainPeoplePhone" slot-scope="scope">
+            <sw-desensitize-popover :content="scope.row.maintainPeoplePhone" strategy="phone" />
+          </template>
+          <template slot="maintainPeople" slot-scope="scope">
+            <sw-desensitize-popover :content="scope.row.maintainPeople" />
+          </template>
+          <template slot="data-operate" slot-scope="scope">
+            <sw-update-delete-operation
+              :permission="permissions"
+              :data="scope.row"
+            >
+              <template #left>
+                <el-button round size="mini" type="warning" @click="openMaintain(scope.row.id)">维护</el-button>
+              </template>
+            </sw-update-delete-operation>
+          </template>
+        </sw-table>
+      </el-tab-pane>
+      <el-tab-pane label="电梯类型" name="elevatorType">
+        <elevator-type />
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -270,6 +279,8 @@ import { getBuildingNums } from '@/api/xiaoqu/building'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { add, edit, del, maintain } from '@/api/xiaoqu/elevator'
 import { getTypeList } from '@/api/xiaoqu/elevatorType'
+import ElevatorType from '@/views/xiaoqu/elevator/elevatorType'
+import i18n from '@/i18n'
 
 const defaultCrud = CRUD({
   url: '/elevators',
@@ -297,6 +308,9 @@ let elevatorTypes = []
 
 export default {
   name: 'Elevator',
+  components: {
+    ElevatorType
+  },
   mixins: [
     presenter(defaultCrud),
     header(),
@@ -315,6 +329,7 @@ export default {
       }
     }
     return {
+      activeTag: 'elevator',
       maintain: {
         id: null,
         maintainPeople: '',
@@ -472,6 +487,22 @@ export default {
     openMaintain(id) {
       this.maintainDialog = true
       this.maintain.id = id
+    },
+    changeEnabled(data, val) {
+      const operate = val === true ? '启用' : '禁用'
+      this.$confirm('此操作将' + operate + ' [' + data.identityId + '] ' + ', 是否继续?', '提示', {
+        confirmButtonText: String(i18n.t('ok')),
+        cancelButtonText: String(i18n.t('cancel')),
+        type: 'warning'
+      }).then(() => {
+        edit(data).then(() => {
+          this.crud.notify(operate + '成功！', CRUD.NOTIFICATION_TYPE.SUCCESS)
+        }).catch(() => {
+          data.enabled = !data.enabled
+        })
+      }).catch(() => {
+        data.enabled = !data.enabled
+      })
     }
   }
 }

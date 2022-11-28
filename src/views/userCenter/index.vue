@@ -69,7 +69,7 @@
       </el-col>
       <el-col :xs="24" :sm="24" :md="16" :lg="17" :xl="17">
         <el-card class="box-card">
-          <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
             <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
               <sw-table
                 :table-header="tableHeader.center.playLogs"

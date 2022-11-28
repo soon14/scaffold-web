@@ -163,6 +163,24 @@ const state = {
     { prop: 'enabled', label: '是否启用', slot: true },
     { prop: 'elevatorTypesString', label: '电梯类型', slot: true, width: '200' },
     { prop: 'createTime', label: i18n.t('tableHeader.building.createTime'), sortable: true, width: '200' }
+  ],
+  elevatorType: [
+    { prop: 'name', label: '电梯类型', fixed: 'left' },
+    { prop: 'nameZhCn', label: 'zh-CN' },
+    { prop: 'nameZhHk', label: 'zh-HK' },
+    { prop: 'nameZhTw', label: 'zh-TW' },
+    { prop: 'nameEnUs', label: 'en-US' },
+    { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
+    { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
+  ],
+  parkLot: [
+    { prop: 'region', label: '停车场区域', fixed: 'left' },
+    { prop: 'number', label: '小车车位', sortable: true, slot: true },
+    { prop: 'floor', label: '停车场层数', sortable: true, slot: true },
+    { prop: 'otherNumber', label: '其他车位数', sortable: true, slot: true },
+    { prop: 'enabled', label: '是否启用', slot: true },
+    { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
+    { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
   ]
 }
 
