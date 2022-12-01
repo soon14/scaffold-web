@@ -1,4 +1,4 @@
-const baseUrl = process.env.VUE_APP_TOOL_API
+const baseUrl = process.env.VUE_APP_SERVICE_API
 const apiBaseUrl = process.env.VUE_APP_BASE_API
 const api = {
   state: {

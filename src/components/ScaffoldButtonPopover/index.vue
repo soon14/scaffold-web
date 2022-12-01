@@ -181,6 +181,7 @@ export default {
     },
     confirmHandler() {
       this.$emit('confirm')
+      document.body.click()
     }
   }
 }
