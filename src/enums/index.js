@@ -36,6 +36,14 @@ const enumInfo = {
   ElevatorComputerRoomEnum: {
     HAS_COMPUTER_ROOM: { value: 1, desc: i18n.t('ElevatorComputerRoomEnum.HAS_COMPUTER_ROOM') },
     NO_COMPUTER_ROOM: { value: 0, desc: i18n.t('ElevatorComputerRoomEnum.NO_COMPUTER_ROOM') }
+  },
+  ParkTypeEnum: {
+    CAR_PARK: { value: 0, desc: '小车车位' },
+    OTHER_PARK: { value: 1, desc: '其他车位' }
+  },
+  IsBuyEnum: {
+    IS_BUY: { value: 1, desc: '已购买' },
+    NO_BUY: { value: 0, desc: '未购买' }
   }
 }
 

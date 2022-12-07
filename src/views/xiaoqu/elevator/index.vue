@@ -102,19 +102,12 @@
                 />
               </el-form-item>
               <el-form-item label="所属楼宇" prop="buildingId">
-                <el-select
+                <sw-select
                   v-model="form.buildingId"
-                  clearable
-                  style="width: 120px"
+                  :options="buildingNums"
                   placeholder="请选择楼宇"
-                >
-                  <el-option
-                    v-for="(item,index) in buildingNums"
-                    :key="index"
-                    :value="item.value"
-                    :label="item.label"
-                  />
-                </el-select>
+                  :enums="false"
+                />
               </el-form-item>
               <el-form-item label="核载人数" prop="numberOfPeople">
                 <el-input-number

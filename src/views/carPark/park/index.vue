@@ -1,13 +1,166 @@
 <template>
-  <div>车位管理</div>
+  <div class="app-container">
+    <sw-back-top-and-bottom />
+    <div class="head-container">
+      <sw-search-date-picker-operation @reset="reset">
+        <template #right>
+          <sw-select
+            v-if="typeSelector"
+            v-model="query.type"
+            placeholder="车位类型"
+            :options="$enum.getValueDescList('ParkTypeEnum')"
+            @change="crud.toQuery"
+          />
+        </template>
+      </sw-search-date-picker-operation>
+      <sw-button-operation :permission="permission" />
+    </div>
+    <sw-dialog
+      :visible="crud.status.cu > 0"
+      :before-close="crud.cancelCU"
+      :close-on-click-modal="false"
+      append-to-body
+      width="400px"
+    >
+      <template #title>
+        <div>{{ crud.status.title }}</div>
+      </template>
+      <template #content>
+        <el-form
+          ref="form"
+          :model="form"
+          label-suffix=":"
+          label-width="120px"
+          :rules="rules"
+        >
+          <el-form-item label="所在区域" prop="parkLotId">
+            <sw-select
+              v-model="form.parkLotId"
+              :options="regionList"
+              placeholder="请选择所在区域"
+              :enums="false"
+              width="150"
+            />
+          </el-form-item>
+          <el-form-item label="车位类型" prop="type">
+            <sw-select
+              v-model="form.type"
+              placeholder="车位类型"
+              :options="$enum.getValueDescList('ParkTypeEnum')"
+            />
+          </el-form-item>
+          <el-form-item label="是否购买" prop="isBuy">
+            <sw-select
+              v-model="form.isBuy"
+              placeholder="是否购买"
+              :options="$enum.getValueDescList('IsBuyEnum')"
+            />
+          </el-form-item>
+          <el-form-item label="车位独立编号" prop="identityId">
+            <el-input v-model="form.identityId" clearable placeholder="车位独立编号" />
+          </el-form-item>
+          <el-form-item label="车位价格(元)" prop="price">
+            <el-input-number
+              v-model="form.price"
+              controls-position="right"
+              :min="0.01"
+              :precision="2"
+              :step="0.01"
+            />
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #footer>
+        <el-button round @click="crud.cancelCU">{{ $t('cancel') }}</el-button>
+        <el-button :loading="crud.cu === 2" type="primary" round @click="crud.submitCU">{{ $t('ok') }}</el-button>
+      </template>
+    </sw-dialog>
+    <sw-table
+      ref="scaffoldTable"
+      :table-header="tableHeader.park"
+      :table-data="crud.data"
+      :crud="crud"
+      :last-col-permission="['root','Park:update','Park:delete']"
+    >
+      <template slot="type" slot-scope="scope">
+        <span>{{ $enum.getDescByValue('ParkTypeEnum',scope.row.type) }}</span>
+      </template>
+      <template slot="isBuy" slot-scope="scope">
+        <span>{{ $enum.getDescByValue('IsBuyEnum',scope.row.isBuy) }}</span>
+      </template>
+      <template slot="data-operate" slot-scope="scope">
+        <sw-update-delete-operation
+          :permission="permission"
+          :data="scope.row"
+        />
+      </template>
+    </sw-table>
+  </div>
 </template>
 
 <script>
+import { add, edit, del } from '@/api/carPark/park'
+import { mapGetters } from 'vuex'
+import CRUD, { crud, form, header, presenter } from '@/utils/crud'
+import { getRegions } from '@/api/carPark/parkLot'
+
+const defaultCrud = CRUD({
+  url: '/parks',
+  title: '车位信息表',
+  crudMethod: { add, edit, del }
+})
+
+const defaultForm = {
+  id: null,
+  parkLotId: null,
+  region: '',
+  type: null,
+  isBuy: null,
+  identityId: '',
+  price: 0.00
+}
 export default {
-  name: 'Park'
+  name: 'Park',
+  mixins: [
+    presenter(defaultCrud),
+    crud(),
+    header(),
+    form(defaultForm)
+  ],
+  data() {
+    return {
+      typeSelector: true,
+      regionList: [],
+      permission: {
+        add: ['root', 'Park:add'],
+        edit: ['root', 'Park:update'],
+        del: ['root', 'Park:delete']
+      },
+      rules: {
+        identityId: [
+          { required: true, message: '车位独立编号不能为空', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(['tableHeader'])
+  },
+  created() {
+    this.getRegionList()
+  },
+  methods: {
+    getRegionList() {
+      getRegions().then(res => {
+        this.regionList = res.data
+      })
+    },
+    reset() {
+      this.typeSelector = false
+      this.$nextTick(() => {
+        this.typeSelector = true
+      })
+    }
+  }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -4,7 +4,10 @@
     <div id="lottie_box" class="animation" />
     <div class="loginContainer">
       <el-form ref="loginForm" :model="loginForm" :rules="rules">
-        <h3 class="loginFormItemTitle">{{ $t('login.welcome') }}</h3>
+        <h3 class="loginFormItemTitle">
+          <img :src="logo" alt="" style="width: 35px;height: 35px;vertical-align:middle">
+          {{ $t('login.welcome') }}
+        </h3>
         <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
@@ -87,6 +90,7 @@
 <script>
 import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
+import logo from '@/assets/logo/logo.png'
 import { encrypt } from '@/utils/rsaEncrypt'
 import Global from '@/global'
 
@@ -94,6 +98,7 @@ export default {
   name: 'Login',
   data() {
     return {
+      logo: logo,
       captchaUrl: '',
       cookiePass: '',
       loginForm: {
@@ -210,7 +215,7 @@ export default {
 
   .login_title {
     position: absolute;
-    margin: 10px auto 650px;
+    margin: 20px auto 650px;
     animation-name: title;
     animation-duration: 2s;
     height: 40px;
@@ -253,7 +258,7 @@ export default {
     }
 
     .loginFormItemTitle {
-      margin: 0 auto 30px auto;
+      margin: 10px auto 25px auto;
       text-align: center;
       color: black;
     }

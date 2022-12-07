@@ -1,6 +1,6 @@
 <template>
   <el-select
-    v-model="dictValue"
+    v-model="selectOptions"
     clearable
     :placeholder="placeholder"
     :style="{
@@ -32,10 +32,6 @@ import i18n from '@/i18n'
 
 export default {
   name: 'SwSelect',
-  model: {
-    prop: 'childValue',
-    event: 'change'
-  },
   props: {
     // eslint-disable-next-line vue/require-default-prop
     value: null,
@@ -61,21 +57,23 @@ export default {
   },
   data() {
     return {
-      dictValue: this.value
+      selectOptions: this.value
     }
   },
   watch: {
     value: {
       handler(val) {
-        this.dictValue = val
+        this.selectOptions = val
       }
     },
-    dictValue(newVal, oldVal) {
-      this.$emit('input', this.dictValue)
+    selectOptions(newVal, oldVal) {
+      this.$emit('input', this.selectOptions)
     }
   },
   methods: {
     handlerChange(val) {
+      // 触发change方法时候回写数据
+      this.$emit('input', this.selectOptions)
       this.$emit('change', val)
     }
   }

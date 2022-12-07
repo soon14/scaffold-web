@@ -181,6 +181,14 @@ const state = {
     { prop: 'enabled', label: '是否启用', slot: true },
     { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
     { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
+  ],
+  park: [
+    { prop: 'region', label: '停车场区域', fixed: 'left' },
+    { prop: 'type', label: '车位类型', slot: true },
+    { prop: 'isBuy', label: '是否被购买', slot: true },
+    { prop: 'identityId', label: '车位独立编号' },
+    { prop: 'price', label: '车位价格', sortable: true },
+    { prop: 'createTime', label: '创建时间', sortable: true, width: '200' }
   ]
 }
 
