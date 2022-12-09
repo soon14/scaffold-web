@@ -183,12 +183,22 @@ const state = {
     { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
   ],
   park: [
-    { prop: 'region', label: '停车场区域', fixed: 'left' },
+    { prop: 'region', label: '停车场区域', fixed: 'left', slot: true },
     { prop: 'type', label: '车位类型', slot: true },
     { prop: 'isBuy', label: '是否被购买', slot: true },
     { prop: 'identityId', label: '车位独立编号' },
     { prop: 'price', label: '车位价格', sortable: true },
     { prop: 'createTime', label: '创建时间', sortable: true, width: '200' }
+  ],
+  car: [
+    { prop: 'name', label: '业主姓名', fixed: 'left' },
+    { prop: 'carNumber', label: '车牌号码', fixed: 'left' },
+    { prop: 'parkVO.region', label: '车位区域', slot: true },
+    { prop: 'parkVO.identityId', label: '车位编号', slot: true },
+    { prop: 'parkVO.type', label: '车位类型', slot: true },
+    { prop: 'carColor', label: '车辆颜色' },
+    { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
+    { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
   ]
 }
 

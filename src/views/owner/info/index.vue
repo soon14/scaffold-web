@@ -36,8 +36,8 @@
           </el-form-item>
           <el-form-item :label="String($t('ownerPage.form.sex'))">
             <el-radio-group v-model="form.sex" style="width: 178px">
-              <el-radio label="1">{{ String($t('ownerPage.form.male')) }}</el-radio>
-              <el-radio label="0">{{ String($t('ownerPage.form.female')) }}</el-radio>
+              <el-radio :label="1">{{ String($t('ownerPage.form.male')) }}</el-radio>
+              <el-radio :label="0">{{ String($t('ownerPage.form.female')) }}</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="String($t('ownerPage.form.identityId'))" prop="identityId">
@@ -68,13 +68,25 @@
         <el-form
           ref="pwdForm"
           label-width="75px"
-          :rules="pwdRule"
+          :model="pwd"
           style="padding-right: 25px"
           label-suffix=":"
           @submit.native.prevent="handlerOpenVerifyAccount"
         >
-          <el-form-item :label="String($t('ownerPage.dialog.pass'))" prop="password">
-            <el-input ref="pass" v-model="password" type="password" clearable :placeholder="String($t('ownerPage.dialog.passPlaceholder'))" />
+          <el-form-item
+            :label="String($t('ownerPage.dialog.pass'))"
+            prop="password"
+            :rules="[
+              { required: true, message: String($t('ownerPage.dialog.pwd')), trigger: 'blur' }
+            ]"
+          >
+            <el-input
+              ref="pass"
+              v-model="pwd.password"
+              type="password"
+              clearable
+              :placeholder="String($t('ownerPage.dialog.passPlaceholder'))"
+            />
           </el-form-item>
         </el-form>
       </template>
@@ -160,7 +172,9 @@ export default {
       loading: false,
       dialog: false,
       flag: false,
-      password: '',
+      pwd: {
+        password: ''
+      },
       data: {},
       content: String(i18n.t('ownerPage.content1')) + '<br>' + String(i18n.t('ownerPage.content2')),
       permission: {
@@ -181,9 +195,6 @@ export default {
         name: [
           { required: true, message: String(i18n.t('ownerPage.rule')), trigger: 'blur' }
         ]
-      },
-      pwdRule: {
-        password: [{ required: true, message: String(i18n.t('ownerPage.dialog.pwd')), trigger: 'blur' }]
       }
     }
   },
@@ -208,7 +219,8 @@ export default {
     closeVerifyAccount() {
       this.dialog = false
       this.flag = false
-      this.password = ''
+      this.pwd.password = ''
+      this.$refs.pwdForm.resetFields()
       this.crud.cancelCU()
     },
     [CRUD.HOOK.beforeToEdit](crud, form) {
@@ -229,7 +241,7 @@ export default {
     handlerOpenVerifyAccount() {
       this.$refs.pwdForm.validate((valid) => {
         if (valid) {
-          verifyAccount(encrypt(this.password)).then(res => {
+          verifyAccount(encrypt(this.pwd.password)).then(res => {
             if (res.data === 'Password error!') {
               this.flag = false
               this.$notify({
@@ -238,7 +250,8 @@ export default {
                 type: 'error'
               })
             } else {
-              this.password = ''
+              this.pwd.password = ''
+              this.$refs.pwdForm.resetFields()
               this.dialog = false
               this.flag = true
               this.crud.toEdit(this.data)

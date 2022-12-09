@@ -82,11 +82,24 @@
       :crud="crud"
       :last-col-permission="['root','Park:update','Park:delete']"
     >
+      <template slot="region" slot-scope="scope">
+        <span style="font-weight: bold;color: red">{{ scope.row.region }}</span>
+      </template>
       <template slot="type" slot-scope="scope">
-        <span>{{ $enum.getDescByValue('ParkTypeEnum',scope.row.type) }}</span>
+        <el-tag v-if="scope.row.type === 0" size="mini">
+          {{ $enum.getDescByValue('ParkTypeEnum',scope.row.type) }}
+        </el-tag>
+        <el-tag v-else size="mini" type="success">
+          {{ $enum.getDescByValue('ParkTypeEnum',scope.row.type) }}
+        </el-tag>
       </template>
       <template slot="isBuy" slot-scope="scope">
-        <span>{{ $enum.getDescByValue('IsBuyEnum',scope.row.isBuy) }}</span>
+        <el-tag v-if="scope.row.isBuy === 1" size="mini" type="danger">
+          {{ $enum.getDescByValue('IsBuyEnum',scope.row.isBuy) }}
+        </el-tag>
+        <el-tag v-else size="mini" type="success">
+          {{ $enum.getDescByValue('IsBuyEnum',scope.row.isBuy) }}
+        </el-tag>
       </template>
       <template slot="data-operate" slot-scope="scope">
         <sw-update-delete-operation
