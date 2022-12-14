@@ -192,11 +192,11 @@ const state = {
   ],
   car: [
     { prop: 'name', label: '业主姓名', fixed: 'left' },
-    { prop: 'carNumber', label: '车牌号码', fixed: 'left' },
+    { prop: 'carNumber', label: '车牌号码', fixed: 'left', slot: true },
     { prop: 'parkVO.region', label: '车位区域', slot: true },
     { prop: 'parkVO.identityId', label: '车位编号', slot: true },
     { prop: 'parkVO.type', label: '车位类型', slot: true },
-    { prop: 'carColor', label: '车辆颜色' },
+    { prop: 'carColor', label: '车辆颜色', slot: true },
     { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
     { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
   ]

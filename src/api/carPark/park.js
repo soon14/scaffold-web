@@ -23,3 +23,10 @@ export function del(ids) {
     data: ids
   })
 }
+
+export function getCascadeSelect() {
+  return request({
+    url: '/parks/cascadeList',
+    method: 'get'
+  })
+}

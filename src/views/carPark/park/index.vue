@@ -33,11 +33,11 @@
           label-width="120px"
           :rules="rules"
         >
-          <el-form-item label="所在区域" prop="parkLotId">
+          <el-form-item label="停车场区域" prop="parkLotId">
             <sw-select
               v-model="form.parkLotId"
               :options="regionList"
-              placeholder="请选择所在区域"
+              placeholder="请选择停车场区域"
               :enums="false"
               width="150"
             />
