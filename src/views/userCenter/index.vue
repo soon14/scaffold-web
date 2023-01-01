@@ -32,7 +32,7 @@
                 </li>
                 <li>
                   <sw-svg icon-class="center-sex" /> {{ $t('userCenter.leftCard.sex') }}
-                  <div class="user-right">{{ user.sex }}</div>
+                  <div class="user-right">{{ $enum.getDescByValue('SexEnum',user.sex) }}</div>
                 </li>
                 <li>
                   <sw-svg icon-class="center-phone" /> {{ $t('userCenter.leftCard.phone') }}
@@ -72,6 +72,7 @@
           <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
             <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
               <sw-table
+                ref="scaffoldTable"
                 :table-header="tableHeader.center.playLogs"
                 :table-data="crud.data"
                 :crud="crud"
@@ -92,20 +93,7 @@
               </sw-table>
             </el-tab-pane>
             <el-tab-pane :label="String($t('userCenter.rightCard.errorLogs'))" name="errorLogs">
-              <sw-table
-                :table-header="tableHeader.center.errorLogs"
-                :table-data="crud.data"
-                :crud="crud"
-                last-col-width="100"
-                :is-first-col="false"
-                :last-col-label="String($t('errorLogsPage.exceptionInfo'))"
-              >
-                <template slot="data-operate" slot-scope="scope">
-                  <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">
-                    {{ $t('errorLogsPage.lookInfo') }}
-                  </el-button>
-                </template>
-              </sw-table>
+              <error-logs />
             </el-tab-pane>
           </el-tabs>
         </el-card>
@@ -114,7 +102,6 @@
     <sw-back-top-and-bottom />
     <update-email ref="email" :email="user.email" />
     <update-pass ref="pass" />
-    <sw-exception-info ref="exception" :error-logs="errorLogs" />
   </div>
 </template>
 
@@ -127,13 +114,14 @@ import store from '@/store'
 import updateEmail from '@/views/userCenter/update/updateEmail'
 import updatePass from '@/views/userCenter/update/updatePass'
 import CRUD, { presenter } from '@/utils/crud'
-import { getErrorDetails } from '@/api/monitor/logs'
 import i18n from '@/i18n'
+import errorLogs from '@/views/userCenter/errorLogs'
 
-const defaultCrud = CRUD({ url: '/center/logs' })
+const defaultCrud = CRUD({ url: '/center/logs', title: '操作日志' })
 export default {
   name: 'Center',
   components: {
+    errorLogs,
     updatePass,
     updateEmail
   },
@@ -169,21 +157,6 @@ export default {
     }
   },
   methods: {
-    getExceptionInfo(id) {
-      this.$refs.exception.dialog = true
-      getErrorDetails(id).then(res => {
-        this.errorLogs = res.data.exception
-      })
-    },
-    handleClick(tab, event) {
-      if (tab.name === 'errorLogs') {
-        this.crud.url = '/center/errorLogs'
-        this.crud.refresh()
-      } else {
-        this.crud.url = '/center/logs'
-        this.crud.refresh()
-      }
-    },
     handleSuccess(response, file, fileList) {
       this.$message({
         message: String(i18n.t('userCenter.avatar.changeSuccess')),

@@ -2,17 +2,7 @@
   <div class="app-container">
     <sw-back-top-and-bottom />
     <div class="head-container">
-      <sw-search-date-picker-operation input-placeholder="请输入车牌号或车辆颜色">
-        <template #left>
-          <el-input
-            v-model="query.name"
-            clearable
-            placeholder="请输入业主姓名模糊查询"
-            style="width: 200px"
-            @keyup.enter.native="crud.toQuery"
-          />
-        </template>
-      </sw-search-date-picker-operation>
+      <sw-search-date-picker-operation />
       <sw-button-operation :permission="permission" />
     </div>
     <sw-dialog
@@ -62,7 +52,7 @@
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
       append-to-body
-      width="400px"
+      width="600px"
       top="70px"
     >
       <template #title>
@@ -71,43 +61,72 @@
       <template #content>
         <el-form
           ref="form"
+          inline
           :model="form"
           label-suffix=":"
           label-width="120px"
           :rules="rules"
         >
-          <el-form-item v-if="crud.status.edit === 1" label="业主姓名" prop="name">
-            <el-input
-              v-model="form.name"
-              clearable
-              placeholder="业主姓名"
-              :disabled="crud.status.edit === 1"
+          <el-form-item v-if="crud.status.add === 1" label="业主电话" prop="phone">
+            <el-input v-model="form.phone" clearable placeholder="业主电话" />
+          </el-form-item>
+          <el-form-item v-if="crud.status.edit === 1" label="业主姓名" prop="ownerName">
+            <el-input v-model="form.ownerName" clearable placeholder="业主姓名" />
+          </el-form-item>
+          <el-form-item label="建筑栋号" prop="buildingNum">
+            <sw-select
+              v-model="form.buildingNum"
+              :options="buildingList"
+              :enums="false"
+              placeholder="建筑栋号"
             />
           </el-form-item>
-          <el-form-item v-if="crud.status.add === 1" label="业主手机" prop="phone">
-            <el-input
-              v-model="form.phone"
-              clearable
-              placeholder="业主手机"
-              :disabled="crud.status.edit === 1"
+          <el-form-item label="梯户独立编号" prop="identityId">
+            <el-input v-model="form.identityId" clearable placeholder="梯户独立编号" />
+          </el-form-item>
+          <el-form-item label="面积" prop="area">
+            <el-input-number
+              v-model="form.area"
+              controls-position="right"
+              :min="1"
+              :max="300"
+              :precision="2"
+              step="0.01"
             />
           </el-form-item>
-          <el-form-item label="停车区域" prop="parkInfo">
-            <el-cascader
-              v-model="form.parkInfo"
-              :options="cascade"
-              clearable
-              :filterable="true"
-              :show-all-levels="false"
+          <el-form-item label="水表读数" prop="meterWater">
+            <el-input-number
+              v-model="form.meterWater"
+              placeholder="水表读数"
+              :min="0.00"
+              :precision="2"
+              step="0.01"
             />
           </el-form-item>
-          <el-form-item label="车牌号码" prop="carNumber">
-            <el-input v-model="form.carNumber" clearable placeholder="车牌号码" />
+          <el-form-item label="电表读数" prop="meterElectric">
+            <el-input-number
+              v-model="form.meterElectric"
+              placeholder="电表读数"
+              :min="0.00"
+              :precision="2"
+              step="0.01"
+            />
           </el-form-item>
-          <el-form-item label="车辆颜色" prop="carColor">
-            <el-input v-model="form.carColor" clearable placeholder="车辆颜色" />
+          <el-form-item label="常住人数" prop="peopleNumber">
+            <el-input-number
+              v-model="form.peopleNumber"
+              placeholder="常住人数"
+              :min="0"
+              step="1"
+            />
           </el-form-item>
-          <el-form />
+          <el-form-item label="是否已居住" prop="isLive">
+            <sw-select
+              v-model="form.isLive"
+              :options="$enum.getValueDescList('IsLiveEnum')"
+              placeholder="请选择"
+            />
+          </el-form-item>
         </el-form>
       </template>
       <template #footer>
@@ -117,30 +136,26 @@
     </sw-dialog>
     <sw-table
       ref="scaffoldTable"
-      :table-header="tableHeader.car"
+      :table-header="tableHeader.household"
       :table-data="crud.data"
       :crud="crud"
-      :last-col-permission="['root','OwnerCar:update','OwnerCar:delete']"
+      :last-col-permission="['root','Household:update','Household:delete']"
     >
-      <template slot="parkVO.region" slot-scope="scope">
-        <span>{{ scope.row.parkVO.region }}</span>
+      <template slot="isLive" slot-scope="scope">
+        <el-tag v-if="scope.row.isLive === 1" size="mini" type="success">{{ $enum.getDescByValue('IsLiveEnum',scope.row.isLive) }}</el-tag>
+        <el-tag v-else size="mini" type="danger">{{ $enum.getDescByValue('IsLiveEnum',scope.row.isLive) }}</el-tag>
       </template>
-      <template slot="parkVO.type" slot-scope="scope">
-        <el-tag v-if="scope.row.type === 0" size="mini">
-          {{ $enum.getDescByValue('ParkTypeEnum',scope.row.parkVO.type) }}
-        </el-tag>
-        <el-tag v-else size="mini" type="success">
-          {{ $enum.getDescByValue('ParkTypeEnum',scope.row.parkVO.type) }}
-        </el-tag>
+      <template slot="identityId" slot-scope="scope">
+        <span style="color: black;font-weight: bold">{{ scope.row.identityId }}</span>
       </template>
-      <template slot="parkVO.identityId" slot-scope="scope">
-        <span>{{ scope.row.parkVO.identityId }}</span>
+      <template slot="area" slot-scope="scope">
+        <span style="color: red">{{ scope.row.area }}&nbsp;</span><b>m^2</b>
       </template>
-      <template slot="carColor" slot-scope="scope">
-        <el-tag size="mini">{{ scope.row.carColor }}</el-tag>
+      <template slot="lastMeterWater" slot-scope="scope">
+        <span style="color: red">{{ scope.row.lastMeterWater }}&nbsp;</span><b>m^3</b>
       </template>
-      <template slot="carNumber" slot-scope="scope">
-        <span style="font-weight: bold;color: red">{{ scope.row.carNumber }}</span>
+      <template slot="lastMeterElectric" slot-scope="scope">
+        <span style="color: red">{{ scope.row.lastMeterElectric }}&nbsp;</span><b>kwh</b>
       </template>
       <template slot="data-operate" slot-scope="scope">
         <sw-update-delete-operation
@@ -153,30 +168,34 @@
 </template>
 
 <script>
-import { add, edit, del } from '@/api/carPark/car'
+import { add, edit, del } from '@/api/commons/household'
 import { mapGetters } from 'vuex'
 import CRUD, { crud, form, header, presenter } from '@/utils/crud'
 import { getById, verifyAccount } from '@/api/owner/owner'
 import { encrypt } from '@/utils/rsaEncrypt'
-import { getCascadeSelect } from '@/api/carPark/park'
+import { getBuildingNums } from '@/api/xiaoqu/building'
 
 const defaultCrud = CRUD({
-  url: '/cars',
-  title: '业主车辆信息表',
+  url: '/households',
+  title: '梯户信息表',
   crudMethod: { add, edit, del }
 })
 
 const defaultForm = {
   id: null,
-  name: '',
   ownerId: null,
-  parkInfo: [],
-  carNumber: '',
-  carColor: '',
-  phone: ''
+  phone: '',
+  buildingId: null,
+  identityId: '',
+  area: 0.00,
+  meterWater: 0.00,
+  meterElectric: 0.00,
+  peopleNumber: 0,
+  isLive: null,
+  ownerName: ''
 }
 export default {
-  name: 'Car',
+  name: 'Household',
   mixins: [
     presenter(defaultCrud),
     crud(),
@@ -187,21 +206,27 @@ export default {
     return {
       flag: false,
       dialog: false,
-      cascade: [],
+      buildingList: [],
       pwd: {
         password: ''
       },
       permission: {
-        add: ['root', 'OwnerCar:add'],
-        edit: ['root', 'OwnerCar:update'],
-        del: ['root', 'OwnerCar:delete']
+        add: ['root', 'Household:add'],
+        edit: ['root', 'Household:update'],
+        del: ['root', 'Household:delete']
       },
       rules: {
-        carNumber: [
-          { required: true, message: '车牌号码不能为空', trigger: 'blur' }
+        identityId: [
+          { required: true, message: '梯户独立编号不能为空', trigger: 'blur' }
         ],
-        carColor: [
-          { required: true, message: '车辆颜色不能为空', trigger: 'blur' }
+        area: [
+          { required: true, message: '面积不能为空', trigger: 'blur' }
+        ],
+        peopleNumber: [
+          { required: true, message: '常住人数不能为空', trigger: 'blur' }
+        ],
+        phone: [
+          { required: true, message: '业主手机号不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -230,8 +255,7 @@ export default {
         return false
       } else {
         getById(form.ownerId).then(res => {
-          console.log(res.data)
-          this.crud.form.name = res.data.name
+          this.crud.form.ownerName = res.data.name
         })
       }
     },
@@ -260,8 +284,8 @@ export default {
       })
     },
     init() {
-      getCascadeSelect().then(res => {
-        this.cascade = res.data
+      getBuildingNums().then(res => {
+        this.buildingList = res.data
       })
     }
   }

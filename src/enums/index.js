@@ -44,6 +44,10 @@ const enumInfo = {
   IsBuyEnum: {
     IS_BUY: { value: 1, desc: '已购买' },
     NO_BUY: { value: 0, desc: '未购买' }
+  },
+  IsLiveEnum: {
+    IS_LIVE: { value: 1, desc: '已居住' },
+    NO_LIVE: { value: 0, desc: '未居住' }
   }
 }
 

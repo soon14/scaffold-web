@@ -199,6 +199,18 @@ const state = {
     { prop: 'carColor', label: '车辆颜色', slot: true },
     { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
     { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
+  ],
+  household: [
+    { prop: 'ownerName', label: '业主姓名', fixed: 'left' },
+    { prop: 'buildingNum', label: '栋号', fixed: 'left', width: '150' },
+    { prop: 'identityId', label: '梯户独立编号', width: '100', fixed: 'left', slot: true },
+    { prop: 'area', label: '面积', sortable: true, width: '100', slot: true },
+    { prop: 'lastMeterWater', label: '上一次水表读数', sortable: true, width: '150', slot: true },
+    { prop: 'lastMeterElectric', label: '上一次电表读数', sortable: true, width: '150', slot: true },
+    { prop: 'peopleNumber', label: '常住人数', sortable: true, width: '150' },
+    { prop: 'isLive', label: '是否居住', slot: true },
+    { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
+    { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
   ]
 }
 

@@ -9,6 +9,9 @@
       :visible="crud.status.cu > 0"
       :before-close="crud.cancelCU"
       :close-on-click-modal="false"
+      append-to-body
+      width="400px"
+      top="70px"
     >
       <template #title>
         {{ crud.status.title }}
@@ -16,7 +19,6 @@
       <template #content>
         <el-form
           ref="form"
-          inline
           :model="form"
           label-suffix=":"
           label-width="150px"
