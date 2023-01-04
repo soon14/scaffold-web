@@ -69,7 +69,7 @@
       </el-col>
       <el-col :xs="24" :sm="24" :md="16" :lg="17" :xl="17">
         <el-card class="box-card">
-          <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+          <el-tabs v-model="activeName">
             <el-tab-pane :label="String($t('userCenter.rightCard.playLogs'))" name="playLogs">
               <sw-table
                 ref="scaffoldTable"
@@ -77,7 +77,9 @@
                 :table-data="crud.data"
                 :crud="crud"
                 :is-first-col="false"
-                :is-last-col="false"
+                last-col-width="15"
+                last-col-label=""
+                show-refresh
               >
                 <template slot="time" slot-scope="scope">
                   <el-tag v-if="scope.row.time <= 300" size="mini" type="success">

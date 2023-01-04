@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <sw-back-top-and-bottom />
-    <el-tabs v-model="activeTag" type="card">
+    <el-tabs v-model="activeTag">
       <el-tab-pane label="电梯列表" name="elevator">
         <div class="head-container">
           <sw-search-date-picker-operation

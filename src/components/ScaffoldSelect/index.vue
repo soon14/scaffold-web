@@ -6,6 +6,7 @@
     :style="{
       width: width + 'px'
     }"
+    :disabled="disabled"
     @change="handlerChange"
   >
     <template v-if="enums">
@@ -53,6 +54,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {

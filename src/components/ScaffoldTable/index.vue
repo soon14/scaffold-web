@@ -74,6 +74,12 @@
         <template slot-scope="scope">
           <slot name="data-operate" :row="scope.row" :$index="scope.$index" />
         </template>
+        <template v-if="showRefresh" slot="header">
+          <div style="display: inline-block;float: right;cursor:pointer;" @click="crud.refresh()">
+            {{ lastColLabel }}
+            <i class="el-icon-refresh" />
+          </div>
+        </template>
       </el-table-column>
 
       <slot name="right-col" />
@@ -251,6 +257,12 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    // 是否显示刷新按钮(会覆盖最后一列列头)
+    showRefresh: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {

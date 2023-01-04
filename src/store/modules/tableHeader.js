@@ -16,8 +16,8 @@ const state = {
       { prop: 'title', label: String(i18n.t('tableHeader.playLogs.logs.title')), width: '200' },
       { prop: 'browser', label: String(i18n.t('tableHeader.playLogs.logs.browser')) },
       { prop: 'businessType', label: String(i18n.t('tableHeader.playLogs.logs.businessType')), slot: true },
-      { prop: 'time', label: String(i18n.t('tableHeader.playLogs.logs.time')), sortable: true, width: '150', slot: true },
-      { prop: 'createTime', label: String(i18n.t('tableHeader.playLogs.logs.createTime')), sortable: true, width: '200' }
+      { prop: 'time', label: String(i18n.t('tableHeader.playLogs.logs.time')), sortable: true, width: '100', slot: true },
+      { prop: 'createTime', label: String(i18n.t('tableHeader.playLogs.logs.createTime')), sortable: true, width: '150' }
     ],
     expand: [
       { prop: 'requestMethod', label: String(i18n.t('tableHeader.playLogs.expand.requestMethod')) },
@@ -211,6 +211,15 @@ const state = {
     { prop: 'isLive', label: '是否居住', slot: true },
     { prop: 'createTime', label: '创建时间', sortable: true, width: '200' },
     { prop: 'updateTime', label: '修改时间', sortable: true, width: '200' }
+  ],
+  visitor: [
+    { prop: 'name', label: '访客姓名', fixed: 'left' },
+    { prop: 'phone', label: '访客电话号码' },
+    { prop: 'buildingNum', label: '到访楼宇' },
+    { prop: 'householdVO.identityId', label: '到访梯户', slot: true },
+    { prop: 'householdVO.isLive', label: '是否居住', slot: true },
+    { prop: 'createTime', label: '创建时间' },
+    { prop: 'updateTime', label: '修改时间' }
   ]
 }
 

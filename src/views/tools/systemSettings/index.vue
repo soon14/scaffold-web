@@ -9,19 +9,19 @@
     @submit.native.prevent="doSubmit"
   >
     <el-form-item :label="String($t('sysSetting.sysName'))" prop="sysName">
-      <el-input v-model="form.sysName" :placeholder="String($t('sysSetting.sysName'))" clearable class="my-input" />
+      <el-input v-model="form.name" :placeholder="String($t('sysSetting.sysName'))" clearable class="my-input" />
     </el-form-item>
     <el-form-item :label="String($t('sysSetting.sysNameZhCn'))" prop="sysNameZhCn">
-      <el-input v-model="form.sysNameZhCn" :placeholder="String($t('sysSetting.sysNameZhCn'))" clearable class="my-input" />
+      <el-input v-model="form.nameZhCn" :placeholder="String($t('sysSetting.sysNameZhCn'))" clearable class="my-input" />
     </el-form-item>
     <el-form-item :label="String($t('sysSetting.sysNameZhHk'))" prop="sysNameZhHk">
-      <el-input v-model="form.sysNameZhHk" :placeholder="String($t('sysSetting.sysNameZhHk'))" clearable class="my-input" />
+      <el-input v-model="form.nameZhHk" :placeholder="String($t('sysSetting.sysNameZhHk'))" clearable class="my-input" />
     </el-form-item>
     <el-form-item :label="String($t('sysSetting.sysNameZhTw'))" prop="sysNameZhTw">
-      <el-input v-model="form.sysNameZhTw" :placeholder="String($t('sysSetting.sysNameZhTw'))" clearable class="my-input" />
+      <el-input v-model="form.nameZhTw" :placeholder="String($t('sysSetting.sysNameZhTw'))" clearable class="my-input" />
     </el-form-item>
     <el-form-item :label="String($t('sysSetting.sysNameEnUs'))" prop="sysNameEnUs">
-      <el-input v-model="form.sysNameEnUs" :placeholder="String($t('sysSetting.sysNameEnUs'))" clearable class="my-input" />
+      <el-input v-model="form.nameEnUs" :placeholder="String($t('sysSetting.sysNameEnUs'))" clearable class="my-input" />
     </el-form-item>
     <el-form-item :label="String($t('sysSetting.sysLogo'))" prop="sysLogo">
       <el-input v-model="form.sysLogo" placeholder="系统Logo地址" clearable class="my-input" />

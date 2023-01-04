@@ -8,6 +8,7 @@
       last-col-width="100"
       :is-first-col="false"
       :last-col-label="String($t('errorLogsPage.exceptionInfo'))"
+      show-refresh
     >
       <template slot="data-operate" slot-scope="scope">
         <el-button size="small" type="text" @click="getExceptionInfo(scope.row.id)">

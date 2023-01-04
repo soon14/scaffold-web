@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function add(data) {
   return request({
-    url: '/households',
+    url: '/visitors',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function add(data) {
 
 export function edit(data) {
   return request({
-    url: '/households',
+    url: '/visitors',
     method: 'put',
     data
   })
@@ -18,15 +18,8 @@ export function edit(data) {
 
 export function del(ids) {
   return request({
-    url: '/households',
+    url: '/visitors',
     method: 'delete',
     data: ids
-  })
-}
-
-export function getListForBuildingId(buildingId) {
-  return request({
-    url: '/households/buildingNum/' + buildingId,
-    method: 'get'
   })
 }
